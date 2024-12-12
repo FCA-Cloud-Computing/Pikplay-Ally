@@ -2,7 +2,7 @@ import styles from './button.module.scss'
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import ButtonMat from '@mui/material/Button';
+import { Button as ButtonMat } from '@mui/material'
 
 const Button = ({
   animation = false,

@@ -1,0 +1,118 @@
+.UserNotifications {
+  // overflow-y: scroll;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0 10px #52525233;
+  color: #585858;
+  flex-direction: column;
+  font-size: 14px;
+  height: 100%;
+  justify-content: flex-start;
+  margin: 0 -20px;
+  padding: 0;
+  transition: 0.5s ease;
+  width: 100%;
+  // z-index: 0;
+
+  @media screen and (max-width: 480px) {
+    border-radius: 0;
+    height: 100%;
+    margin: 20px auto 50px;
+    // width: 90%;
+  }
+
+  .options {
+    align-items: center;
+    border-bottom: 1px solid #e3e3e3;
+    display: flex;
+    font-size: 12px;
+    // justify-content: space-between;
+    margin: 10px;
+    padding: 0px 0 10px;
+  }
+
+  h4 {
+    text-align: center;
+    @media screen and (max-width: 480px) {
+      display: none;
+    }
+    svg {
+      color: #fdb723;
+    }
+  }
+
+  ul {
+    height: 100%;
+    margin: 10px 0 0;
+    overflow-y: scroll;
+    padding: 0 0;
+    li {
+      align-items: center;
+      border-bottom: 1px solid #42495029;
+      display: flex;
+      height: min-content;
+      margin: 0;
+      overflow: hidden;
+      padding: 10px;
+      transition: 0.5s ease;
+      gap: 8px;
+      .img_notification {
+        object-fit: contain;
+      }
+
+      &:nth-child(even) {
+        background: #476e961a;
+      }
+
+      &.closed {
+        display: none;
+      }
+      &:not(.read) {
+        border-left: 2px solid #3095b3;
+        border-radius: 0;
+      }
+      &.read { // leidas
+        opacity: 0.5 !important;
+      }
+      // &.open {
+      //     max-height: initial;
+      // }
+      > * {
+        flex: 1;
+      }
+      &:nth-of-type(1) {
+        // margin-top: 30px;
+      }
+      i {
+        display: block;
+        font-weight: 600;
+        margin-top: 10px;
+      }
+      .content_close {
+        svg {
+          color: blue;
+          margin-left: 8px;
+        }
+      }
+      span {
+        align-items: center;
+        column-gap: 10px;
+        display: flex;
+        color: initial;
+        font-size: 12px;
+        flex: 5;
+      }
+      svg {
+        height: 8px;
+        width: 8px;
+      }
+      button {
+        height: 35px;
+        padding: 0;
+        :global(svg) {
+          margin-left: 0 !important;
+        }
+      }
+    }
+  }
+}

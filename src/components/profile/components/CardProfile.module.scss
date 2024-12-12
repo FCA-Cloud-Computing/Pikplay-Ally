@@ -1,0 +1,16 @@
+.card{
+  display: flex;
+  padding: 1.2rem;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url("/images/");
+  background-size: cover;
+  background:red;
+
+  & header{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  
+}

@@ -1,0 +1,27 @@
+version: 0.2
+
+env:
+  AWS_ACCOUNT_ID: "147997123832"
+  CLUSTER: "pikplay"
+  SERVICE: "pikplay-service"
+  IMAGE_REPO_NAME: "pilplay"
+  IMAGE_TAG: "lastest"
+
+phases:
+  pre_build:
+    commands:
+      - echo "Autenticando con Amazon ECR"
+      # - $(aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com)
+      - eval $(aws ecr get-login --no-include-email --region us-east1)
+  build:
+    commands:
+      - echo "Construyendo imagen Docker"
+      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/pikplay:$IMAGE_TAG
+      - echo "Copiando imagen de Docker al Repositorio..."
+      # - docker tag nextjs-app:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/nextjs-app:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/pikplay:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo "Subiendo imagen a Amazon ECR"
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/pikplay:$IMAGE_TAG
+      - echo "Construcción completada"

@@ -1,0 +1,321 @@
+.ProfileSummaryExperience {
+    display: flex;
+    position: relative;
+    @media screen and (max-width: 480px) {
+        margin: 0 auto;
+    }
+    .full_name {
+        bottom: 0px;
+        border-radius: 10px 10px 0 0;
+        border-bottom: transparent !important;
+        box-shadow: inset 4px 4px 2px #5252524f;
+        color: white;
+        font-weight: bold;
+        height: 18px;
+        line-height: 20px;
+        left: 20px;
+        padding: 10px 0px 10px 20px;
+        position: relative;
+        width: 200px;
+        &.bronce {
+            background: linear-gradient(45deg, #cecdd2, #9b9b9d);
+            border: 2px solid #9b9b9d;
+        }
+        &.plata {
+            background: linear-gradient(45deg, #cecdd2, #9b9b9d);
+            border: 2px solid #9b9b9d;
+        }
+        &.oro {
+            background: linear-gradient(45deg, #f4c376, #ba7821);
+            border: 2px solid #c1812e;
+        }
+        &:before {
+            background: #959595;
+            border-radius: inherit;
+            content: "";
+            height: 100%;
+            left: 6px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: -1;
+        }
+        span {
+            text-shadow: 2px 1px 3px #565656;
+        }
+
+        .icons {
+            display: flex;
+            position: absolute;
+            right: 0;
+            top: -12px;
+            :global(.Insignia) {
+            }
+            .platform {
+                object-fit: contain;
+                width: 40px;
+            }
+        }
+    }
+
+    .box {
+        // background: linear-gradient(45deg, #3095b3, #126781);
+        background: linear-gradient(45deg, #3095b359, #126781b5);
+        // background: linear-gradient(45deg, #3095b359, #81127eb5);
+        border-radius: 20px;
+        box-shadow: inset 5px 5px 4px #505050;
+        color: white;
+        display: flex;
+        height: 409px;
+        margin-bottom: 20px;
+        padding: 20px 20px 0 20px;
+        position: relative;
+        transition: 1s ease-in-out;
+        width: 300px;
+        @media screen and (max-width: 480px) {
+            padding: 20px 0px 0 0px;
+            width: initial;
+        }
+
+        &::before {
+            background: #959595;
+            border-radius: inherit;
+            content: "";
+            height: 100%;
+            left: 1px;
+            position: absolute;
+            top: 0px;
+            width: 100%;
+            z-index: -1;
+        }
+
+        .bg {
+            // background-image: url(https://t4.ftcdn.net/jpg/03/85/05/53/360_F_385055380_RnAWgJUqaJzqgh8i3aeleBFULJkLoVM6.jpg);
+            // background-image: url(https://image.slidesdocs.com/responsive-images/background/purple-gradient-mosaic-character-wind-game-cartoon-powerpoint-background_7de580b73e__960_540.jpg);
+            background-size: cover;
+            background-position: center;
+            border-radius: inherit;
+            content: "";
+            height: 100%;
+            left: 0;
+            opacity: 0.3;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 4px; /* control the border thickness */
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        &.oro::after {
+            background: linear-gradient(45deg, #f4c376, #ba7821);
+        }
+
+        &.plata::after {
+            background: linear-gradient(45deg, #cecdd2, #9b9b9d);
+        }
+
+        .right {
+            width: 380px;
+            @media screen and (max-width: 480px) {
+                width: initial;
+            }
+        }
+
+        .experience_status {
+            margin: 0px auto;
+            @media screen and (max-width: 480px) {
+                margin: 0px auto 10px 20px;
+            }
+        }
+
+        .fields {
+            column-gap: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .label {
+            background: #11495d;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 12px;
+            margin: 10px 10px 20px 10px;
+            padding: 2px 6px;
+            position: relative;
+            text-align: right;
+            .name {
+                font-size: 12px;
+                position: absolute;
+                top: -20px;
+                left: 0;
+            }
+        }
+
+        .left {
+            position: relative;
+            :global(.Coins) {
+                position: absolute;
+                right: 0;
+                top: 90px;
+            }
+        }
+    }
+}
+
+.ExperienceBar {
+    border-radius: 5px;
+    box-shadow: inset 4px 5px 8px #29292961;
+    height: 16px;
+    width: 100%;
+    .bar {
+        border-radius: 5px;
+        box-shadow: inset 4px 5px 8px #29292900;
+        height: 100%;
+        // overflow: hidden;
+        width: 100%;
+        .indicator {
+            background: linear-gradient(45deg, #f4c376, #ba7821);
+            border-radius: 3px;
+            box-shadow: inset 1px 1px 4px #4a4a4a;
+            height: 100%;
+            position: relative;
+            transition: 1s ease-in-out;
+            transition-duration: 3s;
+            width: 30%;
+            label {
+                border-radius: 10px 0 10px 0;
+                display: block;
+                font-size: 11px;
+                text-align: center;
+                width: 160px;
+            }
+        }
+    }
+}
+
+.EditProfileSummary {
+    background: white;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 4px 4px 8px 0px #92919129;
+    color: white;
+    height: max-content;
+    opacity: 0;
+    padding: 10px 20px;
+    position: absolute;
+    right: 0;
+    top: 59px;
+    transition: 1s ease-in-out;
+    z-index: -1;
+    @media screen and (max-width: 480px) {
+        border-radius: 20px 20px 0px 0;
+        box-shadow: 4px 4px 8px 0px #929191;
+        bottom: -240px;
+        box-sizing: border-box;
+        left: 0px;
+        padding: 10px 0 20px;
+        position: fixed;
+        right: initial;
+        top: initial;
+        width: 100%;
+        z-index: 2;
+        &.active {
+            bottom: 50px;
+        }
+    }
+    &.active {
+        opacity: 1;
+        right: -223px;
+    }
+
+    label {
+        color: #a4a4a4;
+        font-size: 16px;
+    }
+
+    .borderColor {
+        align-items: center;
+        column-gap: 20px;
+        display: flex;
+        justify-content: center;
+        margin: 10px auto 0;
+        padding: 10px 0;
+        text-align: center;
+        width: max-content;
+        .items {
+            column-gap: 10px;
+            display: flex;
+            margin: 10px auto 0;
+            width: max-content;
+        }
+        .item {
+            border-radius: 50%;
+            box-shadow: 0px 0px 4px 2px #cdcdcd;
+            cursor: pointer;
+            height: 20px;
+            margin-bottom: 10px;
+            width: 20px;
+            &.selected {
+                box-shadow: 0px 0px 0px 2px #3095b3;
+                border: solid 1px white;
+            }
+        }
+    }
+
+    .backgroundImage {
+        display: flex;
+        margin: 0px auto;
+        padding: 0px 0 10px;
+        text-align: center;
+        width: max-content;
+        align-items: center;
+        column-gap: 20px;
+        justify-content: center;
+        .items {
+            column-gap: 15px;
+            display: flex;
+            margin: 10px auto 0;
+            width: max-content;
+            @media screen and (max-width: 480px) {
+                // display: block;
+            }
+            .item {
+                height: 50px;
+                img {
+                    // box-shadow: 0px 0px 4px 2px #cdcdcd;
+                    // border: #c93530 4px solid;
+                    // border-radius: 0 10px;
+                    cursor: pointer;
+                    height: 50px;
+                    width: 50px;
+                }
+                &.selected {
+                    box-shadow: 0px 0px 0px 2px #3095b3;
+                    border: solid 1px white;
+                }
+            }
+        }
+    }
+
+    hr {
+        border-top: transparent;
+        border-bottom: 1px solid #e4e4e4;
+    }
+
+    .actions {
+        margin: 10px 0;
+    }
+}

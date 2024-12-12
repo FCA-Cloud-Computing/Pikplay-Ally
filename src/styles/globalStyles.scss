@@ -1,6 +1,7 @@
+@import "./variables.scss";
+
 @import url("https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap");
-@import "./variables.scss";
 
 @font-face {
   font-family: "Righteous";
@@ -748,6 +749,8 @@ section.page {
 html {
   background-size: cover;
   height: 100vh;
+  font-family: "Righteous";
+  color: #fff;
   background-repeat: no-repeat;
   background-position: 0px -2px;
   background-attachment: fixed;

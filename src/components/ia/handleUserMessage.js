@@ -1,4 +1,3 @@
-import ReactTyped from 'react-typed'
 import { Message as IAMessageWelcome, Options as IAOptionsWelcome, HTML as HTMLwelcome } from './responses/welcome'
 import { HTMLOnboarding, Message as IAMessageOnboarding, Options as IAOptionsOnboarding, HTMLOnboardingNameSaved } from './responses/onboarding/onboarding'
 import { Message as IAMessageDefault, Options as IAOptionsDefault } from './responses/default'
@@ -78,7 +77,7 @@ export const handleUserMessage = async (mensaje, set, options) => {
     setTimeout(() => {
         set({
             isVisible: true,
-            IAMessage: IAMessageSelected ? <ReactTyped strings={[IAMessageSelected]} typeSpeed={20} /> : null,
+            IAMessage: IAMessageSelected ? IAMessageSelected : null,
             IAOptions: renderMiddleWare(IAOptionsSelected, set, options),
             IAExpression: IAExpressionSelected,
             IAHTMLMessage: IAHTMLMessageSelected,

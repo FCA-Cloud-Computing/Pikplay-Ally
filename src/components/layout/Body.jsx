@@ -8,6 +8,7 @@ import IA from '../ia/IA'
 import Image from 'next/image'
 import CustomHeader from '../customHeader/CustomHeader.tsx'
 import useSystemStore from '../../hooks/storeSystem.js'
+import MenuMovil from '../menuMovil/MenuMovil'
 
 const Body = ({
   children,
@@ -36,6 +37,7 @@ const Body = ({
         </div>
       </Link>
       {children}
+      <MenuMovil />
       <a
         className='a_whatsapp'
         href='https://api.whatsapp.com/send?phone=573054202450&text=Hola Pikplay, tengo una consulta sobre los servicios que ofrecen a los Gamers en Colombia'

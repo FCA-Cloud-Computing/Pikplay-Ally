@@ -12,6 +12,55 @@ section.Onboarding {
         height: 100%;
         width: 100%;
     }
+    .cta {
+        position: relative;
+        z-index: 2;
+        .inputContent {
+            position: relative;
+            margin: 0 auto;
+            width: 200px;
+            input {
+                background: #0e3267;
+                border-bottom-right-radius: 0;
+                border-top-right-radius: 0;
+                border: none !important;
+                border-radius: 10px;
+                color: white;
+                font-size: 16px;
+                margin-top: 20px;
+                padding: 10px;
+                position: relative;
+                width: 200px;
+                z-index: 1;
+            }
+            &::after {
+                content: "";
+                background: linear-gradient(83.23deg, #feb154 -6.32%, #d263ee 23.89%, #5d5af6 67.88%, #09e0a0 107.67%),
+                    linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+                border-radius: 10px;
+                height: 42px;
+                left: -2px;
+                position: absolute;
+                top: 18px;
+                width: 224px;
+            }
+            .btnSend {
+                // background-color: #eaeaea;
+                border-radius: 5px;
+                padding: 4px 4px;
+                position: absolute;
+                right: -26px;
+                top: 14px;
+                z-index: 1;
+                svg {
+                    color: grey;
+                    font-size: 18px;
+                    position: relative;
+                    top: 1px;
+                }
+            }
+        }
+    }
     .titleContent,
     .texts {
         .background {
@@ -20,7 +69,7 @@ section.Onboarding {
             box-shadow: 2px 2px 0px #f8a713;
             border-radius: 40px;
             height: 200px;
-            opacity: .5;
+            opacity: 0.5;
             position: absolute;
             top: 10px;
             transform: rotate(45deg);

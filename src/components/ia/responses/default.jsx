@@ -1,9 +1,5 @@
 import React from 'react';
 import Button from '../../button/Button'
-import GroupIcon from '@mui/icons-material/Group'
-import MenuBookIcon from '@mui/icons-material/MenuBook'
-import CardGiftcardIcon from '@mui/icons-material/CardGiftcard'
-import PaidIcon from '@mui/icons-material/Paid'
 import { motion } from "framer-motion"
 import Link from 'next/link';
 
@@ -32,33 +28,28 @@ const Options = ({ handleUserMessage, set }) => {
             <Link href='/onboarding'>
                 <Button
                     color='transparent'>
-                    <MenuBookIcon className='icon' />
                     &nbsp;&nbsp;Guía para nuevos usuarios
                 </Button>
             </Link>
         </motion.div>
         <motion.div variants={item}>
             <Button color='transparent' onClick={() => handleUserMessage('pikcoins', set)}>
-                <PaidIcon className='icon' />
                 &nbsp;&nbsp;¿Que son los Pikcoins?
             </Button>
         </motion.div>
         <motion.div variants={item}>
             <Button color='transparent' onClick={() => handleUserMessage('gift', set)}>
-                <CardGiftcardIcon className='icon' />
                 &nbsp;&nbsp;Asesoria para un regalo
             </Button>
         </motion.div>
         <motion.div variants={item}>
             <Button color='transparent' onClick={() => handleUserMessage('referrals', set)}>
-                <GroupIcon className='icon m-t-5' style={{ marginTop: '-2px' }} />
                 &nbsp;&nbsp;
                 Referidos
             </Button>
         </motion.div>
         <motion.div variants={item}>
             <Button color='transparent' onClick={() => handleUserMessage('referrals', set)}>
-                <GroupIcon className='icon m-t-5' style={{ marginTop: '-2px' }} />
                 &nbsp;&nbsp;
                 <span>Hablar con asesor</span>
             </Button>

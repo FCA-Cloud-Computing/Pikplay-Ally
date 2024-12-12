@@ -1,0 +1,30 @@
+.LoginComponent {
+  .playButton {
+    position: fixed;
+    right: 10px;
+    top: 4px;
+  }
+  .contryAndPhone {
+    display: flex;
+    [role="combobox"] {
+      padding: 0 10px;
+    }
+  }
+  .terminos_condiciones {
+    background: #ededed;
+    border-radius: 5px;
+    display: block;
+    font-size: 12px;
+    margin-top: 20px;
+    padding: 10px 15px;
+  }
+
+  .capchaContent {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 270px;
+    iframe {
+      width: 320px;
+    }
+  }
+}

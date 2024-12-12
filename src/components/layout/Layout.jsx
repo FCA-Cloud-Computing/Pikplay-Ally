@@ -32,7 +32,7 @@ const Layout = (props) => {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <Head>
         <title>{title}</title>
         <meta property='title' content={title} />
@@ -61,7 +61,7 @@ const Layout = (props) => {
       >
         {children}
       </Body>
-    </React.Fragment>
+    </>
   )
 }
 

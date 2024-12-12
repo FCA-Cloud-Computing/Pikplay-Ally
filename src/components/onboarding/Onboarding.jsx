@@ -1,13 +1,15 @@
 import styles from './onboarding.module.scss'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from "next/image"
 import { useIAStore } from '../ia/IAstore'
 import useSystemStore from '../../hooks/storeSystem'
 import { motion } from 'framer-motion'
+import Button from '../button/Button'
 
 const Onboarding = () => {
   const { setStoreValue } = useSystemStore()
+  const [phoneNumber, setPhoneNumber] = useState("")
   const items = [
     {
       background: "https://i.pinimg.com/564x/f4/d4/b9/f4d4b991d2bccaf2202b8a07bae108de.jpg",
@@ -54,6 +56,24 @@ const Onboarding = () => {
     handleUserMessage,
   } = useIAStore((state => state))
 
+  const handleInputChange = (e) => {
+    const input = e.target.value;
+
+    // Eliminar todos los caracteres que no sean dígitos
+    const digits = input.replace(/\D/g, "");
+
+    // Formatear el número de teléfono
+    let formattedNumber = digits;
+
+    if (digits.length > 3 && digits.length <= 6) {
+      formattedNumber = `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    } else if (digits.length > 6) {
+      formattedNumber = `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+    }
+
+    setPhoneNumber(formattedNumber);
+  };
+
   useEffect(() => {
     // handleUserMessage('onboarding', {})
     setStoreValue('isOnboardingProcess', true)
@@ -72,6 +92,7 @@ const Onboarding = () => {
           const { height, width } = item?.imageStyle || {}
           return <motion.div
             className={`${styles.item} ${ind < 1 && styles.active}`}
+            key={ind}
             onClick={() => handleUserMessage(item.messageCode, {})}
             whileHover={{ scale: 1 }}
             whileTap={{ scale: 0.7 }}>
@@ -84,15 +105,34 @@ const Onboarding = () => {
         )}
     </div>
 
+    <div className={styles.cta}>
+      <div className={styles.titleContent}>
+        <h2>
+          Únete a nuestra comunidad
+        </h2>
+      </div>
+      <div className={styles.inputContent}>
+        <input type="text" placeholder='Tu whatsapp aquí' onChange={handleInputChange} value={phoneNumber} />
+        <div className={styles.btnSend}>
+          <Button color='blue'>
+            Enviar
+          </Button>
+        </div>
+      </div>
+    </div>
+
     <div className={styles.texts}>
       <div className={styles.background}></div>
       <p>
-        La idea inicial de <b>Pikplay Latam</b> sigue siendo reducir los fraudes en la compra y venta de consolas y videojuegos de manera online.
+        Comprando con aliados de <br />
+        <b>Pikplay Ally</b>  tienes la posibilidad de ganar cashback, esto basicamente es desuentos en otras tiendas aliadas.
+        <br /><br />
+        Tambien invitar a tus amigos y tener un Ranking de puntos los cuales te serviran para aumentar de liga, obtener descuentos y participar en concursos.
       </p>
-      <p>
-        Por ello en Pikplay solo encontraras <b>Aliados certificados</b>. 
+      {/* <p>
+        Por ello en Pikplay solo encontraras <b>Aliados certificados</b>.
         <br />Tiendas que han sido estudiadas y validadas por nuestro equipo. Tienen nuestro total respaldo y confianza.
-      </p>
+      </p> */}
     </div>
 
     <div className={styles.aliados}>

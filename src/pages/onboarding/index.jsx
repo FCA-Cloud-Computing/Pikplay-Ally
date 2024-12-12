@@ -4,7 +4,7 @@ import Onboarding from "../../components/onboarding/Onboarding"
 const OnboardingPage = () => {
     const image = ''
     const descripcion = ''
-    const title = 'Te presentamos Pikplay Latam'
+    const title = 'Te presentamos Pikplay Ally'
     const url = ''
     return <Layout
         image={image}
@@ -12,7 +12,7 @@ const OnboardingPage = () => {
         title={title}
         url={url}>
         <Onboarding />
-    </Layout>
+    </Layout>   
 }
 
 export default OnboardingPage

@@ -1,0 +1,209 @@
+@import "../../styles/variables.scss";
+
+.PreviewUser {
+  margin-left: 20px;
+  position: relative;
+  width: 70px;
+  z-index: 4;
+  @media screen and (max-width: $tablet) {
+    border-radius: 10px 10px 0 0;
+    margin-left: initial;
+    width: 80%;
+    &.actived {
+      .bg_black {
+        // box-shadow: 90px 3px 2px #76767673;
+        display: block;
+        left: 0;
+      }
+      .elementToCloseBgBlack {
+        right: 0;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    &:hover,
+    &.actived {
+      .bg_black {
+        display: block;
+      }
+    }
+  }
+
+  &.userLogged {
+    // height: calc(100vh - 112px);
+  }
+
+  :global(.NotificationsNewIcon) {
+    position: absolute;
+    right: -8px;
+    top: -8px;
+  }
+
+  .coins {
+    position: absolute;
+    right: -40px;
+    top: -2px;
+    z-index: 4;
+    @media screen and (max-width: 480px) {
+      display: none;
+    }
+
+    .experience {
+      color: rgb(25 89 107);
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 4px;
+      position: relative;
+      top: 0;
+      display: block;
+    }
+  }
+
+  .bg_black {
+    background: radial-gradient(circle, rgb(82 89 95) 0%, rgba(36, 41, 46, 1) 100%);
+    border-radius: 10px;
+    // box-shadow: 0px 2px 2px #5252522e;
+    color: white;
+    display: none;
+    font-size: 14px;
+    position: absolute;
+    // padding-top: 10px;
+    right: 40px;
+    top: 40px;
+    // transition: 0.5s ease-in-out;
+    width: 240px;
+    z-index: -1;
+    @media screen and (max-width: 480px) {
+      border-radius: 0px 10px 0px 0px;
+      bottom: 60px;
+      height: 100%;
+      // box-shadow: 6px 0px 2px #76767673;
+      display: block;
+      // height: 100%;
+      position: fixed;
+      top: 55px;
+      width: 50%;
+      z-index: 2;
+    }
+
+    :global(.UserNotifications) {
+      right: 0px;
+      position: absolute;
+    }
+
+    > ol {
+      border-bottom: 1px solid #424950;
+      display: flex;
+      font-weight: bold;
+      margin: 10px 0;
+      padding: 0 20px 10px;
+      text-align: left;
+      &:nth-of-type(1) {
+        // margin-top: 20px;
+      }
+
+      a {
+        color: white !important;
+        justify-content: flex-start;
+        @media screen and (max-width: 480px) {
+          display: flex;
+          align-items: center;
+        }
+        .icon {
+          margin-right: 10px;
+        }
+        .coinContent {
+          display: inline-block;
+          margin-left: 10px;
+        }
+      }
+
+      :global(svg) {
+        height: 20px;
+        margin-right: 10px;
+        width: 20px;
+      }
+
+      .flex {
+        align-items: center;
+        display: flex;
+        height: 20px;
+        justify-content: space-around;
+        margin: 0 auto;
+        width: 80px;
+      }
+
+      .text {
+        font-size: 12px;
+        margin-top: 10px;
+      }
+
+      :global(.number-coins) span {
+        display: none;
+      }
+    }
+  }
+
+  :global(.UserNotifications) {
+    box-sizing: border-box;
+    font-family: system-ui;
+    height: 100%;
+    padding: 0 10px;
+    position: fixed;
+    right: 0;
+    top: 38px;
+    width: 50%;
+    z-index: 2;
+    :global(ul) {
+      overflow: initial;
+    }
+    :global(li) {
+      display: block;
+      margin-bottom: 10px;
+      overflow: initial;
+      padding: 10px 10px 58px;
+      small {
+        color: #cdcdcd;
+        display: block;
+        margin-bottom: 4px;
+      }
+      span {
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+      :global(.Coins) {
+        background: #eaeaea;
+        border-radius: 10px 0 0 10px;
+        box-shadow: 0px 2px 0px 0px #f8af06;
+        float: right;
+        padding: 8px 15px;
+        position: relative;
+        right: -26px;
+      }
+    }
+  }
+
+  .close_button {
+    position: fixed;
+    right: 6px;
+    top: 6px;
+  }
+
+  // .elementToCloseBgBlack {
+  //   height: 100vh;
+  //   position: fixed;
+  //   right: -100vw;
+  //   top: 75px;
+  //   width: 30%;
+  // }
+}
+
+@keyframes like {
+  100% {
+    background-position-x: -8px;
+  }
+  0% {
+    background-position-x: 292px;
+  }
+}
