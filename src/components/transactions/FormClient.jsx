@@ -7,21 +7,20 @@ import { useState } from "react";
 import uploadFile from "../../services/uploadFile";
 import { useRef } from "react";
 
-export const FormClient = () => {
+export const FormClient = ({ uid, transactionId }) => {
   const [fileUploaded, setFileUploaded] = useState(false);
-  const file = useRef();
-  const userId = "Alvaro";
-  const transactionId = 123;
+  const file = useRef(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await uploadFile("invoices", file.current, `${userId}/${transactionId}`);
+    if (!file.current) return
+    await uploadFile("invoices", file.current, `${uid}/${transactionId}`, transactionId);
     file.current = null;
     setFileUploaded(false);
   };
 
   const handleChange = (event) => {
-    file.current = event.target.files[0]
+    file.current = event.target.files[0];
     setFileUploaded(true);
   };
 
@@ -38,30 +37,35 @@ export const FormClient = () => {
   });
 
   return (
-    <form onSubmit={handleSubmit} className="p-4">
-      <Button
-        component="label"
-        type="button"
-        role={undefined}
-        variant="contained"
-        className="w-full"
-        tabIndex={-1}
-        startIcon={<CloudUploadIcon />}
-      >
-        {fileUploaded ? "Archivo cargado" : "Subir comprobante de pago"}
-        <VisuallyHiddenInput
-          type="file"
-          accept=".jpg, .jpeg, .png"
-          name="file"
-          onChange={handleChange}
-        />
-      </Button>
-      <button
-        type="submit"
-        className="border-white/50 hover:bg-white transition duration-300 hover:text-black border py-2 w-full rounded-md mt-4"
-      >
+    <>
+      <h2 className="text-white text-center font-bold text-md">
         Crear transacción
-      </button>
-    </form>
+      </h2>
+      <form onSubmit={handleSubmit} className="p-4">
+        <Button
+          component="label"
+          type="button"
+          role={undefined}
+          variant="contained"
+          className="w-full"
+          tabIndex={-1}
+          startIcon={<CloudUploadIcon />}
+        >
+          {fileUploaded ? "Archivo cargado" : "Subir comprobante de pago"}
+          <VisuallyHiddenInput
+            type="file"
+            accept=".jpg, .jpeg, .png"
+            name="file"
+            onChange={handleChange}
+          />
+        </Button>
+        <button
+          type="submit"
+          className="border-white/50 hover:bg-white transition duration-300 hover:text-black border py-2 w-full rounded-md mt-4"
+        >
+          Crear transacción
+        </button>
+      </form>
+    </>
   );
 };

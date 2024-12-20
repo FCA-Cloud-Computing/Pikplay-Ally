@@ -1,0 +1,4 @@
+export const TRANSACTION_STATUS = {
+  PENDING: 0,
+  SUCCESS: 1,
+}

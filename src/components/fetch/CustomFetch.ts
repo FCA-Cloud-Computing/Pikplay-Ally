@@ -87,9 +87,52 @@ const CustomFetch = () => {
       });
   };
 
+  const put = async (ctx, path, params, extraHeaders = {}) => {
+    if (!API_URL)
+      return {
+        message: 'API_URL no esta definida en el archivo .env',
+        status: 404,
+      };
+    const url = API_URL + path;
+    console.log(API_URL + path);
+    let body;
+    const headers = {
+      credentials: 'include',
+      ...getCookies(ctx),
+      ...extraHeaders,
+    };
+    if (params) {
+      body = JSON.stringify({ ...params });
+      headers['Content-type'] = 'application/json; charset=UTF-8';
+    }
+
+    return fetch(url, {
+      method: 'PUT',
+      headers,
+      body,
+    })
+      .then(async (res) => {
+        if (res.ok) {
+          const json = await res.json();
+          const formated = convertResponse(json);
+          return formated;
+        }
+        const msg = `res.ok fue false, el path fue ${path}`
+        return {
+          msg,
+          error: true
+        }
+      })
+      .catch((error) => {
+        console.error(`Error al obtener datos desde el servicio para la ruta ${path} method PUT}`);
+        throw error;
+      });
+  };
+
   return {
     get,
     post,
+    put,
   };
 };
 

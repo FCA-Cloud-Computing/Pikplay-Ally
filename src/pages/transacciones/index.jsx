@@ -1,7 +1,5 @@
 import "./styles.scss";
-
-import { getTransactions } from "../../services/user/transactions";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {
   ListTransactions,
   Header,
@@ -21,8 +19,8 @@ function Transactions() {
     console.log("click");
   };
 
-  const totalExperience = transactions.reduce(
-    (acc, curr) => acc + curr.experience,
+  const totalCredits = transactions.reduce(
+    (acc, curr) => acc + curr.credits,
     0
   );
 
@@ -35,7 +33,7 @@ function Transactions() {
     <Layout title={title} descripcion={descripcion} image={image} url={url}>
       <section className="page min-h-dvh max-w-screen-sm flex flex-col items-center bg-primary p-6 gap-5">
         <Header handleNotification={handleNotification} />
-        <Statistics totalExperience={totalExperience} />
+        <Statistics totalCredits={totalCredits} />
         <ListTransactions transactions={transactions} />
       </section>
     </Layout>

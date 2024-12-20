@@ -1,10 +1,7 @@
 import { z } from "zod";
 
 export const schema = z.object({
-  allied: z.string().min(1, "El aliado es obligatorio"),
-  customer: z.string().min(1, "El nombre del cliente es obligatorio"),
-  productName: z.string().min(1, "El nombre del producto es obligatorio"),
-  productDescription: z
+  description: z
     .string()
     .min(1, "La descripción del producto es obligatorio"),
   experience: z
@@ -15,10 +12,34 @@ export const schema = z.object({
       if (isNaN(numberValue)) throw new Error("El precio debe ser un número");
       return numberValue;
     }),
-  purchaseDate: z
+  credits: z
+    .string()
+    .min(1, "Los créditos son obligatorios")
+    .transform((val) => {
+      const numberValue = parseFloat(val);
+      if (isNaN(numberValue)) throw new Error("Los créditos deben ser un número");
+      return numberValue;
+    }),
+  purchase_date: z
     .string()
     .refine(
       (date) => !isNaN(new Date(date).getTime()),
       "Debe ser una fecha válida"
     ),
+  client_document: z
+    .string()
+    .min(1, "El documento del cliente es obligatorio")
+    .transform((val) => {
+      const numberValue = parseFloat(val);
+      if (isNaN(numberValue)) throw new Error("El documento del cliente deben ser un número");
+      return numberValue;
+    }),
+    amount: z
+    .string()
+    .min(1, "El monto total es obligatorio")
+    .transform((val) => {
+      const numberValue = parseFloat(val);
+      if (isNaN(numberValue)) throw new Error("El monto total debe ser un número");
+      return numberValue;
+    }),
 });

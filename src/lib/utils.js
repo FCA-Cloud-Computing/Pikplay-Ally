@@ -119,7 +119,7 @@ export function snakeToCamel(snake) {
 }
 
 export function formatNumberWithCommas(number) {
-  if (!number) return;
+  if (typeof number !== "number") return;
   return number.toLocaleString('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,

@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { styled, css } from "@mui/system";
 import { Modal as BaseModal } from "@mui/base/Modal";
 
-export default function ModalLayout({ label, children }) {
+export default function ModalLayout({ label, children, className }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -13,7 +13,7 @@ export default function ModalLayout({ label, children }) {
       <button
         type="button"
         onClick={handleOpen}
-        className="font-geist font-light text-2xl leading-6 transition-all duration-150 ease-in-out cursor-pointer bg-blue-600 bg-opacity-50 p-1 w-9 h-auto rounded-md"
+        className={`font-geist font-light text-2xl leading-6 transition-all duration-150 ease-in-out cursor-pointer bg-blue-600 bg-opacity-50 p-1 w-9 h-auto rounded-md ${className}`}
       >
         {label}
       </button>

@@ -1,8 +1,6 @@
+import { addTransaction, getTransactions } from "../services/transactions/transactions";
 import { create } from "zustand";
 import { persist, devtools } from "zustand/middleware";
-
-import { getTransactions } from "../services/user/transactions";
-import { addTransaction } from "../services/user/transactions";
 
 export const useTransactionsStore = create(
   devtools(
@@ -14,7 +12,7 @@ export const useTransactionsStore = create(
           getTransactionsStore: async () => {
             try {
               const res = await getTransactions();
-              set((state) => ({
+              set((_) => ({
                 transactions: res.data
               }));
             } catch (error) {
@@ -22,11 +20,16 @@ export const useTransactionsStore = create(
             }
           },
 
-          addTransactionStore: (transaction) => {
-            addTransaction(transaction);
-            set((state) => ({
-              transactions: [...state.transactions, transaction],
-            }));
+          addTransactionStore: async (transaction) => {
+            try {
+              await addTransaction(transaction);
+              const res = await getTransactions();
+              set((_) => ({
+                transactions: res.data
+              }));
+            } catch (error) {
+              console.error("Error fetching transactions:", error);
+            }
           },
         }
       }
