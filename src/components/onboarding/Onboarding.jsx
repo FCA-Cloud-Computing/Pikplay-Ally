@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { toast } from 'react-toastify'
 
 // Custom
+import { sellersInformation } from '../../data/dataSellers'
 import Button from '../button/Button'
 import CoinIcon from '../coinIcon/CoinIcon'
 import MESSAGES from '../../consts/messages'
@@ -175,17 +176,20 @@ const Onboarding = () => {
     <div className={styles.aliados}>
       <h2>Aliados</h2>
       <div className={styles.items}>
-        <Link href='/fundacion-codigo-abierto'>
-          <div className="Card">
-            <img src='/images/users/fca/logo.jpg' />
-            <p>
-              <b>FCA Código abierto</b>
-              <div>Educación</div>
-              Barranquilla, Colombia
-            </p>
-          </div>
-        </Link>
-        <Link href='/conversation-club'>
+        {sellersInformation && Object.keys(sellersInformation).map((key, i) => {
+          const { authorInformation: item } = sellersInformation[key]
+          return <Link href={`/${key}`}>
+            <div className="Card">
+              <img src={item.picture} />
+              <p>
+                <b>{item.name}</b>
+                <div>{item?.category?.label}</div>
+                {item.location}
+              </p>
+            </div>
+          </Link>
+        })}
+        {/* <Link href='/conversation-club'>
           <div className="Card">
             <img src='/images/users/conversation_club/logo.png' />
             <p>
@@ -224,7 +228,7 @@ const Onboarding = () => {
               Barranquilla, Colombia
             </p>
           </div>
-        </Link>
+        </Link> */}
         {/* <div className="Card">
           <img src='/images/users/hiro.jpeg' />
           <p>

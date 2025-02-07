@@ -19,7 +19,7 @@ export const AuthorInformation = (props) => {
         instagram,
         name,
         picture,
-        place,
+        location,
         secondaryColor,
         whatsapp,
     } = props?.authorInformation || {}
@@ -31,7 +31,7 @@ export const AuthorInformation = (props) => {
             <br />
             <div className={styles.namePlace}>
                 <b>{name}</b>
-                <small style={{ color: dividerColor }}>{place}, Colombia</small>
+                <small style={{ color: dividerColor }}>{location}</small>
             </div>
             <hr style={{ background: dividerColor }} />
             {<div className={styles.creditsGiven}>
