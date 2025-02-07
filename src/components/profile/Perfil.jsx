@@ -31,6 +31,8 @@ import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummary
 import IACharacter from '../ia/IACharacter'
 import Button from '../button/Button'
 import UserNotifications from '../userNotifications/UserNotifications'
+import RankingComponent from '../ranking/Ranking'
+import Referrals from '../referrals/Referrals'
 
 const { motion } = require('framer-motion')
 
@@ -181,11 +183,14 @@ const Interface = ({
           </TabPanel> */}
 
       {/* Resumen */}
+      <h2>Perfil</h2>
       <ProfileSummaryExperience
         isEditProfile={isEditProfile}
         setIsEditProfile={setIsEditProfile}
         showDetails
       />
+      <h2>Referidos</h2>
+      <Referrals />
     </section>
   )
 }

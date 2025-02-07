@@ -42,9 +42,8 @@ function Transactions() {
 
   const GlobalStyle = createGlobalStyle`
   section.page {
-    padding: 60px 20px;
-  }
-  `;
+    background-image: url(/images/backgrounds/general-bg.png);
+  }`;
 
   return (
     <Layout title={title} descripcion={descripcion} image={image} url={url}>

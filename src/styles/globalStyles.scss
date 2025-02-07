@@ -588,9 +588,10 @@ main {
 section.page {
   // margin: 20px auto;
   box-sizing: border-box;
-  margin: 44px auto 90px;
+  margin: 0px auto 90px;
+  min-height: 100vh;
   overflow: hidden;
-  padding: 20px 30px 80px;
+  padding: 64px 30px 80px;
   position: relative;
   .contentTitle,
   .contentSubTitle {

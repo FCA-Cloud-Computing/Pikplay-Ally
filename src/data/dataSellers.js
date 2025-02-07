@@ -34,22 +34,9 @@ const sellersInformation = {
             whatsappNumber: 573204863547
         },
     },
-    'pikplay-store': {
-        authorInformation: {
-            dividerColor: '#b0b0b0',
-            // background: '/images/logos/pikplay_store_logo.png',
-            name: 'Pikplay Store',
-            place: 'Barranquilla',
-            givenPikcoins: 100,
-            picture: '/images/users/pikplay_store/logo.png',
-            uid: 131,
-            whatsappNumber: 573204863547
-        },
-        competitions: ['cadena-oro-italiano-18k-60cm']
-    },
     'le-fragance': {
         authorInformation: {
-            aboutHTML: `<div>Le Fragance es una tienda de perfumes premium, con más de 2 años de experiencia en el mercado.`,
+            aboutHTML: <div>Le Fragance es una tienda de perfumes premium, con más de 2 años de experiencia en el mercado.</div>,
             aboutHTMLButtonStyle: { color: 'white', textDecoration: 'underline' },
             dividerColor: '#b0b0b0',
             // background: '/images/backgrounds/campo-bg.jpeg',
@@ -60,7 +47,7 @@ const sellersInformation = {
             picture: '/images/users/le-fragance/le-fragance.jpeg',
             whatsappNumber: 573016815784,
         },
-        competitions: ['sorteo-paco-rabanne-one-million-1-million-tradicional'],
+        competitions: ['sorteo-paco-rabanne-one-million-1-million-tradicional', 'cadena-oro-italiano-18k-60cm'],
         products: [{
             images: [
                 { url: '/images/users/le-fragance/products/one-million.webp' }

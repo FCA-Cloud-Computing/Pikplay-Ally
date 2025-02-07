@@ -111,7 +111,7 @@
       a {
         align-items: center;
         display: flex;
-        color: white !important;
+        color: white;
         justify-content: flex-start;
         @media screen and (max-width: 480px) {
           display: flex;
@@ -130,6 +130,12 @@
         img {
           margin-right: 10px;
           width: 30px;
+        }
+        &.disabled {
+          color: grey;
+          :global(img) {
+            filter: grayscale(100%);
+          }
         }
       }
 

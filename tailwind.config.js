@@ -14,7 +14,7 @@ module.exports = {
                 "mobile": "calc(100dvh - 180px)"
             },
             backgroundImage: {
-                'transactions': "url(/images/backgrounds/tetris-texture.png)",
+                'transactions': "url(/images/backgrounds/general-bg.png)",
             },
             colors:{
                 "primary": "#0D0E32",

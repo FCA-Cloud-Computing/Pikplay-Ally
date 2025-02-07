@@ -1,20 +1,8 @@
 section.Onboarding {
     background: #19596b;
-    background-image: url(/images/backgrounds/tetris-texture.png);
-    margin: 40px auto 90px;
+    background-image: url(/images/backgrounds/general-bg.png);
+    margin: 00px auto 90px;
     width: calc(100%);
-    &::after {
-        background: #0b2c5aad;
-        content: "";
-        height: 100%;
-        left: 0;
-        margin: 0 auto;
-        max-width: 420px;
-        position: fixed;
-        right: 0;
-        top: 56px;
-        width: 100%;
-    }
     .cta {
         position: relative;
         z-index: 2;
@@ -237,8 +225,8 @@ section.Onboarding {
     h2 {
         color: white;
         font-size: 24px;
-        margin: 20px 0 0 40px;
-        padding-top: 20px;
+        margin: 0px 0 0 40px;
+        padding-top: 10px;
         position: relative;
         z-index: 2;
         // position: fixed;
