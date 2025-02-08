@@ -6,7 +6,6 @@ import { DeleteOutlined } from '@mui/icons-material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 const Message = () => {
-  debugger;
   const { competitionDetail: { title }, selectedNumberPhone, selectedNumber, selectedNumberName } = useCompetitionsStore();
   return <div>
     Número seleccionado: {selectedNumber}<br />

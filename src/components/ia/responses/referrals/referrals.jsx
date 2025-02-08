@@ -8,6 +8,7 @@ import { saveReferralSrv } from '@/services/user/userService'
 async function getContacts(handleUserMessage, set) {
   const props = ["name", "email", "tel", "address", "icon"]
   const opts = { multiple: true }
+  let erorrsFound = false
   try {
     const contacts = await navigator.contacts.select(props, opts)
     // const contacts = [{ name: ['Juan'], tel: ['+56912345678'] }] // For testing
@@ -17,12 +18,15 @@ async function getContacts(handleUserMessage, set) {
           name: item.name[0],
           phone: item.tel[0].replace(/ /g, "")
         }
-        await saveReferralSrv(null, itemFormatted)
+        const resp = await saveReferralSrv(null, itemFormatted)
+        alert(JSON.stringify(resp))
+        if (resp?.errorCode == 409) erorrsFound = true
       })
     )
-    toast.success('¡Referidos guardados!')
+    if (erorrsFound) toast.warning('Algunos referidos no pudieron guardarse con exito porque se ya se encontraron en Pikplay')
+    else toast.success('¡Referidos guardados!')
   } catch (err) {
-    toast.warning('No se pudo obtener los contactos, quizas ya los guardaste antes')
+    toast.warning('No se pudo obtener los contactos')
   }
 }
 

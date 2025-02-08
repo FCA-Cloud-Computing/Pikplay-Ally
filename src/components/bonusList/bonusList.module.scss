@@ -8,6 +8,9 @@
         height: 170px;
         position: relative;
         margin-bottom: 30px;
+        &.withImage {
+            height: 200px;
+        }
         .topMessage {
             display: flex;
             align-items: center;
@@ -34,6 +37,11 @@
             text-align: center;
             top: 60px;
             width: 100%;
+        }
+        .image img {
+            display: block;
+            margin: 50px auto;
+            width: 160px;
         }
         .contentTexts {
             bottom: 20px;

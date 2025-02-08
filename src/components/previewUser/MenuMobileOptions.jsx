@@ -95,7 +95,7 @@ const MenuMobileOptions = () => {
       </Link>
     </motion.ol>
     <motion.ol variants={item}>
-      <Link href="/#" className={styles.disabled}>
+      <Link href="/redimir">
         <img src="https://cdn-icons-png.flaticon.com/512/4213/4213958.png" />
         Redimir
       </Link>
