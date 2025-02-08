@@ -46,6 +46,7 @@ export function Loyalty({ uid, sellerId }) {
   //   }
   //   fetchLoyaltyInfo()
   // }, [])
+  const { message, instructions } = loyaltyInfo
   return (
     <article>
       <header className={styles.header}>
@@ -53,7 +54,9 @@ export function Loyalty({ uid, sellerId }) {
         <Button
           realistic
           color="blue"
-          onClick={() => handleUserMessage("redemption", { credits, form })}
+          onClick={() =>
+            handleUserMessage("loyalty", { message, instructions })
+          }
         >
           Redimir
         </Button>
