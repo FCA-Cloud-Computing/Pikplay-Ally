@@ -6,6 +6,7 @@
         box-shadow: inset 0px 0px 4px #ededed;
         border-radius: 8px;
         // height: 170px;
+        padding-top: 50px;
         position: relative;
         margin-bottom: 30px;
         &.withImage {
@@ -32,15 +33,15 @@
         .amount {
             display: block;
             font-size: 20px;
-            margin: 0 auto;
-            position: absolute;
+            margin: 0 auto 10px;
+            // position: absolute;
             text-align: center;
             top: 60px;
             width: 100%;
         }
         .image img {
             display: block;
-            margin: 50px auto 0;
+            margin: 0px auto 0;
             width: 160px;
         }
         .price {
@@ -49,7 +50,7 @@
         .contentTexts {
             bottom: 20px;
             left: 20px;
-            margin: 0 0 20px 20px;
+            margin: 0 0 10px 20px;
             // position: absolute;
             h2 {
                 color: white;
