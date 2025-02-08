@@ -1,0 +1,52 @@
+.BonusList {
+    .item {
+        backdrop-filter: blur(10px);
+        background-position: center;
+        background-size: cover;
+        box-shadow: inset 0px 0px 4px #ededed;
+        border-radius: 8px;
+        height: 170px;
+        position: relative;
+        margin-bottom: 30px;
+        .topMessage {
+            display: flex;
+            align-items: center;
+            column-gap: 4px;
+            font-size: 14px;
+            left: 0;
+            margin: 0 auto;
+            position: absolute;
+            right: 0;
+            top: 10px;
+            width: max-content;
+            img {
+                width: 18px;
+            }
+            svg {
+                color: #f8a205;
+            }
+        }
+        .amount {
+            display: block;
+            font-size: 20px;
+            margin: 0 auto;
+            position: absolute;
+            text-align: center;
+            top: 60px;
+            width: 100%;
+        }
+        .contentTexts {
+            bottom: 20px;
+            left: 20px;
+            position: absolute;
+            h2 {
+                color: white;
+                margin: 0 auto 0;
+            }
+            p {
+                font-size: 14px;
+                margin: 0 auto 0;
+            }
+        }
+    }
+}

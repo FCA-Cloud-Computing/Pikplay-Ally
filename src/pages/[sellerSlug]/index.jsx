@@ -17,6 +17,7 @@ import ItemCard from '@/components/itemCard/ItemCard'
 import Layout from '@/components/layout/Layout'
 import RankingComponent from '@/components/ranking/Ranking'
 import { sellersInformation } from '../../data/dataSellers'
+import BonusList from '@/components/bonusList/BonusList'
 
 const DefaultSellerPage = (props) => {
   const { params } = props
@@ -26,6 +27,7 @@ const DefaultSellerPage = (props) => {
   const {
     authorInformation,
     competitions: competitionsArray,
+    bonuses,
     products,
   } = sellersInformation[sellerSlug?.toLowerCase()] || {}
   const { rankingId } = authorInformation || {}
@@ -78,6 +80,9 @@ const DefaultSellerPage = (props) => {
           </div>}
         </div>
       </>}
+
+      {/* Bonos */}
+      {bonuses && <BonusList bonuses={bonuses} />}
 
       <br />
       {/* Ranking */}

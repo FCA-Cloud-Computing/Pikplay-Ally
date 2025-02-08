@@ -51,7 +51,7 @@ const Onboarding = () => {
     {
       background: "https://i.pinimg.com/564x/f4/d4/b9/f4d4b991d2bccaf2202b8a07bae108de.jpg",
       html: <>¡Refiere y gana!</>,
-      image: "/images/icons/gif.svg",
+      image: "/images/icons/gift.svg",
       messageCode: "referrals",
       imageStyle: {
         marginTop: "-26px",

@@ -6,7 +6,7 @@ import { IS_MOBILE } from '../../lib/variables'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-const CustomHeader = () => {
+const CustomHeader = React.memo(() => {
   const images = [
     {
       original: '/images/banners/ps3-azul.jpeg',
@@ -26,7 +26,7 @@ const CustomHeader = () => {
       {/* <ChangeCity handleCity={handleCity} /> */}
       <ul>
         <Link href='/'>
-          <motion.span
+          <motion.div
             whileTap={{ scale: 0.7 }}>
             <Image
               alt='Logo de Pikplay'
@@ -40,8 +40,9 @@ const CustomHeader = () => {
                   Compra y vende como <b>Gamer</b>
                 </span>
               </div> */}
-          </motion.span>
+          </motion.div>
         </Link>
+        <span className={styles.beta}>Beta</span>
         {/* TODO Descomentar cuando se implementen los productos */}
         {/* <SearchBox
           inputText={inputText}
@@ -52,6 +53,6 @@ const CustomHeader = () => {
       </ul>
     </div>
   )
-}
+})
 
 export default CustomHeader

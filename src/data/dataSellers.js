@@ -21,6 +21,12 @@ const sellersInformation = {
                 value: 'education'
             }
         },
+        bonuses: [{
+            amount: "$20.000",
+            backgroundImage: '',
+            description: 'Descuento en tu primer diplomado',
+            title: 'Bono de descuento',
+        }]
     },
     'maxilofacial-care': {
         authorInformation: {
@@ -42,6 +48,18 @@ const sellersInformation = {
                 value: 'Salud'
             }
         },
+        bonuses: [{
+            amount: "$50.000",
+            backgroundImage: '/images/users/maxilofacial-care/bg_bono_1.jpg',
+            description: 'Descuento en tu primera consulta',
+            title: 'Bono de descuento',
+        },
+        {
+            amount: "10%",
+            backgroundImage: '/images/users/maxilofacial-care/bg_bono_1.jpg',
+            description: 'Aplica para tratamiento de conducto',
+            title: 'Bono de descuento',
+        }]
     },
     'conversation-club': {
         authorInformation: {
@@ -78,6 +96,12 @@ const sellersInformation = {
                 value: 'perfumes'
             }
         },
+        bonuses: [{
+            amount: "$10.000",
+            backgroundImage: '',
+            description: 'Descuento en tu primera fragancia',
+            title: 'Bono de descuento',
+        }],
         competitions: ['sorteo-paco-rabanne-one-million-1-million-tradicional', 'cadena-oro-italiano-18k-60cm'],
         products: [{
             images: [
