@@ -35,11 +35,6 @@ const Body = ({
           Actualmente estamos en una versión piloto
         </div>
       )}
-      <Link href='/articulo/pikcoins-que-son-y-como-redimir-cupones'>
-        <div className={styles.wrapperBanner}>
-          <Image src='/images/banners/banner-regalos-descuentos-pikcoins.svg' fill={true} layout='fill' />
-        </div>
-      </Link>
       {children}
       <MenuMovil />
       <a
@@ -47,7 +42,7 @@ const Body = ({
         href='https://api.whatsapp.com/send?phone=573054202450&text=Hola Pikplay, tengo una consulta sobre los servicios que ofrecen a los Gamers en Colombia'
         target='_BLANK'
         rel="noreferrer">
-        <button className={styles['btn-whatsapp']}>
+        {/* <button className={styles['btn-whatsapp']}>
           <Image
             className={styles['we-are-here']}
             src='/images/others/we-are-here.svg'
@@ -60,7 +55,7 @@ const Body = ({
             height={40}
             width={40}
           />
-        </button>
+        </button> */}
       </a>
       <IA />
     </main>

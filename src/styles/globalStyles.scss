@@ -544,14 +544,24 @@ span.MuiBadge-badge {
 
 main {
   min-height: 100vh;
+  &.App {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
   &.darkMode {
     // background-image: url(/images/backgrounds/bg-gamer.jpg);
     background-attachment: fixed;
     &::before {
+      // background: #0d0e32eb;
+      background: #0d0e32b5;
       content: "";
-      background: #0d0e32eb;
       height: 100%;
+      left: 0;
+      margin: 0 auto;
+      max-width: 420px;
       position: fixed;
+      right: 0;
       top: 0;
       width: 100%;
       z-index: 0;
@@ -576,14 +586,13 @@ main {
 }
 
 section.page {
-  margin: 20px auto;
-  padding-bottom: 60px;
+  // margin: 20px auto;
+  box-sizing: border-box;
+  margin: 0px auto 90px;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 64px 30px 80px;
   position: relative;
-  width: 1200px;
-  @media screen and (max-width: 480px) {
-    margin: 70px auto 90px;
-    width: calc(100% - 40px);
-  }
   .contentTitle,
   .contentSubTitle {
     margin: 12px 0 16px 0;
@@ -796,14 +805,17 @@ html {
 
 body {
   background: #f4f4f4;
+  box-shadow: 0px 0px 2px 2px #dcdcdc;
   // font-family: "Montserrat", sans-serif;
   font-family: system-ui;
   // "Rowdies", cursive;
   font-weight: 300;
-  margin: 95px auto 0;
   min-height: 100vh;
   overflow-x: hidden;
   padding: 0;
+  position: relative;
+  margin: 0 auto;
+  max-width: 420px;
   @media screen and (max-width: 480px) {
     margin-top: 0px;
   }

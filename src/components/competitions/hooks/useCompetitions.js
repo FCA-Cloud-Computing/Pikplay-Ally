@@ -42,7 +42,11 @@ const useCompetitions = () => {
     toast.promise(
       // TODO Se libera el cupo
       deleteCompetitionMemberSrv(null, competitionId, selectedNumber)
-        .then((data) => getCompetitions()),
+        .then((data) => {
+          setTimeout(() => {
+            getCompetitions();
+          }, 1000);
+        }),
       {
         pending: 'Liberando cupo',
         success: 'Cupo liberado 👌',
@@ -96,7 +100,8 @@ const useCompetitions = () => {
 export const useCompetitionsStore = create((set, get) => ({
   competitionDetail: null,
   selectedNumber: null,
-  selectedNumbePhone: null,
+  selectedNumberPhone: null, // Datos del número seleccionado
+  selectedNumberName: null,
   set
 }))
 

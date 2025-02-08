@@ -13,7 +13,6 @@ const getUserSrv = async (ctx, uid) => {
 };
 
 const getUsersSrv = async (ctx, { phones, uids }) => { // No envía informacion PII, solo nombre, imagen, etc.
-  debugger;
   const url = BASE_URL;
   const data = await post(ctx, url, { phones, uids });
   return data;

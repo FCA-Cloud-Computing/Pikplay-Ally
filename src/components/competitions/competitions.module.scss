@@ -1,4 +1,6 @@
 .CompetitionsComponent {
+  .contentTitle {
+  }
   .activeIcon {
     background: #4ab405;
     border-radius: 50%;
@@ -9,9 +11,8 @@
   }
 
   .left {
-    width: 800px;
+    max-width: 100%;
     @media screen and (max-width: 480px) {
-      width: auto;
     }
     .alert {
       .btnUpdateDashboard {
@@ -88,9 +89,18 @@
   .CompetitionsList {
     overflow: hidden;
     .CompetitionItem {
+      font-family: "Righteous";
+      letter-spacing: 1px;
+
+      // background-image: url(https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/products%2Fone-million.jpg?alt=media&token=5111f5b4-6e50-4384-941b-aeaa751d9b28);
+      background-size: cover;
+      background-color: rgb(38 34 47 / 70%);
+      background-blend-mode: darken;
+      background-position: center;
+
       margin: 0;
       padding: 10px;
-      background: linear-gradient(90deg, #6098fb 0%, #76a2ea 100%);
+      // background: linear-gradient(90deg, #6098fb 0%, #76a2ea 100%);
       color: white;
       font-size: 14px;
       position: relative;
@@ -106,22 +116,30 @@
         line-height: 22px;
         margin-bottom: 8px;
       }
+      .news {
+        width: 100%;
+        :global(marquee) {
+          :nth-of-type(2) {
+            font-weight: 100;
+          }
+        }
+      }
       img {
         // bottom: -50px;
         // position: absolute;
       }
-      &:nth-of-type(2) {
-        background: linear-gradient(90deg, #fab674 0%, #efba89 100%);
-        .availableNumbers {
-          background-color: #e27d2e;
-        }
-      }
+      // &:nth-of-type(2) {
+      //   background: linear-gradient(90deg, #fab674 0%, #efba89 100%);
+      //   .availableNumbers {
+      //     // background-color: #e27d2e;
+      //   }
+      // }
 
       .availableNumbers {
-        background-color: #3c68b1;
+        background-color: #3095b3;
         border-radius: 50%;
         margin-left: 5px;
-        padding: 5px;
+        padding: 2px 2.4px;
       }
       .seller {
         column-gap: 10px;
@@ -145,7 +163,7 @@
       .actions {
         column-gap: 10px;
         display: flex;
-        justify-content: center;
+        justify-content: end;
         margin-top: 15px;
       }
     }
@@ -168,11 +186,10 @@
   .CompetitionDetail {
     column-gap: 40px;
     display: flex;
-    padding: 10px 20px;
+    padding: 10px 20px 20px;
     @media screen and (max-width: 480px) {
       flex-direction: column-reverse;
     }
-
     p {
       margin-left: 10px;
     }
@@ -224,6 +241,22 @@
         // overflow: hidden;
         margin: 5px;
         width: 40px;
+        &:hover {
+          .name {
+            background: #353535;
+            border-radius: 6px;
+            font-size: 12px;
+            opacity: 1;
+            padding: 1px 4px 2px;
+            top: -8px;
+            transition: all 0.3s;
+          }
+        }
+        .name {
+          opacity: 0;
+          position: absolute;
+          width: max-content;
+        }
         &.selected {
           background: #f89b52;
           border: 1px solid #f89b52;
@@ -245,14 +278,16 @@
         .takenMeIcon {
           background: white;
           border-radius: 50%;
+          border: 1px solid;
           bottom: -8px;
           color: green;
           font-size: 14px;
+          padding: 0.8px 1px;
           position: absolute;
           right: 2px;
           &.takenMeIcon {
-            color: orange;
-            right: 20px;
+            color: #3095b3;
+            right: 18px;
           }
         }
       }
@@ -266,15 +301,12 @@
   }
 
   .news {
-    background: #f4f4f4;
+    // background: #f4f4f4;
     font-size: 12px;
     height: 18px;
-    margin: 20px 0 10px 0;
+    margin: 10px 0 10px;
     position: relative;
     width: 600px;
-    @media screen and (max-width: 480px) {
-      margin: 10px 0 20px;
-    }
     > span:nth-of-type(1) {
       position: absolute;
       // background: white;
@@ -291,7 +323,7 @@
       display: inline;
     }
     .user {
-      color: green;
+      color: #3c68b1;
       margin-right: 10px;
     }
     .item {

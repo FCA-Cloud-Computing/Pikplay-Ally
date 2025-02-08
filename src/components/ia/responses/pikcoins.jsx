@@ -14,14 +14,17 @@ const HtmlMessage = <div style={{
         `}}>
     Pikcoins <CoinIcon hideNumber />
 </div>
-const Message = `Claro, te explico. <br />
-<b>Pikcoins</b> son los creditos que puedes ganar por:<br /><br />
-<li>Compras en aliados</li>
-<li>Participar en los eventos de Pikplay por redes sociales y por la web</li>
-<li>Completar desafios semanales</li>
-<li>Quedar en el TOP del ranking de tus amigos</li>
-<p>Podrás utilizar estos creditos redimiendolos en compras de nuestros aliados o duplicarlos jugando con otros usuarios dentro de Pikplay </p>`
-// <a target="_BLANK" href="/articulo/pikcoins-que-son-y-como-redimir-cupones">Conoce más sobre los Pikcoins aquí</a>`
+
+const Message = () => <div>
+    Claro, te explico. <br />
+    <b>Pikcoins</b> son los creditos que puedes ganar por:<br /><br />
+    <li>Compras en aliados</li>
+    <li>Participar en los eventos de Pikplay por redes sociales y por la web</li>
+    <li>Completar desafios semanales</li>
+    <li>Quedar en el TOP del ranking de tus amigos</li>
+    <p>Podrás utilizar estos creditos redimiendolos en compras de nuestros aliados o duplicarlos jugando con otros usuarios dentro de Pikplay </p>`
+</div>
+
 const Expresion = 'loved'
 const Options = ({ handleUserMessage, set }) => {
     const { isOnboardingProcess } = useSystemStore()

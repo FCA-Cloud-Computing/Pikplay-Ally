@@ -18,7 +18,6 @@ import { toast } from 'react-toastify'
 
 const ProfileSummaryExperience = (props) => {
   const { DEFAULT_NAME } = MESSAGES
-  const [newNickname, setNewNickname] = useState(null)
   const { isEditProfile, userInfoData, setIsEditProfile, showDetails } = props
   // userInfoData: Props que se utiliza para mostrar la información de un usuario en particular
   const gainedCoins = 5
@@ -41,9 +40,11 @@ const ProfileSummaryExperience = (props) => {
     coins,
     league = 'oro',
   } = userInfoData ? userInfoData : userLogged
+  const [newNickname, setNewNickname] = useState(name)
 
   const handleBlurName = (e) => {
     const { value } = e.target
+    if (value == name) return
     setIAMessage(`Deseas cambiar tu nombre a ${value}?`)
     setIAOptions(<>
       <Button color='transparent'>Cancelar</Button>
@@ -70,30 +71,31 @@ const ProfileSummaryExperience = (props) => {
 
   return (
     <div className={classNames("ProfileSummaryExperience", { [styles.ProfileSummaryExperience]: true })}>
-      <div>
-        {/* <div>
+      {/* <div>
           Name
         </div> */}
-        <div className={`shine ${styles[league]} ${league == 'oro' && 'starsFallingDown'} ${styles.full_name}`}>
-          <input value={name || newNickname || DEFAULT_NAME} onChange={e => setNewNickname(e.target.value)} onBlur={handleBlurName} />
+      <div className={`${styles[league]} ${styles.box}`} style={{ background: backgroundColor }}>
+        {/* <div asd={backgroundImage} className={styles.bg} style={{ backgroundImage: `url( ${backgroundImage})` }}></div> */}
+        <div asd={backgroundImage} className={styles.bg}></div>
+        <div className={styles.left}>
+          <ProfileImage picture={picture} />
+          {/* <div className={`shine ${styles[league]} ${league == 'oro' && 'starsFallingDown'} `}> */}
+          <input className={styles.fullName}
+            value={newNickname}
+            onChange={e => setNewNickname(e.target.value)}
+            onBlur={handleBlurName} />
           {/* <div className={styles.icons}>
             <Tooltip title="Plataforma más utilizada">
               <img width={40} className={styles.platform} src="/images/icons/ps-icon.png" />
             </Tooltip>
           </div> */}
-        </div>
-        <div className={`${styles[league]} ${styles.box}`} style={{ background: backgroundColor }}>
-          {/* <div asd={backgroundImage} className={styles.bg} style={{ backgroundImage: `url( ${backgroundImage})` }}></div> */}
-          <div asd={backgroundImage} className={styles.bg}></div>
-          <div className={styles.left}>
-            <ProfileImage picture={picture} />
-            <br />
-            <div className={styles.experience_status}>
-              <ExperienceBar {...{ exp: experienceValue }} />
-            </div>
+          {/* </div> */}
+          <div className={styles.experience_status}>
+            <ExperienceBar {...{ exp: experienceValue }} />
           </div>
-          {showDetails && <div className={styles.right}>
-            <div className={styles.fields}>
+        </div>
+        {showDetails && <div className={styles.right}>
+          {/* <div className={styles.fields}>
               <span className={styles.label}>
                 <div className={styles.name}>Categoria</div>
                 Bronce
@@ -110,9 +112,8 @@ const ProfileSummaryExperience = (props) => {
                 <div className={styles.name}>Antiguedad</div>
                 4 meses
               </span>
-            </div>
-          </div>}
-        </div>
+            </div> */}
+        </div>}
       </div>
     </div>
   )

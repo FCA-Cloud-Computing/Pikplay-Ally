@@ -23,7 +23,7 @@
         z-index: -1;
     }
     &.hide {
-        right: -510px;
+        right: -100vw;
         @media screen and (max-width: 480px) {
             // left: calc(-100vw + 40px);
         }
@@ -43,19 +43,15 @@
                 border-radius: 50%;
                 box-shadow: 1px 1px #858585;
                 cursor: pointer;
-                float: right;
                 font-weight: bold;
                 line-height: 20px;
                 margin-right: 16px;
                 padding: 1px;
-                position: relative;
+                position: absolute;
                 right: -10px;
                 text-align: center;
-                top: -2px;
+                top: 4px;
                 width: 20px;
-                @media screen and (max-width: 480px) {
-                    top: 0px;
-                }
             }
         }
         .text {

@@ -28,10 +28,6 @@ const CompetitionsList = ({ competitions }) => {
       }} /> */}
     {/* Competitions: {JSON.stringify(competitions)} */}
     <div className={styles.content}>
-      <div className={styles.news}>
-        <span>Últimos movimientos:</span>
-        <Marquee />
-      </div>
       <div className={`${styles.list} flex`}>
         <div className={`${styles.active}`}>
           {competitions && competitions

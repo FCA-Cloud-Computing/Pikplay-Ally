@@ -88,46 +88,36 @@
   }
 }
 
-.btn-whatsapp {
-  background: #0196b3;
-  border-radius: 50%;
-  border: none;
-  bottom: 20px;
-  position: fixed;
-  right: 20px;
-  z-index: 5;
-  cursor: pointer;
-  @media screen and (max-width: 480px) {
-    display: none;
-  }
-  &:hover {
-    span {
-      display: block;
-    }
-  }
-  img.we-are-here {
-    left: -18px;
-    max-width: initial;
-    position: absolute;
-    top: -10px;
-    width: 80px;
-  }
-  img {
-    width: 40px;
-  }
-}
+// .btn-whatsapp {
+//   background: #0196b3;
+//   border-radius: 50%;
+//   border: none;
+//   bottom: 20px;
+//   position: fixed;
+//   right: 20px;
+//   z-index: 5;
+//   cursor: pointer;
+//   @media screen and (max-width: 480px) {
+//     display: none;
+//   }
+//   &:hover {
+//     span {
+//       display: block;
+//     }
+//   }
+//   img.we-are-here {
+//     left: -18px;
+//     max-width: initial;
+//     position: absolute;
+//     top: -10px;
+//     width: 80px;
+//   }
+//   img {
+//     width: 40px;
+//   }
+// }
 
 .mobile-none {
-  @media screen and (max-width: 480px) {
-    display: none;
-  }
-}
-
-.wrapperBanner {
-  background: #fafafa;
-  height: 60px;
-  margin-bottom: 20px;
-  position: relative;
   @media screen and (max-width: 480px) {
     display: none;
   }

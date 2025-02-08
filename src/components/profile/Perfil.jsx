@@ -31,6 +31,8 @@ import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummary
 import IACharacter from '../ia/IACharacter'
 import Button from '../button/Button'
 import UserNotifications from '../userNotifications/UserNotifications'
+import RankingComponent from '../ranking/Ranking'
+import Referrals from '../referrals/Referrals'
 
 const { motion } = require('framer-motion')
 
@@ -129,9 +131,7 @@ const Interface = ({
   return (
     <section className={`page ${styles.Perfil}`}>
       {/* <Joyride steps={steps} /> */}
-      <div className={styles.content}>
-        <div className={classNames('', styles['profile-content'])}>
-          {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs
               value={tabValue}
               onChange={handleChange}
@@ -143,7 +143,7 @@ const Interface = ({
             </Tabs>
           </Box> */}
 
-          {/*messageIA && <div className={styles.IAContentLeft}>
+      {/*messageIA && <div className={styles.IAContentLeft}>
             <IACharacter
               className='Perfil'
               IAExpression='happy' />
@@ -156,8 +156,8 @@ const Interface = ({
             </div>
           </div>*/}
 
-          {/* Intereses */}
-          {/* <TabPanel value={value} index={4}>
+      {/* Intereses */}
+      {/* <TabPanel value={value} index={4}>
             <Alert className='m-t-20' severity='info'>
               En Pikplay utilizamos los intereses para conocer a los usuarios y
               ofrecerle contenido de valor
@@ -182,16 +182,15 @@ const Interface = ({
             </Button>
           </TabPanel> */}
 
-          {/* Resumen */}
-          <div className={styles.ProfileSummaryExperience__UserNotifications__Content}>
-            <ProfileSummaryExperience
-              isEditProfile={isEditProfile}
-              setIsEditProfile={setIsEditProfile}
-              showDetails
-            />
-          </div>
-        </div>
-      </div>
+      {/* Resumen */}
+      <h2>Perfil</h2>
+      <ProfileSummaryExperience
+        isEditProfile={isEditProfile}
+        setIsEditProfile={setIsEditProfile}
+        showDetails
+      />
+      <h2>Referidos</h2>
+      <Referrals />
     </section>
   )
 }

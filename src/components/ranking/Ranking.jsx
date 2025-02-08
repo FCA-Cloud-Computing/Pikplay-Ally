@@ -11,29 +11,30 @@ import Button from '../button/Button'
 import { getUsersSrv } from '@/services/user/userService'
 import { getRankingDetailSrv } from '@/services/rankings/rankings'
 
-const RankingComponent = () => {
+const RankingComponent = (props) => {
+  const { rankingId } = props
   const [rankingData, setRankingData] = useState([])
 
-  useEffect(async () => {
+  useEffect(() => {
     try {
-      const rankingDataPoints = await getRankingDetailSrv()
-      const uids = rankingDataPoints.map(member => member.uid)
-      getUsersSrv(null, { uids: uids.join() })
-        .then(data => {
-          const pointsAndUserData = rankingDataPoints.map(member => {
-            debugger;
-            const user = data && data.find(user => user.uid === member.uid)
-            return {
-              ...user,
-              points: member.points,
-              below: 'Principiante'
-            }
+      getRankingDetailSrv(null, rankingId).then(rankingDataPoints => {
+        const uids = rankingDataPoints.map(member => member.uid)
+        getUsersSrv(null, { uids: uids.join() })
+          .then(data => {
+            const pointsAndUserData = rankingDataPoints.map(member => {
+              const user = data && data.find(user => user.uid === member.uid)
+              return {
+                ...user,
+                points: member.points,
+                below: 'Principiante'
+              }
+            })
+            setRankingData(pointsAndUserData)
           })
-          setRankingData(pointsAndUserData)
-        })
-        .catch(err => {
-          console.log('Error getting users', err)
-        })
+          .catch(err => {
+            console.log('Error getting users', err)
+          })
+      })
     } catch (error) {
       console.log('Error getting ranking data', error)
     }
@@ -41,7 +42,7 @@ const RankingComponent = () => {
 
   return (
     <div className={styles.RankingComponent}>
-      <Button color="blue" fullWidth className="p-10">Quiero participar</Button>
+      {/* <Button color="blue" fullWidth className="p-10">Quiero participar</Button> */}
       <div className={styles.list}>
         {rankingData && rankingData.length > 0 && rankingData.sort((a, b) => b.points - a.points).map((member, index) => {
           return <motion.div
@@ -57,7 +58,7 @@ const RankingComponent = () => {
               </span>
             </div>
             <div className={styles.picture}>
-              <ProfileImage picture={member.picture} />
+              <ProfileImage picture={member.picture} small progress={member.points} />
             </div>
             <div className={styles.name}>
               <span>

@@ -8,7 +8,6 @@ export const useTransactionsStore = create(
       (set) => {
         return {
           transactions: [],
-
           getTransactionsStore: async () => {
             try {
               const res = await getTransactions();
@@ -33,6 +32,6 @@ export const useTransactionsStore = create(
           },
         }
       }
-    , { name: "transactions" })
+      , { name: "transactions" })
   )
 )

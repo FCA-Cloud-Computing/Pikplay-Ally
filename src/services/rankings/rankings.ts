@@ -4,8 +4,8 @@ const { get, post, put } = CustomFetch();
 
 const BASE_URL = "/rankings";
 
-const getRankingDetailSrv = async (body) => {
-  const url = BASE_URL + '/members';
+const getRankingDetailSrv = async (ctx, rankingId) => {
+  const url = BASE_URL + '/' + rankingId + '/members';
   const data = await get(null, url);
   return data;
 }

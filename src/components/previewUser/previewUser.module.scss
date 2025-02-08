@@ -8,7 +8,6 @@
   @media screen and (max-width: $tablet) {
     border-radius: 10px 10px 0 0;
     margin-left: initial;
-    width: 80%;
     &.actived {
       .bg_black {
         // box-shadow: 90px 3px 2px #76767673;
@@ -42,7 +41,7 @@
 
   .coins {
     position: absolute;
-    right: -40px;
+    right: -10px;
     top: -2px;
     z-index: 4;
     @media screen and (max-width: 480px) {
@@ -62,18 +61,24 @@
 
   .bg_black {
     background: radial-gradient(circle, rgb(82 89 95) 0%, rgba(36, 41, 46, 1) 100%);
-    border-radius: 10px;
+    border-radius: 0 10px 10px 0;
     // box-shadow: 0px 2px 2px #5252522e;
     color: white;
     display: none;
     font-size: 14px;
-    position: absolute;
+    position: fixed;
     // padding-top: 10px;
-    right: 40px;
+    left: 0px;
     top: 40px;
     // transition: 0.5s ease-in-out;
     width: 240px;
     z-index: -1;
+    @media screen and (min-width: 1024px) {
+      left: 660px;
+      top: 53px;
+      margin: 0 auto;
+      right: 0;
+    }
     @media screen and (max-width: 480px) {
       border-radius: 0px 10px 0px 0px;
       bottom: 60px;
@@ -82,7 +87,7 @@
       display: block;
       // height: 100%;
       position: fixed;
-      top: 55px;
+      top: 53px;
       width: 50%;
       z-index: 2;
     }
@@ -104,7 +109,9 @@
       }
 
       a {
-        color: white !important;
+        align-items: center;
+        display: flex;
+        color: white;
         justify-content: flex-start;
         @media screen and (max-width: 480px) {
           display: flex;
@@ -123,6 +130,12 @@
         img {
           margin-right: 10px;
           width: 30px;
+        }
+        &.disabled {
+          color: grey;
+          :global(img) {
+            filter: grayscale(100%);
+          }
         }
       }
 
@@ -160,9 +173,13 @@
     padding: 0 10px;
     position: fixed;
     right: 0;
-    top: 38px;
+    top: 33px;
     width: 50%;
     z-index: 2;
+    @media (min-width: 1024px) {
+      margin: 20px 0 0 0;
+      width: 260px;
+    }
     :global(ul) {
       overflow: initial;
     }

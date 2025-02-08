@@ -2,10 +2,11 @@
 
 .TransactionsPage {
   .topMessage {
+    position: relative;
     img {
       position: absolute;
       right: 10px;
-      top: 0px;
+      top: 10px;
       width: 60px;
     }
     :global(.MuiAlert-message) {

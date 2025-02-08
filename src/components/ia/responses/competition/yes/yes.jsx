@@ -3,16 +3,16 @@ import Button from '../../../../button/Button'
 import Image from 'next/image';
 import { WhatsApp } from '@mui/icons-material';
 
-const Message = `Ahora estas participando!, Ahora lo que sigue es pagar tu boleta y como dijo la chancera "Mucha suerte!!!"`
+const Message = () => <div>Ahora estas participando!, Ahora lo que sigue es pagar tu boleta y como dijo la chancera "Mucha suerte!!!"</div>
 
 const handleTalkToOwner = (sellerPhone, number) => {
-    const message = `Hola, tomé el número ${number} del concurso ${actName } en Pikplay, ¿cómo puedo pagar mi número?`
+    const message = `¡Hola!, tomé el número ${number} del concurso en *Pikplay*, ¿Cómo puedo pagar mi número?`
     const url = `https://api.whatsapp.com/send?phone=${sellerPhone}&text=${message}`
     window.open(url, '_blank').focus();
 }
 
 const HTMLMessage = <center>
-    <Image src='/images/bluepanther/gracias-cupo-blue-panther.webp' width={120} height={120} />
+    <Image src='/images/users/bluepanther/gracias-cupo-blue-panther.webp' width={120} height={120} />
 </center>
 
 const whastappStyles = { margin: '0 4px 0 4px', width: '20px' }

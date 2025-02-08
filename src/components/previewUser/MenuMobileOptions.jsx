@@ -84,18 +84,18 @@ const MenuMobileOptions = () => {
         Transacciones
       </Link>
     </motion.ol>
-    <motion.ol variants={item}>
+    {/* <motion.ol variants={item}>
       <a>
         Configuración
       </a>
-    </motion.ol>
+    </motion.ol> */}
     <motion.ol variants={item}>
       <Link href="/onboarding">
         Onboarding
       </Link>
     </motion.ol>
     <motion.ol variants={item}>
-      <Link href="/redencion">
+      <Link href="/redimir">
         <img src="https://cdn-icons-png.flaticon.com/512/4213/4213958.png" />
         Redimir
       </Link>

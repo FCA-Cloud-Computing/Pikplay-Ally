@@ -3,15 +3,13 @@ import Button from '../../button/Button'
 import { motion } from "framer-motion"
 import Link from 'next/link';
 
-const MessageFunc = () => {
+const Message = () => {
     let name = ''
     if (typeof window !== 'undefined') {
         name = JSON.parse(localStorage.getItem("userLogged"))?.name
     }
-    return `Hola ${name || ""}! en que te puedo ayudar?`
+    return <div>Hola {name || ""}! en que te puedo ayudar?</div>
 }
-
-const Message = MessageFunc()
 
 const Expresion = 'neutral'
 const Options = ({ handleUserMessage, set }) => {

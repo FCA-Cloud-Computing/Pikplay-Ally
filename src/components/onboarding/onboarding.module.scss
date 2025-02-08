@@ -1,17 +1,8 @@
 section.Onboarding {
     background: #19596b;
-    background-image: url(/images/backgrounds/tetris-texture.png);
-    margin: 40px auto 90px;
+    background-image: url(/images/backgrounds/general-bg.png);
+    margin: 00px auto 90px;
     width: calc(100%);
-    &::after {
-        content: "";
-        position: fixed;
-        top: 56px;
-        left: 0;
-        background: #0b2c5aad;
-        height: 100%;
-        width: 100%;
-    }
     .cta {
         position: relative;
         z-index: 2;
@@ -202,7 +193,7 @@ section.Onboarding {
         }
         :global(.Coins) {
             display: inline-block;
-            margin: -6px 0 0 -8px;
+            margin: -6px 0 0 -0px;
             position: absolute;
             transform: scale(0.7);
         }
@@ -234,8 +225,8 @@ section.Onboarding {
     h2 {
         color: white;
         font-size: 24px;
-        margin: 20px 0 0 40px;
-        padding-top: 20px;
+        margin: 0px 0 0 40px;
+        padding-top: 10px;
         position: relative;
         z-index: 2;
         // position: fixed;

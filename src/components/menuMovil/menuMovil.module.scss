@@ -1,27 +1,29 @@
 .MenuMovil {
-  align-items: center;
   // background-color: white;
   // background: radial-gradient(circle, #161850 0%, #0d0e32 100%);
-  background-image: url('/images/backgrounds/header-background.png');
-  background-position: center -14px;
-  // border-top: 1px solid #cccccc;
-  // border-top: 1px solid #282a83;
   // border-radius: 10px 10px 0px 0px;
-  bottom: -250px;
   // border-radius: 50%;
+  // border-top: 1px solid #282a83;
+  // border-top: 1px solid #cccccc;
   // bottom: -5px;
   // box-shadow: 0px -4px 2px #0000000f;
-  display: flex;
   // height: 60px;
+  // width: calc(100% - 20px);
+  align-items: center;
+  background-image: url('/images/backgrounds/header-background.png');
+  background-position: center -14px;
+  bottom: -250px;
+  display: flex;
   height: 332px;
   justify-content: center;
   left: 0;
   margin: 0 auto;
+  max-width: 420px;
   padding: 0 10px 5px;
+  padding: 0;
   position: fixed;
   right: 0;
   z-index: 5;
-  // width: calc(100% - 20px);
 
   ol.main_option {
     align-items: center;

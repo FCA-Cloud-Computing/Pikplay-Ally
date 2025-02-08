@@ -7,7 +7,7 @@ const HTML = <>
   {/* <img src="/images/icons/ranking-icon.png" style={{ margin: '20px auto 0', width: '140px' }} /> */}
 </>
 
-const Message = `Ir a tu perfil`
+const Message = () => <p>Ir a tu perfil</p>
 const Options = ({ handleUserMessage, set }) => {
   const { userLogged } = useSystemStore()
   // alert(JSON.stringify(userLogged))

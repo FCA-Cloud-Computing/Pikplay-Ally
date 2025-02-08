@@ -3,22 +3,18 @@ h3.title_destacada {
 }
 
 .ItemCard {
+  // max-height: 420px;
   background: white;
   border-radius: 10px;
   box-shadow: 0 0 5px 0 #3a3a3a4d;
   box-sizing: border-box;
   color: #585858;
   cursor: pointer;
-  // max-height: 420px;
-  margin: 0px 20px 40px;
+  margin: 0px auto 20px;
+  max-width: 320px;
+  padding-bottom: 40px;
   position: relative;
   z-index: 1;
-  width: 280px;
-  @media screen and (max-width: 480px) {
-    margin: 0px auto 20px;
-    padding-bottom: 40px;
-    width: 320px;
-  }
   &.small {
     height: 360px;
     @media screen and (min-width: 1024px) {
@@ -324,6 +320,14 @@ h3.title_destacada {
         box-shadow: none;
         padding: 10px 10px 20px;
       }
+    }
+  }
+  .shipping {
+    svg {
+      color: #3095b3;
+      margin-right: 4px;
+      position: relative;
+      top: 4px;
     }
   }
   .contentAddi {

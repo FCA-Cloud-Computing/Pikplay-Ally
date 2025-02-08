@@ -6,7 +6,7 @@ export default function handler(req, res) {
         "created_at": "2024-01-17T02:56:34.000Z",
         "date_release_quotas": "Sábado 12 de Junio",
         "description": "la mejor",
-        "image": "/images/others/ps5.png",
+        "image": "/images/others/ps4.png",
         "is_active": true,
         "price": 25900,
         "slug": "act-2-playstation-5-slim",

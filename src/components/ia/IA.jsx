@@ -35,14 +35,13 @@ const IA = (props) => {
             <div className={styles.text}>
                 <div className={styles.list}>
                     {IAHTMLMessage && IAHTMLMessage}
-                    {IAMessage && <p className={styles.IAMessage} dangerouslySetInnerHTML={{ __html: IAMessage }}></p>}
+                    {IAMessage && IAMessage}
                     {IAHTMLSecondMessage && <p className={styles.IAMessage} dangerouslySetInnerHTML={{ __html: IAHTMLSecondMessage }}></p>}
                     <motion.div
                         animate="visible"
                         className={styles.buttons}
                         initial="hidden"
-                        variants={container}
-                    >
+                        variants={container}>
                         {IAOptions}
                     </motion.div>
                 </div>

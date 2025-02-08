@@ -6,25 +6,30 @@ import { DeleteOutlined } from '@mui/icons-material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 const Message = () => {
-  return '';
+  const { competitionDetail: { title }, selectedNumberPhone, selectedNumber, selectedNumberName } = useCompetitionsStore();
+  return <div>
+    Número seleccionado: {selectedNumber}<br />
+    Nombre: {selectedNumberName}<br />
+    <p>¿Que desea hacer?</p>
+  </div>
 };
 
 const Options = ({ handleUserMessage, set, options }) => {
   const { liberarNumero, setPaidNumber } = useCompetitions();
-  const { selectedNumbePhone } = useCompetitionsStore();
+  const { competitionDetail: { title }, selectedNumberPhone } = useCompetitionsStore();
 
-  const habdleSendMessage = () => window.open('https://api.whatsapp.com/send?phone=' + selectedNumbePhone, '_blank')
+  const habdleSendMessage = () => window.open(`https://api.whatsapp.com/send?text=¡Hola! Este es un recordatorio para el pago del sorteo ${title}&phone=` + selectedNumberPhone, '_blank')
 
   return <>
     <Button color='blue' onClick={setPaidNumber}>
       <DoneAll className='icon' />
       &nbsp;Marcar como pagado
     </Button>
-    <Button color='yellow' onClick={habdleSendMessage}>
+    <Button style={{ color: 'white' }} color='link' onClick={habdleSendMessage}>
       <WhatsAppIcon className='icon' />
       &nbsp;Enviar mensaje
     </Button>
-    <Button color='red' onClick={() => {
+    <Button style={{ color: 'white' }} color='link' onClick={() => {
       liberarNumero();
       handleUserMessage('hideIA', set);
     }}>

@@ -1,11 +1,47 @@
 .Perfil {
+  background-image: url(/images/backgrounds/general-bg.png);
+  height: 100vh;
   margin: 20px auto;
   // width: 1200px;
   @media screen and (max-width: 480px) {
     width: auto;
   }
   h2 {
-    opacity: 0;
+    color: white;
+    font-size: 24px;
+    position: relative;
+    z-index: 2;
+    // position: fixed;
+    $color: rgb(46, 46, 46);
+    // left: 0;
+    // margin: 0 auto;
+    // right: 0;
+    // text-align: center;
+    // top: 120px;
+    color: white;
+    text-shadow:
+      2px 0 $color,
+      -2px 0 $color,
+      0 2px $color,
+      0 -2px $color,
+      1px 1px $color,
+      -1px -1px $color,
+      1px -1px $color,
+      -1px 1px $color;
+    > span {
+      display: block;
+      font-size: 20px;
+      .text1 {
+        color: aquamarine;
+      }
+    }
+    small {
+      display: block;
+      font-size: 14px;
+      font-weight: lighter;
+      margin: 10px 0 0 0;
+      width: 260px;
+    }
   }
   .content {
     display: flex;
@@ -112,11 +148,11 @@
   }
 
   .ProfileSummaryExperience__UserNotifications__Content {
-    display: flex;
-    justify-content: space-between;
-    column-gap: 40px;
+    // display: flex;
+    // justify-content: space-between;
+    // column-gap: 40px;
     @media screen and (max-width: 480px) {
-      flex-direction: column;
+      // flex-direction: column;
     }
 
     :global(.Card) {

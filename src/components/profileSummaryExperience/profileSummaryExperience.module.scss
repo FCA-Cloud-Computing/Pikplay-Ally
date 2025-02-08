@@ -1,36 +1,56 @@
 .ProfileSummaryExperience {
+    background-image: url("https://i.blogs.es/ff4f41/elqk-v1wmauw09m/1366_2000.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
+    margin: 20px;
     position: relative;
+    border-radius: 20px;
+    overflow: hidden;
     @media screen and (max-width: 480px) {
         margin: 0 auto;
     }
-    .full_name {
-        bottom: 0px;
-        border-radius: 10px 10px 0 0;
+    .fullName {
+        background: transparent;
+        border: none;
+        color: white;
+        display: block;
+        font-family: "Righteous";
+        font-size: 18px;
+        position: relative;
+        text-transform: uppercase;
+        // box-shadow: inset 4px 4px 2px #5252524f;
         border-bottom: transparent !important;
-        box-shadow: inset 4px 4px 2px #5252524f;
+        bottom: 0px;
         color: white;
         font-weight: bold;
-        height: 18px;
         line-height: 20px;
-        left: 20px;
-        padding: 10px 0px 10px 20px;
+        margin: 20px auto 20px;
+        padding: 10px;
         position: relative;
+        text-align: center;
+        text-transform: uppercase;
         width: 200px;
-        &.bronce {
-            background: linear-gradient(45deg, #cecdd2, #9b9b9d);
+        transition: ease .2s;
+        &:focus {
+            background: #ffffffb5;
+            border-radius: 10px;
+        }
+        /*&.bronce {
+            // background: linear-gradient(45deg, #cecdd2, #9b9b9d);
             // border: 2px solid #9b9b9d;
         }
         &.plata {
-            background: linear-gradient(45deg, #cecdd2, #9b9b9d);
+            // background: linear-gradient(45deg, #cecdd2, #9b9b9d);
             // border: 2px solid #9b9b9d;
         }
         &.oro {
-            background: linear-gradient(45deg, #f4c376, #ba7821);
+            // background: linear-gradient(45deg, #f4c376, #ba7821);
             // border: 2px solid #c1812e;
         }
         &:before {
-            background: #959595;
+            // background: #959595;
             border-radius: inherit;
             content: "";
             height: 100%;
@@ -64,42 +84,35 @@
                 object-fit: contain;
                 width: 40px;
             }
-        }
+        }*/
 
-        input {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 14px;
-
-            text-shadow:
-                2px 0 #2e2e2e,
-                -2px 0 #2e2e2e,
-                0 2px #2e2e2e,
-                0 -2px #2e2e2e,
-                1px 1px #2e2e2e,
-                -1px -1px #2e2e2e,
-                1px -1px #2e2e2e,
-                -1px 1px #2e2e2e;
-        }
+        text-shadow:
+            2px 0 #2e2e2e,
+            -2px 0 #2e2e2e,
+            0 2px #2e2e2e,
+            0 -2px #2e2e2e,
+            1px 1px #2e2e2e,
+            -1px -1px #2e2e2e,
+            1px -1px #2e2e2e,
+            -1px 1px #2e2e2e;
     }
 
     .box {
         // background: linear-gradient(45deg, #3095b3, #126781);
-        background: linear-gradient(45deg, #3095b359, #126781b5);
+        background: linear-gradient(180deg, #0f90b6a3, #032834eb);
         // background: linear-gradient(45deg, #3095b359, #81127eb5);
-        border-radius: 20px;
-        box-shadow: inset 5px 5px 4px #505050;
+        // border-radius: 20px;
+        // box-shadow: inset 5px 5px 4px #505050;
         color: white;
         // display: flex;
         // height: 409px;
-        margin-bottom: 20px;
-        padding: 20px 20px 0 20px;
+        padding: 20px;
+        padding-bottom: 40px;
         position: relative;
         transition: 1s ease-in-out;
-        width: 260px;
+        width: 100%;
         @media screen and (max-width: 480px) {
-            padding: 20px 0px 0 0px;
+            // padding: 20px 0px 0 0px;
             // width: initial;
         }
 
@@ -116,10 +129,12 @@
         }
 
         .bg {
+            display: none;
             // background-image: url(https://t4.ftcdn.net/jpg/03/85/05/53/360_F_385055380_RnAWgJUqaJzqgh8i3aeleBFULJkLoVM6.jpg);
             // background-image: url(https://image.slidesdocs.com/responsive-images/background/purple-gradient-mosaic-character-wind-game-cartoon-powerpoint-background_7de580b73e__960_540.jpg);
             // background-size: cover;
-            background-image: url(/images/backgrounds/tetris-texture.png);
+            // background-image: url(/images/backgrounds/general-bg.png);
+            background-color: white;
             background-position: center;
             background-size: 320px;
             border-radius: inherit;
@@ -221,7 +236,7 @@
 .ExperienceBar {
     border-radius: 5px;
     box-shadow: inset 4px 5px 8px #29292961;
-    height: 16px;
+    height: 20px;
     width: 90%;
     .bar {
         border-radius: 5px;
@@ -230,7 +245,7 @@
         // overflow: hidden;
         width: 100%;
         .indicator {
-            background: linear-gradient(45deg, #f4c376, #ba7821);
+            background: linear-gradient(90deg, #74ffd0, #3ac8be);
             border-radius: 3px;
             box-shadow: inset 1px 1px 4px #4a4a4a;
             height: 100%;
@@ -241,7 +256,8 @@
             label {
                 border-radius: 10px 0 10px 0;
                 display: block;
-                font-size: 11px;
+                font-size: 14px;
+                font-weight: 600;
                 text-align: center;
                 width: 160px;
             }

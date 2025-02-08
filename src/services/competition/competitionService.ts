@@ -20,7 +20,7 @@ const setPaidNumberSrv = (ctx, competitionId, number, uid) => {
   return post(ctx, path, { competitionId, number, uid })
 }
 
-const deleteCompetitionMemberSrv = async (ctx, competitionId, number) => {
+const deleteCompetitionMemberSrv = (ctx, competitionId, number) => {
   const path = `/competition-members/${competitionId}/delete`
   return post(ctx, path, { number })
 }

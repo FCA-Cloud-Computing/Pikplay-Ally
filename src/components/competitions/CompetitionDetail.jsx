@@ -22,6 +22,7 @@ import Marquee from './Marquee'
 import { postCompetitionMemberSrv } from '../../services/competition/competitionService'
 import { useIAStore } from '../ia/IAstore'
 import { formatNumber } from '../../lib/utils'
+import { toast } from 'react-toastify'
 
 const CompetitionDetail = (props) => {
   const {
@@ -54,6 +55,7 @@ const CompetitionDetail = (props) => {
   const { set: setCompetitionStore } = useCompetitionsStore()
 
   var updatesQuantity = 0
+  const isAdmin = seller.uid == uidLogged // Admin del sorteo
   const MAX_REQUEST_UPDATE = 10
   const [showMembersNames, setShowMembersNames] = useState(false)
   const [competitionMembers, setCompetitionMembers] = useState(competitionDetail.members)
@@ -62,30 +64,33 @@ const CompetitionDetail = (props) => {
   const [isLoading, setIsLoading] = useState(true)
   // const [availableNumbers, setAvailableNumbers] = useState(0)
   const [count, setCount] = useState(0);
-  const refButtonUpdateDash = useRef()
+  // const refButtonUpdateDash = useRef()
   // const interval = useRef();
   const [timer, setTimer] = useState(0);
   const numbersListTemplate = Array.from({ length: competitionDetail.membersCapacity }, (_, i) => i + 1).map((number) => (
     { name: '', status: 'available', isPaid: false, number: null }
   ))
 
-  const handleClick = (item, number) => { // Evento de clic del número del sorteo
-    setCompetitionStore({ selectedNumber: number })
-    if (seller.uid != uidLogged) {
+  const handleClick = (item, number, isTakenByMe) => { // Evento de clic del número del sorteo
+    setCompetitionStore({ selectedNumber: number, selectedNumberName: item.name })
+    if (isTakenByMe) { // Usuario ya tomó el número
+      handleUserMessage('competition/my-number')
+      return
+    }
+    if (seller.uid != uidLogged) { // Usuario no admin
       setIsvisible(true)
       // setnumberChosen(number)
       const options = {
         competitionID: competitionDetail.id,
         number,
-        postCompetitionMemberSrv,
+        // postCompetitionMemberSrv,
         sellerPhone: competitionDetail.seller.phone
       }
       handleUserMessage('competition', options)
     }
-    else {
-      setCompetitionStore({ selectedNumbePhone: item.phone })
+    else { // Admin del sorteo
+      setCompetitionStore({ selectedNumberPhone: item.phone })
       handleUserMessage('competition/admin', { selectedNumber: number })
-      setIsvisible(true)
     }
   }
 
@@ -118,14 +123,21 @@ const CompetitionDetail = (props) => {
   }
 
   const handleUpodateDashboard = () => {
-    getCompetitions(competitionDetail.slug, true)
-      .then(competitionDetailUpdated => { // TODO: get competition id from url
-        // setCompetitionDetail({ ...competitionDetailUpdated })
-        setCompetitionMembers(competitionDetailUpdated.members)
-        settingTakenNumbers(competitionDetailUpdated.members)
-      }).catch(err => {
-        console.log(err)
-      })
+    toast.promise(
+      getCompetitions([competitionDetail.slug], true)
+        .then(competitionDetailUpdated => { // TODO: get competition id from url
+          // setCompetitionDetail({ ...competitionDetailUpdated })
+          setCompetitionMembers(competitionDetailUpdated[0].members)
+          settingTakenNumbers(competitionDetailUpdated[0].members)
+        }).catch(err => {
+          console.log(err)
+        }),
+      {
+        pending: 'Actualizando...',
+        success: 'Tablero actualizado! 👌',
+        error: 'Error al liberar el cupo 🤯'
+      },
+    )
   }
 
   useEffect(() => {
@@ -140,7 +152,7 @@ const CompetitionDetail = (props) => {
       return
     }
     initVisualInterval(myVisualInterval)
-    refButtonUpdateDash.current.click()
+    // refButtonUpdateDash.current.click()
     // }, 10000)
 
     return () => {
@@ -152,10 +164,12 @@ const CompetitionDetail = (props) => {
   const NumberComponent = ({ ind, item, number, uidNumber }) => {
     const isTakenByMe = uidLogged && uidNumber == uidLogged
     const { isPaid } = item
+
     return !item.hidden ? // <Tooltip key={ind} title={`Reservar el número ${ind}`}>
       <div
         className={`${styles.item} ${styles[item.status]} ${selectedNumber == ind && styles.selected}`}
-        onClick={() => handleClick(item, ind)}>
+        onClick={() => ((!isAdmin && item.status == 'available') || isTakenByMe || (isAdmin && item.status != 'available')) ? handleClick(item, ind, isTakenByMe) : null} >
+        {item?.name && <span className={styles.name}>{item?.name}</span>}
         {ind}
         {isTakenByMe && <EmojiPeopleIcon className={styles.takenMeIcon} />}
         {!!isPaid && <PaidIcon className={styles.paidIcon} />}
@@ -168,15 +182,11 @@ const CompetitionDetail = (props) => {
     {/* competitionDetail: {JSON.stringify(competitionDetail)} */}
     <div className={styles.left}>
       <div className={styles.news}>
-        <span>Últimos movimientos:</span>
         <Marquee />
       </div>
-      <Alert severity="info" className={styles.alert}>
-        <button ref={refButtonUpdateDash} className={styles.btnUpdateDashboard} onClick={handleUpodateDashboard}>
-          Actualizar tablero<br />
-        </button>
-        {/* {updatingIn && <small>Automaticamente en {updatingIn}</small>} */}
-      </Alert>
+      <Button color="blue" className={styles.btnUpdateDashboard} onClick={handleUpodateDashboard}>
+        Actualizar tablero<br />
+      </Button>
       <div className={styles.controlAvailablenumbers}>
         <FormControlLabel
           control={<Checkbox id="check_available_numbers" value={isOnlyAvailableNumbers} onClick={(e) => settingTakenNumbers(competitionMembers)} />}

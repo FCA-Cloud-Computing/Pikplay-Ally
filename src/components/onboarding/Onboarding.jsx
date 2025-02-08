@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { toast } from 'react-toastify'
 
 // Custom
+import { sellersInformation } from '../../data/dataSellers'
 import Button from '../button/Button'
 import CoinIcon from '../coinIcon/CoinIcon'
 import MESSAGES from '../../consts/messages'
@@ -50,7 +51,7 @@ const Onboarding = () => {
     {
       background: "https://i.pinimg.com/564x/f4/d4/b9/f4d4b991d2bccaf2202b8a07bae108de.jpg",
       html: <>¡Refiere y gana!</>,
-      image: "/images/icons/gif.svg",
+      image: "/images/icons/gift.svg",
       messageCode: "referrals",
       imageStyle: {
         marginTop: "-26px",
@@ -161,7 +162,7 @@ const Onboarding = () => {
       <p>
         Comprando con aliados de <br />
         <b>Pikplay</b> tienes la posibilidad de ganar <b>Cashback</b><CoinIcon />,
-        <br />esto basicamente es desuentos en otras tiendas aliadas.
+        <br />esto basicamente es descuentos en otras tiendas aliadas.
         <br /><br />
         Tambien invitar a tus amigos y tener un Ranking de puntos los cuales te serviran para aumentar de liga, obtener descuentos
         y participar en concursos.
@@ -175,7 +176,20 @@ const Onboarding = () => {
     <div className={styles.aliados}>
       <h2>Aliados</h2>
       <div className={styles.items}>
-        <Link href='/conversation-club'>
+        {sellersInformation && Object.keys(sellersInformation).map((key, i) => {
+          const { authorInformation: item } = sellersInformation[key]
+          return <Link href={`/${key}`}>
+            <div className="Card">
+              <img src={item.picture} />
+              <p>
+                <b>{item.name}</b>
+                <div>{item?.category?.label}</div>
+                {item.location}
+              </p>
+            </div>
+          </Link>
+        })}
+        {/* <Link href='/conversation-club'>
           <div className="Card">
             <img src='/images/users/conversation_club/logo.png' />
             <p>
@@ -195,6 +209,16 @@ const Onboarding = () => {
             </p>
           </div>
         </Link>
+        <Link href='/blue-panther'>
+          <div className="Card">
+            <img src='/images/users/bluepanther/logo.jpg' />
+            <p>
+              <b>Bluepanther</b>
+              <div>Gaming</div>
+              Medellín, Colombia
+            </p>
+          </div>
+        </Link>
         <Link href='/nataliatution'>
           <div className="Card">
             <img src='/images/users/nataliatution/logo.jpg' />
@@ -204,27 +228,7 @@ const Onboarding = () => {
               Barranquilla, Colombia
             </p>
           </div>
-        </Link>
-        <Link href='/blue-panther'>
-          <div className="Card">
-            <img src='/images/users/bluepanther.jpg' />
-            <p>
-              <b>Bluepanther</b>
-              <div>Gaming</div>
-              Medellín, Colombia
-            </p>
-          </div>
-        </Link>
-        <Link href='/pikplay-store'>
-          <div className="Card">
-            <img src='/images/logos/pikplay_store_logo.png' />
-            <p>
-              <b>Pikplay Store</b>
-              <div>Accesorios</div>
-              Barranquilla, Colombia
-            </p>
-          </div>
-        </Link>
+        </Link> */}
         {/* <div className="Card">
           <img src='/images/users/hiro.jpeg' />
           <p>

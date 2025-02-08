@@ -4,25 +4,26 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Button as ButtonMat } from '@mui/material'
 
-const Button = ({
-  animation = false,
-  border,
-  children,
-  className,
-  color,
-  databutton,
-  disabled,
-  fullWidth,
-  isLink,
-  id,
-  onClick,
-  outline,
-  style,
-  shine,
-  realistic,
-  textColor,
-}) => {
-  className = `${className} ${animation ? styles.animation : null}`
+const Button = (props) => {
+  const {
+    animation = false,
+    border,
+    children,
+    className: classNameProp,
+    color,
+    databutton,
+    disabled,
+    fullWidth,
+    isLink,
+    id,
+    onClick,
+    outline,
+    style,
+    shine,
+    realistic,
+    textColor,
+  } = props
+  const className = `${classNameProp} ${animation ? styles.animation : null}`
 
   return (
     <motion.span
