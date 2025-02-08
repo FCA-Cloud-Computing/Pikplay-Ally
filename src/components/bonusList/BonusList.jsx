@@ -6,8 +6,12 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import { formatNumber } from '@/lib/utils';
 import CoinIcon from '../coinIcon/CoinIcon';
 import Button from '../button/Button';
+import { useIAStore } from '../ia/IAstore';
+import MESSAGES from '../../consts/messages'
 
 const BonusList = ({ bonuses }) => {
+    const { setIAMessage } = useIAStore()
+    const { CLAIM_IA_MESSAGE } = MESSAGES
     return (
         <div className={styles.BonusList}>
             {bonuses.map((bonus, index) => (
@@ -37,7 +41,7 @@ const BonusList = ({ bonuses }) => {
                         <p>{bonus.description}</p>
                     </div>
                     <div className={styles.actions}>
-                        <Button color="blue" disabled>Redimir</Button>
+                        <Button color="blue" onClick={() => setIAMessage(CLAIM_IA_MESSAGE, null, 'neutral_2')}>Redimir</Button>
                         <Button color="link" style={{ color: "white" }}>Compartir</Button>
                     </div>
                 </motion.div>

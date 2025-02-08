@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { create } from 'zustand';
 import { handleUserMessage } from './handleUserMessage';
 
+const DEFAULT_EXPRESSION = 'happy'
 const checkIAMessage = (set, IAMessage) => {
   const searchParams = new URLSearchParams(window.location.search);
   const message = searchParams.get('message');
@@ -11,8 +12,8 @@ const checkIAMessage = (set, IAMessage) => {
   }
 };
 
-const setIAMessage = (message, options, set) => {
-  if (message) set({ IAMessage: message, isVisible: true, IAOptions: options });
+const setIAMessage = (message, options, expression, set) => {
+  if (message) set({ IAHTMLMessage: null, IAMessage: message, isVisible: true, IAOptions: options, IAExpression: expression ? expression : DEFAULT_EXPRESSION });
   else set({ IAMessage: null, isVisible: false, IAOptions: null });
 };
 
@@ -31,13 +32,13 @@ export const useIAStore = create((set, get) => ({
   IAOptions: <></>,
   isVisible: false,
   IAMessage: null,
-  IAExpression: 'happy',
+  IAExpression: DEFAULT_EXPRESSION,
   IAHTMLMessage: null,
   numberChosen: null,
   defaultStoreA: null, // KEY para almacenar un valor temporal
   defaultStoreB: null,
   handleUserMessage: (message, options) => middleHandleUserMessage(message, set, options),
-  setIAMessage: (message, options) => setIAMessage(message, options, set),
+  setIAMessage: (message, options, expression) => setIAMessage(message, options, expression, set),
   setIAOptions: (options) => set({ IAOptions: options }),
   setIsvisible: (isVisible) => set({ isVisible: isVisible }),
   setnumberChosen: (numberChosen) => set({ numberChosen: numberChosen }),
