@@ -95,6 +95,12 @@ export const handleUserMessage = async (mensaje, set, options) => {
       IAOptionsSelected = IAOptionsRedemption;
       break;
 
+    case 'loyalty':
+      IAHTMLMessageSelected = IAHtmlMessageLoyalty;
+      IAMessageSelected = IAMessageRedemption(options.credits);
+      IAOptionsSelected = IAOptionsRedemption;
+      break;
+
     default:
       IAHTMLMessageSelected = null;
       IAExpressionSelected = 'happy';

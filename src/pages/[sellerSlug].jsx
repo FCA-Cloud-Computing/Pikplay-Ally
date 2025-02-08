@@ -16,6 +16,7 @@ import useCompetitions from '@/components/competitions/hooks/useCompetitions'
 import ItemCard from '@/components/itemCard/ItemCard'
 import Layout from '@/components/layout/Layout'
 import RankingComponent from '@/components/ranking/Ranking'
+import { Loyalty } from '@/components/loyalCustomer/Loyalty'
 
 const DefaultSellerPage = (props) => {
   const { params } = props
@@ -209,6 +210,7 @@ const DefaultSellerPage = (props) => {
           />
         )}
       </>}
+      <Loyalty sellerId={12} uid={1212} />
     </section>
   </Layout>
 }
