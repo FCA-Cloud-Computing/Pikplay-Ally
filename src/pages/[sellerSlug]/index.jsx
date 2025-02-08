@@ -18,6 +18,7 @@ import Layout from '@/components/layout/Layout'
 import RankingComponent from '@/components/ranking/Ranking'
 import { sellersInformation } from '../../data/dataSellers'
 import BonusList from '@/components/bonusList/BonusList'
+import { Loyalty } from '@/components/loyalCustomer/Loyalty'
 
 const DefaultSellerPage = (props) => {
   const { params } = props
@@ -95,6 +96,9 @@ const DefaultSellerPage = (props) => {
         </div>
         <RankingComponent {...{ rankingId }} />
       </>}
+
+      {/* Loyalty */}
+      <Loyalty uid={12} sellerId={1212} />
 
       {/* Products */}
       {products && <>

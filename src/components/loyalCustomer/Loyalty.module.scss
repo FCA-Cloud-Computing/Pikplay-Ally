@@ -1,9 +1,89 @@
+.loyalty {
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  gap: 0.5rem;
+
+  .footerText {
+    font-size: 0.7em;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  & h3{
-    color: red;
+  & h3 {
+    padding-left: 1.25rem;
+    margin: 0;
+    color: #fff;
+
+    &::before {
+      content: "🎁";
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+  }
+
+  & button {
+    font-size: 1em;
+  }
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 8px;
+  flex-direction: column;
+  padding: 1rem;
+  box-shadow: inset 0px 0px 2px #ededed;
+  backdrop-filter: blur(10px);
+
+  .transactions {
+    --size: 40px;
+    list-style: none;
+    padding: 0px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--size), 1fr));
+    width: 100%;
+    position: relative;
+
+    .completed{
+      background-color: #10b981;
+      border-color: #00ffaa;
+    }
+
+    & div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+    }
+
+    & small{
+      position: absolute;
+      bottom: -20px;
+      text-align: center;
+      font-size: .7em;
+    }
+
+    & li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100%;
+      background-color: #f14444;
+      width: var(--size);
+      height: var(--size);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      border: 1px solid red;
+    }
   }
 }
