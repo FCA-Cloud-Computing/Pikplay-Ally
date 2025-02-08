@@ -1,8 +1,9 @@
 import styles from './previewUser.module.scss'
 
 import { createGlobalStyle } from "styled-components";
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router';
 
 // Custom
 import Login from '../login/Login'
@@ -16,18 +17,34 @@ const ProfileImage = dynamic(() => import('../profileImage/ProfileImage'), { ssr
 const MenuMobileOptions = dynamic(() => import('./MenuMobileOptions'), { ssr: false })
 
 const PreviewUser = () => {
-  const { userLogged, leftMenuBar, leftMenuBar: { isShow }, setStoreValue, leftBottomMenuContent } = useSystemStore((state => state))
+  const router = useRouter()
+  const { userLogged, leftMenuBar, leftMenuBar: { isShow: isShowLeftMenu }, setStoreValue, leftBottomMenuContent } = useSystemStore((state => state))
   const { picture, name, coins } = userLogged || {}
 
   const handleClickImage = () => {
-    setStoreValue('leftMenuBar', { ...leftMenuBar, isShow: !isShow })
+    router.push('#menu')
+    setStoreValue('leftMenuBar', { ...leftMenuBar, isShow: !isShowLeftMenu })
   }
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      if (isShowLeftMenu && !url.includes("#menu")) {
+        setStoreValue('leftMenuBar', { isShow: false })
+      }
+    };
+
+    router.events.on('hashChangeStart', handleRouteChange);
+
+    return () => {
+      router.events.off('hashChangeStart', handleRouteChange);
+    };
+  }, [router]);
 
   return (
     <div
       className={`
       ${styles.PreviewUser} PreviewUser
-      ${isShow ? styles.actived : null}
+      ${isShowLeftMenu ? styles.actived : null}
       ${userLogged?.uid ? styles.userLogged : null}
       `}>
       {userLogged?.uid ? (
@@ -48,10 +65,12 @@ const PreviewUser = () => {
             </span> */}
           </div>
           <div className={styles.bg_white}></div>
-          {isShow && <>
+          {isShowLeftMenu && <>
             <MenuMobileOptions />
             <UserNotifications />
-            <Button realistic className={styles.close_button} color="blue" onClick={() => setStoreValue('leftMenuBar', { isShow: false })}>Cerrar</Button>
+            <Button realistic className={styles.close_button} color="blue" onClick={() => {
+              setStoreValue('leftMenuBar', { isShow: false })
+            }}>Cerrar</Button>
           </>}
           {/* <div className={styles.elementToCloseBgBlack} onClick={() => setStoreValue('leftMenuBar', false)}></div> */}
           {leftBottomMenuContent}
