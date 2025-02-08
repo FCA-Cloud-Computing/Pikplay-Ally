@@ -16,6 +16,10 @@
     cursor: pointer;
   }
 
+  &.disabled {
+    background-color: grey;
+  }
+
   &.fullWidth {
     text-align: center;
     width: 100%;
@@ -29,19 +33,15 @@
   }
 
   &.shine:before {
+    animation-delay: 10s;
+    animation: 3s linear infinite shine;
+    background-image: linear-gradient(282deg, #fff0 30%, #fffc, #fff0 70%);
     content: "";
-    position: absolute;
-    width: 100px;
     height: 100%;
-    background-image: linear-gradient(
-      120deg,
-      rgba(255, 255, 255, 0) 30%,
-      rgba(255, 255, 255, 0.8),
-      rgba(255, 255, 255, 0) 70%
-    );
-    top: 0;
     left: -100px;
-    animation: shine 3s infinite linear;
+    position: absolute;
+    top: 0;
+    width: 40%;
   }
 
   @keyframes shine {

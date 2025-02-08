@@ -20,7 +20,14 @@ function CreditRedemptionPage() {
     {
       description: 'Entradas a cine 2D de lunes a viernes',
       title: 'Entradas a cine',
-      image: 'https://fesac.com.co/wp-content/uploads/2024/11/cc_combo01.png'
+      image: 'https://fesac.com.co/wp-content/uploads/2024/11/cc_combo01.png',
+      price: 4,
+    },
+    {
+      description: 'Helado McFlury',
+      title: 'Helado McFlury',
+      image: 'https://mcmenuspot.co.uk/wp-content/uploads/2024/10/dad-1.webp',
+      price: 4,
     }
   ]
 

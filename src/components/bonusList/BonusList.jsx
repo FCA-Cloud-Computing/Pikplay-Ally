@@ -4,6 +4,8 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 
 // Custom
 import { formatNumber } from '@/lib/utils';
+import CoinIcon from '../coinIcon/CoinIcon';
+import Button from '../button/Button';
 
 const BonusList = ({ bonuses }) => {
     return (
@@ -15,8 +17,7 @@ const BonusList = ({ bonuses }) => {
                     key={index}
                     initial={{ x: '-400px' }}
                     transition={{ delay: index * 0.3 }}
-                /*style={{ backgroundImage: `url(${bonus.backgroundImage})` }}*/
-                >
+                /*style={{ backgroundImage: `url(${bonus.backgroundImage})` }}*/>
                     <span className={styles.topMessage}>
                         {/* <img src="/images/icons/gift.svg" alt="gift" /> */}
                         <CardGiftcardIcon />
@@ -28,9 +29,16 @@ const BonusList = ({ bonuses }) => {
                     {bonus.image && <div className={styles.image}>
                         <img src={bonus.image} />
                     </div>}
+                    {bonus.price && <div className={styles.price}>
+                        <CoinIcon coins={bonus.price} />
+                    </div>}
                     <div className={styles.contentTexts}>
                         <h2>{bonus.title}</h2>
                         <p>{bonus.description}</p>
+                    </div>
+                    <div className={styles.actions}>
+                        <Button color="blue" disabled>Redimir</Button>
+                        <Button color="link" style={{ color: "white" }}>Compartir</Button>
                     </div>
                 </motion.div>
             ))}

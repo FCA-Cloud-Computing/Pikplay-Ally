@@ -26,20 +26,6 @@ const PreviewUser = () => {
     setStoreValue('leftMenuBar', { ...leftMenuBar, isShow: !isShowLeftMenu })
   }
 
-  useEffect(() => {
-    const handleRouteChange = (url) => {
-      if (isShowLeftMenu && !url.includes("#menu")) {
-        setStoreValue('leftMenuBar', { isShow: false })
-      }
-    };
-
-    router.events.on('hashChangeStart', handleRouteChange);
-
-    return () => {
-      router.events.off('hashChangeStart', handleRouteChange);
-    };
-  }, [router]);
-
   return (
     <div
       className={`

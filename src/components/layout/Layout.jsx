@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { ToastContainer } from 'react-toastify';
 
 import useSystemStore from '../../hooks/storeSystem.js'
@@ -26,9 +26,11 @@ const Layout = (props) => {
     isAwardSummaryModalOpen,
     notifications,
     setStoreValue,
+    leftMenuBar: { isShow: isShowLeftMenu },
     userLogged
   } = useSystemStore((state => state))
   const { checkIAMessage, IAMessage, setIsvisible } = useIAStore()
+  const router = useRouter()
 
   Router.onRouteChangeStart = url => {
     // Restableciendo cosas
@@ -41,6 +43,18 @@ const Layout = (props) => {
       // else Router.push('/perfil' + userLogged?.name)
     }
   }
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      if (isShowLeftMenu && !url.includes("#menu")) {
+        setStoreValue('leftMenuBar', { isShow: false })
+      }
+    };
+    router.events.on('hashChangeStart', handleRouteChange);
+    return () => {
+      router.events.off('hashChangeStart', handleRouteChange);
+    };
+  }, [router]);
 
   useEffect(() => {
     checkIAMessage(IAMessage); // Check if there is an IA message to show

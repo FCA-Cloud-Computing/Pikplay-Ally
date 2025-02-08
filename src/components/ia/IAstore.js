@@ -17,6 +17,7 @@ const setIAMessage = (message, options, set) => {
 };
 
 const middleHandleUserMessage = (message, set, options) => {
+  window.location.hash = '#paco'
   if (message === 'hideIA') {
     set('isVisible', false);
     return;

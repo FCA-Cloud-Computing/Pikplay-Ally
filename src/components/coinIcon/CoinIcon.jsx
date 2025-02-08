@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { formatNumber } from "../../lib/utils";
 import classNames from "classnames";
 
-const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }) => {
+const CoinIcon = ({ coins, isLabel, hideNumber = false, multicoin, textColor }) => {
   const prevCountCoins = useRef();
   const previousCoins = prevCountCoins.current ? prevCountCoins.current : 0;
 

@@ -37,6 +37,7 @@ const Button = (props) => {
       ${outline ? styles.outline : ''}
       ${isLink ? styles.link : ''}
       ${fullWidth ? styles.fullWidth : ''}
+      ${disabled ? styles.disabled : ''}
     `}
       databutton={databutton}
       id={id}
