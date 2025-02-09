@@ -46,9 +46,13 @@ const Layout = (props) => {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
+      // debugger;
+      setIsvisible(false) // Ocultando a la IA
       if (isShowLeftMenu && !url.includes("#menu")) {
         setStoreValue('leftMenuBar', { isShow: false })
       }
+      // else if (url.includes("#paco")) {
+      // }
     };
     router.events.on('hashChangeStart', handleRouteChange);
     return () => {

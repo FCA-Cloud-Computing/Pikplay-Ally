@@ -16,8 +16,9 @@ const useCompetitions = () => {
   const [isOnlyAvailableNumbers, setIsOnlyAvailableNumbers] = useState(false);
 
   const getCompetitions = async (slugs) => {
+    if (!slugs) return
     setIsLoading(true)
-    const competitionPromises = slugs.map(slug => getComptSrv(null, slug))
+    const competitionPromises = slugs && slugs.map(slug => getComptSrv(null, slug))
     const competitionsArray = await Promise.all(competitionPromises)
     setCompetitions(competitionsArray)
     setIsLoading(false)

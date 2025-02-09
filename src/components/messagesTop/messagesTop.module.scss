@@ -7,16 +7,20 @@
     background-size: contain;
     box-sizing: border-box;
     font-size: 13px;
+    font-weight: 600;
     height: 93px;
     left: 0;
     margin: 0 auto;
-    padding: 18px 50px 30px 90px;
+    opacity: 1;
+    padding: 18px 50px 30px 110px;
     position: fixed;
     right: 0;
-    top: -800px;
+    // top: -800px;
+    top: 60px;
     width: 342px;
     z-index: 4;
-    &.isVisible {
-        top: 80px;
-    }
+    // &.isVisible {
+    //     top: 60px;
+    //     opacity: 1;
+    // }
 }

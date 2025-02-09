@@ -7,7 +7,7 @@ const MESSAGES = {
   ONBOARDING_LEAD_DUPLICATED: 'Ya te encuentras en nuestra BD, te notificaremos de todo lo que pase por aquí',
 
   // Perfil
-  DEFAULT_NAME: 'Aquí tu nombre',
+  DEFAULT_NAME: 'Cambiar nombre',
 };
 
 export default MESSAGES;

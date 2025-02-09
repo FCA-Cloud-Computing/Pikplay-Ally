@@ -18,6 +18,7 @@ const renderMiddleWare = (Component, set, options = {}) => {
 };
 
 export const handleUserMessage = async (mensaje, set, options) => {
+  window.location.hash = '#paco'
   let IAMessageSelected = () => <> </>;
   let loadingOptions = ['Hmmm...', 'Ya veo...', 'Que podria ser...', 'Ok, te entiendo...'];
   let seleccionAleatoria = loadingOptions[Math.floor(Math.random() * loadingOptions.length)];

@@ -40,7 +40,7 @@ const ProfileSummaryExperience = (props) => {
     coins,
     league = 'oro',
   } = userInfoData ? userInfoData : userLogged
-  const [newNickname, setNewNickname] = useState(name)
+  const [newNickname, setNewNickname] = useState(name || DEFAULT_NAME)
 
   const handleBlurName = (e) => {
     const { value } = e.target
