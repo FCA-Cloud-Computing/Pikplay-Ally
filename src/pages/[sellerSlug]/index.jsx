@@ -58,8 +58,7 @@ const DefaultSellerPage = (props) => {
     <GlobalStyle />
     <section className="page">
       <AuthorInformation authorInformation={authorInformation} />
-      {/* competitions:{JSON.stringify(competitions)} */}
-      {competitions && competitions.length > 0 && <>
+      {competitionsArray && competitionsArray.length > 0 && <>
         <div className="contentTitle">
           <h1>
             <FontAwesomeIcon className="icon" icon={faDiceFive} />

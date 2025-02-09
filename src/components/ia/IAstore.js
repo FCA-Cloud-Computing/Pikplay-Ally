@@ -13,7 +13,10 @@ const checkIAMessage = (set, IAMessage) => {
 };
 
 const setIAMessage = (message, options, expression, set) => {
-  if (message) set({ IAHTMLMessage: null, IAMessage: message, isVisible: true, IAOptions: options, IAExpression: expression ? expression : DEFAULT_EXPRESSION });
+  if (message) {
+    window.location.hash = '#paco'
+    set({ IAHTMLMessage: null, IAMessage: message, isVisible: true, IAOptions: options, IAExpression: expression ? expression : DEFAULT_EXPRESSION });
+  }
   else set({ IAMessage: null, isVisible: false, IAOptions: null });
 };
 

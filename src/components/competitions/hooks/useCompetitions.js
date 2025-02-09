@@ -8,28 +8,20 @@ import { deleteNotPaidNumbersSrv, getComptSrv, setPaidNumberSrv } from '../../..
 import { deleteCompetitionMemberSrv } from '../../../services/competition/competitionService';
 
 const useCompetitions = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { competitionDetail, selectedNumber, set } = useCompetitionsStore.getState()
   const { id: competitionId } = competitionDetail || {}
   const [competitions, setCompetitions] = useState([]);
   const [competitionMembers, setCompetitionMembers] = useState([]);
   const [isOnlyAvailableNumbers, setIsOnlyAvailableNumbers] = useState(false);
 
-  const getCompetitions = (slugs) => {
-    setIsLoading(true);
-
-    return new Promise((resolve, reject) => {
-      const competitionsArray = []
-      return slugs && slugs.map(async (slug) => {
-        await getComptSrv(null, slug).then((data) => {
-          // setCompetitionMembers(data.competitionMembers);
-          competitionsArray.push(data);
-        });
-        setIsLoading(false);
-        setCompetitions(competitionsArray);
-        resolve(competitionsArray);
-      });
-    });
+  const getCompetitions = async (slugs) => {
+    setIsLoading(true)
+    const competitionPromises = slugs.map(slug => getComptSrv(null, slug))
+    const competitionsArray = await Promise.all(competitionPromises)
+    setCompetitions(competitionsArray)
+    setIsLoading(false)
+    return competitionsArray;
   };
 
   const handleCompetitionClick = (slug) => {

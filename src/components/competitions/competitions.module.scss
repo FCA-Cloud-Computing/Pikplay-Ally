@@ -45,22 +45,15 @@
     @media screen and (max-width: 480px) {
       display: block;
     }
-    .active,
-    .done {
+    .active {
       border-radius: 20px;
       column-gap: 20px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      margin: 0 auto;
-      // padding: 20px 20px 20px 80px;
+      margin-bottom: 40px;
       position: relative;
-      width: 600px;
-      @media screen and (max-width: 480px) {
-        flex-direction: column;
-        margin-bottom: 20px;
-        // padding: 20px 20px 20px 80px;
-        width: initial;
-      }
+      row-gap: 20px;
     }
   }
 
