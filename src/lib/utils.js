@@ -208,3 +208,18 @@ export function formatCode(code) {
 
   return formattedCode;
 }
+
+/**
+ * Genera las propiedades de accesibilidad para un componente de pestañas de ancho completo.
+ * Estas propiedades incluyen un `id` único para la pestaña y el atributo 
+ * `aria-controls`, que asocia la pestaña con su panel de contenido correspondiente.
+ *
+ * @param {number} tabIndex - El índice de la pestaña para la cual se generan las propiedades.
+ * @returns {object} Un objeto que contiene los atributos `id` y `aria-controls`.
+ */
+export function getAccessibilityPropsTabs(tabIndex) {
+  return {
+    id: `full-width-tab-${tabIndex}`,
+    'aria-controls': `full-width-tabpanel-${tabIndex}`,
+  };
+}

@@ -58,7 +58,7 @@ function Transactions() {
           <p className={styles.message}>
             <Alert severity="warning">
               {<img src="/images/ia/3.png" />}
-              Actualmente tienes <b>58 Pikcoins</b> que no han sido abonados ya que no has evidenciado tu copmpra con su factura.</Alert>
+              Actualmente tienes <b>58 Pikcoins</b> que no han sido abonados ya que no has evidenciado tu compra con su factura.</Alert>
           </p>
         </div>
         <ListTransactions transactions={transactions} />
