@@ -32,7 +32,7 @@ const sellersInformation = {
         authorInformation: {
             aboutHTML: <div></div>,
             aboutHTMLButtonStyle: { color: 'white', textDecoration: 'underline' },
-            pageBackground: 'https://instagram.fbaq5-1.fna.fbcdn.net/v/t39.30808-6/471500893_18354437725134821_6595726740774147152_n.jpg?stp=dst-jpg_e35_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xMjAweDE1MDAuc2RyLmYzMDgwOC5kZWZhdWx0X2ltYWdlIn0&_nc_ht=instagram.fbaq5-1.fna.fbcdn.net&_nc_cat=105&_nc_oc=Q6cZ2AGYzx8rnoC9AIzetCSvR1WwxKC1SoXqj8SZ0zgIWfNKgGnhZBiJHsHTRV18z3CG8Aw&_nc_ohc=UxH_5JVjpdwQ7kNvgHuMShh&_nc_gid=df72401a5381411eb0be2c1228fe735a&edm=APoiHPcAAAAA&ccb=7-5&ig_cache_key=MzQ0MTAyNDE2OTEzNDI0MzYwMg%3D%3D.3-ccb7-5&oh=00_AYD2Et-1MhhRuI0fSETpYFlwHS_o7hZKKc-VEPUvpAJQeg&oe=67ABF3BE&_nc_sid=22de04',
+            pageBackground: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F151%2F471500893_18354437725134821_6595726740774147152_n_768x768.jpg?alt=media&token=49abd402-132f-4521-ba8f-6e3825f282f2',
             cssClassPage: '',
             dividerColor: '#b0b0b0',
             instagram: 'https://www.instagram.com/maxillofacial_center',
