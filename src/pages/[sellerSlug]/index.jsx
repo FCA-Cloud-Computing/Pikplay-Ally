@@ -55,7 +55,7 @@ const DefaultSellerPage = (props) => {
     console.log('competitions', competitions)
   }, [competitions])
 
-  return <Layout description={authorInformation.description} image={`pikplay.com.co/${authorInformation.picture}`} title={authorInformation.name} cssClassPage={authorInformation?.cssClassPage}>
+  return <Layout description={authorInformation.description} image={`https://pikplay.com.co/${authorInformation.picture}`} title={authorInformation.name} cssClassPage={authorInformation?.cssClassPage}>
     <GlobalStyle />
     <section className="page">
       <AuthorInformation authorInformation={authorInformation} />

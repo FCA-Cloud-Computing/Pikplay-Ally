@@ -5,6 +5,7 @@ const sellersInformation = {
         authorInformation: {
             aboutHTML: <div>Construyendo un epicentro tech en el Caribe</div>,
             aboutHTMLButtonStyle: { color: 'white', textDecoration: 'underline' },
+            description: 'Convirtiendo a Barranquilla y el Atlantico en el epicentro de la revolución tecnológica en Colombia.',
             pageBackground: '/images/users/fca/bg.jpeg',
             cssClassPage: '',
             dividerColor: '#b0b0b0',
@@ -32,6 +33,7 @@ const sellersInformation = {
         authorInformation: {
             aboutHTML: <div></div>,
             aboutHTMLButtonStyle: { color: 'white', textDecoration: 'underline' },
+            description: 'Experiencia y tecnología de vanguardia ✨',
             pageBackground: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F151%2F471500893_18354437725134821_6595726740774147152_n_768x768.jpg?alt=media&token=49abd402-132f-4521-ba8f-6e3825f282f2',
             cssClassPage: '',
             dividerColor: '#b0b0b0',
@@ -159,6 +161,7 @@ const sellersInformation = {
             </div>,
             aboutHTMLButtonStyle: { color: 'white', textDecoration: 'underline' },
             background: 'https://instagram.fbaq5-1.fna.fbcdn.net/v/t39.30808-6/454723787_18361896526109558_4048109518435842878_n.jpg?stp=dst-jpg_e35_p640x640_sh0.08_tt6&cb=30a688f7-cd073ddd&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xMjkweDIyOTMuc2RyLmYzMDgwOC5kZWZhdWx0X2ltYWdlIn0&_nc_ht=instagram.fbaq5-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=SBaMXu0ZfHMQ7kNvgGxH71O&_nc_gid=02ee83935d0d4f0e84bb6d63c8af7296&edm=AGFyKLkAAAAA&ccb=7-5&ig_cache_key=MzQzMDM0NDMyMzM0NTU0Mzc2Mw%3D%3D.3-ccb7-5-cb30a688f7-cd073ddd&oh=00_AYCmBCSoTpS6At3Z4SeUoBtE6-2OKzfu0JraN-Xp6-Tm8w&oe=6790662D&_nc_sid=5a0a6d',
+            description: 'Videojuegos Y Collecionables, Compramos consolas',
             dividerColor: '#cbcbcb',
             facebook: 'https://www.facebook.com/profile.php?id=100064982311928',
             givenPikcoins: 0,
