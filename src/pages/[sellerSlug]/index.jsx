@@ -97,7 +97,7 @@ const DefaultSellerPage = (props) => {
       </>}
 
       {/* Loyalty */}
-      <Loyalty uid={12} sellerId={1212} />
+      {/* <Loyalty uid={12} sellerId={1212} /> */}
 
       {/* Products */}
       {products && <>
@@ -110,7 +110,10 @@ const DefaultSellerPage = (props) => {
         {products && products.map(product =>
           <ItemCard
             {...product}
-            {...{ whatsappNumber: authorInformation.whatsappNumber }}
+            {...{
+              user: authorInformation,
+              whatsappNumber: authorInformation.whatsappNumber
+            }}
           />
         )}
       </>}

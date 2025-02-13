@@ -14,12 +14,6 @@ const Options = ({ handleUserMessage, set }) => {
   }
 
   return <>
-    <Button realistic shine color='blue' onClick={() => {
-      handleSaveName()
-      handleUserMessage('onboarding/name-saved', set)
-    }}>
-      Seguir
-    </Button>
   </>
 }
 

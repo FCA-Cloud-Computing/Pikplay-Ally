@@ -2,7 +2,6 @@
 import styles from './itemCard.module.scss'
 
 import React, { } from 'react'
-import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons'
 import Grow from '@mui/material/Grow'
@@ -22,34 +21,18 @@ const ItemCard = (props) => {
   const {
     acceptChanges,
     cashbackAvailable,
-    certificate,
-    city,
-    description,
-    descuento = 0,
-    destacada,
     following,
     handleFavorite,
-    handleShare,
     isAddi,
     id: publicationId,
     images,
-    image_1,
     isNew,
     likes,
-    logDetalle,
     price,
-    quantity,
-    sale_price,
     slug,
-    special_title,
     tags,
-    tipo_coleccion,
     title,
-    type,
     user,
-    user_name,
-    user_picture,
-    user_transactions,
     whatsappNumber
   } = props
 
@@ -77,7 +60,7 @@ const ItemCard = (props) => {
             <a
               as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
               className={styles.image_wrapper}
-              href={`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}`}
+              href={`https://api.whatsapp.com/send?phone=${user.whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}`}
               key={publicationId}
               target='_blank'
             // href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}

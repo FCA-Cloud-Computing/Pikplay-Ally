@@ -90,6 +90,7 @@ const sellersInformation = {
             location: 'Envíos a todo el pais',
             pageBackground: 'https://cloudfront-us-east-1.images.arcpublishing.com/infobae/UQLCPKQVN5AHHC2ZZDKTNN5XOM.jpg',
             picture: '/images/users/le-fragance/le-fragance.jpeg',
+            slug: 'le-fragance',
             whatsappNumber: 573016815784,
             category: {
                 label: 'Perfumes',
@@ -113,12 +114,6 @@ const sellersInformation = {
             price: 130000,
             cashbackAvailable: true,
             slug: 'paco-rabanne-one-million-1-million-tradicional',
-            user: {
-                name: 'Le Fragance',
-                picture: '/images/users/le-fragance/le-fragance.jpeg',
-                slug: 'le-fragance'
-            },
-
         },
         {
             images: [
@@ -130,11 +125,6 @@ const sellersInformation = {
             price: 100000,
             cashbackAvailable: true,
             slug: 'acgua-di-gio',
-            user: {
-                name: 'Le Fragance',
-                picture: '/images/users/le-fragance/le-fragance.jpeg',
-                slug: 'le-fragance'
-            }
         },
         {
             images: [
@@ -146,11 +136,6 @@ const sellersInformation = {
             price: 130000,
             cashbackAvailable: true,
             slug: 'la-coste',
-            user: {
-                name: 'Le Fragance',
-                picture: '/images/users/le-fragance/le-fragance.jpeg',
-                slug: 'le-fragance'
-            }
         },
         {
             images: [
@@ -162,14 +147,9 @@ const sellersInformation = {
             price: 130000,
             cashbackAvailable: true,
             slug: slugify('Calvin Klein Euphoria'),
-            user: {
-                name: 'Le Fragance',
-                picture: '/images/users/le-fragance/le-fragance.jpeg',
-                slug: 'le-fragance'
-            }
         }],
     },
-    'blue-panther': {
+    'bluepanther': {
         authorInformation: {
             aboutHTML: `<div><video width="140" height="260" controls>
         <source src="/images/users/bluepanther/video.mp4" type="video/mp4">
@@ -187,9 +167,29 @@ const sellersInformation = {
             picture: '/images/users/bluepanther/logo.jpg',
             place: 'Medellín',
             rankingId: 2,
-            whatsapp: 'https://api.whatsapp.com/send?phone=573106614305'
+            slug: 'bluepanther',
+            whatsapp: 'https://api.whatsapp.com/send?phone=573106614305',
+            whatsappNumber: 573116453654,
         },
-        competitions: ['act-4-sorteo-de-navidad']
+        competitions: ['act-4-sorteo-de-navidad'],
+        products: [
+            {
+                cashbackAvailable: true,
+                images: [{ url: 'https://bluepanther.store/cdn/shop/files/Instagrampost-37.png?v=1738270483&width=493' }],
+                isNew: true,
+                price: 2100000,
+                title: 'Steam Deck 564GB',
+                slug: 'steam-deck-564gb',
+            },
+            {
+                cashbackAvailable: true,
+                images: [{ url: 'https://bluepanther.store/cdn/shop/files/Instagrampost-36.png?v=1738270411&width=990' }],
+                isNew: true,
+                price: 2500000,
+                title: 'Rog Ally Z1 Extreme',
+                slug: 'rog-ally-z1-extreme'
+            }
+        ]
     },
     nataliatution: {
         authorInformation: {
