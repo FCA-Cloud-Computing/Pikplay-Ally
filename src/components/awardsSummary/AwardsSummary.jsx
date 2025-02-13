@@ -49,13 +49,8 @@ const AwardsSummary = ({ callback }) => {
       </motion.div>
       <motion.div
         initial={{ x: '0px', y: '600px' }}
-        animate={{
-          x: 0,
-          y: 200
-        }}
-        transition={{
-          delay: .2
-        }}
+        animate={{ x: 0, y: 200 }}
+        transition={{ delay: .2 }}
         className={styles.subtitle}>
         Recibiste tus primeros creditos, ¡sigue así!
       </motion.div>

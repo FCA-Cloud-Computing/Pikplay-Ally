@@ -13,12 +13,14 @@ import { useIAStore } from '../ia/IAstore'
 import Button from '../button/Button'
 
 // Servicios
-import { updateProfileSrv } from '../../services/user/userService'
+import { getExperiencesSrv, updateProfileSrv } from '../../services/user/userService'
 import { toast } from 'react-toastify'
 
 const ProfileSummaryExperience = (props) => {
   const { DEFAULT_NAME } = MESSAGES
   const { isEditProfile, userInfoData, setIsEditProfile, showDetails } = props
+  const [currentExp, setCurrentExp] = useState(0)
+  const [percentageBar, setPercentageBar] = useState("0%")
   // userInfoData: Props que se utiliza para mostrar la información de un usuario en particular
   const gainedCoins = 5
   const currentUserCoins = 10
@@ -62,11 +64,39 @@ const ProfileSummaryExperience = (props) => {
     </>)
   }
 
+  const getExperienceInfo = () => {
+    const exp = 0
+
+    getExperiencesSrv()
+      .then(data => {
+        debugger;
+        const { expTotal, exp, percentageBar } = data
+        setCurrentExp(expTotal)
+        setPercentageBar(percentageBar + "%")
+      });
+    const widthBar = (exp / 1000) * 100;
+    setPercentageBar(widthBar + "%")
+  }
+
   useEffect(() => {
     const element = document.querySelector('.ProfileSummaryExperience .number-coins')
     const fromNumber = element?.innerHTML
     const targetNumber = currentUserCoins + gainedCoins
     animatePrince(element, targetNumber, fromNumber)
+    getExperienceInfo()
+  }, [])
+
+  // const exp = 0
+  // const [currentExp, setCurrentExp] = useState(exp)
+  // const [percentageBar, setPercentageBar] = useState("0%")
+
+  useEffect(() => {
+    getExperiencesSrv()
+      .then(data => {
+        const { expTotal, percentageBar } = data
+        setCurrentExp(expTotal)
+        setPercentageBar(percentageBar + "%")
+      });
   }, [])
 
   return (
@@ -78,7 +108,7 @@ const ProfileSummaryExperience = (props) => {
         {/* <div asd={backgroundImage} className={styles.bg} style={{ backgroundImage: `url( ${backgroundImage})` }}></div> */}
         <div asd={backgroundImage} className={styles.bg}></div>
         <div className={styles.left}>
-          <ProfileImage picture={picture} />
+          <ProfileImage picture={picture} progress={percentageBar} />
           {/* <div className={`shine ${styles[league]} ${league == 'oro' && 'starsFallingDown'} `}> */}
           <input className={styles.fullName}
             value={newNickname}
@@ -91,7 +121,11 @@ const ProfileSummaryExperience = (props) => {
           </div> */}
           {/* </div> */}
           <div className={styles.experience_status}>
-            <ExperienceBar {...{ exp: experienceValue }} />
+            <ExperienceBar {...{
+              currentExp,
+              experienceValue,
+              percentageBar
+            }} />
           </div>
         </div>
         {showDetails && <div className={styles.right}>
@@ -122,31 +156,15 @@ const ProfileSummaryExperience = (props) => {
 export default ProfileSummaryExperience
 
 const ExperienceBar = (props) => {
-  // const { exp } = props;
-  const exp = 200
-  const [currentExp, setCurrentExp] = useState(exp)
-  const [widtBar, setWidthBar] = useState("0%")
-
-  useEffect(() => {
-    // getExperiencesSrv()
-    //   .then(data => {
-    //     const { expTotal } = data
-    //     setCurrentExp(expTotal)
-    //     const widthBar = (expTotal / 10000) * 100;
-    //     setWidthBar(widthBar + "%")
-    //   });
-    const widthBar = (exp / 1000) * 100;
-    setWidthBar(widthBar + "%")
-  }, [])
-
+  const { currentExp, experienceValue, exp, percentageBar } = props;
   return (
     <div className={classNames("ExperienceBar", { [styles.ExperienceBar]: true })}>
       <div className={styles.bar}>
-        <div className={classNames("indicator", { [styles.indicator]: true })} style={{ width: widtBar }}>
-          <label>
-            <span className='number'>{formatNumber(currentExp)}</span>
-            &nbsp;/&nbsp;1.000 EXP
-          </label>
+        <label>
+          <span className='number'>{formatNumber(currentExp)}</span>
+          &nbsp;/&nbsp;1.000 Points
+        </label>
+        <div className={classNames("indicator", { [styles.indicator]: true })} style={{ width: percentageBar }}>
         </div>
       </div>
     </div>

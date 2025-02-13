@@ -81,11 +81,16 @@ const updateProfileSrv = (ctx, uid, data) => {
 
 const getExperiencesSrv = async (ctx) => {
   try {
-    const { code, data: experiences } = await get(ctx, `${BASE_URL}/experiences`);
-    const expTotal = experiences.reduce((total, obj) => total + obj.value, 0);
+    const { data: experiences } = await get(ctx, `/experiences`)
+    const expTotal = experiences.reduce((total, obj) => total + obj.experience, 0)
+    const percentageBar = (expTotal / 1000) * 100
+    const currentPikcoins = experiences.reduce((total, obj) => total + obj.coins, 0)
+
     return {
+      currentPikcoins,
       expTotal,
       experiences,
+      percentageBar,
     };
   } catch (err) {
     // TODO - Implementar un logger

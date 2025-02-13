@@ -36,11 +36,12 @@ const PreviewUser = () => {
       {userLogged?.uid ? (
         <div>
           <ProfileImage
-            suppressHydrationWarning={true}
             className="previewUser"
             handleClickImage={IS_MOBILE ? handleClickImage : null}
             picture={picture}
-            small />
+            small
+            suppressHydrationWarning={true}
+          />
           {/* TODO */}
           {/* Icono */}
           <div className={styles.coins} id="PreviewProfile--Coins">

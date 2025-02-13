@@ -33,26 +33,10 @@ import Button from '../button/Button'
 import UserNotifications from '../userNotifications/UserNotifications'
 import RankingComponent from '../ranking/Ranking'
 import Referrals from '../referrals/Referrals'
+import CoinIcon from '../coinIcon/CoinIcon'
+import { getExperiencesSrv } from '@/services/user/userService'
 
 const { motion } = require('framer-motion')
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props
-  return (
-    <div
-      role='tabpanel'
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}>
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  )
-}
 
 const Interface = ({
   dispatch,
@@ -65,7 +49,11 @@ const Interface = ({
   // const handleFavorite = useSelector(state => state.handleFavorite)
   const [tabValue, setTabValue] = useState(0)
   const [isEditProfile, setIsEditProfile] = useState(false)
+  const [currentExp, setCurrentExp] = useState(0)
+  const [widthBar, setWidthBar] = useState(0)
   const { newNotifications, perfilPage: { messageIA }, setStoreValue } = useSystemStore(state => state)
+  const { name: userName } = userLogged
+  const [currentPikcoins, setCurrentPikcoins] = useState(0)
   const steps = [
     {
       target: '.starsFallingDown',
@@ -128,6 +116,19 @@ const Interface = ({
     return <NotificationsActive />
   }
 
+  useEffect(() => {
+    getExperiencesSrv()
+      .then(data => {
+        const { expTotal, percentageBar, currentPikcoins } = data
+        setCurrentExp(expTotal)
+        setWidthBar(percentageBar + "%")
+        setCurrentPikcoins(currentPikcoins)
+      })
+      .catch(err => {
+        debugger;
+      })
+  }, [])
+
   return (
     <section className={`page ${styles.Perfil}`}>
       {/* <Joyride steps={steps} /> */}
@@ -183,7 +184,22 @@ const Interface = ({
           </TabPanel> */}
 
       {/* Resumen */}
-      <h2>Perfil</h2>
+      <p className={styles.greeting}>
+        ¡Hola,
+        <motion.span
+          animate={{ y: 0 }}
+          initial={{ y: '-200px' }}
+          className={styles.userName}>
+          &nbsp;{userName}
+        </motion.span>!, <br />
+        <span>este mes has acumulado
+          <CoinIcon coins={currentPikcoins} />
+        </span>
+        <br />
+        <span>
+          sigue participando, refiriendo y ganando con Pikplay
+        </span>
+      </p>
       <ProfileSummaryExperience
         isEditProfile={isEditProfile}
         setIsEditProfile={setIsEditProfile}

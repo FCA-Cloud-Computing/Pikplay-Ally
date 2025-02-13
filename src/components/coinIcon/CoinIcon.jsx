@@ -32,14 +32,12 @@ const CoinIcon = ({ coins, isLabel, hideNumber = false, multicoin, textColor }) 
         [styles.Coins]: true,
         [styles.animatedZoom]: true,
         // [styles.animated]: true
-      })}
-    >
+      })}>
       {!hideNumber && coins && (
         <span
           className={`f-s-14 ${styles.number} number`}
           style={{ color: textColor ? textColor : "#e5961d" }}>
           {formatNumber(coins)}
-          &nbsp;x&nbsp;
         </span>
       )}
       <picture className={`shine ${styles.coin}`} />

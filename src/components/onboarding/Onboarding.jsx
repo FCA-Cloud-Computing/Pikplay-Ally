@@ -121,6 +121,9 @@ const Onboarding = () => {
         items.map((item, ind) => {
           const { imageStyle, imageStyle: { height = 200, width = 200 } } = item || {}
           return <motion.div
+            animate={{ x: 0 }}
+            initial={{ x: '-400px' }}
+            transition={{ delay: (.2 * ind) }}
             className={`${styles.item} ${ind < 1 && styles.active}`}
             key={ind}
             onClick={() => handleUserMessage(item.messageCode, {})}

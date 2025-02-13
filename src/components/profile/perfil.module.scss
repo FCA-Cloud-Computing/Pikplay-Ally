@@ -6,6 +6,46 @@
   @media screen and (max-width: 480px) {
     width: auto;
   }
+  .greeting {
+    font-size: 18px;
+    font-weight: 600;
+    $color: rgb(46, 46, 46);
+    // left: 0;
+    // margin: 0 auto;
+    // right: 0;
+    // text-align: center;
+    // top: 120px;
+    color: white;
+    text-shadow:
+      2px 0 $color,
+      -2px 0 $color,
+      0 2px $color,
+      0 -2px $color,
+      1px 1px $color,
+      -1px -1px $color,
+      1px -1px $color,
+      -1px 1px $color;
+    span {
+      text-shadow: initial;
+      display: inline-block;
+      &:nth-of-type(3) {
+        margin-top: -6px;
+      }
+    }
+    .userName {
+      color: #6ef9ce;
+      // display: inline;
+    }
+    :global(.Coins) {
+      display: inline-flex;
+      position: relative;
+      picture {
+        left: 30px;
+        position: absolute;
+        top: -8px;
+      }
+    }
+  }
   h2 {
     color: white;
     font-size: 24px;

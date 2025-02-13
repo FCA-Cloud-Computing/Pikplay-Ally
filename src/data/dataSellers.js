@@ -183,7 +183,7 @@ const sellersInformation = {
             instagram: 'https://www.instagram.com/bluepanthervideogames/',
             location: 'Medellín, Colombia',
             name: 'Blue Panther',
-            pageBackground: 'images/users/bluepanther/bg-blue.jpg',
+            pageBackground: 'images/users/bluepanther/bluepanther-bg.png',
             picture: '/images/users/bluepanther/logo.jpg',
             place: 'Medellín',
             rankingId: 2,
