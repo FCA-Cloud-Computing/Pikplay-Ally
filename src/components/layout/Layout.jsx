@@ -14,7 +14,7 @@ const Layout = (props) => {
   const {
     children,
     cssClassPage,
-    descripcion,
+    description,
     image,
     mobileMenuHidden,
     title,
@@ -78,8 +78,8 @@ const Layout = (props) => {
         <title>{title}</title>
         <meta property='title' content={title} />
         <meta property='og:title' content={title} />
-        <meta name='description' content={descripcion} />
-        <meta property='og:description' content={descripcion} />
+        <meta name='description' content={description} />
+        <meta property='og:description' content={description} />
         <meta property='og:image' content={image} />
         <meta name='url' content={url} />
         <meta name='og:url' content={url} />
@@ -87,7 +87,7 @@ const Layout = (props) => {
         <meta
           name='viewport'
           content='width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0' />
-        <meta name='twitter:description' content={descripcion} />
+        <meta name='twitter:description' content={description} />
         <meta name='country' content='COL' />
         <meta httpEquiv='ScreenOrientation' content='autoRotate:disabled' />
         <link rel='alternate' href={url} hrefLang='es-CO' />

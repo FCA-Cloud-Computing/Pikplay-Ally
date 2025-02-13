@@ -27,7 +27,21 @@ const sellersInformation = {
             backgroundImage: '',
             description: 'Descuento en tu primer diplomado',
             title: 'Bono de descuento',
-        }]
+        }],
+        products: [
+            {
+                cashbackAvailable: true,
+                title: 'Desarrollo Web, Con énfasis en Inteligencia Artificial',
+                images: [{ url: 'https://fundacioncodigoabierto.com/_next/image?url=%2Fcourses%2Fweb.webp&w=640&q=75' }],
+                freeShipping: false,
+            },
+            {
+                cashbackAvailable: true,
+                title: 'Computación en la Nube',
+                images: [{ url: 'https://fundacioncodigoabierto.com/_next/image?url=%2Fcourses%2Fcloud.webp&w=1080&q=75' }],
+                freeShipping: false,
+            }
+        ]
     },
     'maxilofacial-care': {
         authorInformation: {

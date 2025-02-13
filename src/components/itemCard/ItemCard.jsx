@@ -22,11 +22,12 @@ const ItemCard = (props) => {
     acceptChanges,
     cashbackAvailable,
     following,
+    freeShipping,
     handleFavorite,
     isAddi,
     id: publicationId,
     images,
-    isNew,
+    isUsed,
     likes,
     price,
     slug,
@@ -78,7 +79,7 @@ const ItemCard = (props) => {
             </a>
           </div>
           <div className={`tags ${styles.tags}`}>
-            {!isNew && (
+            {isUsed && (
               <span
                 title='El articulo es de segunda mano'
                 className={styles.condition}>
@@ -175,10 +176,10 @@ const ItemCard = (props) => {
               </div>}
 
               {/* Envio */}
-              <div className={styles.shipping}>
+              {freeShipping && <div className={styles.shipping}>
                 <LocalShippingIcon className='icon' />
                 <span>Envío gratis</span>
-              </div>
+              </div>}
 
               {/* Banner de ADDI */}
               {isAddi && <div className={styles.contentAddi}>
