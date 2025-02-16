@@ -19,6 +19,9 @@ import RankingComponent from '@/components/ranking/Ranking'
 import { sellersInformation } from '../../data/dataSellers'
 import BonusList from '@/components/bonusList/BonusList'
 import { Loyalty } from '@/components/loyalCustomer/Loyalty'
+import Button from '@/components/button/Button'
+import { useIAStore } from '@/components/ia/IAstore'
+import { HearingTwoTone, HeartBroken, HeartBrokenOutlined, HeartBrokenTwoTone, HeatPumpRounded } from '@mui/icons-material'
 
 const DefaultSellerPage = (props) => {
   const { params } = props
@@ -31,12 +34,14 @@ const DefaultSellerPage = (props) => {
     bonuses,
     products,
   } = sellersInformation[sellerSlug?.toLowerCase()] || {}
-  const { rankingId } = authorInformation || {}
+  const { aboutHTML, aboutHTMLButtonStyle, name, rankingId } = authorInformation || {}
 
   const GlobalStyle = createGlobalStyle`
   main.App {
     background-image: url("${authorInformation?.pageBackground}");
   }`;
+
+  const { setIAMessage } = useIAStore()
 
   const {
     isLoading: isLoadingCompetition,
@@ -59,6 +64,17 @@ const DefaultSellerPage = (props) => {
     <GlobalStyle />
     <section className="page">
       <AuthorInformation authorInformation={authorInformation} />
+      <div className={styles.menu}>
+        <div className={styles.aboutMe}>
+          <Button color='link' style={aboutHTMLButtonStyle} onClick={() => setIAMessage(aboutHTML)}>
+            Acerca de {name}
+          </Button>
+        </div>
+        {/* <div>
+          <HeartBrokenOutlined />
+          Agregar al menu
+        </div> */}
+      </div>
       {competitionsArray && competitionsArray.length > 0 && <>
         <div className="contentTitle">
           <h1>

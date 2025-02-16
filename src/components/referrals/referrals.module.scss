@@ -1,17 +1,30 @@
 .ReferralsComponent {
     .item {
         display: flex;
+        margin-bottom: 12px;
+        background: #07244c;
+        border-radius: 10px;
+        padding: 0px 10px 14px;
+        position: relative;
         :global(picture) {
             height: 50px;
+            margin-top: 10px;
             width: 50px;
             :global(svg) {
                 display: none;
             }
         }
         .contentName {
-            margin: 20px 0px 0 10px;
-            :nth-of-type(1) {
+            margin: 0px 0px 0 20px;
+            h3 {
                 font-weight: 600;
+                width: 80%;
+            }
+            .points {
+                font-weight: initial;
+                position: absolute;
+                right: 20px;
+                top: 30px;
             }
         }
     }

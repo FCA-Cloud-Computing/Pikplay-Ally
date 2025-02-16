@@ -23,7 +23,6 @@ export const AuthorInformation = (props) => {
         secondaryColor,
         whatsapp,
     } = props?.authorInformation || {}
-    const { setIAMessage } = useIAStore()
 
     return <div className={`${styles.AuthorComponentPage}`} style={{ ['--backgroundImage']: `url(${background})` }}>
         <div className={styles.content}>
@@ -51,11 +50,6 @@ export const AuthorInformation = (props) => {
                 <a href={facebook} target="_blank">
                     <FacebookIcon />
                 </a>
-            </div>
-            <div className={styles.aboutMe}>
-                <Button color='link' style={aboutHTMLButtonStyle} onClick={() => setIAMessage(aboutHTML)}>
-                    Acerca de {name}
-                </Button>
             </div>
         </div>
     </div>

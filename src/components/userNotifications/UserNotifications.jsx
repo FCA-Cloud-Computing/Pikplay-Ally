@@ -64,7 +64,7 @@ const UserNotifications = () => {
 
   const getNotifications = () => {
     if (userLogged.uid) {
-      getNotificationsSrv(userLogged.uid)
+      getNotificationsSrv()
         .then(res => {
           setStoreValue('notifications', res.data)
         });

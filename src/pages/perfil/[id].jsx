@@ -8,10 +8,10 @@ import { useContext, useEffect, useState } from 'react'
 // import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import useSystemStore from '../../hooks/storeSystem'
-import { validateTokenSrv, getExperiencesSrv, getUsersSrv } from '../../services/user/userService'
+import { validateTokenSrv, getExperiencesSrv, getUsersSrv, getReferralsSrv } from '../../services/user/userService'
 
 const PerfilPage = props => {
-  // const { userInfoFromServer } = props
+  const { userInfoFromServer, referrals } = props
   const descripcion =
     'Pikplay es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas e independientes de alta confiabilidad ofreciendo videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch con los mejores precios del mercado en Colombia'
   const image = ''
@@ -60,20 +60,22 @@ const PerfilPage = props => {
 
   return (<Layout image={image} descripcion={descripcion} title={title} url={url}>
     <Perfil
-      userLogged={userDataUpdated}
-      isSaving={isSaving}
       handleSave={handleSave}
+      isSaving={isSaving}
+      referrals={referrals}
       setUserData={setUserData}
+      userLogged={userDataUpdated}
     />
   </Layout>)
 }
 
 export const getServerSideProps = async ctx => {
   const respValidate = await validateTokenSrv(ctx)
+  const referrals = await getReferralsSrv(ctx, null)
   const { data, code: statusCode } = respValidate
   if (statusCode == 200) { // Correct validate
     const uid = cookiesToObject(ctx.req.headers?.cookie)['User-ID']
-    // const userInfoFromServer = await getUsersSrv(ctx, uid)
+    const userInfoFromServer = await getUsersSrv(ctx, uid)
     if (statusCode === 403) {
       return {
         redirect: {
@@ -84,7 +86,8 @@ export const getServerSideProps = async ctx => {
     }
     return {
       props: {
-        // userInfoFromServer,
+        referrals,
+        userInfoFromServer,
       }
     }
   }

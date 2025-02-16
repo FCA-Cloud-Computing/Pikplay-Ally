@@ -40,11 +40,12 @@ const { motion } = require('framer-motion')
 
 const Interface = ({
   dispatch,
-  userLogged,
-  isSaving,
-  handleSave,
   handleLogout,
+  handleSave,
+  isSaving,
+  referrals,
   setUserData,
+  userLogged,
 }) => {
   // const handleFavorite = useSelector(state => state.handleFavorite)
   const [tabValue, setTabValue] = useState(0)
@@ -206,7 +207,7 @@ const Interface = ({
         showDetails
       />
       <h2>Referidos</h2>
-      <Referrals />
+      <Referrals {...{ referrals }} />
     </section>
   )
 }

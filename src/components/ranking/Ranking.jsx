@@ -47,7 +47,7 @@ const RankingComponent = (props) => {
         {rankingData && rankingData.length > 0 && rankingData.sort((a, b) => b.points - a.points).map((member, index) => {
           return <motion.div
             animate={{ x: 0, }}
-            className={`Card ${index == 0 ? 'starsFallingDown' : ''} ${styles.item}`}
+            className={`${index == 0 ? 'starsFallingDown' : ''} ${styles.item} ${member.uid}`}
             initial={{ x: '-400px' }}
             key={index}
             transition={{ delay: index * 0.3 }}>

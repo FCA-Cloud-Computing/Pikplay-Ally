@@ -4,18 +4,23 @@
         flex-direction: column;
         width: 100%;
         .item {
-            color: #aaaaaa;
             // background-color: #030c4b;
+            background-color: #07244c;
             border-bottom: 1px solid #2c2c2c;
+            border-radius: 10px;
             border-top: 1px solid #2c2c2c;
+            box-sizing: border-box;
+            color: white;
             column-gap: 10px;
             display: flex;
-            padding: 10px 10px 10px 20px;
+            margin: 0 auto 20px;
+            padding: 10px 10px 14px 20px;
             position: relative;
             width: 100%;
             &:first-child {
                 .points {
                     color: #32d4c2;
+                    font-weight: 600;
                 }
             }
             .number {
@@ -53,20 +58,23 @@
                     // z-index: 1;
                 }
                 picture {
-                    width: 50px;
                     height: 50px;
+                    margin-top: 10px;
+                    width: 50px;
                 }
             }
             .name {
-                color: #aeaeb1;
+                // color: #aeaeb1;
+                font-weight: bold;
                 margin: 11px 0 0 10px;
+                max-width: 120px;
                 div {
-                    color: rgb(96, 96, 96);
+                    // color: rgb(96, 96, 96);
+                    font-weight: initial;
                     font-size: 13px;
                 }
             }
             .points {
-                font-weight: bold;
                 position: absolute;
                 right: 20px;
                 top: 30px;

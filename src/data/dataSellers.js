@@ -79,7 +79,7 @@ const sellersInformation = {
     },
     'conversation-club': {
         authorInformation: {
-            aboutHTML: '<div>English Club es un espacio para tener experiencias inmersivas en el idioma.</div>',
+            aboutHTML: <div>English Club es un espacio para tener experiencias inmersivas en el idioma.</div>,
             aboutHTMLButtonStyle: { color: 'white', textDecoration: 'underline' },
             pageBackground: 'https://lonelinessandinternationalstudent.wordpress.com/wp-content/uploads/2015/10/language-exchange.jpg',
             cssClassPage: 'conversationClubPage',

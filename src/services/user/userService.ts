@@ -102,8 +102,13 @@ const getExperiencesSrv = async (ctx) => {
   }
 };
 
-const getNotificationsSrv = async (uid) => {
-  const data = await get(null, BASE_URL + `/${uid}/notifications`);
+const getNotificationsSrv = async (ctx) => {
+  const data = await get(ctx, BASE_URL + `/notifications`);
+  return data;
+};
+
+const getReferralsSrv = async (ctx) => {
+  const data = await get(ctx, BASE_URL + `/referrals`);
   return data;
 };
 
@@ -111,6 +116,7 @@ export {
   // getTopMessagesSrv,
   getExperiencesSrv,
   getNotificationsSrv,
+  getReferralsSrv,
   getUserSrv,
   getUsersSrv,
   loginSrv,

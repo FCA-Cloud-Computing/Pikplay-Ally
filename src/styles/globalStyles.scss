@@ -680,6 +680,14 @@ section.page {
   border-radius: 50%;
 }
 
+.br-5 {
+  border-radius: 5px;
+}
+
+.br-10 {
+  border-radius: 10px;
+}
+
 .m-0 {
   margin: 0px;
 }
@@ -913,13 +921,6 @@ svg.icon {
   max-height: 36px;
   width: 18px;
   height: 18px;
-}
-
-h1,
-h2,
-h3 {
-  color: #585858;
-  font-size: 18px;
 }
 
 .primary-color {

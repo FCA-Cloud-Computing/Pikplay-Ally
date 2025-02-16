@@ -100,6 +100,18 @@ const MenuMobileOptions = () => {
         Redimir
       </Link>
     </motion.ol>
+    <motion.ol variants={item}>
+      <Link href="/bluepanther">
+        <img className='br-5' src="/images/users/bluepanther/logo.jpg" />
+        Bluepanther
+      </Link>
+    </motion.ol>
+    <motion.ol variants={item}>
+      <Link href="/bluepanther">
+        <img className='br-5' src="/images/users/conversation_club/logo.png" />
+        English Club
+      </Link>
+    </motion.ol>
     <motion.ol variants={item} onClick={() => handleLogout()}>
       Salir
     </motion.ol>
