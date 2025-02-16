@@ -19,7 +19,7 @@ async function getContacts(handleUserMessage, set) {
           phone: item.tel[0].replace(/ /g, "")
         }
         const resp = await saveReferralSrv(null, itemFormatted)
-        alert(JSON.stringify(resp))
+        // alert(JSON.stringify(resp))
         if (resp?.errorCode == 409) erorrsFound = true
       })
     )
