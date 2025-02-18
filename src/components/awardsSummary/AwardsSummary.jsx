@@ -1,7 +1,8 @@
+import styles from './awardsSummary.module.scss'
+
 import React, { useEffect, useState } from 'react'
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from "@mui/material";
 import ReactTyped from 'react-typed'
-import styles from './styles.module.scss'
 import CoinIcon from '../coinIcon/CoinIcon';
 import Button from '../button/Button'
 import { animatePrince, startConfetti } from '../../lib/utils'
@@ -41,19 +42,20 @@ const AwardsSummary = ({ callback }) => {
   return (
     <>
       <motion.div
-        animate={{ y: 0 }}
-        initial={{ y: '-200px' }}
+        animate={{ y: 0, x: 0 }}
+        initial={{ x: '-600px' }}
         transition={{ delay: .5 }}
         className={styles.title}>
         ¡Recoge tus recompensas!
       </motion.div>
       <motion.div
-        initial={{ x: '0px', y: '600px' }}
-        animate={{ x: 0, y: 200 }}
+        animate={{ x: 0, y: 10 }}
+        initial={{ y: '0px', x: '600px' }}
         transition={{ delay: .2 }}
         className={styles.subtitle}>
-        Recibiste tus primeros creditos, ¡sigue así!
+        Recibiste tus primeros créditos, ¡sigue así!
       </motion.div>
+      <img className={`rotating ${styles.imgLights}`} src="/images/elements/luces.png" />
       <div className={styles.box}>
         {/* <img src="/images/type_notification/coupon_gift_available.png" alt="bronze" /> */}
         <p className={styles.description}>
@@ -64,28 +66,27 @@ const AwardsSummary = ({ callback }) => {
       </div>
 
       <div className={styles.actions}>
-        {/* <motion.div
+        <motion.div
           initial={{ x: '-600px' }}
           animate={{ x: 0, }}
           transition={{ delay: 2 }}>
-          {/* <Button
+          <Button
             className={styles.main_button}
-            color="yellow"
+            color="link"
             onClick={handleUpdateExperience}
-            realistic
-            shine>
-            Ir a mi perfil
-          </Button> */}
-        {/* 
+            style={{ color: 'white' }}>
+            Conocer de los créditos
+          </Button>
+
           <Button
             className={styles.main_button}
             color="blue"
             onClick={handleUpdateExperience}
             realistic
             shine>
-            Ir a mi perfil
+            Recoger
           </Button>
-        </motion.div> */}
+        </motion.div>
       </div>
     </>
   )

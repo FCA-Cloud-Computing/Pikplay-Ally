@@ -6,8 +6,8 @@ const { get, post } = CustomFetch();
 
 const BASE_URL = '/users';
 
-const getUserSrv = async (ctx, uid) => {
-  const url = BASE_URL + (uid ? `/${uid}/info` : '');
+const getUserSrv = async (ctx, uid, slug) => {
+  const url = BASE_URL + (uid ? `/${uid || slug}` : '');
   const data = await get(ctx, url);
   return data;
 };

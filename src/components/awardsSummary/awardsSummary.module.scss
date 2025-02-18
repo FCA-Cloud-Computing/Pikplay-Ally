@@ -63,8 +63,9 @@
             width: 266px;
         }
         &::before {
-            background-image: url(/images/backgrounds/campo-bg.jpeg);
+            background-image: url("/images/backgrounds/general-bg.png");
             background-size: cover;
+            background-position: center;
             content: "";
             height: 100%;
             width: 100%;
@@ -122,24 +123,49 @@
             font-size: 26px;
             font-style: italic;
             font-weight: bold;
+
+            background: linear-gradient(0deg, #e5961c, #f4e9a5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transform: none;
+            $color: rgba(0, 0, 255, 0.05);
+            // text-shadow:
+            //     2px 0 $color,
+            //     -2px 0 $color,
+            //     0 2px $color,
+            //     0 -2px $color,
+            //     1px 1px $color,
+            //     -1px -1px $color,
+            //     1px -1px $color,
+            //     -1px 1px $color;
         }
 
         .subtitle {
             color: white;
             font-style: italic;
-            text-shadow:
-                2px 0 var(--main-color),
-                -2px 0 var(--main-color),
-                0 2px var(--main-color),
-                0 -2px var(--main-color),
-                1px 1px var(--main-color),
-                -1px -1px var(--main-color),
-                1px -1px var(--main-color),
-                -1px 1px var(--main-color);
-            text-align: center;
             font-size: 22px;
+            margin-top: 10px;
+            // $color: orange;
+            text-shadow:
+                1px 0 orange,
+                0px 0 orange,
+                0 0px orange,
+                0 0px orange,
+                0px 0px orange,
+                0px 0px orange,
+                0px -1px orange,
+                1px 0px orange;
+            text-align: center;
         }
-
+        .imgLights {
+            left: auto;
+            margin: 0 auto;
+            opacity: 0.2;
+            position: absolute;
+            right: 0;
+            top: 90px;
+            width: 240px;
+        }
         .gifts {
             display: flex;
             justify-content: space-evenly;
@@ -230,15 +256,16 @@
                 font-weight: bold;
                 // margin-top: 110px;
                 // padding: 0px 30px 20px;
+                $color: rgb(154, 100, 0);
                 text-shadow:
-                    2px 0 #2e2e2e,
-                    -2px 0 #2e2e2e,
-                    0 2px #2e2e2e,
-                    0 -2px #2e2e2e,
-                    1px 1px #2e2e2e,
-                    -1px -1px #2e2e2e,
-                    1px -1px #2e2e2e,
-                    -1px 1px #2e2e2e;
+                    2px 0 $color,
+                    -2px 0 $color,
+                    0 2px $color,
+                    0 -2px $color,
+                    1px 1px $color,
+                    -1px -1px $color,
+                    1px -1px $color,
+                    -1px 1px $color;
                 text-align: center;
                 :global(.yellow) {
                     color: #fcfc85;
@@ -247,7 +274,11 @@
                     color: aquamarine;
                 }
                 :global(.Coins) {
-                    margin-bottom: 20px;
+                    margin-top: 60px;
+                    :global(.number) {
+                        font-size: 32px;
+                        top: -10px;
+                    }
                 }
             }
         }

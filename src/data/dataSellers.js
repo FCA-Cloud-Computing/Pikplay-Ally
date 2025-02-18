@@ -1,6 +1,13 @@
 import { slugify } from '@/lib/utils'
 
 const sellersInformation = {
+    'mass-publicidad': {
+        authorInformation: {
+            instagram: 'https://www.instagram.com/masspublicidad_/',
+            name: 'Mass Publicidad',
+            slug: 'mass-publicidad'
+        }
+    },
     'fundacion-codigo-abierto': {
         authorInformation: {
             aboutHTML: <div>Construyendo un epicentro tech en el Caribe</div>,

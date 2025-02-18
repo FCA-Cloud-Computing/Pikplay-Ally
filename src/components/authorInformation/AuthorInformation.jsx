@@ -18,18 +18,19 @@ export const AuthorInformation = (props) => {
         givenPikcoins,
         instagram,
         name,
-        picture,
+        storePicture,
         location,
         secondaryColor,
+        storeName,
         whatsapp,
     } = props?.authorInformation || {}
 
     return <div className={`${styles.AuthorComponentPage}`} style={{ ['--backgroundImage']: `url(${background})` }}>
         <div className={styles.content}>
-            <ProfileImage picture={picture} />
+            <ProfileImage picture={storePicture} />
             <br />
             <div className={styles.namePlace}>
-                <b>{name}</b>
+                <b>{storeName || name}</b>
                 <small style={{ color: dividerColor }}>{location}</small>
             </div>
             <hr style={{ background: dividerColor }} />

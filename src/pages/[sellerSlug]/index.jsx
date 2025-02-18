@@ -22,9 +22,10 @@ import { Loyalty } from '@/components/loyalCustomer/Loyalty'
 import Button from '@/components/button/Button'
 import { useIAStore } from '@/components/ia/IAstore'
 import { HearingTwoTone, HeartBroken, HeartBrokenOutlined, HeartBrokenTwoTone, HeatPumpRounded } from '@mui/icons-material'
+import { getUserSrv } from '@/services/user/userService'
 
 const DefaultSellerPage = (props) => {
-  const { params } = props
+  const { params, sellerInformation } = props
   const router = useRouter()
   const { sellerSlug } = router.query
 
@@ -38,7 +39,7 @@ const DefaultSellerPage = (props) => {
 
   const GlobalStyle = createGlobalStyle`
   main.App {
-    background-image: url("${authorInformation?.pageBackground}");
+    background-image: url("${sellerInformation?.pageBackground}");
   }`;
 
   const { setIAMessage } = useIAStore()
@@ -63,7 +64,7 @@ const DefaultSellerPage = (props) => {
   return <Layout description={authorInformation.description} image={`https://pikplay.com.co/${authorInformation.picture}`} title={authorInformation.name} cssClassPage={authorInformation?.cssClassPage}>
     <GlobalStyle />
     <section className="page">
-      <AuthorInformation authorInformation={authorInformation} />
+      <AuthorInformation authorInformation={sellerInformation} />
       <div className={styles.menu}>
         <div className={styles.aboutMe}>
           <Button color='link' style={aboutHTMLButtonStyle} onClick={() => setIAMessage(aboutHTML)}>
@@ -128,7 +129,7 @@ const DefaultSellerPage = (props) => {
             {...product}
             {...{
               user: authorInformation,
-              whatsappNumber: authorInformation.whatsappNumber
+              whatsappNumber: authorInformation.phone
             }}
           />
         )}
@@ -137,10 +138,12 @@ const DefaultSellerPage = (props) => {
   </Layout>
 }
 
-DefaultSellerPage.getInitialProps = (ctx) => {
-  const { asPath, req } = ctx
-  return {
+DefaultSellerPage.getInitialProps = async (ctx) => {
+  const { asPath, req, query: { sellerSlug } } = ctx
+  const sellerInformation = await getUserSrv(ctx, sellerSlug)
 
+  return {
+    sellerInformation
   }
 }
 

@@ -1056,3 +1056,16 @@ a {
     width: 100%;
   }
 }
+
+.rotating {
+  animation: rotar 20s linear infinite; /* 2s de duración, animación infinita */
+}
+
+@keyframes rotar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

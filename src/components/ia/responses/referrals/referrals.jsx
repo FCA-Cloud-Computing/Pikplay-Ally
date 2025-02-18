@@ -25,6 +25,7 @@ async function getContacts(handleUserMessage, set) {
     )
     if (erorrsFound) toast.warning('Algunos referidos no pudieron guardarse con exito porque se ya se encontraron en Pikplay')
     else toast.success('¡Referidos guardados!')
+    set({ isVisible: false })
   } catch (err) {
     toast.warning('No se pudo obtener los contactos')
   }

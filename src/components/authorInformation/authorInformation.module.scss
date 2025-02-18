@@ -3,8 +3,8 @@
     position: relative;
     &::before {
         content: "";
-        background-image: var(--backgroundImage);
-        filter: blur(40px) saturate(400%);
+        // background-image: var(--backgroundImage);
+        // filter: blur(40px) saturate(400%);
         height: 100%;
         position: absolute;
         width: 100%;

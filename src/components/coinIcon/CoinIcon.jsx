@@ -1,8 +1,9 @@
 import styles from "./styles.module.scss";
 
 import React, { useEffect, useRef, useState } from "react";
-import { formatNumber } from "../../lib/utils";
 import classNames from "classnames";
+import { motion } from 'framer-motion'
+import { formatNumber } from "../../lib/utils";
 
 const CoinIcon = ({ coins, isLabel, hideNumber = false, multicoin, textColor }) => {
   const prevCountCoins = useRef();
@@ -40,10 +41,26 @@ const CoinIcon = ({ coins, isLabel, hideNumber = false, multicoin, textColor }) 
           {formatNumber(coins)}
         </span>
       )}
-      <picture className={`shine ${styles.coin}`} />
-      {multicoin && (
-        <picture className={`shine ${styles.coin} ${styles.multicoin}`} />
-      )}
+      <motion.picture
+        animate={{ scale: 1 }}
+        initial={{ scale: 1.5 }}
+        className={`shine ${styles.coin}`}
+        transition={{ delay: .2, type: "spring", stiffness: 400, damping: 10 }}
+      />
+      {multicoin && (<>
+        <motion.picture
+          animate={{ scale: 1 }}
+          initial={{ scale: 1.5 }}
+          className={`shine ${styles.coin}`}
+          transition={{ delay: .6, type: "spring", stiffness: 400, damping: 10 }}
+        />
+        <motion.picture
+          animate={{ scale: 1 }}
+          initial={{ scale: 1.5 }}
+          className={`shine ${styles.coin}`}
+          transition={{ delay: 1, type: "spring", stiffness: 400, damping: 10 }}
+        />
+      </>)}
       {isLabel && (
         <label style={{ color: textColor ? textColor : "#e5961d" }}>
           Pikcoins
