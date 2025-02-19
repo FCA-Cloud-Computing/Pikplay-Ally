@@ -69,7 +69,6 @@ const ProfileSummaryExperience = (props) => {
 
     getExperiencesSrv()
       .then(data => {
-        debugger;
         const { expTotal, exp, percentageBar } = data
         setCurrentExp(expTotal)
         setPercentageBar(percentageBar + "%")

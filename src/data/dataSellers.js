@@ -55,6 +55,10 @@ const sellersInformation = {
         }],
         products: [
             {
+                title: 'Curso de Photoshop De Cero a Intermedio',
+                images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/products%2F146%2Fcurso_photo.jpg?alt=media&token=2ff2c6bf-1532-4667-9f35-ee2afda19fea' }]
+            },
+            {
                 cashbackAvailable: true,
                 title: 'Desarrollo Web, Con énfasis en Inteligencia Artificial',
                 images: [{ url: 'https://fundacioncodigoabierto.com/_next/image?url=%2Fcourses%2Fweb.webp&w=640&q=75' }],

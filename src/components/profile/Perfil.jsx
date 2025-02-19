@@ -126,7 +126,6 @@ const Interface = ({
         setCurrentPikcoins(currentPikcoins)
       })
       .catch(err => {
-        debugger;
       })
   }, [])
 

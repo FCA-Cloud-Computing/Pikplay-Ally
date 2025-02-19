@@ -46,7 +46,6 @@ const Layout = (props) => {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      // debugger;
       setIsvisible(false) // Ocultando a la IA
       if (isShowLeftMenu && !url.includes("#menu")) {
         setStoreValue('leftMenuBar', { isShow: false })

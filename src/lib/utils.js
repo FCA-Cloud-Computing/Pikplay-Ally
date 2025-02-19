@@ -26,7 +26,6 @@ export const animatePrince = (HTMLElement, targetNumber, fromNumber) => {
 
 export function cookiesToObject(cookies = '') {
   // Tested in getServerSideProps
-  // debugger;
   const cookiesArray = cookies.split(';');
   const cookiesObject = {};
   cookiesArray.forEach((cookie) => {
@@ -181,7 +180,6 @@ export function getCookies(ctx = { req: { cookies: {} } }) {
   // Obteniendo cookies del lado del server. Generalmente vienen en el ctx.req.cookies
   // console.log("cookieCutter", cookieCutter ? cookieCutter.get("User-ID") : "no existe cuttier");
   // console.log("ctx", ctx?.req.cookies["X-Auth-Token"]);
-  // debugger;
   headers['User-ID'] = ctx?.req?.cookies['User-ID'] || (typeof window != 'undefined' && cookieCutter.get('User-ID')) || null;
   headers['X-Auth-Token'] = ctx?.req?.cookies['X-Auth-Token'] || (typeof window != 'undefined' && cookieCutter.get('X-Auth-Token')) || null;
   return headers;

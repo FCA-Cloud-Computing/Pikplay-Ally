@@ -28,7 +28,6 @@ const Message = () => <div>
 const Expresion = 'loved'
 const Options = ({ handleUserMessage, set }) => {
     const { isOnboardingProcess } = useSystemStore()
-    // debugger;
 
     return <>
         {/* <Button color='transparent'>
