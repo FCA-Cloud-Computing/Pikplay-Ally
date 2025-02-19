@@ -1,11 +1,29 @@
 import { slugify } from '@/lib/utils'
 
 const sellersInformation = {
+    'caribe-dev': {
+        authorInformation: {
+            name: 'Caribe Dev',
+            slug: 'caribe-dev',
+            picture: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F159%2Flogo_768x768.png?alt=media&token=2022f676-ed81-4bbb-bb5a-405d689de0cd',
+            category: {
+                label: 'Comunidad',
+                value: 'community'
+            }
+        },
+        products: [{
+            images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F159%2Fevento_768x768.png?alt=media&token=fa7674ba-b121-4ce9-9a47-70ea8da0fc2f' }],
+            price: 45000,
+            title: 'CaribeConf 2025',
+
+        }]
+    },
     'mass-publicidad': {
         authorInformation: {
             instagram: 'https://www.instagram.com/masspublicidad_/',
             name: 'Mass Publicidad',
-            slug: 'mass-publicidad'
+            picture: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F157%2Fmass_publicidad_768x768.jpg?alt=media&token=6a0ab14a-9dbf-411e-914a-41674a6e4759',
+            slug: 'mass-publicidad',
         }
     },
     'fundacion-codigo-abierto': {
