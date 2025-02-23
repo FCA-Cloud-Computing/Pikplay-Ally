@@ -20,14 +20,27 @@ function CreditRedemptionPage() {
     {
       description: 'Entradas a cine 2D de lunes a viernes',
       title: 'Entradas a cine',
-      image: 'https://fesac.com.co/wp-content/uploads/2024/11/cc_combo01.png',
+      image: '/images/icons/popcorn.webp',
       price: 4,
+      isFavorite: true,
+    },
+    {
+      description: <>Perfume de preferencia en <a className="text-ul" href='/le-fragance'>Le Fragance</a></>,
+      title: 'Perfume de preferencia',
+      image: '/images/icons/fragance-perfume.png',
+      price: 50,
     },
     {
       description: 'Helado McFlury',
       title: 'Helado McFlury',
-      image: 'https://mcmenuspot.co.uk/wp-content/uploads/2024/10/dad-1.webp',
+      image: '/images/icons/ice-cream.png',
       price: 4,
+    },
+    {
+      description: 'Corte de corte para caballero',
+      title: 'Corte de Cabello',
+      image: 'https://cdn-icons-png.flaticon.com/512/7686/7686607.png',
+      price: 0,
     }
   ]
 
@@ -45,6 +58,16 @@ function CreditRedemptionPage() {
           null
           // <Code code={result.verification_code} />
         )}
+
+        <section>
+          <img className={`rotating ${styles.imgLights}`} src="/images/elements/luces.png" />
+          <img className={styles.giftIcon} src="/images/icons/gift-2.svg" alt="gift" />
+          <h1>¡Redime tus Pikcoins!</h1>
+          <p>
+            Puedes redimir tus creditos por bonos, descuentos y premios en
+            establecimientos afiliados.
+          </p>
+        </section>
         <BonusList {...{ bonuses }} />
       </section>
     </Layout>

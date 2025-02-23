@@ -193,7 +193,7 @@ const Interface = ({
           &nbsp;{userName}
         </motion.span>!, <br />
         <span>este mes has acumulado
-          <CoinIcon coins={currentPikcoins} />
+          &nbsp;<CoinIcon coins={currentPikcoins} />
         </span>
         <br />
         <span>

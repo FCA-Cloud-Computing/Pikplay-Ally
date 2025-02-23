@@ -110,6 +110,10 @@ const Onboarding = () => {
   }, [])
 
   return <section className={`page ${styles.Onboarding}`}>
+    <Link href="/caribe-dev">
+    {/* Caribe Conf 2025 */}
+      <Image className={styles.bannerCaribeConf2025} src="images/banners/banner-caribe-conf-2025.jpg" alt="Banner Caribe Conf 2025" height="100" width="420" />
+    </Link>
     <div className={styles.titleContent}>
       <div className={styles.background}></div>
       <h2>Conócenos

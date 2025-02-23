@@ -39,6 +39,7 @@ const CoinIcon = ({ coins, isLabel, hideNumber = false, multicoin, textColor }) 
           className={`f-s-14 ${styles.number} number`}
           style={{ color: textColor ? textColor : "#e5961d" }}>
           {formatNumber(coins)}
+          &nbsp;x&nbsp;
         </span>
       )}
       <motion.picture

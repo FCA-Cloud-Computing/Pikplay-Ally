@@ -1,33 +1,43 @@
 .BonusList {
     .item {
-        backdrop-filter: blur(10px);
-        background-position: center;
-        background-size: cover;
+        background-image: url(/images/marcos/marco-01.svg);
+        background-position: -8px -8px;
+        background-size: calc(100% + 16px);
+        background-color: #fef7ea;
+        background-repeat: no-repeat;
+        // backdrop-filter: blur(10px);
+        // background-position: center;
+
         box-shadow: inset 0px 0px 4px #ededed;
         border-radius: 8px;
-        // height: 170px;
-        padding-top: 50px;
+        color: #0e3266;
+        height: 190px;
+        padding: 40px 0 0px 30px;
         position: relative;
         margin-bottom: 30px;
         &.withImage {
             // height: 200px;
         }
-        .topMessage {
-            display: flex;
-            align-items: center;
-            column-gap: 4px;
-            font-size: 14px;
-            left: 0;
-            margin: 0 auto;
+        .leagueIcon {
+            left: 20px;
             position: absolute;
-            right: 0;
-            top: 10px;
-            width: max-content;
-            img {
-                width: 18px;
+            top: 0px;
+            width: 50px;
+        }
+        .favContent {
+            .leagueIconFavorite {
+                right: -8px;
+                position: absolute;
+                top: 8px;
+                width: 170px;
             }
-            svg {
-                color: #f8a205;
+            span {
+                color: #fcfcfc;
+                font-size: 12px;
+                font-weight: 600;
+                position: absolute;
+                right: 6px;
+                top: 20px;
             }
         }
         .amount {
@@ -39,9 +49,15 @@
             top: 60px;
             width: 100%;
         }
+        .contentImageDescription {
+            display: flex;
+            width: calc(100% - 30px);
+        }
         .image img {
             display: block;
             margin: 0px auto 0;
+            max-height: 100px;
+            object-fit: contain;
             width: 160px;
         }
         .price {
@@ -50,10 +66,9 @@
         .contentTexts {
             bottom: 20px;
             left: 20px;
-            margin: 0 0 10px 20px;
+            margin: 0 0 10px 10px;
             // position: absolute;
             h2 {
-                color: white;
                 margin: 0 auto 0;
             }
             p {
@@ -64,7 +79,18 @@
         .actions {
             display: flex;
             justify-content: center;
-            margin: 0 0 10px;
+            margin: 10px 0 10px;
+        }
+        hr {
+            border-top: 1px dashed #ecb349;
+            margin: 0;
+        }
+        .terms small {
+            display: block;
+            display: none;
+            font-size: 12px;
+            padding: 18px 10px 6px 10px;
+            text-align: right;
         }
     }
 }

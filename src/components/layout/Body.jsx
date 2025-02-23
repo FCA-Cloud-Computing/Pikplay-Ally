@@ -28,7 +28,6 @@ const Body = ({
         [styles.AppComponent]: true,
         [styles.ready]: isReady,
       })}>
-      darkMode:{darkMode}
       <CustomHeader />
       {false && (
         <div className={styles.announcement}>

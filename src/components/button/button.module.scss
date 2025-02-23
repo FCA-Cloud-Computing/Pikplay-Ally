@@ -87,6 +87,14 @@
     }
   }
 
+  &.darkBlue {
+    background: rgb(14, 50, 102);
+    button {
+      color: white;
+      font-weight: 600;
+    }
+  }
+
   &.blue {
     background: #0095b3;
     &.outline button {
@@ -126,6 +134,7 @@
 
   &.red {
     background: #f05f70;
+
     &.outline {
       background: transparent;
       border: 1px solid #f05f70;
@@ -134,6 +143,10 @@
         background: #f05f70;
         color: white;
       }
+    }
+    button {
+      text-shadow: 1px 1px black;
+      font-weight: 600;
     }
   }
 
@@ -161,6 +174,11 @@
 
   &.remove {
     display: none;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
   }
 
   :global(.MuiButtonBase-root) {
