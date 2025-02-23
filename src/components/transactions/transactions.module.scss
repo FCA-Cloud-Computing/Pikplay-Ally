@@ -60,22 +60,24 @@
         display: block;
         padding-bottom: 10px;
       }
-      span {
-        display: inline-block;
-        font-size: 12px;
-        // color: red;
-        :global(.Coins) {
-          transform: scale(100%);
-          justify-content: initial;
-          picture {
-            transform: scale(0.8);
-          }
-          :global(.number) {
-            margin: 0 0 0 0px;
-          }
+      :global(.Coins) {
+        float: right;
+        picture {
+          transform: scale(0.8);
+        }
+        :global(.number) {
+          color: rgb(229, 150, 29);
+          font-size: 16px;
+          margin-right: 4px;
+          margin: 0 0 0 0px;
+          text-shadow: 1px 1px 0px #888888;
         }
       }
+      span {
+        display: inline-block;
+      }
     }
+
     footer {
       margin-top: 10px;
       text-align: right;

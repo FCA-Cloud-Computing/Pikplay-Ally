@@ -20,9 +20,8 @@ export function Transaction({ transaction }) {
   return (
     <article
       key={transaction.id}
-      className={`Card ${styles.TransactionComponent} ${
-        transaction.status === TRANSACTION_STATUS.SUCCESS ? "opacity-70" : ""
-      } rounded-md`}
+      className={`Card ${styles.TransactionComponent} ${transaction.status === TRANSACTION_STATUS.SUCCESS ? "opacity-70" : ""
+        } rounded-md`}
     >
       <section className={styles.topSection}>
         {/* <Image
@@ -37,23 +36,21 @@ export function Transaction({ transaction }) {
             ? "Pendiente"
             : "Completada"}
         </strong>
+
         <div className={styles.time}>
           <ScheduleIcon className="icon" />
           &nbsp;{timeAgo(new Date(transaction.createdAt))}
         </div>
       </section>
+
       <section>
         <header className={`${statusClass}`}>
           <strong className="text-sm font-semibold">
             T{transaction.id} | {transaction.description}
           </strong>
+          {credits && <CoinIcon coins={credits} label />}
           <div className="flex flex-col">
             <span className={styles.exp}>{transaction.experience} EXP</span>
-            {credits && (
-              <span>
-                <CoinIcon coins={credits} />
-              </span>
-            )}
             {transaction.amount && (
               <span className="">
                 Valor total: ${formatNumber(transaction.amount)}
@@ -61,6 +58,7 @@ export function Transaction({ transaction }) {
             )}
           </div>
         </header>
+
         <footer>
           <div>{transaction.seller?.city}</div>
           {transaction.status === TRANSACTION_STATUS.PENDING && (

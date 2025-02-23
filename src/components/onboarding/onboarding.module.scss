@@ -3,6 +3,17 @@ section.Onboarding {
   background-image: url(/images/backgrounds/general-bg.png);
   margin: 00px auto 90px;
   width: calc(100%);
+  .bannerCaribeConf2025 {
+    color: transparent;
+    display: block;
+    height: auto;
+    left: -30px;
+    max-width: initial;
+    position: relative;
+    top: -10px;
+    width: calc(100% + 60px);
+    z-index: 2;
+  }
   .cta {
     position: relative;
     z-index: 2;

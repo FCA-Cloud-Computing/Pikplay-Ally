@@ -12,7 +12,7 @@ const IndexPage = () => {
         title={title}
         url={url}>
         <Onboarding />
-    </Layout>   
+    </Layout>
 }
 
 export default IndexPage;
