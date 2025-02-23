@@ -40,6 +40,7 @@ const DefaultSellerPage = (props) => {
   const GlobalStyle = createGlobalStyle`
   main.App {
     background-image: url("${sellerInformation?.pageBackground}");
+    ${sellerInformation.pageBackgroundStyles}
   }`;
 
   const { setIAMessage } = useIAStore()

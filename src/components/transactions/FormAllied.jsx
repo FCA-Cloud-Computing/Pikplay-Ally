@@ -91,19 +91,19 @@ export function FormAllied() {
       </AppBar>
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <InputTransactions
+          {/* <InputTransactions
             name="clientDocument"
             control={control}
             label="Documento del cliente"
             placeholder="CC 103242252"
             type="number"
             error={errors.clientDocument}
-          />
+          /> */}
           <InputTransactions
             name="clientPhone"
             control={control}
             label="Número de celular del cliente"
-            placeholder="+57 3024285521"
+            placeholder="Ej: 3024285521"
             type="number"
             error={errors.clientPhone}
           />

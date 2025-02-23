@@ -3,7 +3,30 @@
 // @tailwind utilities;
 
 section.RedimirPage {
-    background: #19596b;
     background-image: url(/images/backgrounds/general-bg.png);
-    height: 100vh;
+    section {
+        position: relative;
+        overflow: hidden;
+        .imgLights {
+            left: -30px;
+            opacity: 0.5;
+            position: absolute;
+            top: 0px;
+            width: 210px;
+        }
+        .giftIcon {
+            float: left;
+            margin: 20px 50px 50px 0px;
+            overflow: hidden;
+            position: relative;
+            width: 140px;
+            z-index: 1;
+        }
+        h1 {
+            margin: 0;
+        }
+        p {
+            margin: 6px 0 0;
+        }
+    }
 }
