@@ -13,13 +13,13 @@ import { sellersInformation } from '../../data/dataSellers'
 import Button from '../button/Button'
 import CoinIcon from '../coinIcon/CoinIcon'
 import MESSAGES from '../../consts/messages'
-import useSystemStore from '../../hooks/storeSystem'
+import useCommonStore from '../../hooks/commonStore'
 import { getUsersSrv, saveLeadSrv, } from '../../services/user/userService'
 import { useIAStore } from '../ia/IAstore'
 
 const Onboarding = () => {
   const { ONBOARDING_LEAD_DUPLICATED, ONBOARDING_LEAD_SUCCESS } = MESSAGES
-  const { setStoreValue } = useSystemStore()
+  const { setStoreValue } = useCommonStore()
   const [phoneNumber, setPhoneNumber] = useState("")
   const items = [
     {

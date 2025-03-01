@@ -20,7 +20,7 @@ const loadFromLocalStorage = (property) => {
     return value
 }
 
-const useSystemStore = create((set, get) => ({
+const useCommonStore = create((set, get) => ({
     steps: env: null,
     experiences: [],
     logout: () => logout(set),
@@ -35,4 +35,4 @@ const useSystemStore = create((set, get) => ({
     }
 }));
 
-export default useSystemStore
+export default useCommonStore

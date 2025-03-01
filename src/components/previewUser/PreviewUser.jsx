@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import Login from '../login/Login'
 import CoinIcon from '../coinIcon/CoinIcon'
 import { IS_MOBILE } from '../../lib/variables'
-import useSystemStore from '../../hooks/storeSystem'
+import useCommonStore from '../../hooks/commonStore'
 import UserNotifications from '../userNotifications/UserNotifications'
 import Button from '../button/Button'
 
@@ -18,7 +18,7 @@ const MenuMobileOptions = dynamic(() => import('./MenuMobileOptions'), { ssr: fa
 
 const PreviewUser = () => {
   const router = useRouter()
-  const { userLogged, leftMenuBar, leftMenuBar: { isShow: isShowLeftMenu }, setStoreValue, leftBottomMenuContent } = useSystemStore((state => state))
+  const { userLogged, leftMenuBar, leftMenuBar: { isShow: isShowLeftMenu }, setStoreValue, leftBottomMenuContent } = useCommonStore((state => state))
   const { picture, name, coins } = userLogged || {}
 
   const handleClickImage = () => {

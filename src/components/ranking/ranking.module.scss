@@ -6,22 +6,28 @@
         .item {
             // background-color: #030c4b;
             background-color: #07244c;
-            border-bottom: 1px solid #2c2c2c;
-            border-radius: 10px;
-            border-top: 1px solid #2c2c2c;
+            // border-bottom: 1px solid #2c2c2c;
+            // border-radius: 10px;
+            // border-top: 1px solid #2c2c2c;
+            box-shadow: inset 0px 2px 2px 1px #1d1d1da1;
             box-sizing: border-box;
             color: white;
             column-gap: 10px;
             display: flex;
-            margin: 0 auto 20px;
+            margin: 0 auto 0px;
             padding: 10px 10px 14px 20px;
             position: relative;
             width: 100%;
             &:first-child {
+                box-shadow: none;
+                border-radius: 10px 10px 0 0;
                 .points {
                     color: #32d4c2;
                     font-weight: 600;
                 }
+            }
+            &:last-child {
+                border-radius: 0 0 10px 10px;
             }
             .number {
                 font-weight: 600;

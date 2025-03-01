@@ -1,30 +1,39 @@
 import styles from './profileSummaryExperience.module.scss'
 
-import React, { useEffect, useState } from 'react'
 import classNames from 'classnames'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 // Custom
 import { animatePrince, formatNumber } from '../../lib/utils'
 import CoinIcon from '../coinIcon/CoinIcon'
 import ProfileImage from '../profileImage/ProfileImage'
-import useSystemStore from '../../hooks/storeSystem'
+import useCommonStore from '../../hooks/commonStore'
 import MESSAGES from '../../consts/messages'
 import { useIAStore } from '../ia/IAstore'
 import Button from '../button/Button'
 
 // Servicios
 import { getExperiencesSrv, updateProfileSrv } from '../../services/user/userService'
-import { toast } from 'react-toastify'
 
 const ProfileSummaryExperience = (props) => {
   const { DEFAULT_NAME } = MESSAGES
-  const { isEditProfile, userInfoData, setIsEditProfile, showDetails } = props
+  const {
+    isEditProfile,
+    setIsEditProfile,
+    showDetails,
+    userInfoData,
+    newInfo,
+    gainedCoins = 20,
+  } = props
+  const {
+    points,
+  } = newInfo || {}
   const [currentExp, setCurrentExp] = useState(0)
   const [percentageBar, setPercentageBar] = useState("0%")
   // userInfoData: Props que se utiliza para mostrar la información de un usuario en particular
-  const gainedCoins = 5
   const currentUserCoins = 10
-  const { userLogged, setUserLogged } = useSystemStore()
+  const { userLogged, setUserLogged } = useCommonStore()
   const { uid } = userLogged
   const {
     handleUserMessage,
@@ -79,7 +88,7 @@ const ProfileSummaryExperience = (props) => {
   }
 
   useEffect(() => {
-    const element = document.querySelector('.ProfileSummaryExperience .number-coins')
+    const element = document.querySelector('.ProfileSummaryExperience .Coins .number')
     const fromNumber = element?.innerHTML
     const targetNumber = currentUserCoins + gainedCoins
     animatePrince(element, targetNumber, fromNumber)
@@ -89,6 +98,15 @@ const ProfileSummaryExperience = (props) => {
   // const exp = 0
   // const [currentExp, setCurrentExp] = useState(exp)
   // const [percentageBar, setPercentageBar] = useState("0%")
+  const validateNewAwards = () => {
+    if (gainedCoins) {
+      debugger;
+      const element = document.querySelector('.ProfileSummaryExperience .Coins .number')
+      const fromNumber = element?.innerHTML
+      const targetNumber = currentUserCoins + gainedCoins
+      animatePrince(element, targetNumber, fromNumber)
+    }
+  }
 
   useEffect(() => {
     getExperiencesSrv()
@@ -96,6 +114,7 @@ const ProfileSummaryExperience = (props) => {
         const { expTotal, percentageBar } = data
         setCurrentExp(expTotal)
         setPercentageBar(percentageBar + "%")
+        validateNewAwards()
       });
   }, [])
 
@@ -109,6 +128,7 @@ const ProfileSummaryExperience = (props) => {
         <div asd={backgroundImage} className={styles.bg}></div>
         <div className={styles.left}>
           <ProfileImage picture={picture} progress={percentageBar} />
+          <CoinIcon coins={gainedCoins} hideNumber={false} />
           {/* <div className={`shine ${styles[league]} ${league == 'oro' && 'starsFallingDown'} `}> */}
           <input className={styles.fullName}
             value={newNickname}

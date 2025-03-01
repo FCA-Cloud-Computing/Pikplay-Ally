@@ -13,7 +13,7 @@ import { createGlobalStyle } from "styled-components";
 // Custom
 import { useCompetitionsStore } from '../../../components/competitions/hooks/useCompetitions'
 import { getComptSrv } from '../../../services/competition/competitionService'
-import useSystemStore from '../../../hooks/storeSystem'
+import useCommonStore from '../../../hooks/commonStore'
 import Layout from '../../../components/layout/Layout'
 import CompetitionsList from '../../../components/competitions/CompetitionsList'
 import useCompetitions from '../../../components/competitions/hooks/useCompetitions'
@@ -48,7 +48,7 @@ const ConcursoDetailPage = (props) => {
     }`;
 
   const { set } = useCompetitionsStore()
-  const { userLogged: { picture: userPicture, uid: uidLogged } } = useSystemStore()
+  const { userLogged: { picture: userPicture, uid: uidLogged } } = useCommonStore()
 
   const [value, setValue] = useState(0)
   const handleChange = (event, newValue) => {
