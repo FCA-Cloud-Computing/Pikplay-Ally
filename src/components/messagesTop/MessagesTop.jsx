@@ -5,11 +5,11 @@ import { useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion"
 
 // Custom
-import useSystemStore from '@/hooks/storeSystem';
+import useCommonStore from '@/hooks/commonStore';
 import { startConfetti } from '@/lib/utils';
 
 const MessagesTop = () => {
-  const { messageTop, setStoreValue } = useSystemStore()
+  const { messageTop, setStoreValue } = useCommonStore()
 
   const handleClick = () => {
     setStoreValue('messageTop', null)

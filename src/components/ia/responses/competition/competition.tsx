@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Button from '../../../button/Button'
 import useCompetitions from '../../../competitions/hooks/useCompetitions'
-import useSystemStore from '../../../../hooks/storeSystem'
+import useCommonStore from '../../../../hooks/commonStore'
 import { DeleteOutlined, MessageOutlined, WorkspacePremium } from '@mui/icons-material'
 import { postCompetitionMemberSrv } from '../../../../services/competition/competitionService'
 
@@ -42,7 +42,7 @@ const handleYes = async (handleUserMessage, set, options, setStoreValue) => {
 }
 
 const Options = ({ handleUserMessage, set, options }) => {
-  const { userLogged: { uid }, setStoreValue } = useSystemStore()
+  const { userLogged: { uid }, setStoreValue } = useCommonStore()
   options.uid = uid
   const element: HTMLElement | null = document.querySelector('#btnStart');
   options.element = element

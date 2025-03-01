@@ -1,11 +1,19 @@
-import styles from "./styles.module.scss";
+import styles from "./coinIcon.module.scss";
 
 import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { motion } from 'framer-motion'
 import { formatNumber } from "../../lib/utils";
 
-const CoinIcon = ({ coins, isLabel, hideNumber = false, multicoin, textColor }) => {
+const CoinIcon = ({
+  coins,
+  hideNumber = false,
+  initialCoins = 0,
+  isLabel,
+  multicoin,
+  textColor,
+  showX = false,
+}) => {
   const prevCountCoins = useRef();
   const previousCoins = prevCountCoins.current ? prevCountCoins.current : 0;
 
@@ -23,24 +31,29 @@ const CoinIcon = ({ coins, isLabel, hideNumber = false, multicoin, textColor }) 
   };
 
   useEffect(() => {
-    const initialCoins = 0;
     animateValue(previousCoins, initialCoins, 1000);
   }, []);
-
+  debugger;
   return (
     <div
       className={classNames("Coins", {
         [styles.Coins]: true,
-        [styles.animatedZoom]: true,
+        // [styles.animatedZoom]: true,
         // [styles.animated]: true
       })}>
-      {!hideNumber && coins && (
+      {(!hideNumber && coins) && (<>
         <span
           className={`f-s-14 ${styles.number} number`}
           style={{ color: textColor ? textColor : "#e5961d" }}>
           {formatNumber(coins)}
-          &nbsp;x&nbsp;
         </span>
+        {showX && <span style={{
+          fontSize: '42px',
+          margin: '0 0 10px -4px',
+        }}>
+          &nbsp;x&nbsp;
+        </span>}
+      </>
       )}
       <motion.picture
         animate={{ scale: 1 }}

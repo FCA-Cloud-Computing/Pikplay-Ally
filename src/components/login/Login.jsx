@@ -4,13 +4,13 @@ import cookieCutter from '@boiseitguru/cookie-cutter'
 import React, { useState } from 'react'
 // import LoginInterface from './LoginInterface'
 import { useRouter } from 'next/router'
-import useSystemStore from '../../hooks/storeSystem'
+import useCommonStore from '../../hooks/commonStore'
 import { loginSrv } from '../../services/user/userService'
 import { toast } from 'react-toastify'
 import LoginInterface from './LoginInterface'
 
 function Login(props) {
-  const { env, setStoreValue } = useSystemStore()
+  const { env, setStoreValue } = useCommonStore()
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [isHuman, setIsHuman] = useState(env == 'dev')
