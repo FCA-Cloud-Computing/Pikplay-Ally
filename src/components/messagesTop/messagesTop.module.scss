@@ -1,11 +1,8 @@
 .MessagesTop {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-image: url("/images/backgrounds/notification_recived.png");
-    background-size: contain;
-    box-sizing: border-box;
+    background-image: url("/images/backgrounds/camapanita.svg");
+    background-size: 350px;
+    background-repeat: no-repeat;
+    color: #16397d;
     font-size: 13px;
     font-weight: 600;
     height: 93px;
@@ -15,12 +12,7 @@
     padding: 18px 50px 30px 110px;
     position: fixed;
     right: 0;
-    // top: -800px;
     top: 60px;
     width: 342px;
     z-index: 4;
-    // &.isVisible {
-    //     top: 60px;
-    //     opacity: 1;
-    // }
 }

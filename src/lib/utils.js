@@ -1,26 +1,25 @@
 import cookieCutter from '@boiseitguru/cookie-cutter';
 import confetti from 'canvas-confetti';
 
-export const animatePrince = (HTMLElement, targetNumber, fromNumber) => {
-  var target = parseFloat(fromNumber);
-  var number = targetNumber; // parseFloat(HTMLElement.value);
-  console.log(number + '  ' + target + ' ' + (number > target));
-  if (number > target) {
+export const animatePrice = (HTMLElement, targetNumber, fromNumber, speed = 100) => {
+  if (HTMLElement == null) return;
+  console.log(targetNumber + '  ' + fromNumber + ' ' + (targetNumber > fromNumber));
+  if (targetNumber > fromNumber) {
     // Aumentando
     var interval = setInterval(function () {
-      HTMLElement.innerHTML = target;
-      if (number <= target) clearInterval(interval);
-      target = Number(target + 1);
-    }, 100);
+      HTMLElement.innerHTML = fromNumber;
+      if (targetNumber <= fromNumber) clearInterval(interval);
+      fromNumber = Number(fromNumber + 1);
+    }, speed);
   } else {
     // Disminuyendo
     var interval = setInterval(function () {
       if (HTMLElement) {
-        HTMLElement.innerHTML = target;
-        if (number >= target) clearInterval(interval);
-        target = Number(target - 1);
+        HTMLElement.innerHTML = fromNumber;
+        if (targetNumber >= fromNumber) clearInterval(interval);
+        fromNumber = Number(fromNumber - 1);
       }
-    }, 80);
+    }, speed);
   }
 };
 

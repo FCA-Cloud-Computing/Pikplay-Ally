@@ -5,42 +5,40 @@ import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, S
 import ReactTyped from 'react-typed'
 import CoinIcon from '../coinIcon/CoinIcon';
 import Button from '../button/Button'
-import { animatePrince, formatNumber, startConfetti } from '../../lib/utils'
+import { animatePrice, formatNumber, startConfetti } from '../../lib/utils'
 import classNames from 'classnames';
 import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummaryExperience';
 import { motion, AnimatePresence } from "framer-motion"
 import useCommonStore from '../../hooks/commonStore';
 
 const AwardsSummary = () => {
-  const [gainedCoins, setGainedCoins] = useState(10);
   const [page, setPage] = useState(0);
   const currentUserCoins = 10
   const { awardsSummaryModalHTML, awardSummaryModalDetail } = useCommonStore()
-  const { description, coins, points } = awardSummaryModalDetail
+  const { description, coins: gainedCoins, points: gainedPoints } = awardSummaryModalDetail
 
   useEffect(() => {
-    setGainedCoins(coins)
     setTimeout(() => {
       startConfetti()
     }, 500)
   }, [])
 
   const handleUpdateExperience = () => {
-    handlePickRewardUp()
+    // handlePickRewardUp()
     setPage(1)
   }
 
-  const handlePickRewardUp = () => {
-    // Sumando coins al Coins del header
-    const element = document.querySelector('#PreviewProfile--Coins .number')
-    const fromNumber = element?.innerHTML
-    const targetNumber = currentUserCoins + gainedCoins
-    animatePrince(element, targetNumber, fromNumber)
+  // const handlePickRewardUp = () => {
+  //   // Sumando coins al Coins del header
+  //   const element = document.querySelector('#PreviewProfile--Coins .number')
+  //   const fromNumber = element?.innerHTML
+  //   const targetNumber = currentUserCoins + gainedCoins
+  //   animatePrice(element, targetNumber, fromNumber)
 
-    // Restando coins
-    const secondElement = document.querySelector('#AwardsSummary .number')
-    animatePrince(secondElement, 0, gainedCoins)
-  }
+  //   // Restando coins
+  //   const secondElement = document.querySelector('#AwardsSummary .number')
+  //   animatePrice(secondElement, 0, gainedCoins)
+  // }
 
   return (
     <>
@@ -69,8 +67,8 @@ const AwardsSummary = () => {
             {/* <ReactTyped strings={[awardsSummaryModalHTML]} typeSpeed={20} /> */}
             {awardsSummaryModalHTML}
           </p>
-          {points && <p className={`animatedZoom ${styles.points}`}>
-            +{formatNumber(points)} Points
+          {gainedPoints && <p className={`animatedZoom ${styles.points}`}>
+            +{formatNumber(gainedPoints)} Points
           </p>}
         </div>
 
@@ -97,7 +95,7 @@ const AwardsSummary = () => {
           </motion.div>
         </div>
       </>}
-      {page == 1 && <ProfileSummaryExperience gainedCoins={gainedCoins} />}
+      {page == 1 && <ProfileSummaryExperience {...{ gainedCoins, gainedPoints }} />}
     </>
   )
 }

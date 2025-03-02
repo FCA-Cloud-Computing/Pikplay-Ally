@@ -10,6 +10,7 @@ const CoinIcon = ({
   hideNumber = false,
   initialCoins = 0,
   isLabel,
+  gainedCoins,
   multicoin,
   textColor,
   showX = false,
@@ -33,7 +34,7 @@ const CoinIcon = ({
   useEffect(() => {
     animateValue(previousCoins, initialCoins, 1000);
   }, []);
-  debugger;
+
   return (
     <div
       className={classNames("Coins", {
@@ -41,7 +42,7 @@ const CoinIcon = ({
         // [styles.animatedZoom]: true,
         // [styles.animated]: true
       })}>
-      {(!hideNumber && coins) && (<>
+      {!hideNumber && (<>
         <span
           className={`f-s-14 ${styles.number} number`}
           style={{ color: textColor ? textColor : "#e5961d" }}>

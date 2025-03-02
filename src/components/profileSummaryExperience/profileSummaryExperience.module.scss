@@ -33,7 +33,7 @@
         text-transform: uppercase;
         width: 200px;
         transition: ease 0.2s;
-        &:focus {
+        &.editable:focus {
             background: #ffffffb5;
             border-radius: 10px;
         }
@@ -177,10 +177,7 @@
         }
 
         .experience_status {
-            margin: 0px auto;
-            @media screen and (max-width: 480px) {
-                margin: 0px auto 10px 20px;
-            }
+            margin: 0 auto 20px auto;
         }
 
         .fields {
@@ -225,9 +222,9 @@
         .left {
             position: relative;
             :global(.Coins) {
-                position: absolute;
-                right: 0;
-                top: 122px;
+                // position: absolute;
+                // right: 0;
+                // top: 122px;
             }
         }
     }
@@ -240,9 +237,10 @@
     width: 90%;
     .bar {
         border-radius: 5px;
-        box-shadow: inset 4px 5px 8px #29292900;
+        // box-shadow: inset 4px 5px 8px #29292900;
+        border: 1px solid;
         height: 100%;
-        padding: 4px 0 2px;
+        padding: 4px;
         width: 100%;
         .indicator {
             background: linear-gradient(90deg, #74ffd0, #3ac8be);
@@ -250,9 +248,9 @@
             box-shadow: inset 1px 1px 4px #4a4a4a;
             height: 100%;
             position: relative;
-            transition: 1s ease-in-out;
-            transition-duration: 3s;
-            width: 30%;
+            // transition: .2s ease-in-out;
+            // transition-duration: 3s;
+            // width: 30%;
         }
         label {
             border-radius: 10px 0 10px 0;
@@ -275,6 +273,11 @@
                 -1px -1px #2e2e2e,
                 1px -1px #2e2e2e,
                 -1px 1px #2e2e2e;
+            span {
+                display: inline-block;
+                text-align: right;
+                width: 50px;
+            }
         }
     }
 }
