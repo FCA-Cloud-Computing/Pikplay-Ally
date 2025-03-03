@@ -5,18 +5,21 @@ import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, S
 import ReactTyped from 'react-typed'
 import CoinIcon from '../coinIcon/CoinIcon';
 import Button from '../button/Button'
-import { animatePrince, startConfetti } from '../../lib/utils'
+import { animatePrince, formatNumber, startConfetti } from '../../lib/utils'
 import classNames from 'classnames';
 import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummaryExperience';
 import { motion, AnimatePresence } from "framer-motion"
-import useSystemStore from '../../hooks/storeSystem';
+import useCommonStore from '../../hooks/commonStore';
 
-const AwardsSummary = ({ callback }) => {
-  const gainedCoins = 10
+const AwardsSummary = () => {
+  const [gainedCoins, setGainedCoins] = useState(10);
+  const [page, setPage] = useState(0);
   const currentUserCoins = 10
-  const { awardsSummaryModalHTML } = useSystemStore()
+  const { awardsSummaryModalHTML, awardSummaryModalDetail } = useCommonStore()
+  const { description, coins, points } = awardSummaryModalDetail
 
   useEffect(() => {
+    setGainedCoins(coins)
     setTimeout(() => {
       startConfetti()
     }, 500)
@@ -24,7 +27,7 @@ const AwardsSummary = ({ callback }) => {
 
   const handleUpdateExperience = () => {
     handlePickRewardUp()
-    // callback(1)
+    setPage(1)
   }
 
   const handlePickRewardUp = () => {
@@ -41,59 +44,66 @@ const AwardsSummary = ({ callback }) => {
 
   return (
     <>
-      <motion.div
-        animate={{ y: 0, x: 0 }}
-        initial={{ x: '-600px' }}
-        transition={{ delay: .5 }}
-        className={styles.title}>
-        ¡Recoge tus recompensas!
-      </motion.div>
-      <motion.div
-        animate={{ x: 0, y: 10 }}
-        initial={{ y: '0px', x: '600px' }}
-        transition={{ delay: .2 }}
-        className={styles.subtitle}>
-        Recibiste tus primeros créditos, ¡sigue así!
-      </motion.div>
-      <img className={`rotating ${styles.imgLights}`} src="/images/elements/luces.png" />
-      <div className={styles.box}>
-        {/* <img src="/images/type_notification/coupon_gift_available.png" alt="bronze" /> */}
-        <p className={styles.description}>
-          <CoinIcon coins={gainedCoins} multicoin />
-          {/* <ReactTyped strings={[awardsSummaryModalHTML]} typeSpeed={20} /> */}
-          {awardsSummaryModalHTML}
-        </p>
-      </div>
-
-      <div className={styles.actions}>
+      {page == 0 && <>
         <motion.div
+          animate={{ y: 0, x: 0 }}
           initial={{ x: '-600px' }}
-          animate={{ x: 0, }}
-          transition={{ delay: 2 }}>
-          <Button
-            className={styles.main_button}
-            color="link"
-            onClick={handleUpdateExperience}
-            style={{ color: 'white' }}>
-            Conocer de los créditos
-          </Button>
-
-          <Button
-            className={styles.main_button}
-            color="blue"
-            onClick={handleUpdateExperience}
-            realistic
-            shine>
-            Recoger
-          </Button>
+          transition={{ delay: .5 }}
+          className={styles.title}>
+          ¡Recoge tus recompensas!
         </motion.div>
-      </div>
+        {description
+          && <motion.div
+            animate={{ x: 0, y: 10 }}
+            initial={{ y: '0px', x: '600px' }}
+            transition={{ delay: .2 }}
+            className={styles.subtitle}>
+            {description}
+          </motion.div>
+        }
+        <img className={`rotating ${styles.imgLights}`} src="/images/elements/luces.png" />
+        <div className={styles.box}>
+          {/* <img src="/images/type_notification/coupon_gift_available.png" alt="bronze" /> */}
+          <p className={styles.description}>
+            <CoinIcon coins={gainedCoins} multicoin showX />
+            {/* <ReactTyped strings={[awardsSummaryModalHTML]} typeSpeed={20} /> */}
+            {awardsSummaryModalHTML}
+          </p>
+          {points && <p className={`animatedZoom ${styles.points}`}>
+            +{formatNumber(points)} Points
+          </p>}
+        </div>
+
+        <div className={styles.actions}>
+          <motion.div
+            initial={{ x: '-600px' }}
+            animate={{ x: 0, }}
+            transition={{ delay: 2 }}>
+            <Button
+              className={styles.main_button}
+              color="red"
+              onClick={handleUpdateExperience}
+              realistic
+              shine>
+              Recoger
+            </Button>
+            <Button
+              className={`text-ul ${styles.main_button}`}
+              color="link"
+              onClick={handleUpdateExperience}
+              style={{ color: 'white' }}>
+              Conocer de los créditos
+            </Button>
+          </motion.div>
+        </div>
+      </>}
+      {page == 1 && <ProfileSummaryExperience gainedCoins={gainedCoins} />}
     </>
   )
 }
 
 const AwardsSummaryModal = (props) => {
-  const { setStoreValue } = useSystemStore((state => state))
+  const { setStoreValue } = useCommonStore((state => state))
   const [[page, direction], setPage] = useState([0, 0]);
   const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="left" ref={ref} {...props} />;
@@ -103,12 +113,6 @@ const AwardsSummaryModal = (props) => {
     setStoreValue('isAwardSummaryModalOpen', false)
     setStoreValue('isOpenPreviewProfile', false)
     setStoreValue('isGainFirstcoinsPictureProfile', false)
-  }
-
-  const callback = (number) => {
-    // setTimeout(() => {
-    setPage([number, 1])
-    // }, 1000)
   }
 
   return <Dialog
@@ -122,7 +126,7 @@ const AwardsSummaryModal = (props) => {
         <div className={styles.content}>
           <div className={styles.content_child}>
             <AnimatePresence initial={true} custom={direction}>
-              {page === 0 && <AwardsSummary callback={callback} />}
+              <AwardsSummary page={page} />
             </AnimatePresence>
           </div>
         </div>

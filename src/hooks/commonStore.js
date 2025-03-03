@@ -32,8 +32,9 @@ const initialLoginStorage = (set) => {
   logout()
 }
 
-const useSystemStore = create((set, get) => ({
+const useCommonStore = create((set, get) => ({
   awardsSummaryModalHTML: null,
+  awardSummaryModalDetail: null,
   darkMode: true,
   env: 'dev',
   experiences: [],
@@ -60,4 +61,4 @@ const useSystemStore = create((set, get) => ({
   },
 }));
 
-export default useSystemStore;
+export default useCommonStore;

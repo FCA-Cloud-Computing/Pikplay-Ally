@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDiceFive } from '@fortawesome/free-solid-svg-icons'
 
 // Cutoms components
-import useSystemStore from '../../hooks/storeSystem'
+import useCommonStore from '../../hooks/commonStore'
 import { useCompetitionsStore } from '../../components/competitions/hooks/useCompetitions'
 import Layout from '../../components/layout/Layout'
 import CompetitionsList from '../../components/competitions/CompetitionsList'
@@ -38,7 +38,7 @@ const ConcursosPage = () => {
   } = useCompetitions()
 
   const { competitionDetail, set } = useCompetitionsStore()
-  const { userLogged: { picture: userPicture, uid: uidLogged } } = useSystemStore()
+  const { userLogged: { picture: userPicture, uid: uidLogged } } = useCommonStore()
 
   const [value, setValue] = useState(0)
   const handleChange = (event, newValue) => {

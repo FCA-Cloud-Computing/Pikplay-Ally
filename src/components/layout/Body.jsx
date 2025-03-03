@@ -11,14 +11,14 @@ import IA from '../ia/IA'
 import CustomHeader from '../customHeader/CustomHeader'
 import MenuMovil from '../menuMovil/MenuMovil'
 
-import useSystemStore from '../../hooks/storeSystem.js'
+import useCommonStore from '../../hooks/commonStore.js'
 
 const Body = ({
   cssClassPage,
   children,
   isReady,
 }) => {
-  const { darkMode } = useSystemStore((state => state))
+  const { darkMode } = useCommonStore((state => state))
 
   return <>
     <main

@@ -49,7 +49,7 @@
     }
 
     .bg_city {
-        background-color: #11687d;
+        // background-color: #11687d;
         height: calc(100% - 50px);
         left: 24px;
         opacity: 1;
@@ -70,7 +70,7 @@
             height: 100%;
             width: 100%;
             display: block;
-            opacity: 0.4;
+            opacity: 1;
             // display: none;
         }
     }
@@ -142,19 +142,11 @@
 
         .subtitle {
             color: white;
-            font-style: italic;
-            font-size: 22px;
+            // font-style: italic;
+            font-size: 18px;
             margin-top: 10px;
             // $color: orange;
-            text-shadow:
-                1px 0 orange,
-                0px 0 orange,
-                0 0px orange,
-                0 0px orange,
-                0px 0px orange,
-                0px 0px orange,
-                0px -1px orange,
-                1px 0px orange;
+            text-shadow: 1px 1px #ed480c;
             text-align: center;
         }
         .imgLights {
@@ -257,15 +249,7 @@
                 // margin-top: 110px;
                 // padding: 0px 30px 20px;
                 $color: rgb(154, 100, 0);
-                text-shadow:
-                    2px 0 $color,
-                    -2px 0 $color,
-                    0 2px $color,
-                    0 -2px $color,
-                    1px 1px $color,
-                    -1px -1px $color,
-                    1px -1px $color,
-                    -1px 1px $color;
+                text-shadow: 1px 1px black;
                 text-align: center;
                 :global(.yellow) {
                     color: #fcfc85;
@@ -274,12 +258,19 @@
                     color: aquamarine;
                 }
                 :global(.Coins) {
+                    left: 30px;
                     margin-top: 60px;
+                    position: relative;
                     :global(.number) {
                         font-size: 32px;
                         top: -10px;
                     }
                 }
+            }
+            .points {
+                color: #049dbc;
+                font-size: 22px;
+                margin: 20px 0 0;
             }
         }
     }
@@ -321,6 +312,12 @@
             div > button {
                 width: 80%;
             }
+        }
+    }
+    :global(.ProfileSummaryExperience) {
+        width: initial !important;
+        > div {
+            width: initial;
         }
     }
 }

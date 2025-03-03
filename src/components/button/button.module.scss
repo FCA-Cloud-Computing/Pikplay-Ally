@@ -133,17 +133,24 @@
   }
 
   &.red {
-    background: #f05f70;
+    background: #ed480c;
 
     &.outline {
       background: transparent;
-      border: 1px solid #f05f70;
-      color: #f05f70;
+      border: 1px solid #ed480c;
+      color: #ed480c;
       &:hover {
-        background: #f05f70;
+        background: #ed480c;
         color: white;
       }
     }
+
+    &.realistic {
+      box-shadow:
+        0 5px 2px #800900,
+        0 6px #510c0c;
+    }
+
     button {
       text-shadow: 1px 1px black;
       font-weight: 600;
@@ -210,6 +217,7 @@
 
   button {
     font-family: "Montserrat", sans-serif;
+    text-decoration: inherit;
     span {
       top: -4px;
       height: 32px;

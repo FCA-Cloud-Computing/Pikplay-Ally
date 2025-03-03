@@ -4,14 +4,14 @@ import styles from './menuMovil.module.scss'
 import React from 'react'
 import Link from 'next/link'
 import PreviewUser from '../previewUser/PreviewUser'
-import useSystemStore from '../../hooks/storeSystem'
+import useCommonStore from '../../hooks/commonStore'
 import { useIAStore } from '../ia/IAstore'
 
 const { motion } = require('framer-motion')
 
 const MenuMovil = () => {
   // const user = useSelector(state => state.user)
-  const { userLogged } = useSystemStore((state => state))
+  const { userLogged } = useCommonStore((state => state))
   const {
     handleUserMessage,
   } = useIAStore((state => state))

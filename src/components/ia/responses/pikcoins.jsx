@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../../button/Button'
 import CoinIcon from '../../coinIcon/CoinIcon';
-import useSystemStore from '../../../hooks/storeSystem';
+import useCommonStore from '../../../hooks/commonStore';
 
 const Height = '160px'
 const HtmlMessage = <div style={{
@@ -27,8 +27,7 @@ const Message = () => <div>
 
 const Expresion = 'loved'
 const Options = ({ handleUserMessage, set }) => {
-    const { isOnboardingProcess } = useSystemStore()
-    // debugger;
+    const { isOnboardingProcess } = useCommonStore()
 
     return <>
         {/* <Button color='transparent'>

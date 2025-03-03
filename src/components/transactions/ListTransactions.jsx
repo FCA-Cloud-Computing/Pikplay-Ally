@@ -6,11 +6,11 @@ import AddIcon from '@mui/icons-material/Add';
 
 // Custom
 import { Transaction } from './Transaction';
-import useSystemStore from '@/hooks/storeSystem';
+import useCommonStore from '@/hooks/commonStore';
 
 export function ListTransactions({ transactions }) {
   const transactionsSorted = transactions
-  const { setStoreValue } = useSystemStore()
+  const { setStoreValue } = useCommonStore()
   // = transactions.toSorted(
   //   (a, b) => b.status - a.status
   // );

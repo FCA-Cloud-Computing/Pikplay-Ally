@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Router, { useRouter } from 'next/router'
 import { ToastContainer } from 'react-toastify';
 
-import useSystemStore from '../../hooks/storeSystem.js'
+import useCommonStore from '../../hooks/commonStore.js'
 import Body from './Body.jsx'
 import { useIAStore } from '../ia/IAstore.js'
 import AwardsSummaryModal from '../awardsSummary/AwardsSummary.jsx';
@@ -28,7 +28,7 @@ const Layout = (props) => {
     setStoreValue,
     leftMenuBar: { isShow: isShowLeftMenu },
     userLogged
-  } = useSystemStore((state => state))
+  } = useCommonStore((state => state))
   const { checkIAMessage, IAMessage, setIsvisible } = useIAStore()
   const router = useRouter()
 

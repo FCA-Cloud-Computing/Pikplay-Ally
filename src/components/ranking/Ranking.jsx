@@ -25,8 +25,8 @@ const RankingComponent = (props) => {
               const user = data && data.find(user => user.uid === member.uid)
               return {
                 ...user,
+                league: 'bronce',
                 points: member.points,
-                below: 'Principiante'
               }
             })
             setRankingData(pointsAndUserData)
@@ -45,6 +45,7 @@ const RankingComponent = (props) => {
       {/* <Button color="blue" fullWidth className="p-10">Quiero participar</Button> */}
       <div className={styles.list}>
         {rankingData && rankingData.length > 0 && rankingData.sort((a, b) => b.points - a.points).map((member, index) => {
+          const { league } = member
           return <motion.div
             animate={{ x: 0, }}
             className={`${index == 0 ? 'starsFallingDown' : ''} ${styles.item} ${member.uid}`}
@@ -65,7 +66,7 @@ const RankingComponent = (props) => {
                 {member.name}
               </span>
               <div>
-                {member.below}
+                {league && <small className={`leagueBox`}>{league}</small>}
               </div>
             </div>
             <div className={styles.points}>
