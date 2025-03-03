@@ -12,6 +12,7 @@ import { IS_MOBILE } from '../../lib/variables'
 import useSystemStore from '../../hooks/storeSystem'
 import UserNotifications from '../userNotifications/UserNotifications'
 import Button from '../button/Button'
+import { PROFILE } from '@/consts/profile'
 
 const ProfileImage = dynamic(() => import('../profileImage/ProfileImage'), { ssr: false })
 const MenuMobileOptions = dynamic(() => import('./MenuMobileOptions'), { ssr: false })
@@ -25,7 +26,8 @@ const PreviewUser = () => {
     router.push('#menu')
     setStoreValue('leftMenuBar', { ...leftMenuBar, isShow: !isShowLeftMenu })
   }
-
+  const pictureRaw = `${picture.split('?')[0]}_${PROFILE.SIZE}${picture.split('?')[1]}`
+  console.log(picture);
   return (
     <div
       className={`
