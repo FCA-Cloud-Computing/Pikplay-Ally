@@ -1,3 +1,6 @@
 export const PROFILE = {
-  IMAGE_SIZE: "100x100"
+  SIZES: {
+    SM: 100,
+    MD: 768,
+  }
 }

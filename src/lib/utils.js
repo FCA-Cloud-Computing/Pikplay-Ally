@@ -1,3 +1,4 @@
+import { PROFILE } from '@/consts/profile';
 import cookieCutter from '@boiseitguru/cookie-cutter';
 import confetti from 'canvas-confetti';
 
@@ -222,4 +223,9 @@ export function getAccessibilityPropsTabs(tabIndex) {
     id: `full-width-tab-${tabIndex}`,
     'aria-controls': `full-width-tabpanel-${tabIndex}`,
   };
+}
+
+export function getImageSize(url, size="MD") {
+  const currentSize = PROFILE.SIZES[size]
+  return url.replace(/(\.\w+)(\?.*)?$/, `_${currentSize}x${currentSize}$1$2`);
 }
