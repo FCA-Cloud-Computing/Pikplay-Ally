@@ -95,7 +95,10 @@ const AwardsSummary = () => {
           </motion.div>
         </div>
       </>}
-      {page == 1 && <ProfileSummaryExperience {...{ gainedCoins, gainedPoints }} />}
+      {page == 1 && <>
+        <ProfileSummaryExperience {...{ gainedCoins, gainedPoints }} />
+        <Button className={styles.closeModal} color='red' realistic onClick={() => setPage(0)}>Cerrar</Button>
+      </>}
     </>
   )
 }

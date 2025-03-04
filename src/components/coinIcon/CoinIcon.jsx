@@ -13,7 +13,6 @@ const CoinIcon = ({
   gainedCoins,
   multicoin,
   textColor,
-  showX = false,
 }) => {
   const prevCountCoins = useRef();
   const previousCoins = prevCountCoins.current ? prevCountCoins.current : 0;
@@ -48,12 +47,6 @@ const CoinIcon = ({
           style={{ color: textColor ? textColor : "#e5961d" }}>
           {formatNumber(coins)}
         </span>
-        {showX && <span style={{
-          fontSize: '42px',
-          margin: '0 0 10px -4px',
-        }}>
-          &nbsp;x&nbsp;
-        </span>}
       </>
       )}
       <motion.picture

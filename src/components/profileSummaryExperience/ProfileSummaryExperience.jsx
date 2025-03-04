@@ -108,10 +108,8 @@ const ProfileSummaryExperience = (props) => {
   // const exp = 0
   // const [currentPoints, setCurrentExp] = useState(exp)
   // const [percentageBar, setPercentageBar] = useState("0%")
-  const validateNewAwards = (currentCoins, currentPoints) => {
+  const validateNewAwards = (currentCoins, currentPoints) => { // Añadiendo puntos y coins ganados
     if (gainedCoins) {
-      const coinsElement = document.querySelector('.ProfileSummaryExperience .Coins .number')
-      const fromNumber = currentCoins
       const targetNumber = currentCoins + gainedCoins
       setTargetCoins(targetNumber)
       setTimeout(() => { // Animando los puntos ganados despues de 2 segundos
@@ -202,7 +200,7 @@ const ExperienceBar = (props) => {
 
   return (
     <motion.div
-      animate={{ x: 0, y: 0, opacity: 1 }}
+      animate={{ x: 0, y: '0px', opacity: 1 }}
       initial={{ x: '0px', y: '-50px', opacity: 0 }}
       transition={{ delay: 0.3 }}
       className={classNames("ExperienceBar", { [styles.ExperienceBar]: true })}>

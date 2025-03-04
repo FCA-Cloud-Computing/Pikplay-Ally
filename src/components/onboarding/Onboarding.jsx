@@ -24,7 +24,7 @@ const Onboarding = () => {
   const items = [
     {
       background: "https://i.pinimg.com/564x/f4/d4/b9/f4d4b991d2bccaf2202b8a07bae108de.jpg",
-      html: <>¿Que es <span className={styles.yellow}>Pikplay</span>?</>,
+      html: <>¿Qué es <br /><span className={styles.yellow}>Pikplay</span>?</>,
       image: "/images/ia/character-full.svg",
       isCompleted: true,
       messageCode: 'onboarding',
@@ -111,7 +111,7 @@ const Onboarding = () => {
 
   return <section className={`page ${styles.Onboarding}`}>
     <Link href="/caribe-dev">
-    {/* Caribe Conf 2025 */}
+      {/* Caribe Conf 2025 */}
       <Image className={styles.bannerCaribeConf2025} src="images/banners/banner-caribe-conf-2025.jpg" alt="Banner Caribe Conf 2025" height="100" width="420" />
     </Link>
     <div className={styles.titleContent}>

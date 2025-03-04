@@ -104,7 +104,7 @@ const ItemCard = (props) => {
             Con esta compra obtienes <b>{(price * 0.01) / 100} Points</b></div>}
           {/* Si no tiene precio */}
           {cashbackAvailable && !price && <div className={styles.cashbackInformation}>
-            Preguntale al vendedor sobre los creditos por esta compra</div>}
+            Preguntale al vendedor sobre los créditos por esta compra</div>}
           {
             <div className={styles.descripcion}>
               <div className={styles.icons}>

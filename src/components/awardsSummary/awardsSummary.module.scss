@@ -16,10 +16,7 @@
     // overflow: hidden;
     height: 500px;
     overflow: hidden;
-    width: 600px;
-    @media screen and (max-width: 480px) {
-        width: 290px;
-    }
+    width: 290px;
     &:after {
         background-image: url(/images/backgrounds/marco-bronce-inf.png);
         background-repeat: no-repeat;
@@ -112,7 +109,7 @@
             }
             :global(.ProfileSummaryExperience) {
                 display: block;
-                margin: 40px auto 0;
+                margin: 0 auto 0;
                 width: max-content;
             }
         }
@@ -146,7 +143,6 @@
             font-size: 18px;
             margin-top: 10px;
             // $color: orange;
-            text-shadow: 1px 1px #ed480c;
             text-align: center;
         }
         .imgLights {
@@ -295,6 +291,7 @@
             }
         }
     }
+
     .actions2 {
         box-sizing: border-box;
         float: right;
@@ -314,6 +311,16 @@
             }
         }
     }
+
+    .closeModal {
+        display: block;
+        font-size: 14px;
+        margin: 20px auto 0;
+        padding: 10px 0;
+        width: 200px;
+        width: max-content;
+    }
+
     :global(.ProfileSummaryExperience) {
         width: initial !important;
         > div {

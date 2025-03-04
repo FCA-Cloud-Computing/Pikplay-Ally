@@ -1,5 +1,5 @@
-import styles from '@/components/competitions/competitions.module.scss'
 import sellerSlugStyles from './sellerSlug.module.scss'
+import styles from '@/components/competitions/competitions.module.scss'
 
 import { useEffect } from 'react'
 import { faDiceFive } from '@fortawesome/free-solid-svg-icons'
@@ -8,6 +8,10 @@ import { Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
 import StarIcon from '@mui/icons-material/Star';
 import { createGlobalStyle } from "styled-components";
+
+// Icons
+import SavingsIcon from '@mui/icons-material/Savings';
+import InfoIcon from '@mui/icons-material/Info';
 
 // Custom
 import { AuthorInformation } from '@/components/authorInformation/AuthorInformation'
@@ -43,7 +47,7 @@ const DefaultSellerPage = (props) => {
     ${sellerInformation.pageBackgroundStyles}
   }`;
 
-  const { setIAMessage } = useIAStore()
+  const { handleUserMessage, setIAMessage } = useIAStore()
 
   const {
     isLoading: isLoadingCompetition,
@@ -67,9 +71,14 @@ const DefaultSellerPage = (props) => {
     <section className="page">
       <AuthorInformation authorInformation={sellerInformation} />
       <div className={styles.menu}>
-        <div className={styles.aboutMe}>
-          <Button color='link' style={aboutHTMLButtonStyle} onClick={() => setIAMessage(aboutHTML)}>
+        <div className={`flex m-b-20 ${sellerSlugStyles.aboutMe}`}>
+          <Button color='link' className='outline' onClick={() => setIAMessage(aboutHTML)}>
+            <InfoIcon />
             Acerca de {name}
+          </Button>
+          <Button color='link' className='outline' onClick={() => handleUserMessage('addTransactionSteps')}>
+            <SavingsIcon />
+            Registrar factura
           </Button>
         </div>
         {/* <div>

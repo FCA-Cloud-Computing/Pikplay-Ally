@@ -544,8 +544,9 @@ main {
     // background-image: url(/images/backgrounds/bg-gamer.jpg);
     background-attachment: fixed;
     &::before {
-      // background: #0d0e32eb;
       background: #0d0e32b5;
+      // background-image: url(/images/backgrounds/general-bg.png);
+      // background: linear-gradient(to bottom, #000000, #2d3d96, #103967);
       content: "";
       height: 100%;
       left: 0;

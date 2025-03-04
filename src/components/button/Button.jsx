@@ -28,6 +28,7 @@ const Button = (props) => {
   return (
     <motion.span
       className={`
+      ButtonComponent
       ${styles.ButtonComponent} 
       ${realistic ? styles.realistic : ''}
       ${shine ? styles.shine : ''}
