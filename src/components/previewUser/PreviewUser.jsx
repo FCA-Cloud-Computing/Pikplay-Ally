@@ -25,6 +25,7 @@ const PreviewUser = () => {
     router.push('#menu')
     setStoreValue('leftMenuBar', { ...leftMenuBar, isShow: !isShowLeftMenu })
   }
+  
   return (
     <div
       className={`
