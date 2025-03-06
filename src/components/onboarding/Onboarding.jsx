@@ -200,13 +200,16 @@ const Onboarding = () => {
             </Link>
             <div className={styles.products}>
               {products && products.map((product, i) => {
-                return <div>
+                return product.images[0].isHome && <div>
                   <Zoom>
                     <img src={product.images[0].url} />
                   </Zoom>
                 </div>
               })}
             </div>
+            {(!products || !products[0].images[0]?.isHome) && <div className={styles.sellerDescription}>
+              {item?.description}
+            </div>}
           </div>
         })}
         {/* <Link href='/conversation-club'>
