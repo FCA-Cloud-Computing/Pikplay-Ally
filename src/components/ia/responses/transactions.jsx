@@ -5,7 +5,7 @@ const link = `https://api.whatsapp.com/send?phone=573204863547&text=¡Hola!, Qui
 const AddTransactionSteps = (credits) =>
   <>
     <p>Registra facturas y obtén Cashback por ellas para luego redimir en productos increíbles.</p>
-    <p>1. Asegurate de tener la factura a la mano 📝</p>
+    <p>1. Asegurate de tener la factura a la mano 📝. Debe verse tu nombre, documento de identidad y monto total</p>
     <p>2. Validaremos la información 🔍</p>
     <p>3. Tendrás tu Cashback listo para utilizar en 3 días habiles 💰</p>
   </>

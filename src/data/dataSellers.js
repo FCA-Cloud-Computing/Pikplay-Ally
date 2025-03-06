@@ -1,6 +1,31 @@
 import { slugify } from '@/lib/utils'
 
 const sellersInformation = {
+  'monster-ink-bq': {
+    authorInformation: {
+      name: 'Monster Ink Barranquilla',
+      slug: 'monster-ink-bq',
+      picture: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fmonster-ink_768x768.jpg?alt=media&token=e045091b-ae98-4fd6-bc65-b727e56b18f1',
+      category: {
+        label: 'Tatuajes',
+        value: 'tatuajes'
+      }
+    },
+    products: [
+      {
+        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2Fgeysha-sombras_768x768.jpg?alt=media&token=5dbf8184-f014-4085-b7a7-7923725eecbb' }]
+      },
+      {
+        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2Ftattoo-realismo-sombras_768x768.jpg?alt=media&token=2688dcb8-61b5-41af-90f1-9fd73a4fd290' }]
+      },
+      {
+        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2Ftatuaje-en-sombras_768x768.jpg?alt=media&token=e2bad5eb-8021-4672-9a13-64065c5cd93c' }]
+      },
+      {
+        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2F442442854_18029969963009396_5863529455428440747_n_768x768.jpg?alt=media&token=4971cd57-d56a-4571-85c2-cfb4dd25f39e' }],
+        price: null,
+      }]
+  },
   'caribe-dev': {
     authorInformation: {
       name: 'Caribe Dev',

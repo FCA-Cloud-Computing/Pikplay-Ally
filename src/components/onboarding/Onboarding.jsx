@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import { height } from '@mui/system'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
+import Zoom from 'react-medium-image-zoom'
 
 // Custom
 import { sellersInformation } from '../../data/dataSellers'
@@ -184,17 +185,29 @@ const Onboarding = () => {
       <h2>Aliados</h2>
       <div className={styles.items}>
         {sellersInformation && Object.keys(sellersInformation).map((key, i) => {
-          const { authorInformation: item } = sellersInformation[key]
-          return <Link href={`/${key}`}>
-            <div className="Card">
-              <img src={item.picture} />
-              <p>
-                <b>{item.name}</b>
-                <div>{item?.category?.label}</div>
-                {item.location}
-              </p>
+          debugger;
+          const { authorInformation: item, products } = sellersInformation[key]
+          return <div className="Card">
+            <Link href={`/${key}`}>
+              <div className={styles.sellerInformation}>
+                <img src={item.picture} />
+                <p>
+                  <b>{item.name}</b>
+                  <div>{item?.category?.label}</div>
+                  {item.location}
+                </p>
+              </div>
+            </Link>
+            <div className={styles.products}>
+              {products && products.map((product, i) => {
+                return <div>
+                  <Zoom>
+                    <img src={product.images[0].url} />
+                  </Zoom>
+                </div>
+              })}
             </div>
-          </Link>
+          </div>
         })}
         {/* <Link href='/conversation-club'>
           <div className="Card">
