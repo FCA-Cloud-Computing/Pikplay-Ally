@@ -13,13 +13,20 @@ const sellersInformation = {
     },
     products: [
       {
-        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2Fgeysha-sombras_768x768.jpg?alt=media&token=5dbf8184-f014-4085-b7a7-7923725eecbb', isHome: true, }]
+        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2Fgeysha-sombras_768x768.jpg?alt=media&token=5dbf8184-f014-4085-b7a7-7923725eecbb', isHome: true }],
+        showPriceHome: true,
+        price: 700000,
+        priceHome: 680
       },
       {
-        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2Ftattoo-realismo-sombras_768x768.jpg?alt=media&token=2688dcb8-61b5-41af-90f1-9fd73a4fd290', isHome: true, }]
+        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2Ftattoo-realismo-sombras_768x768.jpg?alt=media&token=2688dcb8-61b5-41af-90f1-9fd73a4fd290', isHome: true }],
+        showPriceHome: true,
+        price: 700000,
+        priceHome: 680
       },
       {
-        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2Ftatuaje-en-sombras_768x768.jpg?alt=media&token=e2bad5eb-8021-4672-9a13-64065c5cd93c', isHome: true, }]
+        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2Ftatuaje-en-sombras_768x768.jpg?alt=media&token=e2bad5eb-8021-4672-9a13-64065c5cd93c', isHome: true }],
+        showPriceHome: true,
       },
       {
         images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2F442442854_18029969963009396_5863529455428440747_n_768x768.jpg?alt=media&token=4971cd57-d56a-4571-85c2-cfb4dd25f39e' }],

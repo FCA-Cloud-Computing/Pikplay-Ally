@@ -87,12 +87,8 @@
         background-size: contain;
         min-height: 390px;
         overflow: hidden;
-        padding: 70px 0px 0;
+        padding: 40px 0px 0;
         position: relative;
-        // width: 100%;
-        @media screen and (max-width: 480px) {
-            padding: 50px 0px 0;
-        }
         .content_child {
             // display: none;
             // border: 1px solid red;

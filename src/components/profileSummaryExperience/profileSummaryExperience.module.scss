@@ -227,6 +227,18 @@
                 // top: 122px;
             }
         }
+
+        .rankingMessage {
+            background: #00000054;
+            border-radius: 10px;
+            font-size: 12px;
+            margin-top: 40px;
+            padding: 10px;
+            img {
+                display: none;
+                width: 30px;
+            }
+        }
     }
 }
 

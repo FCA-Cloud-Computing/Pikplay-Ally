@@ -32,7 +32,7 @@ const Referrals = (props) => {
                         {credits && <div className={styles.points}>
                             +{formatNumber(credits)} Puntos
                         </div>}
-                        {!credits && <div className="f-r">
+                        {!credits && <div className={styles.inviteButton}>
                             <Button color='red'>
                                 <a href={inviteLink(phone)} target="_BLANK">Invitar</a>
                             </Button>

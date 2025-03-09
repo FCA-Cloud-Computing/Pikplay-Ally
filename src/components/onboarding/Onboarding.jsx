@@ -8,6 +8,7 @@ import { height } from '@mui/system'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
 import Zoom from 'react-medium-image-zoom'
+import ZoomInIcon from '@mui/icons-material/ZoomIn';
 
 // Custom
 import { sellersInformation } from '../../data/dataSellers'
@@ -121,7 +122,7 @@ const Onboarding = () => {
         <small>Abre cada tarjeta para conocer lo que tenemos para ti 🎁</small>
       </h2>
     </div>
-    <div className={styles.items}>
+    <div className={styles.itemsPikplayCards}>
       {
         items.map((item, ind) => {
           const { imageStyle, imageStyle: { height = 200, width = 200 } } = item || {}
@@ -183,9 +184,8 @@ const Onboarding = () => {
 
     <div className={styles.aliados}>
       <h2>Aliados</h2>
-      <div className={styles.items}>
+      <div className={styles.itemsAliados}>
         {sellersInformation && Object.keys(sellersInformation).map((key, i) => {
-          debugger;
           const { authorInformation: item, products } = sellersInformation[key]
           return <div className="Card">
             <Link href={`/${key}`}>
@@ -200,9 +200,14 @@ const Onboarding = () => {
             </Link>
             <div className={styles.products}>
               {products && products.map((product, i) => {
-                return product.images[0].isHome && <div>
+                return product.images[0].isHome && <div className={styles.itemProduct}>
                   <Zoom>
+                    <ZoomInIcon />
                     <img src={product.images[0].url} />
+                    {product?.showPriceHome && <div className={styles.price}>
+                      <label>Redímelo por:</label>
+                      <CoinIcon coins={product.priceHome || product?.price} />
+                    </div>}
                   </Zoom>
                 </div>
               })}

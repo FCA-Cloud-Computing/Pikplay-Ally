@@ -36,7 +36,8 @@ const ProfileSummaryExperience = (props) => {
   const {
     points,
   } = newInfo || {}
-
+  let animatedCoins = null
+  // const [animatedCoins, setAnimatedCoins] = useState(null)
   const [currentCoins, setCurrentCoins] = useState(0)
   const [targetCoins, setTargetCoins] = useState(0)
   const [currentPoints, setCurrentPoints] = useState(0)
@@ -112,9 +113,9 @@ const ProfileSummaryExperience = (props) => {
     if (gainedCoins) {
       const targetNumber = currentCoins + gainedCoins
       setTargetCoins(targetNumber)
-      setTimeout(() => { // Animando los puntos ganados despues de 2 segundos
-        setTargetPoints(currentPoints + gainedPoints)
-      }, 2000)
+      // setTimeout(() => { // Animando los puntos ganados despues de 2 segundos
+      setTargetPoints(currentPoints + gainedPoints)
+      // }, 2000)
     }
   }
 
@@ -123,15 +124,15 @@ const ProfileSummaryExperience = (props) => {
     Promise.allSettled(promisesList)
       .then(([expData, coinsData]) => {
         // debugger;
-        const { expTotal: currentPoints } = expData.value || {}
+        const { currentPikcoins, expTotal: currentPoints } = expData.value || {}
         debugger;
         setCurrentPoints(currentPoints)
-        setCurrentCoins(coinsData.value.coins)
-        validateNewAwards(coinsData.value.coins, currentPoints)
+        setCurrentCoins(currentPikcoins)
+        validateNewAwards(currentPikcoins, currentPoints)
       })
   }, [])
 
-  const animatedCoins = useAnimatedNumber(currentCoins, targetCoins, 2000)
+  // animatedCoins = useAnimatedNumber(currentCoins, targetCoins, 2000)
 
   return (
     <div className={classNames("ProfileSummaryExperience", { [styles.ProfileSummaryExperience]: true })}>
@@ -162,8 +163,12 @@ const ProfileSummaryExperience = (props) => {
               targetPoints,
             }} />
           </div>
-          <CoinIcon coins={animatedCoins} gainedCoins={gainedCoins} hideNumber={false} />
+          <CoinIcon coins={currentCoins} gainedCoins={gainedCoins} hideNumber={false} />
         </div>
+        <p className={styles.rankingMessage}>
+          <img src="/images/icons/ranking-icon.png" />
+            Estas a dos puestos de superar a Victoria en el ranking de la semana
+        </p>
         {showDetails && <div className={styles.right}>
           {/* <div className={styles.fields}>
               <span className={styles.label}>

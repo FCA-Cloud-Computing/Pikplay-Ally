@@ -3,19 +3,22 @@ import styles from "./coinIcon.module.scss";
 import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { motion } from 'framer-motion'
+
+// Custom
+import useAnimatedNumber from '@/hooks/useAnimatedNumber'
 import { formatNumber } from "../../lib/utils";
 
 const CoinIcon = ({
   coins,
   hideNumber = false,
-  initialCoins = 0,
+  initialCoins = 200,
   isLabel,
   gainedCoins,
   multicoin,
   textColor,
 }) => {
-  const prevCountCoins = useRef();
-  const previousCoins = prevCountCoins.current ? prevCountCoins.current : 0;
+  // const prevCountCoins = useRef();
+  // const previousCoins = prevCountCoins.current ? prevCountCoins.current : 0;
 
   const animateValue = (start, end, duration) => {
     let startTimestamp = null;
@@ -31,8 +34,10 @@ const CoinIcon = ({
   };
 
   useEffect(() => {
-    animateValue(previousCoins, initialCoins, 1000);
+    animateValue(0, initialCoins, 1000);
   }, []);
+
+  const animatedCoins = gainedCoins ? useAnimatedNumber(coins, (coins + gainedCoins), 2000) : coins
 
   return (
     <div
@@ -45,7 +50,7 @@ const CoinIcon = ({
         <span
           className={`f-s-14 ${styles.number} number`}
           style={{ color: textColor ? textColor : "#e5961d" }}>
-          {formatNumber(coins)}
+          {formatNumber(animatedCoins)}
         </span>
       </>
       )}

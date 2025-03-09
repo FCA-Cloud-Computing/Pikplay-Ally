@@ -79,7 +79,7 @@ section.Onboarding {
       z-index: 1;
     }
   }
-  .items {
+  .itemsPikplayCards {
     column-gap: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -223,7 +223,7 @@ section.Onboarding {
       color: white;
       display: flex;
       font-size: 14px;
-      margin: 0 10px;
+      margin: 20px 10px 0px;
       text-align: center;
       width: 100%;
       a {
@@ -240,15 +240,41 @@ section.Onboarding {
       }
       .products {
         display: flex;
+        height: max-content;
         margin-left: 20px;
         overflow-x: scroll;
-        img {
-          border-radius: 10px;
-          height: auto;
-          margin-right: 6px;
-          max-height: 170px;
-          max-width: 170px;
-          width: auto;
+        padding-bottom: 2px;
+        .itemProduct {
+          position: relative;
+          svg {
+            left: 4px;
+            position: absolute;
+            top: 4px;
+            opacity: 0.5;
+          }
+          img {
+            border-radius: 10px;
+            height: auto;
+            margin-right: 6px;
+            max-height: 170px;
+            max-width: 170px;
+            width: auto;
+          }
+          .price {
+            background: #646464de;
+            border-radius: 10px;
+            bottom: 8px;
+            padding: 2px 0px 2px 2px;
+            position: absolute;
+            left: 0px;
+            transform: scale(0.7);
+            label {
+              left: 0;
+              position: absolute;
+              top: -20px;
+              width: max-content;
+            }
+          }
         }
         &::-webkit-scrollbar-thumb {
           background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Degradado facherito */
