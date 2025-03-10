@@ -209,10 +209,11 @@
     }
   }
 
-  .close_button {
-    position: fixed;
-    right: 6px;
-    top: 6px;
+  .closeButton {
+    bottom: 60px;
+    left: 10px;
+    position: absolute;
+    top: initial;
   }
 
   // .elementToCloseBgBlack {

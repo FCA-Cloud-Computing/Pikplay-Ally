@@ -46,7 +46,7 @@ const CoinIcon = ({
         // [styles.animatedZoom]: true,
         // [styles.animated]: true
       })}>
-      {!hideNumber && (<>
+      {!hideNumber && animatedCoins && (<>
         <span
           className={`f-s-14 ${styles.number} number`}
           style={{ color: textColor ? textColor : "#e5961d" }}>

@@ -55,9 +55,6 @@ const PreviewUser = () => {
           {isShowLeftMenu && <>
             <MenuMobileOptions />
             <UserNotifications />
-            <Button realistic className={styles.close_button} color="blue" onClick={() => {
-              setStoreValue('leftMenuBar', { isShow: false })
-            }}>Cerrar</Button>
           </>}
           {/* <div className={styles.elementToCloseBgBlack} onClick={() => setStoreValue('leftMenuBar', false)}></div> */}
           {leftBottomMenuContent}

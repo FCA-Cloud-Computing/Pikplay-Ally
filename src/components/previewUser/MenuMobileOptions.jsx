@@ -8,6 +8,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import useCommonStore from '../../hooks/commonStore'
 import { useIAStore } from '../ia/IAstore'
+import Button from '../button/Button'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const MenuMobileOptions = () => {
   const router = useRouter()
@@ -125,6 +127,12 @@ const MenuMobileOptions = () => {
       </motion.ol>
     </>
     }
+    <Button className={styles.closeButton} onClick={() => {
+      setStoreValue('leftMenuBar', { isShow: false })
+    }}>
+      <ArrowBackIosIcon />
+      Cerrar menu
+    </Button>
   </motion.div >
 }
 
