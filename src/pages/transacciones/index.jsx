@@ -14,6 +14,8 @@ import useSystemStore from '@/hooks/storeSystem';
 import { FormAllied } from '@/components/transactions/FormAllied';
 import ModalTransactions from '@/components/modal/ModalTransactions';
 
+export const revalidate = 20;
+
 function Transactions() {
   const { transactions, getTransactionsStore } = useTransactionsStore();
   const { userLogged } = useSystemStore();
@@ -26,11 +28,6 @@ function Transactions() {
   useEffect(() => {
     getTransactionsStore();
   }, [getTransactionsStore]);
-
-  const totalCredits = transactions.reduce(
-    (acc, curr) => acc + curr.credits,
-    0
-  );
 
   const { setStoreValue } = useSystemStore()
 

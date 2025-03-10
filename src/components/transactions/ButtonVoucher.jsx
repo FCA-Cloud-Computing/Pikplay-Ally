@@ -6,10 +6,8 @@ import { useState } from "react"
 import uploadFile from "../../services/uploadFile"
 import { toast } from "react-toastify"
 import { Button } from "@mui/material"
-import { textTransform } from "@mui/system"
 
 export const ButtonVoucher = ({ uid, transactionId }) => {
-  // Botón para subir el comprobante de pago de la transacción
   const [fileUploaded, setFileUploaded] = useState(false)
 
   const handleChange = async (event) => {
@@ -20,8 +18,7 @@ export const ButtonVoucher = ({ uid, transactionId }) => {
       return
     }
     setFileUploaded(true)
-    console.log(file)
-    // await uploadFile('invoices', file.current, `${uid}/${transactionId}`, transactionId);
+    await uploadFile('invoices', file, `${uid}/${transactionId}`, transactionId);
   }
 
   return (
