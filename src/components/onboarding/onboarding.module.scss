@@ -246,11 +246,14 @@ section.Onboarding {
         padding-bottom: 2px;
         .itemProduct {
           position: relative;
-          svg {
+          .zoomIcon {
             left: 4px;
             position: absolute;
             top: 4px;
             opacity: 0.5;
+            pointer-events: none;
+            svg {
+            }
           }
           img {
             border-radius: 10px;

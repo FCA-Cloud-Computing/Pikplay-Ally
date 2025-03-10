@@ -26,19 +26,18 @@
   &.sticked {
   }
   .slogan {
-    span {
-      color: #575656;
-      display: block;
-      font-size: 12px;
-      float: left;
-      margin-left: 10px;
-      @media screen and (max-width: $tablet) {
-        font-size: 10px;
-      }
-      @media screen and (max-width: 480px) {
-        float: none;
-      }
-    }
+    bottom: 2px;
+    color: #3095b3;
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    left: 150px;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    text-shadow: 1px 1px #cdcdcdde;
+    width: 190px;
   }
 
   > ul {
@@ -62,18 +61,18 @@
       margin: 0;
     }
     .beta {
-      background: #55acc4;
+      background: #55c4b4;
       border-radius: 4px;
-      border: 1px #2c859d solid;
+      // border: 1px #2c859d solid;
       color: #19596b;
       font-size: 12px;
       font-weight: 600;
-      left: 180px;
-      margin: 0px auto 0px;
+      left: 4px;
+      // margin: 0px auto 0px;
       padding: 0 2px 1px;
       position: absolute;
-      right: 0px;
-      top: 0px;
+      // right: 0px;
+      top: 28px;
       width: max-content;
     }
   }
@@ -81,19 +80,9 @@
   .logo {
     cursor: pointer;
     // float: left;
-    margin: 0 0 0 10px;
+    // margin: 0 0 0 10px;
+    margin: -4px 30px 4px 0px;
     max-width: 100%;
-    @media screen and (min-width: 1024px) {
-      &.desktop {
-        display: block;
-      }
-    }
-    @media screen and (max-width: $tablet) {
-      width: 160px;
-      &.mobile {
-        display: block;
-      }
-    }
     &.juancho {
       height: 60px;
       width: auto;

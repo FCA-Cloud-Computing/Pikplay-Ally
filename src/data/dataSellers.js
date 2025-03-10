@@ -187,7 +187,7 @@ const sellersInformation = {
     competitions: ['sorteo-paco-rabanne-one-million-1-million-tradicional', 'cadena-oro-italiano-18k-60cm'],
     products: [{
       images: [
-        { url: '/images/users/le-fragance/products/one-million.webp' }
+        { url: '/images/users/le-fragance/products/one-million.webp' },
       ],
       isNew: true,
       title: 'Paco Rabanne One million 1 Million Tradicional EDT 200 ml para hombre',
@@ -196,10 +196,16 @@ const sellersInformation = {
       cashbackAvailable: true,
       slug: 'paco-rabanne-one-million-1-million-tradicional',
     },
-    {
+    { // Product
       images: [
-        { url: '/images/users/le-fragance/products/acgua di gio.avif' }
+        {
+          isHome: true,
+          url: 'https://exdtvcqvfop.exactdn.com/wp-content/uploads/Acqua-di-Gio-Profondo-de-Giorgio-Armani-para-hombre-flyer-2.jpg?strip=all&lossy=1&ssl=1'
+          // url: '/images/users/le-fragance/products/acgua di gio.avif',
+        },
       ],
+      showPriceHome: true,
+      priceHome: 680,
       isNew: true,
       title: 'Acgua di gio',
       quantity: 5,

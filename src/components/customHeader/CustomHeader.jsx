@@ -35,11 +35,9 @@ const CustomHeader = React.memo(() => {
               src='/images/logos/logo.svg'
               width={160}
             />
-            {/* <div className={styles.slogan}>
-                <span>
-                  Compra y vende como <b>Gamer</b>
-                </span>
-              </div> */}
+            <div className={styles.slogan}>
+              Compra y vende subiendo de nivel
+            </div>
           </motion.div>
         </Link>
         <span className={styles.beta}>Beta</span>

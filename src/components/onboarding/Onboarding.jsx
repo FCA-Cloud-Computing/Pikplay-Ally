@@ -18,6 +18,7 @@ import MESSAGES from '../../consts/messages'
 import useCommonStore from '../../hooks/commonStore'
 import { getUsersSrv, saveLeadSrv, } from '../../services/user/userService'
 import { useIAStore } from '../ia/IAstore'
+import OurServices from '../ourServices/OurServices'
 
 const Onboarding = () => {
   const { ONBOARDING_LEAD_DUPLICATED, ONBOARDING_LEAD_SUCCESS } = MESSAGES
@@ -202,7 +203,9 @@ const Onboarding = () => {
               {products && products.map((product, i) => {
                 return product.images[0].isHome && <div className={styles.itemProduct}>
                   <Zoom>
-                    <ZoomInIcon />
+                    <span className={styles.zoomIcon}>
+                      <ZoomInIcon />
+                    </span>
                     <img src={product.images[0].url} />
                     {product?.showPriceHome && <div className={styles.price}>
                       <label>Redímelo por:</label>
@@ -266,6 +269,11 @@ const Onboarding = () => {
           </p>
         </div> */}
       </div>
+    </div>
+
+    <div className={styles.services}>
+      <h2>Te ofrecemos</h2>
+      <OurServices />
     </div>
   </section>
 }
