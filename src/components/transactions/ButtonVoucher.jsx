@@ -3,12 +3,16 @@
 import { styled } from "@mui/material/styles"
 import CloudUploadIcon from "@mui/icons-material/CloudUpload"
 import { useState } from "react"
-import uploadFile from "../../services/uploadFile"
 import { toast } from "react-toastify"
 import { Button } from "@mui/material"
 
+// Custom
+import { useTransactionsStore } from "@/store/transactions.store"
+import uploadFile from "../../services/uploadFile"
+
 export const ButtonVoucher = ({ uid, transactionId }) => {
   const [fileUploaded, setFileUploaded] = useState(false)
+  const { getTransactionsStore } = useTransactionsStore()
 
   const handleChange = async (event) => {
     const file = event.target.files[0]
@@ -19,6 +23,9 @@ export const ButtonVoucher = ({ uid, transactionId }) => {
     }
     setFileUploaded(true)
     await uploadFile('invoices', file, `${uid}/${transactionId}`, transactionId);
+    toast("Archivo cargado correctamente.")
+    // Aquí llamar al servicio de las transacciones
+    getTransactionsStore()
   }
 
   return (

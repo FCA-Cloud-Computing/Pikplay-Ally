@@ -10,7 +10,7 @@ async function uploadFileSrv(
   transactionId
 ) {
   try {
-    debugger;
+    // debugger;
     // Crea una referencia al archivo en el storage
     const storageRef = ref(storage, `${entity}/${folder}/${file.name}`);
     // Sube el archivo

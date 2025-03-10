@@ -31,7 +31,7 @@
     display: block;
     font-size: 11px;
     font-weight: 500;
-    left: 150px;
+    left: 0px;
     margin: 0 auto;
     position: absolute;
     right: 0;
@@ -61,18 +61,15 @@
       margin: 0;
     }
     .beta {
-      background: #55c4b4;
+      background: #55c4b463;
       border-radius: 4px;
-      // border: 1px #2c859d solid;
-      color: #19596b;
+      color: #19596bb8;
       font-size: 12px;
       font-weight: 600;
       left: 4px;
-      // margin: 0px auto 0px;
       padding: 0 2px 1px;
       position: absolute;
-      // right: 0px;
-      top: 28px;
+      top: 32px;
       width: max-content;
     }
   }
@@ -81,7 +78,8 @@
     cursor: pointer;
     // float: left;
     // margin: 0 0 0 10px;
-    margin: -4px 30px 4px 0px;
+    // margin: -4px 30px 4px 0px;
+    margin: -4px 0 8px;
     max-width: 100%;
     &.juancho {
       height: 60px;
