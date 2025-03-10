@@ -1,7 +1,10 @@
 import React from 'react';
+import Link from 'next/link';
+
+// Custom
 import Button from '../../button/Button'
 import CoinIcon from '../../coinIcon/CoinIcon';
-import useSystemStore from '../../../hooks/storeSystem';
+import useCommonStore from '../../../hooks/commonStore';
 
 const Height = '160px'
 const HtmlMessage = <div style={{
@@ -10,33 +13,31 @@ const HtmlMessage = <div style={{
         column-gap: 10px;
         display: flex;
         justify-content: center;
+        margin: 0 auto;
         width: max-content;
         `}}>
     Pikcoins <CoinIcon hideNumber />
 </div>
 
-const Message = () => <div>
-    Claro, te explico. <br />
-    <b>Pikcoins</b> son los creditos que puedes ganar por:<br /><br />
+const Message = () => <p>
+    <b>Pikcoins ó Cashback</b> son los créditos que puedes ganar por:<br /><br />
     <li>Compras en aliados</li>
     <li>Participar en los eventos de Pikplay por redes sociales y por la web</li>
     <li>Completar desafios semanales</li>
     <li>Quedar en el TOP del ranking de tus amigos</li>
-    <p>Podrás utilizar estos creditos redimiendolos en compras de nuestros aliados o duplicarlos jugando con otros usuarios dentro de Pikplay </p>`
-</div>
+    <p>Podrás utilizar estos créditos redimiendolos en compras de nuestros aliados o duplicarlos jugando con otros usuarios dentro de Pikplay </p>
+</p>
 
 const Expresion = 'loved'
 const Options = ({ handleUserMessage, set }) => {
-    const { isOnboardingProcess } = useSystemStore()
-    // debugger;
+    const { isOnboardingProcess } = useCommonStore()
 
     return <>
-        {/* <Button color='transparent'>
-            Saber más de Pikcoins
-        </Button> */}
-        {!isOnboardingProcess && <Button color='transparent' onClick={() => handleUserMessage('inicio', set)}>
-            Volver al inicio
-        </Button>}
+        <Button color='link'>
+            <Link href='/redimir?paco=que-puedo-redimir'>
+                ¿Que puedo redimir con Pikcoins?
+            </Link>
+        </Button>
     </>
 }
 

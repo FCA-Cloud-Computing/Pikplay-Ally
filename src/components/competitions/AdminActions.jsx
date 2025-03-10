@@ -7,7 +7,7 @@ import BottomSheets from '../bottomSheets/BottomSheets'
 import { PieChart } from '@mui/x-charts'
 import { pieArcLabelClasses } from '@mui/x-charts/PieChart'
 import BuildIcon from '@mui/icons-material/Build';
-import useSystemStore from '@/hooks/storeSystem'
+import useCommonStore from '@/hooks/commonStore'
 
 const Grafica = ({
   freeNumbers = 10,
@@ -46,7 +46,7 @@ const AdminActions = ({
   setShowMembersNames
 }) => {
   const [isShowOptions, setIsShowOptions] = useState(false)
-  const { setStoreValue } = useSystemStore()
+  const { setStoreValue } = useCommonStore()
 
   useEffect(() => {
     setStoreValue('leftBottomMenuContent', <button className="btnLeftBottomMenu" onClick={() => setIsShowOptions(true)}>

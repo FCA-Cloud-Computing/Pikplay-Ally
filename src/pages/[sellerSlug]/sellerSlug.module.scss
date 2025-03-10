@@ -5,3 +5,18 @@
         position: relative;
     }
 }
+
+.aboutMe {
+    margin: 20px 0 0 0;
+    :global(.ButtonComponent) {
+        width: 200px;
+        button {
+            color: white;
+            text-decoration: none;
+            text-align: left;
+            svg {
+                margin-right: 6px;
+            }
+        }
+    }
+}

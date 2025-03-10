@@ -12,7 +12,7 @@ import classNames from 'classnames'
 import Image from 'next/image'
 
 // Custom
-import useSystemStore from '../../hooks/storeSystem'
+import useCommonStore from '../../hooks/commonStore'
 import CashbackTag from './cashbackTag/CashbackTag'
 import Author from './Author'
 import { formatNumber } from '../../lib/utils'
@@ -46,7 +46,7 @@ const ItemCard = (props) => {
   let like = null
   if (usuario) like = likes ? !!likes.find(like => like == usuario) : false
   const isDestacada = publicationId == 1 ? true : false
-  const { loggedUser } = useSystemStore()
+  const { loggedUser } = useCommonStore()
   const shareLink = `https://api.whatsapp.com/send?phone=&text=Revisa%20esta%20publicacion%20en%20Pikplay%20que%20esta%20potente%20https://pikplay.com.co/${user.slug}%23${slug}`
 
   return (
@@ -104,7 +104,7 @@ const ItemCard = (props) => {
             Con esta compra obtienes <b>{(price * 0.01) / 100} Points</b></div>}
           {/* Si no tiene precio */}
           {cashbackAvailable && !price && <div className={styles.cashbackInformation}>
-            Preguntale al vendedor sobre los creditos por esta compra</div>}
+            Preguntale al vendedor sobre los créditos por esta compra</div>}
           {
             <div className={styles.descripcion}>
               <div className={styles.icons}>

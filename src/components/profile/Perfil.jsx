@@ -26,7 +26,7 @@ import classNames from 'classnames'
 // import NotificationsNewIcon from '../notificationsNewIcon/NotificationsNewIcon'
 
 // Custom
-import useSystemStore from '../../hooks/storeSystem'
+import useCommonStore from '../../hooks/commonStore'
 import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummaryExperience'
 import IACharacter from '../ia/IACharacter'
 import Button from '../button/Button'
@@ -52,7 +52,7 @@ const Interface = ({
   const [isEditProfile, setIsEditProfile] = useState(false)
   const [currentExp, setCurrentExp] = useState(0)
   const [widthBar, setWidthBar] = useState(0)
-  const { newNotifications, perfilPage: { messageIA }, setStoreValue } = useSystemStore(state => state)
+  const { newNotifications, perfilPage: { messageIA }, setStoreValue } = useCommonStore(state => state)
   const { name: userName } = userLogged
   const [currentPikcoins, setCurrentPikcoins] = useState(0)
   const steps = [
@@ -126,7 +126,6 @@ const Interface = ({
         setCurrentPikcoins(currentPikcoins)
       })
       .catch(err => {
-        debugger;
       })
   }, [])
 
@@ -194,7 +193,7 @@ const Interface = ({
           &nbsp;{userName}
         </motion.span>!, <br />
         <span>este mes has acumulado
-          &nbsp;<CoinIcon coins={currentPikcoins} />
+          &nbsp;{currentPikcoins} Pikcoins
         </span>
         <br />
         <span>
@@ -202,7 +201,7 @@ const Interface = ({
         </span>
       </p>
       <ProfileSummaryExperience
-        isEditProfile={isEditProfile}
+        isEditProfile
         setIsEditProfile={setIsEditProfile}
         showDetails
       />

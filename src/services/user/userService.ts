@@ -107,6 +107,11 @@ const getNotificationsSrv = async (ctx) => {
   return data;
 };
 
+const getCoinsSrv = async (ctx) => {
+  const data = await get(ctx, BASE_URL + `/coins`);
+  return data;
+};
+
 const getReferralsSrv = async (ctx) => {
   const data = await get(ctx, BASE_URL + `/referrals`);
   return data;
@@ -114,6 +119,7 @@ const getReferralsSrv = async (ctx) => {
 
 export {
   // getTopMessagesSrv,
+  getCoinsSrv,
   getExperiencesSrv,
   getNotificationsSrv,
   getReferralsSrv,

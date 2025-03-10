@@ -16,7 +16,7 @@ import { useState } from "react"
 import { getAccessibilityPropsTabs } from "@/lib/utils"
 import { schema } from "@/models/form.model"
 import { useTransactionsStore } from "@/store/transactions.store"
-import useSystemStore from "@/hooks/storeSystem"
+import useCommonStore from "@/hooks/commonStore"
 import Button from "@/components/button/Button"
 import { InputTransactions } from "./InputTransactions"
 import { TabPanel } from "@/components/tabs/Tab"
@@ -40,7 +40,7 @@ export function FormAllied() {
     },
   })
   const { addTransactionStore } = useTransactionsStore()
-  const { userLogged } = useSystemStore()
+  const { userLogged } = useCommonStore()
   const theme = useTheme()
   const [value, setValue] = useState(0)
   const [checked, setChecked] = useState(true)

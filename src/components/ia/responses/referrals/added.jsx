@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../../../button/Button'
 import Link from 'next/link';
-import useSystemStore from '../../../../hooks/storeSystem';
+import useCommonStore from '../../../../hooks/commonStore';
 
 const HTML = <>
   {/* <img src="/images/icons/ranking-icon.png" style={{ margin: '20px auto 0', width: '140px' }} /> */}
@@ -9,7 +9,7 @@ const HTML = <>
 
 const Message = () => <p>Ir a tu perfil</p>
 const Options = ({ handleUserMessage, set }) => {
-  const { userLogged } = useSystemStore()
+  const { userLogged } = useCommonStore()
   // alert(JSON.stringify(userLogged))
 
   return <>

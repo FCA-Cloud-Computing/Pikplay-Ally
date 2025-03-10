@@ -64,7 +64,7 @@ function CreditRedemptionPage() {
           <img className={styles.giftIcon} src="/images/icons/gift-2.svg" alt="gift" />
           <h1>¡Redime tus Pikcoins!</h1>
           <p>
-            Puedes redimir tus creditos por bonos, descuentos y premios en
+            Puedes redimir tus créditos por bonos, descuentos y premios en
             establecimientos afiliados.
           </p>
         </section>

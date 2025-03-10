@@ -10,7 +10,7 @@ import { Alert } from '@mui/material';
 import { ListTransactions } from '../../components/transactions';
 import Layout from '../../components/layout/Layout';
 import { useTransactionsStore } from '../../store/transactions.store';
-import useSystemStore from '@/hooks/storeSystem';
+import useCommonStore from '@/hooks/commonStore';
 import { FormAllied } from '@/components/transactions/FormAllied';
 import ModalTransactions from '@/components/modal/ModalTransactions';
 
@@ -18,7 +18,7 @@ export const revalidate = 20;
 
 function Transactions() {
   const { transactions, getTransactionsStore } = useTransactionsStore();
-  const { userLogged } = useSystemStore();
+  const { userLogged } = useCommonStore();
   const image = '';
   const descripcion = '';
   const title = 'Transacciones';
@@ -29,7 +29,12 @@ function Transactions() {
     getTransactionsStore();
   }, [getTransactionsStore]);
 
-  const { setStoreValue } = useSystemStore()
+  const totalCredits = transactions.reduce(
+    (acc, curr) => acc + curr.credits,
+    0
+  );
+
+  const { setStoreValue } = useCommonStore()
 
   useEffect(() => {
     setStoreValue('leftBottomMenuContent', <button className="btnLeftBottomMenu" onClick={() => setIsModalAddTransactionOpen(true)}>

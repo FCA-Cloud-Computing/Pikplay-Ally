@@ -112,13 +112,13 @@ section.Onboarding {
       &:nth-of-type(1) {
         overflow: hidden;
         .html {
-          bottom: 20px;
+          bottom: 44px;
           position: absolute;
         }
         img {
           color: transparent;
           height: 240px;
-          left: -50px;
+          left: 0px;
           max-height: initial !important;
           max-width: initial;
           position: relative;
@@ -221,15 +221,50 @@ section.Onboarding {
       box-shadow: inset 1px 1px 2px 0px #c9c9c9;
       box-shadow: initial;
       color: white;
+      display: flex;
       font-size: 14px;
       margin: 0 10px;
       text-align: center;
-      width: 120px;
-      b {
-        display: block;
+      width: 100%;
+      a {
+        color: white;
       }
-      img {
-        border-radius: 50%;
+      .sellerInformation {
+        width: 100px;
+        b {
+          display: block;
+        }
+        img {
+          border-radius: 50%;
+        }
+      }
+      .products {
+        display: flex;
+        margin-left: 20px;
+        overflow-x: scroll;
+        img {
+          border-radius: 10px;
+          height: auto;
+          margin-right: 6px;
+          max-height: 170px;
+          max-width: 170px;
+          width: auto;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Degradado facherito */
+          border-radius: 5px;
+        }
+        &::-webkit-scrollbar {
+          width: 2px; /* Para vertical */
+          height: 2px; /* Para horizontal */
+        }
+        &::-webkit-scrollbar-track {
+          background: #740e9f; /* Fondo oscuro */
+          border-radius: 5px;
+        }
+      }
+      .sellerDescription {
+        text-align: left;
       }
     }
   }

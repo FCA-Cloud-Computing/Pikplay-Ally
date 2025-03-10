@@ -493,15 +493,6 @@ span.MuiBadge-badge {
   }
 }
 
-@keyframes nprogress-spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .f-s-1e {
   font-size: 1em;
 }
@@ -553,8 +544,9 @@ main {
     // background-image: url(/images/backgrounds/bg-gamer.jpg);
     background-attachment: fixed;
     &::before {
-      // background: #0d0e32eb;
       background: #0d0e32b5;
+      // background-image: url(/images/backgrounds/general-bg.png);
+      // background: linear-gradient(to bottom, #000000, #2d3d96, #103967);
       content: "";
       height: 100%;
       left: 0;
@@ -934,9 +926,10 @@ svg.icon {
 a {
   color: $secundary-color;
   text-decoration: none;
-  &.text-ul {
-    text-decoration: underline;
-  }
+}
+
+.text-ul {
+  text-decoration: underline;
 }
 
 .image-gallery-thumbnails-wrapper {
@@ -1000,40 +993,10 @@ a {
   }
 }
 
-@keyframes shine {
-  0% {
-    left: -100px;
-  }
-  20% {
-    left: 100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
 .animatedZoom {
   // Animar un elemento ampliando y reduciendo su tamaño con transición
   animation: animatedZoom 3s infinite ease-in-out alternate-reverse;
   transform: scale(1, 1);
-}
-
-@keyframes animatedZoom {
-  0% {
-    transform: scale(0.5, 0.5);
-  }
-  20% {
-    transform: scale(1.2, 1.2);
-  }
-  40% {
-    transform: scale(0.8, 0.8);
-  }
-  60% {
-    transform: scale(1.1, 1.1);
-  }
-  60% {
-    transform: scale(1, 1);
-  }
 }
 
 .MuiTabs-scroller {
@@ -1061,11 +1024,68 @@ a {
   animation: rotar 20s linear infinite; /* 2s de duración, animación infinita */
 }
 
+// General styles
+.leagueBox {
+  display: block;
+  background: linear-gradient(#f4c376, #ba7821);
+  border-radius: 4px;
+  font-weight: 400;
+  margin-top: 2px;
+  padding: 0px 6px 2px;
+  text-transform: capitalize;
+  width: max-content;
+  &.plate {
+    background: linear-gradient(#f4c376, #ba7821);
+    color: #000;
+  }
+}
+
+// Animations
+
 @keyframes rotar {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes nprogress-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100px;
+  }
+  20% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes animatedZoom {
+  0% {
+    transform: scale(0.5, 0.5);
+  }
+  20% {
+    transform: scale(1.2, 1.2);
+  }
+  40% {
+    transform: scale(0.8, 0.8);
+  }
+  60% {
+    transform: scale(1.1, 1.1);
+  }
+  60% {
+    transform: scale(1, 1);
   }
 }

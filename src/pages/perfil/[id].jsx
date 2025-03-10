@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 import { useContext, useEffect, useState } from 'react'
 // import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
-import useSystemStore from '../../hooks/storeSystem'
+import useCommonStore from '../../hooks/commonStore'
 import { validateTokenSrv, getExperiencesSrv, getUsersSrv, getReferralsSrv } from '../../services/user/userService'
 
 const PerfilPage = props => {
@@ -19,7 +19,7 @@ const PerfilPage = props => {
   const url = 'https://pikplay.co/perfil'
   const router = useRouter()
   const showSavedMessage = !!Object.keys(router.query).find(x => x == 'updated')
-  const { userLogged, setStoreValue } = useSystemStore()
+  const { userLogged, setStoreValue } = useCommonStore()
   const [userDataUpdated, setUserData] = useState({
     ...userLogged,
   })

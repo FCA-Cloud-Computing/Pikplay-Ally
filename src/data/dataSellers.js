@@ -1,6 +1,31 @@
 import { slugify } from '@/lib/utils'
 
 const sellersInformation = {
+  'monster-ink-bq': {
+    authorInformation: {
+      name: 'Monster Ink Barranquilla',
+      slug: 'monster-ink-bq',
+      picture: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fmonster-ink_768x768.jpg?alt=media&token=e045091b-ae98-4fd6-bc65-b727e56b18f1',
+      category: {
+        label: 'Tatuajes',
+        value: 'tatuajes'
+      }
+    },
+    products: [
+      {
+        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2Fgeysha-sombras_768x768.jpg?alt=media&token=5dbf8184-f014-4085-b7a7-7923725eecbb', isHome: true, }]
+      },
+      {
+        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2Ftattoo-realismo-sombras_768x768.jpg?alt=media&token=2688dcb8-61b5-41af-90f1-9fd73a4fd290', isHome: true, }]
+      },
+      {
+        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2Ftatuaje-en-sombras_768x768.jpg?alt=media&token=e2bad5eb-8021-4672-9a13-64065c5cd93c', isHome: true, }]
+      },
+      {
+        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2F442442854_18029969963009396_5863529455428440747_n_768x768.jpg?alt=media&token=4971cd57-d56a-4571-85c2-cfb4dd25f39e' }],
+        price: null,
+      }]
+  },
   'caribe-dev': {
     authorInformation: {
       name: 'Caribe Dev',
@@ -12,7 +37,7 @@ const sellersInformation = {
       }
     },
     products: [{
-      images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F159%2Fevento_768x768.png?alt=media&token=fa7674ba-b121-4ce9-9a47-70ea8da0fc2f' }],
+      images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F159%2Fpublications%2Fcaribe-conf-entrada_768x768.jpg?alt=media&token=4f2cbd7b-3f78-44f8-8d31-25ebc191717b', isHome: true }],
       price: 45000,
       title: 'CaribeConf 2025',
 
@@ -20,6 +45,7 @@ const sellersInformation = {
   },
   'mass-publicidad': {
     authorInformation: {
+      description: '🟠 Impresión Digital, Gran Formato, Souvenirs ⚫ Diseño Grafico',
       instagram: 'https://www.instagram.com/masspublicidad_/',
       name: 'Mass Publicidad',
       picture: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F157%2Fmass_publicidad_768x768.jpg?alt=media&token=6a0ab14a-9dbf-411e-914a-41674a6e4759',
@@ -56,7 +82,7 @@ const sellersInformation = {
     products: [
       {
 
-        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/products%2F146%2Fcurso_photo.jpg?alt=media&token=2ff2c6bf-1532-4667-9f35-ee2afda19fea' }],
+        images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/products%2F146%2Fcurso_photo.jpg?alt=media&token=2ff2c6bf-1532-4667-9f35-ee2afda19fea', isHome: true, }],
         title: 'Curso de Photoshop De Cero a Intermedio',
         price: 80000,
         buttonText: 'Asegurar mi cupo'

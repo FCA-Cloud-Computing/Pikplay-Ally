@@ -6,7 +6,7 @@ import CoinIcon from '../coinIcon/CoinIcon'
 import { slugify } from '../../lib/utils'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import useSystemStore from '../../hooks/storeSystem'
+import useCommonStore from '../../hooks/commonStore'
 import { useIAStore } from '../ia/IAstore'
 
 const MenuMobileOptions = () => {
@@ -17,7 +17,7 @@ const MenuMobileOptions = () => {
     setStoreValue,
     userLogged,
     userLoggedOriginal
-  } = useSystemStore((state => state))
+  } = useCommonStore((state => state))
   const { name, coins } = userLogged
   const {
     handleUserMessage,

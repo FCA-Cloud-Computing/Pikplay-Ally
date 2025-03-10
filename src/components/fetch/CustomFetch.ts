@@ -22,12 +22,10 @@ const CustomFetch = () => {
       // if (!response.ok) {
       //   throw new Error(`Algo paso :(`);
       // }
-      // debugger;
       // return response;
 
       const data = await response.json();
       if (data.statusCode == 500) {
-        // debugger;
         return {
           data: [],
           message: 'Error al obtener datos desde el servicio',
@@ -38,7 +36,6 @@ const CustomFetch = () => {
       const resp = convertResponse(data);
       return resp;
     } catch (error) {
-      // debugger;
       console.error(`Error al obtener datos desde el servicio para la ruta ${path} method GET}`);
       console.log(error);
       throw error;

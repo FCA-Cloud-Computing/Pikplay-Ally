@@ -46,10 +46,13 @@
   .number {
     border-radius: 5px;
     display: inline-block;
+    font-size: 24px;
     font-weight: bold;
     height: 20px;
     margin: 0 5px 0 5px;
     position: relative;
+    text-shadow: 1px 1px #000;
+    top: -4px;
   }
 
   label {

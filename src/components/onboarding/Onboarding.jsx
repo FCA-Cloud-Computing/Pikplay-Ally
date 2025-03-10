@@ -7,24 +7,25 @@ import { motion } from 'framer-motion'
 import { height } from '@mui/system'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
+import Zoom from 'react-medium-image-zoom'
 
 // Custom
 import { sellersInformation } from '../../data/dataSellers'
 import Button from '../button/Button'
 import CoinIcon from '../coinIcon/CoinIcon'
 import MESSAGES from '../../consts/messages'
-import useSystemStore from '../../hooks/storeSystem'
+import useCommonStore from '../../hooks/commonStore'
 import { getUsersSrv, saveLeadSrv, } from '../../services/user/userService'
 import { useIAStore } from '../ia/IAstore'
 
 const Onboarding = () => {
   const { ONBOARDING_LEAD_DUPLICATED, ONBOARDING_LEAD_SUCCESS } = MESSAGES
-  const { setStoreValue } = useSystemStore()
+  const { setStoreValue } = useCommonStore()
   const [phoneNumber, setPhoneNumber] = useState("")
   const items = [
     {
       background: "https://i.pinimg.com/564x/f4/d4/b9/f4d4b991d2bccaf2202b8a07bae108de.jpg",
-      html: <>¿Que es <span className={styles.yellow}>Pikplay</span>?</>,
+      html: <>¿Qué es <br /><span className={styles.yellow}>Pikplay</span>?</>,
       image: "/images/ia/character-full.svg",
       isCompleted: true,
       messageCode: 'onboarding',
@@ -111,7 +112,7 @@ const Onboarding = () => {
 
   return <section className={`page ${styles.Onboarding}`}>
     <Link href="/caribe-dev">
-    {/* Caribe Conf 2025 */}
+      {/* Caribe Conf 2025 */}
       <Image className={styles.bannerCaribeConf2025} src="images/banners/banner-caribe-conf-2025.jpg" alt="Banner Caribe Conf 2025" height="100" width="420" />
     </Link>
     <div className={styles.titleContent}>
@@ -184,17 +185,32 @@ const Onboarding = () => {
       <h2>Aliados</h2>
       <div className={styles.items}>
         {sellersInformation && Object.keys(sellersInformation).map((key, i) => {
-          const { authorInformation: item } = sellersInformation[key]
-          return <Link href={`/${key}`}>
-            <div className="Card">
-              <img src={item.picture} />
-              <p>
-                <b>{item.name}</b>
-                <div>{item?.category?.label}</div>
-                {item.location}
-              </p>
+          debugger;
+          const { authorInformation: item, products } = sellersInformation[key]
+          return <div className="Card">
+            <Link href={`/${key}`}>
+              <div className={styles.sellerInformation}>
+                <img src={item.picture} />
+                <p>
+                  <b>{item.name}</b>
+                  <div>{item?.category?.label}</div>
+                  {item.location}
+                </p>
+              </div>
+            </Link>
+            <div className={styles.products}>
+              {products && products.map((product, i) => {
+                return product.images[0].isHome && <div>
+                  <Zoom>
+                    <img src={product.images[0].url} />
+                  </Zoom>
+                </div>
+              })}
             </div>
-          </Link>
+            {(!products || !products[0].images[0]?.isHome) && <div className={styles.sellerDescription}>
+              {item?.description}
+            </div>}
+          </div>
         })}
         {/* <Link href='/conversation-club'>
           <div className="Card">

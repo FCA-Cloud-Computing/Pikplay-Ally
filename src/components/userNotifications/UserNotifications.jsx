@@ -10,7 +10,7 @@ import Router from 'next/router'
 
 import { getNotificationsSrv, updateProfileSrv } from '../../services/user/userService'
 import CoinIcon from '../coinIcon/CoinIcon'
-import useSystemStore from '../../hooks/storeSystem.js'
+import useCommonStore from '../../hooks/commonStore.js'
 import uploadFile from "../../services/uploadFile";
 
 const { motion } = require('framer-motion')
@@ -18,7 +18,7 @@ const { motion } = require('framer-motion')
 moment.locale('es-CO')
 
 const UserNotifications = () => {
-  const { userLogged, notifications, setStoreValue } = useSystemStore((state => state))
+  const { userLogged, notifications, setStoreValue } = useCommonStore((state => state))
   const { uid } = userLogged
   const [fileUploaded, setFileUploaded] = useState(false);
   const fileInputRef = useRef(null);
@@ -76,6 +76,7 @@ const UserNotifications = () => {
     if (coins) {
       // reclamarCoins(coins, id)
       setStoreValue('isAwardSummaryModalOpen', true)
+      setStoreValue('awardSummaryModalDetail', item)
     } else {
       handleDeleteNotification(id)
     }

@@ -4,6 +4,7 @@ import { Message as IAMessageOnboarding, Options as IAOptionsOnboarding } from '
 import { Message as IAMessageDefault, Options as IAOptionsDefault } from './responses/default';
 import { HtmlMessage as IAHtmlMessagePikcoins, Message as IAMessagePikcoins, Options as IAOptionsPikcoins, Height as IAcontainerHeightPikcoins } from './responses/pikcoins';
 import { HTML as IAHtmlMessageRedemption, Message as IAMessageRedemption, Options as IAOptionsRedemption } from './responses/redemption';
+import { AddTransactionSteps, AddTransactionSteps_Options } from './responses/transactions';
 
 // Competitions
 import { Message as IAMessageCompetition, Options as IAOptionsCompetition, MyNumberOptions, MyNumberMessage } from './responses/competition/competition';
@@ -31,6 +32,11 @@ export const handleUserMessage = async (mensaje, set, options) => {
   const loadingMessage = <span>{seleccionAleatoria}</span>;
 
   switch (mensaje) {
+    case 'addTransactionSteps':
+      IAMessageSelected = AddTransactionSteps;
+      IAOptionsSelected = AddTransactionSteps_Options;
+      break;
+
     case 'competition/admin':
       IAMessageSelected = IAMessageCompetition_Admin;
       IAOptionsSelected = IAOptionsCompetition_Admin;

@@ -16,7 +16,7 @@ const ProfileImage = ({ className, handleClickImage, picture, progress = 0, smal
 
   useEffect(() => {
     if (!progress) getExperienceData()
-  });
+  }, []);
 
   return (
     <div className={styles.profileImageContainer} onClick={handleClickImage}>
