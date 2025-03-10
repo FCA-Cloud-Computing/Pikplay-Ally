@@ -14,6 +14,8 @@ import useCommonStore from '@/hooks/commonStore';
 import { FormAllied } from '@/components/transactions/FormAllied';
 import ModalTransactions from '@/components/modal/ModalTransactions';
 
+export const revalidate = 20;
+
 function Transactions() {
   const { transactions, getTransactionsStore } = useTransactionsStore();
   const { userLogged } = useCommonStore();

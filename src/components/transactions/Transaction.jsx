@@ -1,14 +1,9 @@
 import styles from "./transactions.module.scss"
-
-import { useState } from "react"
-import Image from "next/image"
 import ScheduleIcon from "@mui/icons-material/Schedule"
 
 // Custom
-import ModalTransactions from "../modal/ModalTransactions"
 import { ButtonVoucher } from "./ButtonVoucher"
 import { TRANSACTION_STATUS } from "@/consts/transactions.js"
-import Button from "../button/Button"
 import { formatNumber, timeAgo } from "@/lib/utils"
 import CoinIcon from "../coinIcon/CoinIcon"
 
