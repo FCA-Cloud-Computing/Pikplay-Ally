@@ -222,7 +222,9 @@ export function getAccessibilityPropsTabs(tabIndex) {
   };
 }
 
-export function getImageSize(url, size="MD") {
+export function getImageSize(url, size = "MD") {
+  if (!url) return null
   const currentSize = PROFILE.SIZES[size]
-  return url.replace(/(\.\w+)(\?.*)?$/, `_${currentSize}x${currentSize}$1$2`);
+  const formatted = url.replace(/(\.\w+)(\?.*)?$/, `_${currentSize}x${currentSize}$1$2`)
+  return formatted
 }

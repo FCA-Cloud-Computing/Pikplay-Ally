@@ -99,12 +99,14 @@ const Onboarding = () => {
   }
 
   const saveLead = async () => {
+    setStoreValue('isFullLoading', true)
     const res = await saveLeadSrv(null, phoneNumber)
     if (!res.error) {
       setPhoneNumber('')
       toast(ONBOARDING_LEAD_SUCCESS, { type: 'success' })
     } else if (res.errorCode == 409) toast(ONBOARDING_LEAD_DUPLICATED, { type: 'info' })
     else toast('Error al inscribirte, intentalo más tarde', { type: 'error' })
+    setStoreValue('isFullLoading', false)
   }
 
   useEffect(() => {

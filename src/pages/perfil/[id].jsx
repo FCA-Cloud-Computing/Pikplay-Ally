@@ -71,7 +71,8 @@ const PerfilPage = props => {
 
 export const getServerSideProps = async ctx => {
   const respValidate = await validateTokenSrv(ctx)
-  const referrals = await getReferralsSrv(ctx, null)
+  const reqReferrals = await getReferralsSrv(ctx, null)
+  const { data: referrals, code: statusCodeReferrals } = reqReferrals
   const { data, code: statusCode } = respValidate
   if (statusCode == 200) { // Correct validate
     const uid = cookiesToObject(ctx.req.headers?.cookie)['User-ID']

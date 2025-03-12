@@ -125,7 +125,7 @@ const ProfileSummaryExperience = (props) => {
       .then(([expData, coinsData]) => {
         // debugger;
         const { currentPikcoins, expTotal: currentPoints } = expData.value || {}
-        debugger;
+        // debugger;
         setCurrentPoints(currentPoints)
         setCurrentCoins(currentPikcoins)
         validateNewAwards(currentPikcoins, currentPoints)

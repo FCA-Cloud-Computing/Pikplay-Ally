@@ -61,7 +61,7 @@
 
   .bg_black {
     background: radial-gradient(circle, rgb(82 89 95) 0%, rgba(36, 41, 46, 1) 100%);
-    border-radius: 0 10px 10px 0;
+    // border-radius: 0 10px 10px 0;
     // box-shadow: 0px 2px 2px #5252522e;
     color: white;
     display: none;
@@ -69,9 +69,9 @@
     position: fixed;
     // padding-top: 10px;
     left: 0px;
-    top: 40px;
+    top: 57px;
     // transition: 0.5s ease-in-out;
-    width: 240px;
+    width: 50%;
     z-index: -1;
     @media screen and (min-width: 1024px) {
       left: 660px;
@@ -80,15 +80,11 @@
       right: 0;
     }
     @media screen and (max-width: 480px) {
-      border-radius: 0px 10px 0px 0px;
-      bottom: 60px;
       height: 100%;
       // box-shadow: 6px 0px 2px #76767673;
       display: block;
       // height: 100%;
       position: fixed;
-      top: 53px;
-      width: 50%;
       z-index: 2;
     }
 
@@ -173,7 +169,7 @@
     padding: 0 10px;
     position: fixed;
     right: 0;
-    top: 33px;
+    top: 37px;
     width: 50%;
     z-index: 2;
     @media (min-width: 1024px) {
@@ -211,6 +207,7 @@
 
   .closeButton {
     bottom: 60px;
+    font-size: 14px;
     left: 10px;
     position: absolute;
     top: initial;

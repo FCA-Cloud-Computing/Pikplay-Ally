@@ -8,6 +8,7 @@ import Body from './Body.jsx'
 import { useIAStore } from '../ia/IAstore.js'
 import AwardsSummaryModal from '../awardsSummary/AwardsSummary.jsx';
 import MessagesTop from '../messagesTop/MessagesTop.jsx';
+import FullScreenLoading from '../fullScreenLoading/FullScreenLoading.jsx';
 
 const Layout = (props) => {
   const [isReady, setIsReady] = useState(false)
@@ -27,7 +28,8 @@ const Layout = (props) => {
     notifications,
     setStoreValue,
     leftMenuBar: { isShow: isShowLeftMenu },
-    userLogged
+    userLogged,
+    isFullLoading,
   } = useCommonStore((state => state))
   const { checkIAMessage, IAMessage, setIsvisible } = useIAStore()
   const router = useRouter()
@@ -45,7 +47,7 @@ const Layout = (props) => {
   }
 
   useEffect(() => {
-    const handleRouteChange = (url) => {
+    const handleRouteChange = (url) => { // Cambio de pagina
       setIsvisible(false) // Ocultando a la IA
       if (isShowLeftMenu && !url.includes("#menu")) {
         setStoreValue('leftMenuBar', { isShow: false })
@@ -53,11 +55,13 @@ const Layout = (props) => {
       // else if (url.includes("#paco")) {
       // }
     };
-    router.events.on('hashChangeStart', handleRouteChange);
+    router.events.on('hashChangeStart', handleRouteChange); // Al cambiar de hash en la URL
+    // router.events.on("routeChangeStart", handleStart);
+    // router.events.on("routeChangeComplete", handleComplete);
     return () => {
       router.events.off('hashChangeStart', handleRouteChange);
     };
-  }, [router]);
+  }, []);
 
   useEffect(() => {
     checkIAMessage(IAMessage); // Check if there is an IA message to show
@@ -100,6 +104,7 @@ const Layout = (props) => {
         userLogged={userLogged}>
         <ToastContainer />
         <MessagesTop />
+        {isFullLoading && <FullScreenLoading />}
         {isAwardSummaryModalOpen && <AwardsSummaryModal />}
         {children}
       </Body>

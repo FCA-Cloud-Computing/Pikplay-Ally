@@ -86,11 +86,16 @@ const UserNotifications = () => {
   const handlerInputFile = async (event) => {
     const value = event.target.files[0]
     if (value) {
+      setStoreValue('isFullLoading', true)
       const urlImage = await uploadFile("profile", value, `${uid}`);
       updateProfileSrv(null, uid, { picture: urlImage })
         .then(data => {
           setStoreValue('userLogged', { ...userLogged, picture: urlImage })
+          setStoreValue('isFullLoading', false)
           getNotifications() // Actualizar notificaciones
+        })
+        .catch((err) => {
+          setStoreValue('isFullLoading', false)
         })
     }
   }

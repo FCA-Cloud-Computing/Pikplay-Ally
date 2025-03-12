@@ -150,7 +150,7 @@ const DefaultSellerPage = (props) => {
 
 DefaultSellerPage.getInitialProps = async (ctx) => {
   const { asPath, req, query: { sellerSlug } } = ctx
-  const sellerInformation = await getUserSrv(ctx, sellerSlug)
+  const { data: sellerInformation } = await getUserSrv(ctx, sellerSlug)
 
   return {
     sellerInformation

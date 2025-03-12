@@ -32,43 +32,49 @@ function Login(props) {
     setIsCodeSent(true)
   }
 
-  const validateLogin = async (code) => {
-    // Numero de telefono y codigo son necesarios
+  const validateLogin = async (loginCode) => {
+    // Numero de telefono y código son necesarios
     const contryCode = '57'
     const fullPhone = contryCode + phone
     try {
-      const req = await loginSrv(null, fullPhone, parseInt(code, 10))
-      const { data } = req
-      if (data) {
+      setStoreValue('isFullLoading', true)
+      const req = await loginSrv(null, fullPhone, parseInt(loginCode, 10))
+      const { code, data } = req
+      if (code == 200) {
         const { token, uid } = data
         setStoreValue("userLogged", data)
         handleCloseDialog()
         // cookieCutter.set('X-Auth-Token', token)
         // cookieCutter.set('User-ID', uid)
         router.push('?login=true')
-      } else {
+      }
+      else if (code == 400) {
         document.getElementById('verificationCode').value = ''
         toast('Código no valido')
-        setButtonText('Validar')
+        setButtonText('Validar código')
       }
+      setStoreValue('isFullLoading', false)
     } catch (error) {
       console.log(error);
+      setStoreValue('isFullLoading', false)
     }
   }
 
   const handleEnviarCodigo = async () => {
-    setButtonText('Enviando...')
+    // setButtonText('Enviando...')
     const phone = document.getElementById('phoneLogin').value
     if (!phone || !numberValidated(phone)) {
       toast('Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso')
       setButtonText('Enviar código')
       return false
     }
+    setStoreValue('isFullLoading', true)
     const contryCode = '57'
     const fullPhone = contryCode + phone
     const req = await loginSrv(null, fullPhone, null, name)
     setButtonText('Validar')
     setIsCodeSent(true)
+    setStoreValue('isFullLoading', false)
   }
 
   const handleCloseDialog = () => {

@@ -17,24 +17,28 @@ const RankingComponent = (props) => {
 
   useEffect(() => {
     try {
-      getRankingDetailSrv(null, rankingId).then(rankingDataPoints => {
-        const uids = rankingDataPoints.map(member => member.uid)
-        getUsersSrv(null, { uids: uids.join() })
-          .then(data => {
-            const pointsAndUserData = rankingDataPoints.map(member => {
-              const user = data && data.find(user => user.uid === member.uid)
-              return {
-                ...user,
-                league: 'bronce',
-                points: member.points,
-              }
+      getRankingDetailSrv(null, rankingId)
+        .then(rankingDataPointsRes => {
+          const { data: rankingDataPoints } = rankingDataPointsRes
+          const uids = rankingDataPoints.map(member => member.uid)
+          getUsersSrv(null, { uids: uids.join() })
+            .then(({ code, data }) => {
+              debugger
+              const pointsAndUserData = rankingDataPoints.map(member => {
+                const user = data && data.find(user => user.uid === member.uid)
+                return {
+                  ...user,
+                  league: 'bronce',
+                  points: member.points,
+                }
+              })
+              setRankingData(pointsAndUserData)
             })
-            setRankingData(pointsAndUserData)
-          })
-          .catch(err => {
-            console.log('Error getting users', err)
-          })
-      })
+            .catch(err => {
+              debugger
+              console.log('Error getting users', err)
+            })
+        })
     } catch (error) {
       console.log('Error getting ranking data', error)
     }

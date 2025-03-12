@@ -39,6 +39,7 @@ const useCommonStore = create((set, get) => ({
   env: 'dev',
   experiences: [],
   isAwardSummaryModalOpen: false, // Modal de premios
+  isFullLoading: false, // Pantalla de carga
   isOnboardingProcess: false,
   leftBottomMenuContent: null,
   leftMenuBar: {

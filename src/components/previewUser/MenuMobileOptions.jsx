@@ -119,6 +119,11 @@ const MenuMobileOptions = () => {
     </motion.ol>
     {/* Opciones de administrador */}
     {userLogged.isAdmin && <>
+      <motion.ol variants={item}>
+        <Link href="/ranking">
+          Ranking Pais
+        </Link>
+      </motion.ol>
       <motion.ol variants={item} onClick={changeToSellerUser}>
         Cambiar a Seller
       </motion.ol>
