@@ -24,9 +24,15 @@ const MyApp = (props) => {
     setStoreValue('isFullLoading', false)
   }
 
+  const handleError = () => {
+    console.log("Página con error :( ", url);
+    setStoreValue('isFullLoading', false)
+  }
+
   useEffect(() => {
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleError);
     return () => {
     };
   }, [])
