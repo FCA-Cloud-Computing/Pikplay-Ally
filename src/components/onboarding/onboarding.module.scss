@@ -287,7 +287,8 @@ section.Onboarding {
           }
         }
         &::-webkit-scrollbar-thumb {
-          background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Degradado facherito */
+          // background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Degradado facherito */
+          background-color: #c93530;
           border-radius: 5px;
         }
         &::-webkit-scrollbar {
