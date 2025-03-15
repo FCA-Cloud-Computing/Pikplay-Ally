@@ -15,27 +15,29 @@ function Login(props) {
   const [isOpen, setIsOpen] = useState(false)
   const [isHuman, setIsHuman] = useState(env == 'dev')
   const [isCodeSent, setIsCodeSent] = useState(false)
-  const [phone, setPhone] = useState(null)
+  const [phoneNumber, setPhoneNumber] = useState(null)
   const [name, setName] = useState(null)
   const [buttonText, setButtonText] = useState('Enviar código')
 
-  const numberValidated = phone => phone.length === 10
+  const numberValidated = phoneNumber => phoneNumber.length === 10
 
   const handleTengoCodigo = () => {
-    const phone = document.getElementById('phoneLogin').value
-    if (!phone || !numberValidated(phone)) {
+    // const phoneNumber = document.getElementById('phoneLogin').value
+    const formattedPhoneNumber = (phoneNumber || '').replace(/-/g, '');
+    if (!phoneNumber || !formattedPhoneNumber || !numberValidated(formattedPhoneNumber)) {
       toast('Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso')
       setButtonText('Enviar código')
       return
     }
-    setButtonText('Ingresar')
+    setButtonText('¡Play!')
     setIsCodeSent(true)
   }
 
   const validateLogin = async (loginCode) => {
     // Numero de telefono y código son necesarios
     const contryCode = '57'
-    const fullPhone = contryCode + phone
+    const formattedPhoneNumber = phoneNumber.replace(/-/g, '');
+    const fullPhone = contryCode + formattedPhoneNumber
     try {
       setStoreValue('isFullLoading', true)
       const req = await loginSrv(null, fullPhone, parseInt(loginCode, 10))
@@ -56,24 +58,31 @@ function Login(props) {
       setStoreValue('isFullLoading', false)
     } catch (error) {
       console.log(error);
+      setButtonText('Validar código')
       setStoreValue('isFullLoading', false)
     }
   }
 
   const handleEnviarCodigo = async () => {
     // setButtonText('Enviando...')
-    const phone = document.getElementById('phoneLogin').value
-    if (!phone || !numberValidated(phone)) {
+    const formattedPhoneNumber = phoneNumber.replace(/-/g, '');
+    if (!phoneNumber || !numberValidated(formattedPhoneNumber)) {
       toast('Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso')
       setButtonText('Enviar código')
       return false
     }
     setStoreValue('isFullLoading', true)
+
     const contryCode = '57'
-    const fullPhone = contryCode + phone
+    const fullPhone = contryCode + phoneNumber
     const req = await loginSrv(null, fullPhone, null, name)
-    setButtonText('Validar')
-    setIsCodeSent(true)
+    if (req.code == 200) {
+      toast('¡Código enviado!, ahora solo debes colocarlo allí ⬇️')
+      setButtonText('Validar')
+      setIsCodeSent(true)
+    } else {
+      toast.error('Parece que tenemos lios al envíarte el código,c omunicate con nuestra linea de atención')
+    }
     setStoreValue('isFullLoading', false)
   }
 
@@ -120,9 +129,9 @@ function Login(props) {
       handleFixPhone,
       handleTengoCodigo,
       onChangeReCaptcha,
-      phone,
+      phoneNumber,
       setIsCodeSent,
-      setPhone,
+      setPhoneNumber,
       setName
     }}
   />)

@@ -34,6 +34,7 @@ const loginSrv = async (ctx: any, phone: string, code: number, name: string) => 
   const path = BASE_URL + '/login';
   try {
     const data = await post(ctx, path, { code, phone, name })
+    // const data = { code: 400, data: { token: '1234', uid: '1234' } } // Testing porpuses
     const { token, uid } = data.data
     const oneYearFromNow = new Date()
     oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1)
