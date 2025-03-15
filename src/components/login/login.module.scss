@@ -8,15 +8,6 @@
       padding: 0 10px;
     }
   }
-
-  .capchaContent {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    width: 270px;
-    iframe {
-      width: 320px;
-    }
-  }
 }
 
 .LoginComponent__Modal {
@@ -27,6 +18,17 @@
     font-weight: 600;
     line-height: normal;
   }
+
+  .capchaContent {
+    transform: scale(0.838);
+    left: -20px;
+    position: relative;
+    width: max-content;
+    iframe {
+      // width: 320px;
+    }
+  }
+
   .terminosCondiciones {
     background: #b55cc02b;
     border-radius: 5px;

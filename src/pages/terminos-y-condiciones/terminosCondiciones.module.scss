@@ -1,3 +1,44 @@
-.TerminosCondicionesPage{
-    
+.TerminosCondicionesPage {
+    background-image: url(/images/backgrounds/general-bg.png);
+    // background: #19596b;
+    color: white;
+    margin: 0 auto 90px;
+    width: 100%;
+
+    .ovalo {
+        background: linear-gradient(270deg, #7a0ba1 0%, #003875 100%);
+        border-radius: 40px;
+        box-shadow: 2px 2px #f8a713;
+        height: 200px;
+        opacity: 0.5;
+        position: absolute;
+        top: 10px;
+        transform: rotate(45deg);
+        width: 200px;
+        z-index: 1;
+    }
+
+    p {
+        position: relative;
+        z-index: 2;
+        b {
+            display: block;
+        }
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 24px;
+        position: relative;
+        text-shadow:
+            2px 0 #2e2e2e,
+            -2px 0 #2e2e2e,
+            0 2px #2e2e2e,
+            0 -2px #2e2e2e,
+            1px 1px #2e2e2e,
+            -1px -1px #2e2e2e,
+            1px -1px #2e2e2e,
+            -1px 1px #2e2e2e;
+        z-index: 2;
+    }
 }
