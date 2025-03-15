@@ -38,4 +38,7 @@
       display: inline-block;
     }
   }
+  :global(.MuiDialogContent-root) {
+    overflow-x: hidden;
+  }
 }

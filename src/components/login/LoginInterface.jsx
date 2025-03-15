@@ -163,7 +163,7 @@ export default function LoginInterface({
           }
           <small className={styles.terminosCondiciones}>
             Al ingresar en Pikplay aceptas nuestros &nbsp;
-            <Link href='/articulo/[id]' as='/articulo/terminos-y-condiciones' target="_BLANK">
+            <Link href='/terminos-y-condiciones' as='/terminos-y-condiciones'>
               términos y condiciones
             </Link>
             &nbsp;es posible que te enviemos notificaciones por sms, que puedes

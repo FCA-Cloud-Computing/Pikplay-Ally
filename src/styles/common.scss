@@ -252,6 +252,20 @@ span.MuiBadge-badge {
   }
 }
 
+.Toastify__toast-container {
+  color: white;
+  font-size: 15px;
+  .Toastify__toast {
+    background: none;
+    background-image: url("/images/backgrounds/camapanita.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #707070;
+    font-weight: 400;
+    padding: 22px 44px 8px 40px;
+  }
+}
+
 #toast-container {
   font-family: "Staatliches", cursive;
   > div {
