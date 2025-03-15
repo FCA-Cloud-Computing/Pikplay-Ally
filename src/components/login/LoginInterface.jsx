@@ -55,6 +55,7 @@ export default function LoginInterface({
         Play
       </Button>
       <Dialog
+        className={styles.LoginComponent__Modal}
         fullWidth
         maxWidth='sm'
         open={isOpen}
@@ -64,8 +65,10 @@ export default function LoginInterface({
           <DialogContentText>
             {/* Env:{env}
             isHuman:{String(isHuman)}<br /> */}
-            Solo con tu número de teléfono puedes crear tu cuenta y empezar a ganar <b>¡Pikcoins!</b>
+            <span className={styles.subtitle}>Solo con tu número de teléfono </span>
+            puedes crear tu cuenta y empezar a ganar <b>¡Pikcoins!</b>
           </DialogContentText>
+          <Image src="images/elements/girl-coin.png" height={200} width={200} style={{ display: 'block', margin: '0 auto' }} />
           {/* Fields */}
           {/* {!isCodeSent && <TextField
             defaultValue={onboardingName}
@@ -128,14 +131,14 @@ export default function LoginInterface({
               fullWidth
             />
           </div>
-          {/*!isCodeSent && env != 'dev' && (
+          {!isCodeSent && env != 'deva' && (
             <center className={`m-t-10 ${styles.capchaContent}`}>
               <ReCAPTCHA
                 sitekey='6Ldyz98eAAAAAFCJEbBSdSRqNu4Kn1XqZugCi9Qg'
                 onChange={onChangeReCaptcha}
               />
             </center>
-          )*/}
+          )}
           {
             isCodeSent && (
               <>
@@ -158,15 +161,14 @@ export default function LoginInterface({
               </>
             )
           }
-          {/* <small className={styles.terminos_condiciones}>
+          <small className={styles.terminosCondiciones}>
             Al ingresar en Pikplay aceptas nuestros &nbsp;
             <Link href='/articulo/[id]' as='/articulo/terminos-y-condiciones' target="_BLANK">
               términos y condiciones
             </Link>
-            <br />
-            Es posible que te enviemos notificaciones por SMS, que puedes
+            &nbsp;es posible que te enviemos notificaciones por sms, que puedes
             desactivar cuando quieras.
-          </small> */}
+          </small>
         </DialogContent >
         <DialogActions>
           {isCodeSent && <Button onClick={handleFixPhone} color='normal'>
@@ -184,7 +186,8 @@ export default function LoginInterface({
           )}
           <Button
             color={!buttonsBlocked ? 'blue' : 'normal'}
-            onClick={!isCodeSent && !buttonsBlocked ? handleEnviarCodigo : null}>
+            onClick={!isCodeSent && !buttonsBlocked ? handleEnviarCodigo : null}
+            realistic>
             {buttonText}
           </Button>
         </DialogActions>

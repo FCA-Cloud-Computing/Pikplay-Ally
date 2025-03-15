@@ -198,8 +198,8 @@
     height: 100%;
     line-height: 14px;
     margin: initial;
-    padding: 5px 10px;
-    text-transform: initial;
+    // padding: 5px 10px;
+    // text-transform: initial;
   }
 
   .text {
@@ -220,7 +220,10 @@
 
   button {
     font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    padding: 8px 20px;
     text-decoration: inherit;
+    text-transform: capitalize;
     span {
       height: calc(100% + 8px);
       top: -4px;

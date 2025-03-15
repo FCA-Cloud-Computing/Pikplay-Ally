@@ -8,14 +8,6 @@
       padding: 0 10px;
     }
   }
-  .terminos_condiciones {
-    background: #ededed;
-    border-radius: 5px;
-    display: block;
-    font-size: 12px;
-    margin-top: 20px;
-    padding: 10px 15px;
-  }
 
   .capchaContent {
     overflow-x: scroll;
@@ -23,6 +15,27 @@
     width: 270px;
     iframe {
       width: 320px;
+    }
+  }
+}
+
+.LoginComponent__Modal {
+  span.subtitle {
+    color: #6b3295;
+    display: block;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: normal;
+  }
+  .terminosCondiciones {
+    background: #b55cc02b;
+    border-radius: 5px;
+    display: block;
+    font-size: 12px;
+    margin-top: 10px;
+    padding: 10px 15px;
+    a {
+      display: inline-block;
     }
   }
 }

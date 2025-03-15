@@ -85,6 +85,7 @@ function Login(props) {
 
   const handleFixPhone = () => {
     setIsCodeSent(false)
+    setButtonText('Enviar código')
   }
 
   const handleClickOpen = () => {

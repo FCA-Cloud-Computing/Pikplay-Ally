@@ -26,10 +26,10 @@
   &.sticked {
   }
   .slogan {
-    bottom: 2px;
+    bottom: 0px;
     color: #3095b3;
     display: block;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
     left: 0px;
     margin: 0 auto;
@@ -37,7 +37,8 @@
     right: 0;
     text-align: left;
     text-shadow: 1px 1px #cdcdcdde;
-    width: 190px;
+    text-transform: uppercase;
+    width: max-content;
   }
 
   > ul {

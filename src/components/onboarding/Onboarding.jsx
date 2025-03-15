@@ -28,7 +28,7 @@ const Onboarding = () => {
     {
       background: "https://i.pinimg.com/564x/f4/d4/b9/f4d4b991d2bccaf2202b8a07bae108de.jpg",
       html: <>¿Qué es <br /><span className={styles.yellow}>Pikplay</span>?</>,
-      image: "/images/ia/character-full.svg",
+      image: "/images/logos/pp.svg",
       isCompleted: true,
       messageCode: 'onboarding',
       imageStyle: {},
@@ -160,7 +160,7 @@ const Onboarding = () => {
         </h2>
       </div>
       <div className={styles.inputContent}>
-        <input type="text" placeholder='Tu whatsapp aquí' onChange={handleInputChange} value={phoneNumber} />
+        <input type="text" placeholder='Aquí tu Whastapp' onChange={handleInputChange} value={phoneNumber} />
         <div className={styles.btnSend}>
           <Button color='blue' onClick={saveLead}>
             Enviar
