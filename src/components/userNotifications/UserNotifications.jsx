@@ -8,7 +8,7 @@ import classNames from 'classnames'
 import moment from 'moment'
 import Router from 'next/router'
 
-import { getNotificationsSrv, updateProfileSrv } from '../../services/user/userService'
+import { getNotificationsSrv, updateProfileSrv } from '../../services/user/user'
 import CoinIcon from '../coinIcon/CoinIcon'
 import useCommonStore from '../../hooks/commonStore.js'
 import uploadFile from "../../services/uploadFile";
@@ -66,14 +66,16 @@ const UserNotifications = () => {
     if (userLogged.uid) {
       getNotificationsSrv()
         .then(res => {
+          debugger
           setStoreValue('notifications', res.data)
         });
     }
   }
 
   const handleNotification = async (item) => {
-    const { coins, id, link, type } = item
-    if (coins) {
+    const { coins, experience, id, link, type } = item
+    debugger
+    if (coins || experience) {
       // reclamarCoins(coins, id)
       setStoreValue('isAwardSummaryModalOpen', true)
       setStoreValue('awardSummaryModalDetail', item)
@@ -185,10 +187,10 @@ const UserNotifications = () => {
                   hace {created}
                 </small>
                 <div dangerouslySetInnerHTML={{ __html: description }} />
-                {image && <picture className={styles.picture}>
+                {!!image && <picture className={styles.picture}>
                   <img src={image} />
                 </picture>}
-                {coins && <CoinIcon hideNumber />}
+                {!!coins && <CoinIcon hideNumber />}
                 {/* {!coins && <div className={styles.content_close}></div>} */}
               </motion.li>
               // </Tooltip>

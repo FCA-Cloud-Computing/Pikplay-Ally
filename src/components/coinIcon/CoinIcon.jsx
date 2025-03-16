@@ -37,7 +37,8 @@ const CoinIcon = ({
     animateValue(0, initialCoins, 1000);
   }, []);
 
-  const animatedCoins = gainedCoins ? useAnimatedNumber(coins, (coins + gainedCoins), 2000) : coins
+  debugger
+  const animatedCoins = (gainedCoins || coins > 0) ? useAnimatedNumber(coins, (coins + gainedCoins), 2000) : coins
 
   return (
     <div
@@ -46,7 +47,7 @@ const CoinIcon = ({
         // [styles.animatedZoom]: true,
         // [styles.animated]: true
       })}>
-      {!hideNumber && animatedCoins && (<>
+      {!hideNumber && (<>
         <span
           className={`f-s-14 ${styles.number} number`}
           style={{ color: textColor ? textColor : "#e5961d" }}>

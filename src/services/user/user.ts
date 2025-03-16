@@ -80,29 +80,6 @@ const updateProfileSrv = (ctx, uid, data) => {
   return post(ctx, path, data);
 };
 
-const getExperiencesSrv = async (ctx) => {
-  try {
-    const { data: experiences } = await get(ctx, `/experiences`)
-    const expTotal = experiences.reduce((total, obj) => total + obj.experience, 0)
-    const percentageBar = (expTotal / 1000) * 100
-    const currentPikcoins = experiences.reduce((total, obj) => total + obj.coins, 0)
-
-    return {
-      currentPikcoins,
-      expTotal,
-      experiences,
-      percentageBar,
-    };
-  } catch (err) {
-    // TODO - Implementar un logger
-    console.error('Error al obtener las experiencias del usuario', err);
-    return {
-      expTotal: 0,
-      experiences: [],
-    };
-  }
-};
-
 const getNotificationsSrv = async (ctx) => {
   const data = await get(ctx, BASE_URL + `/notifications`);
   return data;
@@ -121,7 +98,6 @@ const getReferralsSrv = async (ctx) => {
 export {
   // getTopMessagesSrv,
   getCoinsSrv,
-  getExperiencesSrv,
   getNotificationsSrv,
   getReferralsSrv,
   getUserSrv,

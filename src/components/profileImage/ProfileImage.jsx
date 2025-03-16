@@ -1,14 +1,14 @@
-import { getExperiencesSrv } from '@/services/user/userService';
 import styles from './profileImage.module.scss';
 
 import React, { useEffect, useState } from 'react';
 import { getImageSize } from '@/lib/utils';
+import { getExperiencesSrv } from '@/services/experience';
 
 const ProfileImage = ({ className, handleClickImage, picture, progress = 0, small }) => {
   const [percentageBar, setPercentageBar] = useState(progress)
 
   const getExperienceData = () => {
-    getExperiencesSrv()
+    getExperiencesSrv(null)
       .then(data => {
         const { percentageBar } = data
         setPercentageBar(percentageBar)

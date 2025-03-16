@@ -16,7 +16,7 @@ import Button from '../button/Button'
 import CoinIcon from '../coinIcon/CoinIcon'
 import MESSAGES from '../../consts/messages'
 import useCommonStore from '../../hooks/commonStore'
-import { getUsersSrv, saveLeadSrv, } from '../../services/user/userService'
+import { getUsersSrv, saveLeadSrv, } from '../../services/user/user'
 import { useIAStore } from '../ia/IAstore'
 import OurServices from '../ourServices/OurServices'
 

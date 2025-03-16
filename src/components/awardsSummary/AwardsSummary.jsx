@@ -10,13 +10,19 @@ import classNames from 'classnames';
 import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummaryExperience';
 import { motion, AnimatePresence } from "framer-motion"
 import useCommonStore from '../../hooks/commonStore';
+import { createExperienceSrv } from '@/services/experience';
 
 const AwardsSummary = () => {
   const [page, setPage] = useState(0);
   const currentUserCoins = 10
   const { awardsSummaryModalHTML, awardSummaryModalDetail } = useCommonStore()
-  const { description, coins: gainedCoins, points: gainedPoints } = awardSummaryModalDetail
-
+  const {
+    coins: gainedCoins,
+    description,
+    nid,
+    experience: gainedExperience,
+    type: notification_type
+  } = awardSummaryModalDetail
   useEffect(() => {
     setTimeout(() => {
       startConfetti()
@@ -25,6 +31,12 @@ const AwardsSummary = () => {
 
   const handleUpdateExperience = () => {
     // handlePickRewardUp()
+    createExperienceSrv(null, {
+       coins: gainedCoins, 
+       experience: gainedExperience, 
+       nid, 
+       type: notification_type
+      })
     setPage(1)
   }
 
@@ -63,12 +75,12 @@ const AwardsSummary = () => {
         <div className={styles.box}>
           {/* <img src="/images/type_notification/coupon_gift_available.png" alt="bronze" /> */}
           <p className={styles.description}>
-            <CoinIcon coins={gainedCoins} multicoin showX />
+            {!!gainedCoins && <CoinIcon coins={gainedCoins} multicoin showX />}
             {/* <ReactTyped strings={[awardsSummaryModalHTML]} typeSpeed={20} /> */}
             {awardsSummaryModalHTML}
           </p>
-          {gainedPoints && <p className={`animatedZoom ${styles.points}`}>
-            +{formatNumber(gainedPoints)} Points
+          {gainedExperience && <p className={`animatedZoom ${styles.points}`}>
+            +{formatNumber(gainedExperience)} Points
           </p>}
         </div>
 
@@ -96,7 +108,7 @@ const AwardsSummary = () => {
         </div>
       </>}
       {page == 1 && <>
-        <ProfileSummaryExperience {...{ gainedCoins, gainedPoints }} />
+        <ProfileSummaryExperience {...{ gainedCoins, gainedExperience }} />
         <Button className={styles.closeModal} color='red' realistic onClick={() => setPage(0)}>Cerrar</Button>
       </>}
     </>

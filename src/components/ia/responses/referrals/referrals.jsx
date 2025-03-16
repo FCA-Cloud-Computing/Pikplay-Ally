@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 
 // Custom
 import Button from '../../../button/Button'
-import { saveReferralSrv } from '@/services/user/userService'
+import { saveReferralSrv } from '@/services/user/user'
 
 async function getContacts(handleUserMessage, set) {
   const props = ["name", "email", "tel", "address", "icon"]

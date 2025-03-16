@@ -1,22 +1,20 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
     "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "noEmit": true,
-    "incremental": true,
-    "module": "esnext",
+    "checkJs": false, // Esto también muestra errores en archivos .js si no usas TS
     "esModuleInterop": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
+    "incremental": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "target": "ES2017",
+    // Lo de arriba es opcional si estás en JS
     "plugins": [
       {
         "name": "next"
@@ -26,8 +24,13 @@
     "paths": {
       "@/*": [
         "./src/*"
-      ],
-    }
+      ]
+    },
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ]
   },
   "include": [
     "next-env.d.ts",
@@ -38,5 +41,10 @@
   ],
   "exclude": [
     "node_modules"
+  ],
+  "lib": [
+    "dom",
+    "dom.iterable",
+    "esnext"
   ]
 }

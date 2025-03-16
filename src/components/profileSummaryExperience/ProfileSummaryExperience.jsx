@@ -17,10 +17,10 @@ import Button from '../button/Button'
 // Servicios
 import {
   getCoinsSrv,
-  getExperiencesSrv,
   updateProfileSrv
-} from '../../services/user/userService'
+} from '../../services/user/user'
 import useAnimatedNumber from '@/hooks/useAnimatedNumber'
+import { getExperiencesSrv } from '@/services/experience'
 
 const ProfileSummaryExperience = (props) => {
   const { DEFAULT_NAME } = MESSAGES
@@ -31,7 +31,7 @@ const ProfileSummaryExperience = (props) => {
     userInfoData,
     newInfo,
     gainedCoins,
-    gainedPoints,
+    gainedExperience,
   } = props
   const {
     points,
@@ -40,8 +40,8 @@ const ProfileSummaryExperience = (props) => {
   // const [animatedCoins, setAnimatedCoins] = useState(null)
   const [currentCoins, setCurrentCoins] = useState(0)
   const [targetCoins, setTargetCoins] = useState(0)
-  const [currentPoints, setCurrentPoints] = useState(0)
-  const [targetPoints, setTargetPoints] = useState(0)
+  const [currentExperience, setCurrentExperience] = useState(0)
+  const [targetExperience, setTargetExperience] = useState(0)
   const [percentageBar, setPercentageBar] = useState("0%")
   // userInfoData: Props que se utiliza para mostrar la información de un usuario en particular
   const currentUserCoins = 10
@@ -107,14 +107,14 @@ const ProfileSummaryExperience = (props) => {
   }, [])
 
   // const exp = 0
-  // const [currentPoints, setCurrentExp] = useState(exp)
+  // const [currentExperience, setCurrentExp] = useState(exp)
   // const [percentageBar, setPercentageBar] = useState("0%")
-  const validateNewAwards = (currentCoins, currentPoints) => { // Añadiendo puntos y coins ganados
+  const validateNewAwards = (currentCoins, currentExperience) => { // Añadiendo puntos y coins ganados
     if (gainedCoins) {
       const targetNumber = currentCoins + gainedCoins
       setTargetCoins(targetNumber)
       // setTimeout(() => { // Animando los puntos ganados despues de 2 segundos
-      setTargetPoints(currentPoints + gainedPoints)
+      setTargetExperience(currentExperience + gainedExperience)
       // }, 2000)
     }
   }
@@ -124,11 +124,11 @@ const ProfileSummaryExperience = (props) => {
     Promise.allSettled(promisesList)
       .then(([expData, coinsData]) => {
         // debugger;
-        const { currentPikcoins, expTotal: currentPoints } = expData.value || {}
+        const { currentPikcoins, expTotal: currentExperience } = expData.value || {}
         // debugger;
-        setCurrentPoints(currentPoints)
+        setCurrentExperience(currentExperience)
         setCurrentCoins(currentPikcoins)
-        validateNewAwards(currentPikcoins, currentPoints)
+        validateNewAwards(currentPikcoins, currentExperience)
       })
   }, [])
 
@@ -158,16 +158,16 @@ const ProfileSummaryExperience = (props) => {
           {/* </div> */}
           <div className={styles.experience_status}>
             <ExperienceBar {...{
-              currentPoints,
+              currentExperience,
               experienceValue,
-              targetPoints,
+              targetExperience: gainedExperience,
             }} />
           </div>
           <CoinIcon coins={currentCoins} gainedCoins={gainedCoins} hideNumber={false} />
         </div>
         <p className={styles.rankingMessage}>
           <img src="/images/icons/ranking-icon.png" />
-            Estas a dos puestos de superar a Victoria en el ranking de la semana
+          Estas a dos puestos de superar a Victoria en el ranking de la semana
         </p>
         {showDetails && <div className={styles.right}>
           {/* <div className={styles.fields}>
@@ -197,10 +197,10 @@ const ProfileSummaryExperience = (props) => {
 export default ProfileSummaryExperience
 
 const ExperienceBar = (props) => {
-  const { currentPoints, targetPoints, exp } = props;
+  const { currentExperience, targetExperience, exp } = props;
   let animatedValue;
-  if (targetPoints > 0) animatedValue = useAnimatedNumber(currentPoints, targetPoints, 4000);
-  else animatedValue = currentPoints;
+  if (targetExperience > 0) animatedValue = useAnimatedNumber(currentExperience, targetExperience, 4000);
+  else animatedValue = currentExperience;
   const percentageBar = (animatedValue / 10000) * 100 + "%";
 
   return (

@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 // import LoginInterface from './LoginInterface'
 import { useRouter } from 'next/router'
 import useCommonStore from '../../hooks/commonStore'
-import { loginSrv } from '../../services/user/userService'
+import { loginSrv } from '../../services/user/user'
 import { toast } from 'react-toastify'
 import LoginInterface from './LoginInterface'
 

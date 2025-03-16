@@ -8,7 +8,7 @@ import { useContext, useEffect, useState } from 'react'
 // import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import useCommonStore from '../../hooks/commonStore'
-import { validateTokenSrv, getExperiencesSrv, getUsersSrv, getReferralsSrv } from '../../services/user/userService'
+import { validateTokenSrv, getExperiencesSrv, getUsersSrv, getReferralsSrv } from '../../services/user/user'
 
 const PerfilPage = props => {
   const { userInfoFromServer, referrals } = props
