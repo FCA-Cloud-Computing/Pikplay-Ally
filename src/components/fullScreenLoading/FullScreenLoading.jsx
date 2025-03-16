@@ -3,41 +3,43 @@ import styles from "./fullScreenLoading.module.scss"
 import { useEffect, useRef, useState } from "react"
 import { motion, useAnimation } from "framer-motion"
 
-const FullScreenLoading = ({ isFullLoading = true }) => {
+const FullScreenLoading = ({ isFullLoading = false }) => {
   const controls = useAnimation()
   const isCancelled = useRef(false)
-  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     const loopAnimation = async () => {
-      // debugger
-      while (!isCancelled.current && isFullLoading) { // Si no ha sido cancelado
-        await controls.start({
-          rotate: 360,
-          transition: { duration: 1, ease: "easeInOut" },
-        });
+      try {
+        while (isFullLoading) { // Si no ha sido cancelado
+          await controls.start({
+            rotate: 360,
+            transition: { duration: 1, ease: "easeInOut" },
+          });
 
-        for (let i = 0; i < 3; i++) { // Animacion 3 zoom
-          if (isCancelled.current) return;
-          await controls.start({
-            scale: 1.2,
-            transition: { duration: 0.4, ease: "easeInOut" },
-          });
-          await controls.start({
-            scale: 1,
-            transition: { duration: 0.4, ease: "easeInOut" },
-          });
+          for (let i = 0; i < 3; i++) { // Animacion 3 zoom
+            if (!isFullLoading) return;
+            await controls.start({
+              scale: 1.2,
+              transition: { duration: 0.4, ease: "easeInOut" },
+            });
+            await controls.start({
+              scale: 1,
+              transition: { duration: 0.4, ease: "easeInOut" },
+            });
+          }
+
+          await controls.set({ rotate: 0 }); // Rotacion
         }
-
-        // await controls.set({ rotate: 0 }); // Rotacion
+      } catch (err) {
+        console.log('Something happened with the PP animation', err)
       }
     }
 
-    if (!isFullLoading) { setTimeout(() => { }, 1000) } // Esperar un segundo
-    isCancelled.current = false;
-    if (isFullLoading && typeof window != 'undefined') {
-      loopAnimation();
-    }
+    setTimeout(() => {
+      if (isFullLoading) {
+        loopAnimation();
+      }
+    }, 500)
 
     return () => {
       isCancelled.current = true; // ✋ Cancela animación al desmontar o cuando ya no esté cargando
@@ -45,19 +47,16 @@ const FullScreenLoading = ({ isFullLoading = true }) => {
   }, [isFullLoading])
 
   useEffect(() => {
-    setHasMounted(true);
   }, []);
 
   return (
-    isFullLoading ?
-      <div className={styles.FullScreenLoadingComponent}>
-        <motion.img
-          src="/images/logos/pp.svg"
-          alt="Cargando..."
-          animate={controls}
-        />
-      </div>
-      : null
+    <div className={`${styles.FullScreenLoadingComponent} ${isFullLoading ? styles.active : null}`}>
+      <motion.img
+        src="/images/logos/pp.svg"
+        alt="Cargando..."
+        animate={controls}
+      />
+    </div>
   );
 }
 

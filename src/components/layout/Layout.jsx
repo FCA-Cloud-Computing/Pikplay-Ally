@@ -104,7 +104,7 @@ const Layout = (props) => {
         userLogged={userLogged}>
         <ToastContainer />
         <MessagesTop />
-        {isFullLoading && <FullScreenLoading />}
+        <FullScreenLoading isFullLoading={isFullLoading} />
         {isAwardSummaryModalOpen && <AwardsSummaryModal />}
         {children}
       </Body>
