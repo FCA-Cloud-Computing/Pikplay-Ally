@@ -199,7 +199,7 @@ section.Onboarding {
     position: relative;
     width: calc(100% - 80px);
     z-index: 1;
-    p {
+    article {
       font-size: 16px;
       padding: 10px 20px;
     }
@@ -287,7 +287,8 @@ section.Onboarding {
           }
         }
         &::-webkit-scrollbar-thumb {
-          background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Degradado facherito */
+          // background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Degradado facherito */
+          background-color: #c93530;
           border-radius: 5px;
         }
         &::-webkit-scrollbar {

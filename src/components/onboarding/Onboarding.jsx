@@ -16,7 +16,7 @@ import Button from '../button/Button'
 import CoinIcon from '../coinIcon/CoinIcon'
 import MESSAGES from '../../consts/messages'
 import useCommonStore from '../../hooks/commonStore'
-import { getUsersSrv, saveLeadSrv, } from '../../services/user/userService'
+import { getUsersSrv, saveLeadSrv, } from '../../services/user/user'
 import { useIAStore } from '../ia/IAstore'
 import OurServices from '../ourServices/OurServices'
 
@@ -141,6 +141,7 @@ const Onboarding = () => {
             {/* <Image className={styles.background} src={item.background} width={564} height={564} /> */}
             <div className={styles.black_bg}></div>
             <Image
+              alt="Imagen de Onboarding"
               className={styles.image}
               src={item.image}
               style={imageStyle || {}}
@@ -171,14 +172,14 @@ const Onboarding = () => {
 
     <div className={styles.texts}>
       <div className={styles.background}></div>
-      <p>
+      <article>
         Comprando con aliados de <br />
         <b>Pikplay</b> tienes la posibilidad de ganar <b>Cashback</b><CoinIcon />,
         <br />esto basicamente es descuentos en otras tiendas aliadas.
         <br /><br />
         Tambien invitar a tus amigos y tener un Ranking de puntos los cuales te serviran para aumentar de liga, obtener descuentos
         y participar en concursos.
-      </p>
+      </article>
       {/* <p>
         Por ello en Pikplay solo encontraras <b>Aliados certificados</b>.
         <br />Tiendas que han sido estudiadas y validadas por nuestro equipo. Tienen nuestro total respaldo y confianza.
@@ -190,13 +191,13 @@ const Onboarding = () => {
       <div className={styles.itemsAliados}>
         {sellersInformation && Object.keys(sellersInformation).map((key, i) => {
           const { authorInformation: item, products } = sellersInformation[key]
-          return <div className="Card">
+          return <div className="Card" key={key}>
             <Link href={`/${key}`}>
               <div className={styles.sellerInformation}>
                 <img src={item.picture} />
                 <p>
                   <b>{item.name}</b>
-                  <div>{item?.category?.label}</div>
+                  <span>{item?.category?.label}</span>
                   {item.location}
                 </p>
               </div>

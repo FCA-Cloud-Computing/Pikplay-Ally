@@ -1,6 +1,6 @@
 .LoginComponent {
   .playButton {
-    margin-top: 20px;
+    margin-top: 18px;
   }
   .contryAndPhone {
     display: flex;
@@ -42,5 +42,18 @@
   }
   :global(.MuiDialogContent-root) {
     overflow-x: hidden;
+    &::-webkit-scrollbar-thumb {
+      // background: linear-gradient(45deg, #c93530, #ff4b2b); /* Degradado facherito */
+      background-color: #c93530;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar {
+      width: 2px; /* Para vertical */
+      height: 2px; /* Para horizontal */
+    }
+    &::-webkit-scrollbar-track {
+      background: #740e9f; /* Fondo oscuro */
+      border-radius: 5px;
+    }
   }
 }

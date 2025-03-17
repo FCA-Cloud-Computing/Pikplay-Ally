@@ -31,7 +31,8 @@ const sellersInformation = {
       {
         images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F168%2Fpublications%2F442442854_18029969963009396_5863529455428440747_n_768x768.jpg?alt=media&token=4971cd57-d56a-4571-85c2-cfb4dd25f39e' }],
         price: null,
-      }]
+      }],
+    whatsappNumber: 573014270079,
   },
   'caribe-dev': {
     authorInformation: {

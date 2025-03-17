@@ -34,7 +34,7 @@ import UserNotifications from '../userNotifications/UserNotifications'
 import RankingComponent from '../ranking/Ranking'
 import Referrals from '../referrals/Referrals'
 import CoinIcon from '../coinIcon/CoinIcon'
-import { getExperiencesSrv } from '@/services/user/userService'
+import { getExperiencesSrv } from '@/services/experience'
 
 const { motion } = require('framer-motion')
 

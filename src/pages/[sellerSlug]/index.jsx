@@ -26,7 +26,7 @@ import { Loyalty } from '@/components/loyalCustomer/Loyalty'
 import Button from '@/components/button/Button'
 import { useIAStore } from '@/components/ia/IAstore'
 import { HearingTwoTone, HeartBroken, HeartBrokenOutlined, HeartBrokenTwoTone, HeatPumpRounded } from '@mui/icons-material'
-import { getUserSrv } from '@/services/user/userService'
+import { getUserSrv } from '@/services/user/user'
 
 const DefaultSellerPage = (props) => {
   const { params, sellerInformation } = props

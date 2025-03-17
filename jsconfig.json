@@ -1,8 +1,14 @@
 {
   "compilerOptions": {
-    "jsx": "react",
-    "moduleResolution": "node",
     "baseUrl": "./",
+    "checkJs": false,
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": false,
+    "target": "es6",
     "paths": {
       "@/*": ["./src/*"],
     }

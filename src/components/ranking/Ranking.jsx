@@ -8,7 +8,7 @@ import { formatNumber } from '@/lib/utils'
 import ProfileImage from '../profileImage/ProfileImage'
 import { rankingDataPoints } from './rankingData'
 import Button from '../button/Button'
-import { getUsersSrv } from '@/services/user/userService'
+import { getUsersSrv } from '@/services/user/user'
 import { getRankingDetailSrv } from '@/services/rankings/rankings'
 
 const RankingComponent = (props) => {

@@ -19,10 +19,15 @@
     }
 
     p {
+        background: #111f59bf;
+        border-radius: 10px;
+        font-size: 14px;
+        padding: 10px 20px;
         position: relative;
         z-index: 2;
         b {
             display: block;
+            margin-bottom: 10px;
         }
     }
 

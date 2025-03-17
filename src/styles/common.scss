@@ -252,6 +252,7 @@ span.MuiBadge-badge {
   }
 }
 
+// Toast
 .Toastify__toast-container {
   color: white;
   font-size: 15px;
@@ -261,8 +262,30 @@ span.MuiBadge-badge {
     background-repeat: no-repeat;
     background-size: cover;
     color: #707070;
+    height: 96px;
     font-weight: 400;
     padding: 22px 44px 8px 40px;
+    text-align: center;
+    .Toastify__close-button {
+      margin-top: 6px;
+      opacity: 1;
+      svg {
+        fill: rgb(184 16 11);
+      }
+    }
+    .Toastify__toast-body {
+    }
+    .Toastify__progress-bar--wrp {
+      // Barra de progreso
+      border-bottom-left-radius: var(--toastify-toast-bd-radius);
+      bottom: 2px;
+      height: 5px;
+      left: 0;
+      margin: 0 auto;
+      position: absolute;
+      right: 0;
+      width: calc(100% - 80px);
+    }
   }
 }
 

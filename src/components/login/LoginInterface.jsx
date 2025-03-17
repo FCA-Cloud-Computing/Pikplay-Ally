@@ -27,14 +27,31 @@ export default function LoginInterface({
   handleFixPhone,
   handleTengoCodigo,
   onChangeReCaptcha,
-  phone,
-  setIsCodeSended,
-  setPhone,
+  phoneNumber,
+  setPhoneNumber,
   setName,
 }) {
   const [contry, setContry] = useState('57')
   const onboardingName = typeof window != 'undefined' ? localStorage.getItem('onboardingName') : ''
   const buttonsBlocked = !isHuman && env != 'dev'
+
+  const handleInputChange = (e) => {
+    const input = e.target.value;
+
+    // Eliminar todos los caracteres que no sean dígitos
+    const digits = input.replace(/\D/g, "");
+
+    // Formatear el número de teléfono
+    let formattedNumber = digits;
+
+    if (digits.length > 3 && digits.length <= 6) {
+      formattedNumber = `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    } else if (digits.length > 6) {
+      formattedNumber = `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+    }
+
+    setPhoneNumber(formattedNumber);
+  }
 
   useEffect(() => {
     setName(onboardingName)
@@ -68,7 +85,7 @@ export default function LoginInterface({
             <span className={styles.subtitle}>Solo con tu número de teléfono </span>
             puedes crear tu cuenta y empezar a ganar <b>¡Pikcoins!</b>
           </DialogContentText>
-          <Image src="images/elements/girl-coin.png" height={200} width={200} style={{ display: 'block', margin: '0 auto' }} />
+          <Image alt="Imagen de login chica viendo Pikcoins en su telefono" src="images/elements/girl-coin.png" height={200} width={200} style={{ display: 'block', margin: '0 auto' }} />
           {/* Fields */}
           {/* {!isCodeSent && <TextField
             defaultValue={onboardingName}
@@ -123,22 +140,24 @@ export default function LoginInterface({
               </MenuItem>
             </Select>
             <TextField
-              onKeyUp={e => setPhone(e.target.value)}
+              // onKeyUp={e => setPhone(e.target.value)}
+              onChange={handleInputChange}
               margin='dense'
               id='phoneLogin'
               label='Número de celular'
-              type='number'
+              type='text'
               fullWidth
+              value={phoneNumber}
             />
           </div>
-          {!isCodeSent && env != 'deva' && (
+          {/* {!isCodeSent && env != 'dev' && (
             <center className={`${styles.capchaContent}`}>
               <ReCAPTCHA
                 sitekey='6Ldyz98eAAAAAFCJEbBSdSRqNu4Kn1XqZugCi9Qg'
                 onChange={onChangeReCaptcha}
               />
             </center>
-          )}
+          )} */}
           {
             isCodeSent && (
               <>
@@ -147,7 +166,7 @@ export default function LoginInterface({
                   disabled={buttonText == 'Validando...' ? true : false}
                   fullWidth
                   id='verificationCode'
-                  label={`Código de 4 dígitos`}
+                  label={`Coloca aquí tu código`}
                   margin='dense'
                   onKeyUp={handleKeyUp}
                   type='number' />
@@ -171,7 +190,7 @@ export default function LoginInterface({
           </small>
         </DialogContent >
         <DialogActions>
-          {isCodeSent && <Button onClick={handleFixPhone} color='normal'>
+          {isCodeSent && <Button onClick={handleFixPhone} color='link'>
             Corregir número
           </Button>}
           {/* <Button onClick={handleCloseDialog} color='normal'>
@@ -181,7 +200,7 @@ export default function LoginInterface({
             <Button
               onClick={!buttonsBlocked ? handleTengoCodigo : null}
               color={!buttonsBlocked ? 'link' : 'normal'}>
-              Ya tengo código
+              Tengo código
             </Button>
           )}
           <Button
