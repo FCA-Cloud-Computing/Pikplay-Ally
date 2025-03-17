@@ -66,7 +66,6 @@ const UserNotifications = () => {
     if (userLogged.uid) {
       getNotificationsSrv()
         .then(res => {
-          debugger
           setStoreValue('notifications', res.data)
         });
     }
@@ -74,7 +73,6 @@ const UserNotifications = () => {
 
   const handleNotification = async (item) => {
     const { coins, experience, id, link, type } = item
-    debugger
     if (coins || experience) {
       // reclamarCoins(coins, id)
       setStoreValue('isAwardSummaryModalOpen', true)

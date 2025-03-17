@@ -37,7 +37,6 @@ const CoinIcon = ({
     animateValue(0, initialCoins, 1000);
   }, []);
 
-  debugger
   const animatedCoins = (gainedCoins || coins > 0) ? useAnimatedNumber(coins, (coins + gainedCoins), 2000) : coins
 
   return (

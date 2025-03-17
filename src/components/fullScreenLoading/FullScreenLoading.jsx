@@ -33,7 +33,13 @@ const FullScreenLoading = ({ isFullLoading = true }) => {
     };
 
     isCancelled.current = false;
-    if (isFullLoading) loopAnimation();
+    if (isFullLoading) {
+      try {
+        loopAnimation();
+      } catch (err) {
+        console.log(err)
+      }
+    }
 
     return () => {
       isCancelled.current = true; // ✋ Cancela animación al desmontar o cuando ya no esté cargando
