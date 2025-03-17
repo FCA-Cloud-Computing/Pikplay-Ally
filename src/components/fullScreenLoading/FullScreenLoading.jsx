@@ -10,25 +10,29 @@ const FullScreenLoading = ({ isFullLoading = true }) => {
 
   useEffect(() => {
     const loopAnimation = async () => {
-      while (!isCancelled.current) {
-        await controls.start({
-          rotate: 360,
-          transition: { duration: 1, ease: "easeInOut" },
-        });
+      try {
+        while (!isCancelled.current) {
+          await controls.start({
+            rotate: 360,
+            transition: { duration: 1, ease: "easeInOut" },
+          });
 
-        for (let i = 0; i < 3; i++) {
-          if (isCancelled.current) return;
-          await controls.start({
-            scale: 1.2,
-            transition: { duration: 0.4, ease: "easeInOut" },
-          });
-          await controls.start({
-            scale: 1,
-            transition: { duration: 0.4, ease: "easeInOut" },
-          });
+          for (let i = 0; i < 3; i++) {
+            if (isCancelled.current) return;
+            await controls.start({
+              scale: 1.2,
+              transition: { duration: 0.4, ease: "easeInOut" },
+            });
+            await controls.start({
+              scale: 1,
+              transition: { duration: 0.4, ease: "easeInOut" },
+            });
+          }
+
+          await controls.set({ rotate: 0 });
         }
-
-        await controls.set({ rotate: 0 });
+      } catch (err) {
+        console.log(err)
       }
     };
 

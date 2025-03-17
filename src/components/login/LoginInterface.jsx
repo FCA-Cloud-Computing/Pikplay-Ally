@@ -85,7 +85,7 @@ export default function LoginInterface({
             <span className={styles.subtitle}>Solo con tu número de teléfono </span>
             puedes crear tu cuenta y empezar a ganar <b>¡Pikcoins!</b>
           </DialogContentText>
-          <Image src="images/elements/girl-coin.png" height={200} width={200} style={{ display: 'block', margin: '0 auto' }} />
+          <Image alt="Imagen de login chica viendo Pikcoins en su telefono" src="images/elements/girl-coin.png" height={200} width={200} style={{ display: 'block', margin: '0 auto' }} />
           {/* Fields */}
           {/* {!isCodeSent && <TextField
             defaultValue={onboardingName}
@@ -150,14 +150,14 @@ export default function LoginInterface({
               value={phoneNumber}
             />
           </div>
-          {!isCodeSent && env != 'deva' && (
+          {/* {!isCodeSent && env != 'dev' && (
             <center className={`${styles.capchaContent}`}>
               <ReCAPTCHA
                 sitekey='6Ldyz98eAAAAAFCJEbBSdSRqNu4Kn1XqZugCi9Qg'
                 onChange={onChangeReCaptcha}
               />
             </center>
-          )}
+          )} */}
           {
             isCodeSent && (
               <>
