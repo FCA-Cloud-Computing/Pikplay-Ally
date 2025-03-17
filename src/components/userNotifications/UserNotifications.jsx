@@ -127,7 +127,7 @@ const UserNotifications = () => {
 
   useEffect(() => {
     // Setting banner picture profile to true if there is a notification with cid 1 (profile image completed)
-    notifications.filter(item => item.cid === 1).length == 0 && setBannerPictureProfile(true)
+    notifications && notifications.filter(item => item.cid === 1).length == 0 && setBannerPictureProfile(true)
   }, [notifications])
 
   return (
@@ -152,11 +152,11 @@ const UserNotifications = () => {
               description,
               image,
               id,
+              isChecked,
               link,
               status,
               type,
             } = item
-
             const created = moment(createdAt).fromNow()
             const srcNotificationImg =
               type === 'COUPON_GIFT_AVAILABLE'
@@ -169,10 +169,10 @@ const UserNotifications = () => {
             return (
               // <Tooltip title={created} key={id}>
               <motion.li
-                className={classNames('Card', { [styles.read]: status })}
+                className={classNames('Card', { [styles.read]: isChecked })}
                 key={id}
                 variants={item}
-                onClick={() => !claimed && handleNotification(item)}>
+                onClick={() => !isChecked && handleNotification(item)}>
                 {/* {!disabled && <FontAwesomeIcon icon={faCircle} />} */}
                 {/* <Image
                   alt='icon-notification'

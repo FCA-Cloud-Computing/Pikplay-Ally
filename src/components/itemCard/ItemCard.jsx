@@ -108,7 +108,7 @@ const ItemCard = (props) => {
           {
             <div className={styles.descripcion}>
               <div className={styles.icons}>
-                <Tooltip title='Seguir publicación'>
+                {/* <Tooltip title='Seguir publicación'> 
                   <a>
                     <FontAwesomeIcon
                       icon={faHeart}
@@ -127,7 +127,7 @@ const ItemCard = (props) => {
                       }}
                     />
                   </a>
-                </Tooltip>
+                </Tooltip> */}
                 <Tooltip title='Compartir'>
                   <a
                     href={`${shareLink}`}

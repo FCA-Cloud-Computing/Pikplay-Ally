@@ -9,11 +9,11 @@ import useAnimatedNumber from '@/hooks/useAnimatedNumber'
 import { formatNumber } from "../../lib/utils";
 
 const CoinIcon = ({
-  coins,
+  coins = 0,
   hideNumber = false,
   initialCoins = 200,
   isLabel,
-  gainedCoins,
+  gainedCoins = 0,
   multicoin,
   textColor,
 }) => {
@@ -37,8 +37,9 @@ const CoinIcon = ({
     animateValue(0, initialCoins, 1000);
   }, []);
 
-  const animatedCoins = (gainedCoins || coins > 0) ? useAnimatedNumber(coins, (coins + gainedCoins), 2000) : coins
-
+  const animatedCoins = gainedCoins > 0
+    ? useAnimatedNumber(coins, (coins + gainedCoins), 2000)
+    : coins
   return (
     <div
       className={classNames("Coins", {

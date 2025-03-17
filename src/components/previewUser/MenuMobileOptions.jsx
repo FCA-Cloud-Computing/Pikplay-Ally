@@ -76,7 +76,7 @@ const MenuMobileOptions = () => {
     <motion.ol variants={item}>
       <Link href={`/perfil/${slugify(name || "User Name")}`}>
         <div className={styles.coinContent}>
-          <CoinIcon coins={coins} />
+          <CoinIcon coins={coins} hideNumber />
         </div>
         Mi cuenta
       </Link>

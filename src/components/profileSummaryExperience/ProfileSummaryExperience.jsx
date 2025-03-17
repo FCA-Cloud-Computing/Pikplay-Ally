@@ -30,7 +30,7 @@ const ProfileSummaryExperience = (props) => {
     showDetails,
     userInfoData,
     newInfo,
-    gainedCoins,
+    gainedCoins = 0,
     gainedExperience,
   } = props
   const {
@@ -159,10 +159,11 @@ const ProfileSummaryExperience = (props) => {
           <div className={styles.experience_status}>
             <ExperienceBar {...{
               currentExperience,
-              experienceValue,
-              targetExperience: gainedExperience,
+              targetExperience: gainedExperience + currentExperience,
             }} />
           </div>
+          {/* currentCoins:{currentCoins}
+          gainedCoins={gainedCoins} */}
           <CoinIcon coins={currentCoins} gainedCoins={gainedCoins} hideNumber={false} />
         </div>
         <p className={styles.rankingMessage}>

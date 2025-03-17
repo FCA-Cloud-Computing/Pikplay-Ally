@@ -42,9 +42,9 @@ const BonusList = ({ bonuses }) => {
                                 <Button color="darkBlue" style={{ color: "white" }}>Compartir</Button>
                             </div>
                         </div>
-                        {bonus.image && <div className={styles.image}>
+                        {/* {bonus.image && <div className={styles.image}>
                             <img src={bonus.image} />
-                        </div>}
+                        </div>} */}
                     </div>
                     {/* <hr /> */}
                     <div className={styles.terms}>

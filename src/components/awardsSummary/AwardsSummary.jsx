@@ -30,7 +30,6 @@ const AwardsSummary = () => {
   }, [])
 
   const handleUpdateExperience = () => {
-    // handlePickRewardUp()
     createExperienceSrv(null, {
        coins: gainedCoins, 
        experience: gainedExperience, 
@@ -39,18 +38,6 @@ const AwardsSummary = () => {
       })
     setPage(1)
   }
-
-  // const handlePickRewardUp = () => {
-  //   // Sumando coins al Coins del header
-  //   const element = document.querySelector('#PreviewProfile--Coins .number')
-  //   const fromNumber = element?.innerHTML
-  //   const targetNumber = currentUserCoins + gainedCoins
-  //   animatePrice(element, targetNumber, fromNumber)
-
-  //   // Restando coins
-  //   const secondElement = document.querySelector('#AwardsSummary .number')
-  //   animatePrice(secondElement, 0, gainedCoins)
-  // }
 
   return (
     <>

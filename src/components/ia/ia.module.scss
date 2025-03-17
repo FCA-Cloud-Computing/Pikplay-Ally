@@ -109,6 +109,9 @@
                 color: white;
                 text-decoration: underline;
             }
+            button a {
+                text-decoration: none;
+            }
             .buttons {
                 display: flex;
                 justify-content: end;

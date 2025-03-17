@@ -65,7 +65,7 @@ function Login(props) {
 
   const handleEnviarCodigo = async () => {
     // setButtonText('Enviando...')
-    const formattedPhoneNumber = phoneNumber.replace(/-/g, '');
+    const formattedPhoneNumber = (phoneNumber || '').replace(/-/g, '');
     if (!phoneNumber || !numberValidated(formattedPhoneNumber)) {
       toast('Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso')
       setButtonText('Enviar código')
