@@ -10,6 +10,7 @@ import useCommonStore from '../../hooks/commonStore'
 import { useIAStore } from '../ia/IAstore'
 import Button from '../button/Button'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import Image from 'next/image'
 
 const MenuMobileOptions = () => {
   const router = useRouter()
@@ -113,6 +114,12 @@ const MenuMobileOptions = () => {
         <img className='br-5' src="/images/users/conversation_club/logo.png" />
         English Club
       </Link>
+    </motion.ol>
+    {/* Imagen de aplicación */}
+    <motion.ol variants={item}>
+      <a href="/files/pikplay-application.apk">
+        <Image className={styles.downloadAppImage} src="/images/logos/get-it-on-google-play.png" width="990" height="300" />
+      </a>
     </motion.ol>
     <motion.ol variants={item} onClick={() => handleLogout()}>
       Salir

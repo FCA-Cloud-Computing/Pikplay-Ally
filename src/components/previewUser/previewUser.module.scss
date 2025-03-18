@@ -87,7 +87,14 @@
       position: fixed;
       z-index: 2;
     }
-
+    .downloadAppImage {
+      color: transparent;
+      display: block;
+      height: max-content;
+      margin: 10px auto 20px;
+      object-fit: contain;
+      width: 120px;
+    }
     :global(.UserNotifications) {
       right: 0px;
       position: absolute;
