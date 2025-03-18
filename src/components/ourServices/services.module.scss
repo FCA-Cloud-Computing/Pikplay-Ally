@@ -1,25 +1,22 @@
 .OurServicesComponent {
+    margin-top: 20px;
     li {
+        background: linear-gradient(to right, #efe7d3, #fdf6f1);
+        color: #633473;
+        font-size: 14px;
+        font-weight: 400;
         margin-left: 20px;
-        padding-left: 100px;
         &:nth-of-type(2) .icon {
             left: -20px;
             top: 10px;
             width: 60px;
         }
-        &:nth-of-type(3) .icon {
-            left: -20px;
-            top: 20px;
-            width: 70px;
+        &:nth-of-type(2) .icon {
+            float: right;
         }
         .icon {
-            background: white;
-            border-radius: 4px;
-            box-shadow: 2px 2px 2px #d5d5d561;
-            left: -30px;
-            padding: 10px 8px 4px;
-            position: absolute;
-            top: 20px;
+            float: left;
+            margin: 0 10px 10px 0;
             width: 100px;
         }
     }
