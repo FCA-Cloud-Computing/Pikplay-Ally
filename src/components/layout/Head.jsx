@@ -25,13 +25,14 @@ const Header = ({ description, image, title, url }) => {
       <meta name='country' content='COL' />
       <meta name='author' content='pikplay.com.co' />
       <meta name='copyright' content='pikplay.com.co' />
-      <meta name='language' content='es-CO'></meta>
+      <meta name='language' content='es-CO' />
       <meta httpEquiv='ScreenOrientation' content='autoRotate:disabled' />
       <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> {/* TODO Quitar esto una vez se pueda hacer el request al back con https */}
       {/* Global site tag (gtag.js) - Google Ads: 941382150 */}
       <link rel='alternate' href={url} hrefLang='es-CO' />
       <link rel='canonical' href={url} />
-      <link rel='icon' type='image/png' href='/images/logos/logo48x48.png' />
+      <link rel='icon' type='image/png' href='/images/logos/192x192.png' />
+      <link rel="icon" type="image/png" sizes="/images/logos/32x32" href="/32x32.png" />
       <link rel='manifest' href='/manifest.json' />
       {() => {
         window.dataLayer = window.dataLayer || []
