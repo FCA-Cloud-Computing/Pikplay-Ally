@@ -45,7 +45,7 @@ const PreviewUser = () => {
           {/* TODO */}
           {/* Icono */}
           <div className={styles.coins} id="PreviewProfile--Coins">
-            <CoinIcon coins={coins} />
+            <CoinIcon coins={coins} hideNumber />
             {/* <span className={styles.experience}>
               <FontAwesomeIcon icon={faHeartbeat} />
               <span>&nbsp;10/20.500</span>
