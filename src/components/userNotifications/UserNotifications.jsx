@@ -196,7 +196,7 @@ const UserNotifications = () => {
           },
         )}
       </motion.ul>
-      {bannerPictureProfile && <>
+      {bannerPictureProfile && userLogged.uid && <>
         <input onChange={handlerInputFile} ref={fileInputRef} type="file" style={{ display: 'none' }} />
         <img onClick={() => fileInputRef.current.click()} style={{ borderRadius: '5px' }} src="/images/banners/gana_tus.png" />
       </>}

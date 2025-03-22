@@ -96,7 +96,7 @@
   }
 
   &.blue {
-    background: #0095b3;
+    background: #521a93;
     &.outline button {
       $color: #056d82;
       text-shadow:
@@ -120,8 +120,8 @@
     }
     &.realistic {
       box-shadow:
-        #0a6f84 0 5px 2px,
-        #0a6f84b3 0 6px 0px;
+        #290d56 0 5px 2px,
+        transparent 0 6px 0px;
     }
   }
 

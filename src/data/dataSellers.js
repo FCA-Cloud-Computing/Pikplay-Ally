@@ -1,6 +1,35 @@
 import { slugify } from '@/lib/utils'
 
 const sellersInformation = {
+  'quilla-tenis': {
+    authorInformation: {
+      aboutHTML: <div>
+        Tenis de campo
+        <p>Clases de Tenis:<br />
+          🎾 Personalizadas : niños, jóvenes, adultos.
+          🎾 Clases grupales<br />
+          🎾 Programas grupales mensuales.<br />
+          Calle 93 #54 esquina, Barranquilla 080001<br />
+        </p>
+      </div>,
+      // description: <div>Clases de Tenis: 🎾Personalizadas : niños, jóvenes, adultos. 🎾Clases grupales 🎾Programas grupales mensuales.'</div>,
+      name: 'Quilla Tenis',
+      slug: 'quilla-tenis',
+      picture: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F174%2Flogo_768x768.jpg?alt=media',
+      category: {
+        label: 'Deportes',
+        value: 'sports'
+      },
+      pageBackground: "https://instagram.fbaq5-1.fna.fbcdn.net/v/t51.29350-15/449169477_923632356185975_6776919064692422872_n.webp?stp=dst-jpg_e35_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xMjAweDEyMDAuc2RyLmYyOTM1MC5kZWZhdWx0X2ltYWdlIn0&_nc_ht=instagram.fbaq5-1.fna.fbcdn.net&_nc_cat=111&_nc_oc=Q6cZ2QHcF8h73k2uEncgd80xlwkmRxAt9auKzXzp6_PURUOZL-GS5YCHMCWhTCkg4sS70uo&_nc_ohc=2q_5gHWN49QQ7kNvgFCCif8&_nc_gid=bWnEL4WeV0xGMcBTZTSQSA&edm=AP4sbd4BAAAA&ccb=7-5&ig_cache_key=MzQwMTQ1MzAwMjYyNjY0MjQ0MA%3D%3D.3-ccb7-5&oh=00_AYF1z4tiRVj_ukaF4XXRW60oINE62N0CyRiz5DQ5Y4tQHg&oe=67E41697&_nc_sid=7a9f4b"
+    },
+    products: [
+      {
+        images: [{
+          url: "https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F174%2Fproducts%2Fproducto-01_768x768.jpg?alt=media", isHome: true
+        }],
+      }
+    ]
+  },
   'monster-ink-bq': {
     authorInformation: {
       name: 'Monster Ink Barranquilla',

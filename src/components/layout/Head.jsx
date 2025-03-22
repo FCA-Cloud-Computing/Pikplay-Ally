@@ -1,7 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
 
-const Header = ({ description, image, title, url }) => {
+const Header = ({
+  description,
+  image,
+  title,
+  url
+}) => {
   return (
     <Head>
       <title>{title}</title>
@@ -28,6 +33,7 @@ const Header = ({ description, image, title, url }) => {
       <meta name='language' content='es-CO' />
       <meta httpEquiv='ScreenOrientation' content='autoRotate:disabled' />
       <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> {/* TODO Quitar esto una vez se pueda hacer el request al back con https */}
+      <meta name="google-adsense-account" content="ca-pub-4730353912478910" />
       {/* Global site tag (gtag.js) - Google Ads: 941382150 */}
       <link rel='alternate' href={url} hrefLang='es-CO' />
       <link rel='canonical' href={url} />
@@ -46,6 +52,9 @@ const Header = ({ description, image, title, url }) => {
         })
       }}
       ()
+      {/* Google Adsense */}
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4730353912478910"
+        crossorigin="anonymous"></script>
     </Head>
   )
 }

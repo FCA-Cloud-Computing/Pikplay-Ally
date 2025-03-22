@@ -43,10 +43,6 @@
     position: absolute;
     right: -10px;
     top: -2px;
-    z-index: 4;
-    @media screen and (max-width: 480px) {
-      display: none;
-    }
 
     .experience {
       color: rgb(25 89 107);
@@ -163,7 +159,7 @@
       }
 
       :global(.number-coins) span {
-        display: none;
+        // display: none;
       }
     }
   }

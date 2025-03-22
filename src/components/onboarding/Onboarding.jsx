@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import styles from './onboarding.module.scss'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Image from "next/image"
-import { motion } from 'framer-motion'
+import { motion, useAnimation, useMotionValue, useTransform } from 'framer-motion'
 import { height } from '@mui/system'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
@@ -76,6 +76,14 @@ const Onboarding = () => {
     // },
   ]
 
+  // Animacion levitando
+  // const yAnimation = useMotionValue(0); // Movimiento vertical
+  // const shadowAnimation = useTransform(yAnimation, [-20, 0, 20], [
+  //   "0px 25px 40px rgba(0, 0, 0, 0.05)",
+  //   "0px 10px 15px rgba(0, 0, 0, 0.15)",
+  //   "0px 5px 5px rgba(0, 0, 0, 0.3)"
+  // ]);
+
   const {
     handleUserMessage,
   } = useIAStore((state => state))
@@ -109,6 +117,14 @@ const Onboarding = () => {
     setStoreValue('isFullLoading', false)
   }
 
+  const handleCardOnboarding = async (messageCode) => {
+    // const controls = controlsMap[item.messageCode];
+    // await controls.start({ scale: 0.7, transition: { duration: 0.1 } });
+    // await controls.start({ scale: 1, transition: { duration: 0.1 } });
+
+    handleUserMessage(messageCode, {})
+  }
+
   useEffect(() => {
     // handleUserMessage('onboarding', {})
     setStoreValue('isOnboardingProcess', true)
@@ -130,17 +146,29 @@ const Onboarding = () => {
         items.map((item, ind) => {
           const { imageStyle, imageStyle: { height = 200, width = 200 } } = item || {}
           return <motion.div
+            // controls={controlsCards}
             animate={{ x: 0 }}
             initial={{ x: '-400px' }}
             transition={{ delay: (.2 * ind) }}
             className={`${styles.item} ${ind < 1 && styles.active}`}
             key={ind}
-            onClick={() => handleUserMessage(item.messageCode, {})}
+            onClick={() => handleCardOnboarding(item.messageCode, {})}
             whileHover={{ scale: 1 }}
-            whileTap={{ scale: 0.7 }}>
+            whileTap={{ scale: 0.7 }}
+          >
             {/* <Image className={styles.background} src={item.background} width={564} height={564} /> */}
             <div className={styles.black_bg}></div>
-            <Image
+            <motion.img
+              // animate={{ y: [0, -20, 0] }} // animación arriba-abajo
+              // transition={{
+              //   duration: 3,
+              //   repeat: Infinity,
+              //   ease: "easeInOut"
+              // }}
+              style={{
+                // yAnimation,
+                // boxShadow: shadowAnimation
+              }}
               alt="Imagen de Onboarding"
               className={styles.image}
               src={item.image}
@@ -173,8 +201,8 @@ const Onboarding = () => {
     <div className={styles.texts}>
       <div className={styles.background}></div>
       <article>
-        Comprando con aliados de <br />
-        <b>Pikplay</b> tienes la posibilidad de ganar <b>Cashback</b><CoinIcon />,
+        Comprando con aliados de
+        <b>Pikplay</b> tienes la posibilidad de ganar <b>Cashback</b><CoinIcon hideNumber />,
         <br />esto basicamente es descuentos en otras tiendas aliadas.
         <br /><br />
         Tambien invitar a tus amigos y tener un Ranking de puntos los cuales te serviran para aumentar de liga, obtener descuentos
@@ -191,6 +219,7 @@ const Onboarding = () => {
       <div className={styles.itemsAliados}>
         {sellersInformation && Object.keys(sellersInformation).map((key, i) => {
           const { authorInformation: item, products } = sellersInformation[key]
+          // if (key == "quilla-tenis") debugger
           return <div className="Card" key={key}>
             <Link href={`/${key}`}>
               <div className={styles.sellerInformation}>
@@ -202,8 +231,9 @@ const Onboarding = () => {
                 </p>
               </div>
             </Link>
-            <div className={styles.products}>
+            <div className={`${styles.products} ${(products && products.length > 1) && styles.manyProducts}`}>
               {products && products.map((product, i) => {
+                // debugger
                 return product.images[0].isHome && <div className={styles.itemProduct}>
                   <Zoom>
                     <span className={styles.zoomIcon}>

@@ -23,7 +23,7 @@ const loadFromLocalStorage = (property) => {
 
 const defaultUserLogged = {
   uid: null,
-  picture: 'https://files.idyllic.app/files/static/308631?width=256&optimizer=image',
+  picture: '/images/logos/logo-pikplay-bg-azul.png',
 };
 
 const initialLoginStorage = (set) => {

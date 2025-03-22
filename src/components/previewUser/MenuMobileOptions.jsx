@@ -11,6 +11,7 @@ import { useIAStore } from '../ia/IAstore'
 import Button from '../button/Button'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Image from 'next/image'
+import Login from '../login/Login'
 
 const MenuMobileOptions = () => {
   const router = useRouter()
@@ -22,6 +23,7 @@ const MenuMobileOptions = () => {
     userLoggedOriginal
   } = useCommonStore((state => state))
   const { name, coins } = userLogged
+  const isLogged = userLogged?.uid
   const {
     handleUserMessage,
   } = useIAStore((state => state))
@@ -74,29 +76,34 @@ const MenuMobileOptions = () => {
     id="bg_black"
     initial="hidden"
     variants={container}>
-    <motion.ol variants={item}>
-      <Link href={`/perfil/${slugify(name || "User Name")}`}>
-        <div className={styles.coinContent}>
-          <CoinIcon coins={coins} hideNumber />
-        </div>
-        Mi cuenta
-      </Link>
-    </motion.ol>
-    <motion.ol variants={item}>
-      <Link href='/transacciones' as='/transacciones'>
-        Transacciones
-      </Link>
-    </motion.ol>
-    {/* <motion.ol variants={item}>
+    {!isLogged && <motion.ol variants={item}>
+      <Login />
+    </motion.ol>}
+    {isLogged && (<>
+      <motion.ol variants={item}>
+        <Link href={`/perfil/${slugify(name || "User Name")}`}>
+          <div className={styles.coinContent}>
+            <CoinIcon coins={coins} hideNumber />
+          </div>
+          Mi cuenta
+        </Link>
+      </motion.ol>
+      <motion.ol variants={item}>
+        <Link href='/transacciones' as='/transacciones'>
+          Transacciones
+        </Link>
+      </motion.ol>
+      {/* <motion.ol variants={item}>
       <a>
         Configuración
       </a>
     </motion.ol> */}
-    <motion.ol variants={item}>
-      <Link href="/onboarding">
-        Onboarding
-      </Link>
-    </motion.ol>
+      <motion.ol variants={item}>
+        <Link href="/onboarding">
+          Onboarding
+        </Link>
+      </motion.ol>
+    </>)}
     <motion.ol variants={item}>
       <Link href="/redimir">
         <img src="https://cdn-icons-png.flaticon.com/512/4213/4213958.png" />
@@ -116,14 +123,14 @@ const MenuMobileOptions = () => {
       </Link>
     </motion.ol>
     {/* Imagen de aplicación */}
-    <motion.ol variants={item}>
+    <motion.ol variants={item} style={{ justifyCcontent: 'center' }}>
       <a href="/files/pikplay-application.apk">
         <Image className={styles.downloadAppImage} src="/images/logos/get-it-on-google-play.png" width="990" height="300" />
       </a>
     </motion.ol>
-    <motion.ol variants={item} onClick={() => handleLogout()}>
+    {isLogged && <motion.ol variants={item} onClick={() => handleLogout()}>
       Salir
-    </motion.ol>
+    </motion.ol>}
     {/* Opciones de administrador */}
     {userLogged.isAdmin && <>
       <motion.ol variants={item}>
