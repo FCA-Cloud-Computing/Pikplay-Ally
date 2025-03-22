@@ -9,6 +9,7 @@ import { useIAStore } from '../ia/IAstore.js'
 import AwardsSummaryModal from '../awardsSummary/AwardsSummary.jsx';
 import MessagesTop from '../messagesTop/MessagesTop.jsx';
 import FullScreenLoading from '../fullScreenLoading/FullScreenLoading.jsx';
+import Header from './Head.jsx';
 
 const Layout = (props) => {
   const [isReady, setIsReady] = useState(false)
@@ -77,7 +78,8 @@ const Layout = (props) => {
 
   return (
     <>
-      <Head>
+      <Header />
+      {/* <Head>
         <title>{title}</title>
         <meta property='title' content={title} />
         <meta property='og:title' content={title} />
@@ -95,7 +97,7 @@ const Layout = (props) => {
         <meta httpEquiv='ScreenOrientation' content='autoRotate:disabled' />
         <link rel='alternate' href={url} hrefLang='es-CO' />
         <link rel='canonical' href={url} />
-      </Head>
+      </Head> */}
       <Body
         cssClassPage={cssClassPage}
         isReady={isReady}
