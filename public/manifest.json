@@ -1,10 +1,10 @@
 {
-    "name": "Pikplay Aliado Comercial",
+    "name": "Pikplay Compra y Vende Subiendo de Nivel",
     "short_name": "Pikplay",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#4CAF50",
+    "background_color": "#efeff0",
+    "theme_color": "#521a93",
     "icons": [
       {
         "src": "/images/logos/192x192.png",
