@@ -5,14 +5,13 @@
         color: #633473;
         font-size: 14px;
         font-weight: 400;
-        margin-left: 20px;
-        &:nth-of-type(2) .icon {
-            left: -20px;
-            top: 10px;
-            width: 60px;
-        }
-        &:nth-of-type(2) .icon {
-            float: right;
+        &:nth-of-type(2) {
+            height: 130px;
+            .icon {
+                left: -20px;
+                top: 10px;
+                float: right;
+            }
         }
         .icon {
             float: left;
