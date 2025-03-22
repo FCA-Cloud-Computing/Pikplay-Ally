@@ -201,7 +201,7 @@ const Onboarding = () => {
     <div className={styles.texts}>
       <div className={styles.background}></div>
       <article>
-        Comprando con aliados de <br />
+        Comprando con aliados de
         <b>Pikplay</b> tienes la posibilidad de ganar <b>Cashback</b><CoinIcon hideNumber />,
         <br />esto basicamente es descuentos en otras tiendas aliadas.
         <br /><br />
@@ -219,6 +219,7 @@ const Onboarding = () => {
       <div className={styles.itemsAliados}>
         {sellersInformation && Object.keys(sellersInformation).map((key, i) => {
           const { authorInformation: item, products } = sellersInformation[key]
+          // if (key == "quilla-tenis") debugger
           return <div className="Card" key={key}>
             <Link href={`/${key}`}>
               <div className={styles.sellerInformation}>
@@ -230,8 +231,9 @@ const Onboarding = () => {
                 </p>
               </div>
             </Link>
-            <div className={styles.products}>
+            <div className={`${styles.products} ${(products && products.length > 1) && styles.manyProducts}`}>
               {products && products.map((product, i) => {
+                // debugger
                 return product.images[0].isHome && <div className={styles.itemProduct}>
                   <Zoom>
                     <span className={styles.zoomIcon}>

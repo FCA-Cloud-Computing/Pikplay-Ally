@@ -33,35 +33,31 @@ const PreviewUser = () => {
       ${isShowLeftMenu ? styles.actived : null}
       ${userLogged?.uid ? styles.userLogged : null}
       `}>
-      {userLogged?.uid ? (
-        <div>
-          <ProfileImage
-            className="previewUser"
-            handleClickImage={IS_MOBILE ? handleClickImage : null}
-            picture={picture}
-            small
-            suppressHydrationWarning={true}
-          />
-          {/* TODO */}
-          {/* Icono */}
-          <div className={styles.coins} id="PreviewProfile--Coins">
-            <CoinIcon coins={coins} hideNumber />
-            {/* <span className={styles.experience}>
+      <div>
+        <ProfileImage
+          className="previewUser"
+          handleClickImage={IS_MOBILE ? handleClickImage : null}
+          picture={picture}
+          small
+          suppressHydrationWarning={true}
+        />
+        {/* TODO */}
+        {/* Icono */}
+        <div className={styles.coins} id="PreviewProfile--Coins">
+          <CoinIcon coins={coins} hideNumber />
+          {/* <span className={styles.experience}>
               <FontAwesomeIcon icon={faHeartbeat} />
               <span>&nbsp;10/20.500</span>
             </span> */}
-          </div>
-          <div className={styles.bg_white}></div>
-          {isShowLeftMenu && <>
-            <MenuMobileOptions />
-            <UserNotifications />
-          </>}
-          {/* <div className={styles.elementToCloseBgBlack} onClick={() => setStoreValue('leftMenuBar', false)}></div> */}
-          {leftBottomMenuContent}
         </div>
-      ) : (
-        <Login />
-      )}
+        <div className={styles.bg_white}></div>
+        {isShowLeftMenu && <>
+          <MenuMobileOptions />
+          <UserNotifications />
+        </>}
+        {/* <div className={styles.elementToCloseBgBlack} onClick={() => setStoreValue('leftMenuBar', false)}></div> */}
+        {leftBottomMenuContent}
+      </div>
     </div>
   )
 }

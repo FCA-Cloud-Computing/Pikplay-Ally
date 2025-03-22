@@ -35,9 +35,9 @@ export const AuthorInformation = (props) => {
             </div>
             <hr style={{ background: dividerColor }} />
             {<div className={styles.creditsGiven}>
-                <CoinIcon />
+                <CoinIcon coins={givenPikcoins} />
                 <div>
-                    <b>{formatNumber(givenPikcoins)}</b>
+                    {/* <b>{formatNumber(givenPikcoins)}</b> */}
                     <small>Pikcoins <br />entregadas</small>
                 </div>
             </div>}
