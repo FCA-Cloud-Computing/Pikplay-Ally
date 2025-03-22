@@ -1,7 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
 
-const Header = ({ description, image, title, url }) => {
+const Header = ({
+  description,
+  image,
+  title,
+  url
+}) => {
   return (
     <Head>
       <title>{title}</title>

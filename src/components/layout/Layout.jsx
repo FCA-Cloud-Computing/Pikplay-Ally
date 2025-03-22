@@ -76,9 +76,16 @@ const Layout = (props) => {
     }
   }, []);
 
+  const headerProps = {
+    title: title || 'Pikplay',
+    description,
+    image,
+    url,
+  }
+
   return (
     <>
-      <Header />
+      <Header {...headerProps} />
       {/* <Head>
         <title>{title}</title>
         <meta property='title' content={title} />
