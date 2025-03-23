@@ -76,7 +76,7 @@ const MenuMobileOptions = () => {
     id="bg_black"
     initial="hidden"
     variants={container}>
-    {!isLogged && <motion.ol variants={item}>
+    {!isLogged && <motion.ol variants={item} className={styles.notLogged}>
       <Login />
     </motion.ol>}
     {isLogged && (<>

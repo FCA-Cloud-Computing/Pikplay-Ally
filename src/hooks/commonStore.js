@@ -5,8 +5,7 @@ import { logout } from '../lib/utils';
 const initialNotification = {
   nid: 0,
   uid: 0,
-  detail: 'Ingresa con tu # de celu y obtén 15 Pikcoins para poder redimirlos en compras 🤩',
-  coins: null,
+  description: '<b>Dale en Play</b>, ingresa con tu # de celu y obtén tus primeros 5 Pikcoins, compra, refiere amigos, participa y sigue acumulando para ser el mejor',
   type_id: '',
   status: 0,
   created_at: '2022-04-11T20:33:30.000Z',
@@ -28,7 +27,7 @@ const defaultUserLogged = {
 
 const initialLoginStorage = (set) => {
   set({ userLogged: { uid: null } })
-  set({ notifications: [initialNotification] })  
+  set({ notifications: [initialNotification] })
   logout()
 }
 
