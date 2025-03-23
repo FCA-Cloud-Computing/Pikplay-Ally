@@ -35,10 +35,12 @@ import RankingComponent from '../ranking/Ranking'
 import Referrals from '../referrals/Referrals'
 import CoinIcon from '../coinIcon/CoinIcon'
 import { getExperiencesSrv } from '@/services/experience'
+import ChallengesList from '../challengesList/ChallengesList'
 
 const { motion } = require('framer-motion')
 
 const Interface = ({
+  challenges,
   dispatch,
   handleLogout,
   handleSave,
@@ -205,6 +207,10 @@ const Interface = ({
         setIsEditProfile={setIsEditProfile}
         showDetails
       />
+
+      <h2>Desafios</h2>
+      <ChallengesList challenges={challenges} />
+
       <h2>Referidos</h2>
       <Referrals {...{ referrals }} />
     </section>

@@ -49,6 +49,7 @@
     li {
       align-items: center;
       border-bottom: 1px solid #42495029;
+      border-radius: 5px 0 0 0;
       display: flex;
       height: min-content;
       margin: 0;
@@ -69,8 +70,7 @@
       }
 
       &:not(.read) {
-        border-left: 2px solid #3095b3;
-        border-radius: 0;
+        border-bottom: 2px solid #3095b3;
       }
 
       &.read {
@@ -125,6 +125,17 @@
 
       .image {
         border-radius: 6px;
+      }
+
+      .notificationType {
+        &.CHALLENGE {
+          background: #4caf50;
+          color: white;
+          border-radius: 4px;
+          font-size: 12px;
+          padding: 0 4px;
+          width: max-content;
+        }
       }
     }
   }

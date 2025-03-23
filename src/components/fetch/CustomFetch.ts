@@ -9,6 +9,7 @@ const CustomFetch = () => {
         message: 'API_URL no esta definida en el archivo .env',
         status: 404,
       };
+
     try {
       const headers = getCookies(ctx);
       console.log(API_URL + path);

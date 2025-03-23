@@ -21,7 +21,7 @@ const Header = ({
       <meta
         name='viewport'
         content='width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0' />
-      <meta name='theme-color' content='#476E95' />
+      <meta name='theme-color' content='#521a93' />
       <meta
         name='google-site-verification'
         content='4IqXj9YLrm5eo3s_c3cTKcAqBwUhCf8qgJgL2sLtJko' />

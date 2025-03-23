@@ -117,6 +117,14 @@
         // margin-top: 20px;
       }
 
+      &.notLogged {
+        height: max-content;
+        padding: 8px 0 0 0;
+        :global(.ButtonComponent) {
+          width: 90%;
+        }
+      }
+
       a {
         align-items: center;
         display: flex;
