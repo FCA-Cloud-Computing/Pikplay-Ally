@@ -4,7 +4,7 @@ import Onboarding from "../components/onboarding/Onboarding"
 const IndexPage = () => {
     const image = ''
     const description = 'Nuestro desafío es hacer que comprar y vender sea mucho más divertido · A través de la gamificación, transformamos la experiencia de compra en algo dinámico y diferente.'
-    const title = 'Pikplay: Compra y vende subiendo de nivel'
+    const title = 'Pikplay: Compra y Vende Subiendo de Nivel'
     const url = ''
     return <Layout
         image={image}
