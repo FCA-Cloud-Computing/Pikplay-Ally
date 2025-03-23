@@ -5,26 +5,26 @@
   position: relative;
   width: 70px;
   z-index: 4;
-  @media screen and (max-width: $tablet) {
-    border-radius: 10px 10px 0 0;
-    margin-left: initial;
-    &.actived {
-      .MenuOptionsComponent {
-        // box-shadow: 90px 3px 2px #76767673;
-        display: block;
-        left: 0;
-      }
-      .elementToCloseBgBlack {
-        right: 0;
-      }
+  // @media screen and (max-width: $tablet) {
+  // border-radius: 10px 10px 0 0;
+  // margin-left: initial;
+  &.actived {
+    .MenuOptionsComponent {
+      // box-shadow: 90px 3px 2px #76767673;
+      display: block;
+      // left: 0;
+    }
+    .elementToCloseBgBlack {
+      // right: 0;
     }
   }
+  // }
 
   @media screen and (min-width: 1024px) {
     &:hover,
     &.actived {
       .MenuOptionsComponent {
-        display: block;
+        // display: block;
       }
     }
   }
@@ -67,25 +67,28 @@
     left: 0px;
     top: 57px;
     // transition: 0.5s ease-in-out;
+    max-width: 210px;
     width: 50%;
     z-index: 2;
-    @media screen and (min-width: 1024px) {
-      height: 100%;
-      border-radius: 10px 0 0 0;
-      left: initial;
-      opacity: 1;
-      padding-right: 10px;
-      right: 210px;
-      top: 57px;
-      transform: none;
-      width: 220px;
+    height: 100%;
+    @media screen and (min-width: 420px) {
+      left: -210px;
+      margin: 0 auto;
+      right: 0;
+      // border-radius: 10px 0 0 0;
+      // left: initial;
+      // opacity: 1;
+      // padding-right: 10px;
+      // right: 210px;
+      // top: 57px;
+      // transform: none;
+      // width: 220px;
     }
     @media screen and (max-width: 480px) {
-      height: 100%;
-      // box-shadow: 6px 0px 2px #76767673;
-      display: block;
       // height: 100%;
-      position: fixed;
+      // // box-shadow: 6px 0px 2px #76767673;
+      // display: block;
+      // position: fixed;
     }
     .favoriteSeller {
       background: #646464;
@@ -99,7 +102,7 @@
       width: 120px;
     }
     :global(.UserNotifications) {
-      right: 0px;
+      // right: 0px;
       position: absolute;
     }
 
@@ -190,13 +193,13 @@
     padding: 0 10px;
     position: fixed;
     right: 0;
-    top: 37px;
+    top: 57px;
     width: 50%;
     z-index: 2;
-    @media (min-width: 1024px) {
-      margin: 20px 0 0 0;
-      width: 220px;
-    }
+    // @media (min-width: 1024px) {
+    //   margin: 20px 0 0 0;
+    //   width: 220px;
+    // }
     :global(ul) {
       overflow: initial;
     }
