@@ -126,6 +126,17 @@
       .image {
         border-radius: 6px;
       }
+
+      .notificationType {
+        &.CHALLENGE {
+          background: #4caf50;
+          color: white;
+          border-radius: 4px;
+          font-size: 12px;
+          padding: 0 4px;
+          width: max-content;
+        }
+      }
     }
   }
 }

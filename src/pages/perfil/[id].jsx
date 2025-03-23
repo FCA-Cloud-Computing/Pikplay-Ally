@@ -9,6 +9,7 @@ import { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import useCommonStore from '../../hooks/commonStore'
 import { validateTokenSrv, getExperiencesSrv, getUsersSrv, getReferralsSrv } from '../../services/user/user'
+import { getChallengesByUser } from '@/services/challenges/challenges'
 
 const PerfilPage = props => {
   const { userInfoFromServer, referrals } = props
@@ -60,6 +61,7 @@ const PerfilPage = props => {
 
   return (<Layout image={image} descripcion={descripcion} title={title} url={url}>
     <Perfil
+      challenges={props.challenges}
       handleSave={handleSave}
       isSaving={isSaving}
       referrals={referrals}
@@ -69,35 +71,41 @@ const PerfilPage = props => {
   </Layout>)
 }
 
-export const getServerSideProps = async ctx => {
+export const getServerSideProps = async (ctx) => {
   const respValidate = await validateTokenSrv(ctx)
   const reqReferrals = await getReferralsSrv(ctx, null)
   const { data: referrals, code: statusCodeReferrals } = reqReferrals
   const { data, code: statusCode } = respValidate
-  if (statusCode == 200) { // Correct validate
-    const uid = cookiesToObject(ctx.req.headers?.cookie)['User-ID']
-    const userInfoFromServer = await getUsersSrv(ctx, uid)
-    if (statusCode === 403) {
-      return {
-        redirect: {
-          destination: '/?action=not_authorized',
-          permanent: false,
-        },
-      }
-    }
-    return {
-      props: {
-        referrals,
-        userInfoFromServer,
-      }
-    }
-  }
-  return {
-    redirect: {
-      destination: '/',
-      permanent: false,
-    },
-  }
-};
 
-export default PerfilPage;
+  if (!statusCode == 200) { // Invalid
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
+  const uid = cookiesToObject(ctx.req.headers?.cookie)['User-ID']
+  const challenges = await getChallengesByUser(ctx);
+  const userInfoFromServer = await getUsersSrv(ctx, uid)
+
+  if (statusCode === 403) {
+    return {
+      redirect: {
+        destination: '/?action=not_authorized',
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: {
+      referrals,
+      userInfoFromServer,
+      challenges,
+    }
+  }
+}
+
+export default PerfilPage

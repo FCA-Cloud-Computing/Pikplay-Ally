@@ -181,6 +181,9 @@ const UserNotifications = () => {
                   src={srcNotificationImg}
                   width={48}
                 /> */}
+                <span className={`${styles.notificationType} ${styles[item.type]}`}>
+                  Desafío
+                </span>
                 <small>
                   hace {created}
                 </small>

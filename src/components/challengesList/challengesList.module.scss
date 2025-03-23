@@ -1,0 +1,18 @@
+.ChallengesList {
+    :global(.Card) {
+        background: #07244c;
+
+        &.done h3 {
+            text-decoration: line-through;
+        }
+
+        h3 {
+            color: white;
+            margin: 0 0 10px 0;
+        }
+
+        span {
+            color: white;
+        }
+    }
+}

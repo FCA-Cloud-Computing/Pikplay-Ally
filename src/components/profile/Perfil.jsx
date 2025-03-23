@@ -40,6 +40,7 @@ import ChallengesList from '../challengesList/ChallengesList'
 const { motion } = require('framer-motion')
 
 const Interface = ({
+  challenges,
   dispatch,
   handleLogout,
   handleSave,
@@ -208,7 +209,7 @@ const Interface = ({
       />
 
       <h2>Desafios</h2>
-      <ChallengesList />
+      <ChallengesList challenges={challenges} />
 
       <h2>Referidos</h2>
       <Referrals {...{ referrals }} />
