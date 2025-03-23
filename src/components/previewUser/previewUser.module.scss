@@ -1,7 +1,7 @@
 @import "../../styles/variables.scss";
 
 .PreviewUser {
-  margin-left: 20px;
+  // margin-left: 20px;
   position: relative;
   width: 70px;
   z-index: 4;
@@ -9,7 +9,7 @@
     border-radius: 10px 10px 0 0;
     margin-left: initial;
     &.actived {
-      .bg_black {
+      .MenuOptionsComponent {
         // box-shadow: 90px 3px 2px #76767673;
         display: block;
         left: 0;
@@ -23,7 +23,7 @@
   @media screen and (min-width: 1024px) {
     &:hover,
     &.actived {
-      .bg_black {
+      .MenuOptionsComponent {
         display: block;
       }
     }
@@ -55,7 +55,7 @@
     }
   }
 
-  .bg_black {
+  .MenuOptionsComponent {
     background: radial-gradient(circle, rgb(82 89 95) 0%, rgba(36, 41, 46, 1) 100%);
     // border-radius: 0 10px 10px 0;
     // box-shadow: 0px 2px 2px #5252522e;
@@ -68,17 +68,17 @@
     top: 57px;
     // transition: 0.5s ease-in-out;
     width: 50%;
-    z-index: -1;
+    z-index: 2;
     @media screen and (min-width: 1024px) {
       height: 100%;
       border-radius: 10px 0 0 0;
       left: initial;
       opacity: 1;
       padding-right: 10px;
-      right: 250px;
+      right: 210px;
       top: 57px;
       transform: none;
-      width: 300px;
+      width: 220px;
     }
     @media screen and (max-width: 480px) {
       height: 100%;
@@ -86,7 +86,9 @@
       display: block;
       // height: 100%;
       position: fixed;
-      z-index: 2;
+    }
+    .favoriteSeller {
+      background: #646464;
     }
     .downloadAppImage {
       color: transparent;
@@ -102,11 +104,14 @@
     }
 
     > ol {
+      align-items: center;
       border-bottom: 1px solid #424950;
       display: flex;
+      height: 44px;
       font-weight: bold;
-      margin: 10px 0;
-      padding: 0 20px 10px;
+      margin: 0 0;
+      // padding: 0 20px 10px;
+      padding-left: 20px;
       text-align: left;
       &:nth-of-type(1) {
         // margin-top: 20px;
@@ -182,7 +187,7 @@
     z-index: 2;
     @media (min-width: 1024px) {
       margin: 20px 0 0 0;
-      width: 260px;
+      width: 220px;
     }
     :global(ul) {
       overflow: initial;
@@ -239,6 +244,10 @@
     padding: 4px 4px 2px 4px;
     position: fixed;
     right: 20px;
+    // Para mostrarlo dentro de los margenes del celu en PC
+    position: absolute;
+    right: -140px;
+    bottom: -10px;
     svg {
       font-size: 20px;
     }

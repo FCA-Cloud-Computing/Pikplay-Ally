@@ -5,6 +5,8 @@ import {
   Tabs,
   Tab,
   Box,
+  Select,
+  MenuItem,
 } from "@mui/material"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "react-toastify"
@@ -20,6 +22,7 @@ import useCommonStore from "@/hooks/commonStore"
 import Button from "@/components/button/Button"
 import { InputTransactions } from "./InputTransactions"
 import { TabPanel } from "@/components/tabs/Tab"
+import { sellersInformation } from '../../data/dataSellers'
 
 export function FormAllied() {
   const {
@@ -31,7 +34,7 @@ export function FormAllied() {
     resolver: zodResolver(schema),
     mode: "onBlur",
     defaultValues: {
-      clientDocument: "",
+      sellerId: null,
       clientPhone: "",
       description: "",
       amount: "",
@@ -39,11 +42,13 @@ export function FormAllied() {
       purchaseDate: `${new Date().toISOString().split("T")[0]}`,
     },
   })
+
   const { addTransactionStore } = useTransactionsStore()
   const { userLogged } = useCommonStore()
   const theme = useTheme()
   const [value, setValue] = useState(0)
   const [checked, setChecked] = useState(true)
+  const [selectedSeller, setSselectedSeller] = useState(null)
 
   const onSubmit = (newTransaction) => {
     addTransactionStore({
@@ -55,17 +60,22 @@ export function FormAllied() {
   }
 
   const handleChange = (event, newValue) => {
+    debugger
     setValue(newValue)
   }
+
   const handleChangeCheckbox = (event) => {
     setChecked(event.target.checked)
   }
+
   const handleClick = () => {
     if (Object.keys(errors).length > 0) {
       toast("Falta uno o varios campos por rellenar, por favor verifica")
-    } else {
-      handleSubmit(onSubmit)()
-    }
+    } else handleSubmit(onSubmit)()
+  }
+
+  const handleChangeSeller = (event) => {
+    setSselectedSeller(event.target.value)
   }
 
   return (
@@ -99,6 +109,20 @@ export function FormAllied() {
             type="number"
             error={errors.clientDocument}
           /> */}
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={selectedSeller}
+            label="Age"
+            onChange={handleChangeSeller}
+          >
+            {Object.keys(sellersInformation).map((item) => {
+              const sellerId = sellersInformation[item].authorInformation?.uid
+              return sellerId && <MenuItem value={sellerId}>{sellersInformation[item]?.authorInformation.name}</MenuItem>
+            })}
+            {/* <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>} */}
+          </Select>
           <InputTransactions
             name="clientPhone"
             control={control}

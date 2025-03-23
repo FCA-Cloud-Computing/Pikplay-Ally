@@ -27,16 +27,17 @@
         top: -36px;
         position: relative;
         svg {
+          margin-right: 5px;
         }
       }
       .status {
         border-bottom: 1px solid #dddddd;
-        color: #9e9eff;
+        color: #521a93;
         display: block;
         margin-bottom: 8px;
         padding-bottom: 6px;
         &.pending {
-          color: #9e9eff;
+          color: #521a93;
         }
         &.success {
           color: green;
@@ -53,7 +54,7 @@
         border-left: 2px green solid;
       }
       .exp {
-        color: #50aeff;
+        color: #f79c01;
         font-weight: 600;
       }
       strong {
@@ -75,6 +76,7 @@
       }
       span {
         display: inline-block;
+        font-weight: 600;
       }
     }
 

@@ -43,9 +43,9 @@ export function Transaction({ transaction }) {
           <strong className="text-sm font-semibold">
             T{transaction.id} | {transaction.description}
           </strong>
-          {credits && <CoinIcon coins={credits} label />}
+          {!!credits && <CoinIcon coins={credits} label />}
           <div className="flex flex-col">
-            <span className={styles.exp}>{transaction.experience} EXP</span>
+            <span className={styles.exp}>{transaction.experience} Puntos</span>
             {transaction.amount && (
               <span className="">
                 Valor total: ${formatNumber(transaction.amount)}
@@ -58,10 +58,10 @@ export function Transaction({ transaction }) {
           <div>{transaction.seller?.city}</div>
           {transaction.status === TRANSACTION_STATUS.PENDING && (
             <>
-              <ButtonVoucher
+              {/* <ButtonVoucher
                 transactionId={transaction.id}
                 uid={transaction.uid}
-              />
+              /> */}
               {/* <Button color="blue" onClick={() => setOpen(true)}>
                 Subir comprobante
               </Button>

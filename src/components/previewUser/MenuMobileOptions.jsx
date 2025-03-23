@@ -72,7 +72,7 @@ const MenuMobileOptions = () => {
 
   return <motion.div
     animate="visible"
-    className={styles.bg_black}
+    className={styles.MenuOptionsComponent}
     id="bg_black"
     initial="hidden"
     variants={container}>
@@ -111,31 +111,34 @@ const MenuMobileOptions = () => {
       </Link>
     </motion.ol>
     <motion.ol variants={item}>
-      <Link href="/bluepanther">
-        <img className='br-5' src="/images/users/bluepanther/logo.jpg" />
-        Bluepanther
-      </Link>
-    </motion.ol>
-    <motion.ol variants={item}>
-      <Link href="/bluepanther">
-        <img className='br-5' src="/images/users/conversation_club/logo.png" />
-        English Club
+      <Link href="/servicios">
+        Nuestros Servicios
       </Link>
     </motion.ol>
     {/* Imagen de aplicación */}
     <motion.ol variants={item} style={{ justifyCcontent: 'center' }}>
       <a href="/files/pikplay-application.apk">
-        <Image className={styles.downloadAppImage} src="/images/logos/get-it-on-google-play.png" width="990" height="300" />
+        <Image style={{ margin: 0 }} className={styles.downloadAppImage} src="/images/logos/get-it-on-google-play.png" width="990" height="300" />
       </a>
     </motion.ol>
-    {isLogged && <motion.ol variants={item} onClick={() => handleLogout()}>
-      Salir
-    </motion.ol>}
     {/* Opciones de administrador */}
     {userLogged.isAdmin && <>
       <motion.ol variants={item}>
         <Link href="/ranking">
-          Ranking Pais
+          <img src="https://cdn-icons-png.flaticon.com/512/1420/1420338.png" />
+          Ranking
+        </Link>
+      </motion.ol>
+      <motion.ol variants={item} className={styles.favoriteSeller}>
+        <Link href="/bluepanther">
+          <img className='br-5' src="/images/users/bluepanther/logo.jpg" />
+          Bluepanther
+        </Link>
+      </motion.ol>
+      <motion.ol variants={item} className={styles.favoriteSeller}>
+        <Link href="/english-club">
+          <img className='br-5' src="/images/users/conversation_club/logo.png" />
+          English Club
         </Link>
       </motion.ol>
       <motion.ol variants={item} onClick={changeToSellerUser}>
@@ -146,6 +149,9 @@ const MenuMobileOptions = () => {
       </motion.ol>
     </>
     }
+    {isLogged && <motion.ol variants={item} onClick={() => handleLogout()}>
+      Salir
+    </motion.ol>}
     <Button className={styles.closeButton} onClick={() => {
       setStoreValue('leftMenuBar', { isShow: false })
     }}>
