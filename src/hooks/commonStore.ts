@@ -12,10 +12,19 @@ const initialNotification = {
   action: 'login',
 };
 
+interface MessageTop {
+  content: string;
+  type: 'info' | 'warning' | 'error';
+}
+
+const initialMessageTop: MessageTop | null = null;
+
 const loadFromLocalStorage = (property) => {
   let value = null;
-  if (typeof window != 'undefined') {
-    value = localStorage.getItem(property) ? JSON.parse(localStorage.getItem(property)) : value;
+  if (typeof window != 'undefined' && property) {
+    value = localStorage.getItem(property)
+      ? JSON.parse(localStorage.getItem(property) || '')
+      : value;
   }
   return value;
 };
@@ -44,7 +53,7 @@ const useCommonStore = create((set, get) => ({
   leftMenuBar: {
     isShow: false
   },
-  messageTop: null, // Banner flotante que se muestra debajo del menu
+  messageTop: initialMessageTop, // Banner flotante que se muestra debajo del menu
   notifications: [initialNotification],
   newNotifications: true,
   userLogged: loadFromLocalStorage('userLogged') || defaultUserLogged,
@@ -53,7 +62,7 @@ const useCommonStore = create((set, get) => ({
   },
   logout: () => initialLoginStorage(set),
   setStoreValue: (property, value) => {
-    localStorage.setItem([property], JSON.stringify(value));
+    localStorage.setItem(property, JSON.stringify(value));
     set({ [property]: value });
   },
   setUserLogged: (data) => {

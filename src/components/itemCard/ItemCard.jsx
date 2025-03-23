@@ -48,6 +48,7 @@ const ItemCard = (props) => {
   const isDestacada = publicationId == 1 ? true : false
   const { loggedUser } = useCommonStore()
   const shareLink = `https://api.whatsapp.com/send?phone=&text=Revisa%20esta%20publicacion%20en%20Pikplay%20que%20esta%20potente%20https://pikplay.com.co/${user.slug}%23${slug}`
+  const showTags = isUsed || cashbackAvailable
 
   return (
     <Grow key={publicationId} in={true} style={{ opacity: 1 }}>
@@ -78,27 +79,29 @@ const ItemCard = (props) => {
               }
             </a>
           </div>
-          <div className={`tags ${styles.tags}`}>
-            {isUsed && (
-              <span
-                title='El articulo es de segunda mano'
-                className={styles.condition}>
-                Usado
-              </span>
-            )}
-            {/* Si aplica cashback */}
-            {cashbackAvailable && <CashbackTag />}
-            {acceptChanges && (
-              <span
-                className={styles.condition}
-                title='El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés'>
-                Acepto cambios
-              </span>
-            )}
-            {!!tags && tags.map((item, ind) => {
-              return <span key={ind}>{item.texto}</span>
-            })}
-          </div>
+          {
+            showTags && <div className={`tags ${styles.tags}`}>
+              {isUsed && (
+                <span
+                  title='El articulo es de segunda mano'
+                  className={styles.condition}>
+                  Usado
+                </span>
+              )}
+              {/* Si aplica cashback */}
+              {cashbackAvailable && <CashbackTag />}
+              {acceptChanges && (
+                <span
+                  className={styles.condition}
+                  title='El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés'>
+                  Acepto cambios
+                </span>
+              )}
+              {!!tags && tags.map((item, ind) => {
+                return <span key={ind}>{item.texto}</span>
+              })}
+            </div>
+          }
           {/* Si tiene precio y Cashback */}
           {cashbackAvailable && price && <div className={styles.cashbackInformation}>
             Con esta compra obtienes <b>{(price * 0.01) / 100} Points</b></div>}

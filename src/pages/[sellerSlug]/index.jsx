@@ -1,7 +1,7 @@
 import sellerSlugStyles from './sellerSlug.module.scss'
 import styles from '@/components/competitions/competitions.module.scss'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { faDiceFive } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Skeleton } from '@mui/material'
@@ -27,19 +27,23 @@ import Button from '@/components/button/Button'
 import { useIAStore } from '@/components/ia/IAstore'
 import { HearingTwoTone, HeartBroken, HeartBrokenOutlined, HeartBrokenTwoTone, HeatPumpRounded } from '@mui/icons-material'
 import { getUserSrv } from '@/services/user/user'
+import WordChallenge from '@/components/wordCahllenge/WorkChallenge'
 
 const DefaultSellerPage = (props) => {
   const { params, sellerInformation } = props
   const router = useRouter()
   const { sellerSlug } = router.query
+  const [showWordChallenge, setShowWorkChallenge] = useState(false)
 
   const {
     authorInformation,
     competitions: competitionsArray,
     bonuses,
+    productsTitle,
     products,
+    rankingId
   } = sellersInformation[sellerSlug?.toLowerCase()] || {}
-  const { aboutHTML, aboutHTMLButtonStyle, name, rankingId } = authorInformation || {}
+  const { aboutHTML, aboutHTMLButtonStyle, name } = authorInformation || {}
 
   const GlobalStyle = createGlobalStyle`
   main.App {
@@ -73,12 +77,16 @@ const DefaultSellerPage = (props) => {
       <div className={sellerSlugStyles.menu}>
         <div className={`flex ${sellerSlugStyles.aboutMe}`}>
           <Button color='link' className='outline' onClick={() => setIAMessage(aboutHTML)}>
-            <InfoIcon />
+            {/* <InfoIcon /> */}
             Acerca de {name}
           </Button>
           <Button color='link' className='outline' onClick={() => handleUserMessage('addTransactionSteps')}>
             {/* <SavingsIcon /> */}
             Registrar factura
+          </Button>
+          <Button color='link' className='outline' onClick={() => setShowWorkChallenge(true)}>
+            {/* <SavingsIcon /> */}
+            Word Challenge
           </Button>
           <Button color='link' className='outline' onClick={() => handleUserMessage('referrals', { referralOrigin: sellerSlug })}>
             {/* <SavingsIcon /> */}
@@ -115,6 +123,8 @@ const DefaultSellerPage = (props) => {
       {/* Bonos */}
       {bonuses && <BonusList bonuses={bonuses} />}
 
+      {showWordChallenge && <WordChallenge showModal={showWordChallenge} setShowModal={setShowWorkChallenge} />}
+
       <br />
       {/* Ranking */}
       {rankingId && <>
@@ -132,10 +142,10 @@ const DefaultSellerPage = (props) => {
 
       {/* Products */}
       {products && <>
-        <div className="contentTitle">
+        <div className={`${sellerSlugStyles.productsTitle} contentTitle`}>
           <h1>
             <FontAwesomeIcon className="icon" icon={faDiceFive} />
-            &nbsp;Productos
+            &nbsp;{productsTitle || 'Productos'}
           </h1>
         </div>
         {products && products.map(product =>

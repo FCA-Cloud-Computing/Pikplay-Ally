@@ -257,16 +257,22 @@ span.MuiBadge-badge {
   color: white;
   font-size: 15px;
   .Toastify__toast {
+    box-shadow: none;
     background: none;
     background-image: url("/images/backgrounds/camapanita.svg");
     background-repeat: no-repeat;
     background-size: cover;
     color: #707070;
-    height: 96px;
+    height: 95px;
     font-weight: 400;
-    padding: 22px 44px 8px 40px;
+    padding: 22px 24px 8px 40px;
     text-align: center;
+    @media screen and (min-width: 420px) {
+      height: 97px;
+    }
+
     .Toastify__close-button {
+      display: none;
       margin-top: 6px;
       opacity: 1;
       svg {
@@ -274,6 +280,13 @@ span.MuiBadge-badge {
       }
     }
     .Toastify__toast-body {
+      color: #990d08;
+      font-size: 14px;
+      margin: -16px 0 0;
+      padding: 8px 14px 0 0;
+      @media screen and (min-width: 420px) {
+        padding: 0;
+      }
     }
     .Toastify__progress-bar--wrp {
       // Barra de progreso
@@ -285,6 +298,9 @@ span.MuiBadge-badge {
       position: absolute;
       right: 0;
       width: calc(100% - 80px);
+      @media screen and (min-width: 420px) {
+        bottom: 13px;
+      }
     }
   }
 }

@@ -11,7 +11,7 @@ import IA from '../ia/IA'
 import CustomHeader from '../customHeader/CustomHeader'
 import MenuMovil from '../menuMovil/MenuMovil'
 
-import useCommonStore from '../../hooks/commonStore.js'
+import useCommonStore from '../../hooks/commonStore'
 
 const Body = ({
   cssClassPage,

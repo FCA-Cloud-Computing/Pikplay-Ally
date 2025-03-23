@@ -221,6 +221,16 @@
 
         .left {
             position: relative;
+            .currentCategory {
+                background: linear-gradient(45deg, #f4c376, #ba7821);
+                font-size: 18px;
+                font-weight: 600;
+                margin: 0px auto 20px;
+                text-align: center;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
             :global(.Coins) {
                 // position: absolute;
                 // right: 0;

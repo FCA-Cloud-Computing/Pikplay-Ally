@@ -1,18 +1,26 @@
 .ChallengesList {
-    :global(.Card) {
-        background: #07244c;
+  :global(.Card) {
+    background: #07244c;
+    padding: 10px 20px 20px;
 
-        &.done h3 {
-            text-decoration: line-through;
-        }
-
-        h3 {
-            color: white;
-            margin: 0 0 10px 0;
-        }
-
-        span {
-            color: white;
-        }
+    &.done h3 {
+      text-decoration: line-through;
     }
+
+    h3 {
+      color: white;
+      margin: 0 0 10px 0;
+    }
+
+    span {
+      color: white;
+    }
+
+    .experience {
+      background: linear-gradient(90deg, #74ffd0, #3ac8be);
+      font-weight: bold;
+      -webkit-background-clip: text; /* para que el fondo solo aparezca donde hay texto */
+      -webkit-text-fill-color: transparent;
+    }
+  }
 }

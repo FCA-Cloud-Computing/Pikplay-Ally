@@ -68,6 +68,16 @@ const sellersInformation = {
   },
   'caribe-dev': {
     authorInformation: {
+      aboutHTML: <div>
+        <p>Caribe Dev | Macro Comunidad Tecnológica
+          Organización sin fines de lucro</p>
+        🧑‍🧑‍🧒‍🧒 | +15 Comunidades Tech<br />
+        💟 | +50 Eventos Anuales<br />
+        💹 | Análisis +500 Datos<br />
+        <p>
+          ¡Impulsamos el ecosistema tech desde el Caribe! 🌴
+        </p>
+      </div>,
       name: 'Caribe Dev',
       slug: 'caribe-dev',
       picture: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F159%2Flogo_768x768.png?alt=media&token=2022f676-ed81-4bbb-bb5a-405d689de0cd',
@@ -75,14 +85,17 @@ const sellersInformation = {
         label: 'Comunidad',
         value: 'community'
       },
-      uid: 159
+      uid: 159,
+      whatsappNumber: 573006020103,
     },
+    productsTitle: 'Eventos',
     products: [{
       images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F159%2Fpublications%2Fcaribe-conf-entrada_768x768.jpg?alt=media&token=4f2cbd7b-3f78-44f8-8d31-25ebc191717b', isHome: true }],
       price: 45000,
       title: 'CaribeConf 2025',
 
-    }]
+    }],
+    rankingId: 4,
   },
   'mass-publicidad': {
     authorInformation: {

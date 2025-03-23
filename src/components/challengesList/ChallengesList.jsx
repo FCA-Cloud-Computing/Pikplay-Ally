@@ -12,6 +12,9 @@ const ChallengesList = (props) => {
     return <div className={`${styles.ChallengesList}`}>
         {challenges.data.length > 0 && challenges.data.map(item => <li className={`${item.completed ? styles.done : ''} Card`} key={item.id}>
             <h3>{item.title}</h3>
+            <div className={styles.experience}>
+                {item.experience} Points
+            </div>
             <span>{item.detail}</span>
         </li>)}
     </div>

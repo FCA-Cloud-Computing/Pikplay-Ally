@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Router, { useRouter } from 'next/router'
 import { ToastContainer } from 'react-toastify';
 
-import useCommonStore from '../../hooks/commonStore.js'
+import useCommonStore from '../../hooks/commonStore'
 import Body from './Body.jsx'
 import { useIAStore } from '../ia/IAstore.js'
 import AwardsSummaryModal from '../awardsSummary/AwardsSummary.jsx';

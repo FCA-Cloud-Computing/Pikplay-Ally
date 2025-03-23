@@ -36,6 +36,7 @@ import Referrals from '../referrals/Referrals'
 import CoinIcon from '../coinIcon/CoinIcon'
 import { getExperiencesSrv } from '@/services/experience'
 import ChallengesList from '../challengesList/ChallengesList'
+import ItemCard from '../itemCard/ItemCard'
 
 const { motion } = require('framer-motion')
 
@@ -207,6 +208,11 @@ const Interface = ({
         setIsEditProfile={setIsEditProfile}
         showDetails
       />
+
+      <h2>Publicaciones guardadas</h2>
+      {[].map((item, i) => {
+        <ItemCard />
+      })}
 
       <h2>Desafios</h2>
       <ChallengesList challenges={challenges} />

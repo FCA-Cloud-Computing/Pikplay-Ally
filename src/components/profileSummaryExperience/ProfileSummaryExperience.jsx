@@ -156,6 +156,9 @@ const ProfileSummaryExperience = (props) => {
             </Tooltip>
           </div> */}
           {/* </div> */}
+          <div className={styles.currentCategory}>
+            Bronce
+          </div>
           <div className={styles.experience_status}>
             <ExperienceBar {...{
               currentExperience,
@@ -166,10 +169,10 @@ const ProfileSummaryExperience = (props) => {
           gainedCoins={gainedCoins} */}
           <CoinIcon coins={currentCoins} gainedCoins={gainedCoins} hideNumber={false} />
         </div>
-        <p className={styles.rankingMessage}>
+        {/* <p className={styles.rankingMessage}>
           <img src="/images/icons/ranking-icon.png" />
           Estas a dos puestos de superar a Victoria en el ranking de la semana
-        </p>
+        </p> */}
         {showDetails && <div className={styles.right}>
           {/* <div className={styles.fields}>
               <span className={styles.label}>

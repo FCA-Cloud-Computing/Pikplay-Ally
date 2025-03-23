@@ -10,7 +10,7 @@ import Router from 'next/router'
 
 import { getNotificationsSrv, updateProfileSrv } from '../../services/user/user'
 import CoinIcon from '../coinIcon/CoinIcon'
-import useCommonStore from '../../hooks/commonStore.js'
+import useCommonStore from '../../hooks/commonStore'
 import uploadFile from "../../services/uploadFile";
 
 const { motion } = require('framer-motion')

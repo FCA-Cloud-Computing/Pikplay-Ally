@@ -23,7 +23,7 @@ const RankingComponent = (props) => {
           const uids = rankingDataPoints.map(member => member.uid)
           getUsersSrv(null, { uids: uids.join() })
             .then(({ code, data }) => {
-              debugger
+              // debugger
               const pointsAndUserData = rankingDataPoints.map(member => {
                 const user = data && data.find(user => user.uid === member.uid)
                 return {
