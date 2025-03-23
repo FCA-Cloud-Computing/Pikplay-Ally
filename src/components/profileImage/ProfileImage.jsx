@@ -22,7 +22,7 @@ const ProfileImage = ({ className, handleClickImage, picture, progress = 0, smal
   return (
     <div className={styles.profileImageContainer} onClick={handleClickImage}>
       <picture className={`${styles.ProfileImage} ${styles[className]}`}>
-        <img src={getImageSize(picture) || '/images/users/user1.jpg'} alt="Perfil" />
+        <img src={getImageSize(picture) || '/images/logos/logo-pikplay-bg-azul_768x768.png'} alt="Perfil" />
         <svg
           width="250"
           height="250"

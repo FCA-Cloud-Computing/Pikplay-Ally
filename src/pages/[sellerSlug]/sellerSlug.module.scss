@@ -6,16 +6,37 @@
     }
 }
 
-.aboutMe {
-    margin: 20px 0 0 0;
-    :global(.ButtonComponent) {
-        width: 200px;
-        button {
-            color: white;
-            text-decoration: none;
-            text-align: left;
-            svg {
-                margin-right: 6px;
+.menu {
+    max-width: 420px;
+    overflow-x: scroll;
+    width: 100vw;
+    // &::-webkit-scrollbar-thumb {
+    //     // background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Degradado facherito */
+    //     background-color: #740e9f;
+    //     border-radius: 5px;
+    // }
+    // &::-webkit-scrollbar {
+    //     width: 2px; /* Para vertical */
+    //     height: 2px; /* Para horizontal */
+    // }
+    // &::-webkit-scrollbar-track {
+    //     background: #290d56ba; /* Fondo oscuro */
+    //     border-radius: 5px;
+    // }
+
+    .aboutMe {
+        margin: 20px 50px 0 0;
+        padding-bottom: 2px;
+        width: 500px;
+        :global(.ButtonComponent) {
+            width: 200px;
+            button {
+                color: white;
+                text-decoration: none;
+                text-align: left;
+                svg {
+                    margin-right: 6px;
+                }
             }
         }
     }

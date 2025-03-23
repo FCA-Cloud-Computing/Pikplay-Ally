@@ -70,15 +70,19 @@ const DefaultSellerPage = (props) => {
     <GlobalStyle />
     <section className="page">
       <AuthorInformation authorInformation={sellerInformation} />
-      <div className={styles.menu}>
-        <div className={`flex m-b-20 ${sellerSlugStyles.aboutMe}`}>
+      <div className={sellerSlugStyles.menu}>
+        <div className={`flex ${sellerSlugStyles.aboutMe}`}>
           <Button color='link' className='outline' onClick={() => setIAMessage(aboutHTML)}>
             <InfoIcon />
             Acerca de {name}
           </Button>
           <Button color='link' className='outline' onClick={() => handleUserMessage('addTransactionSteps')}>
-            <SavingsIcon />
+            {/* <SavingsIcon /> */}
             Registrar factura
+          </Button>
+          <Button color='link' className='outline' onClick={() => handleUserMessage('referrals', { referralOrigin: sellerSlug })}>
+            {/* <SavingsIcon /> */}
+            Referir amigo
           </Button>
         </div>
         {/* <div>
