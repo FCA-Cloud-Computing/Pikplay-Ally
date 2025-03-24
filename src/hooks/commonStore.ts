@@ -12,27 +12,22 @@ const initialNotification = {
   action: 'login',
 };
 
-interface MessageTop {
-  content: string;
-  type: 'info' | 'warning' | 'error';
-}
-
-const initialMessageTop: MessageTop | null = null;
+const initialMessageTop: string | null = null;
 
 const loadFromLocalStorage = (property) => {
-  let value = null;
+  let value = null
   if (typeof window != 'undefined' && property) {
     value = localStorage.getItem(property)
       ? JSON.parse(localStorage.getItem(property) || '')
-      : value;
+      : value
   }
-  return value;
-};
+  return value
+}
 
 const defaultUserLogged = {
   uid: null,
   picture: '/images/logos/logo-pikplay-bg-azul.png',
-};
+}
 
 const initialLoginStorage = (set) => {
   set({ userLogged: { uid: null } })
@@ -70,4 +65,4 @@ const useCommonStore = create((set, get) => ({
   },
 }));
 
-export default useCommonStore;
+export default useCommonStore

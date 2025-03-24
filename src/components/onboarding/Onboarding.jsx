@@ -216,7 +216,20 @@ const Onboarding = () => {
     <div className={styles.aliados}>
       <h2>Aliados</h2>
       <div className={styles.itemsAliados}>
-        {sellersInformation && Object.keys(sellersInformation).map((key, i) => {
+        <div>
+          {/* <span>
+            Categorias:
+          </span> */}
+          <div className={styles.categoriesContent}>
+            <span>Todos</span>
+            <span>Deportes</span>
+            <span>Perfumería</span>
+            <span>Gaming</span>
+            <span>Ropa y Calzado</span>
+            <span>Club de conversación</span>
+          </div>
+        </div>
+        {sellersInformation && Object.keys(sellersInformation).map((key, i) => { // Interación aliados
           const { authorInformation: item, products } = sellersInformation[key]
           // if (key == "quilla-tenis") debugger
           return <div className="Card" key={key}>
@@ -231,7 +244,7 @@ const Onboarding = () => {
               </div>
             </Link>
             <div className={`${styles.products} ${(products && products.length > 1) && styles.manyProducts}`}>
-              {products && products.map((product, i) => {
+              {products && products.map((product, i) => { // Interación de productos
                 // debugger
                 return product.images[0].isHome && <div className={styles.itemProduct}>
                   <Zoom>

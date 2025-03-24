@@ -279,15 +279,40 @@ span.MuiBadge-badge {
         fill: rgb(184 16 11);
       }
     }
+
     .Toastify__toast-body {
-      color: #990d08;
+      display: flex;
       font-size: 14px;
       margin: -16px 0 0;
       padding: 8px 14px 0 0;
+      width: 100%;
       @media screen and (min-width: 420px) {
         padding: 0;
       }
+
+      div {
+        display: flex;
+        align-content: center;
+      }
+
+      img {
+        float: left;
+        margin: 4px 0 0 10px;
+        width: 40px;
+      }
+
+      span {
+        align-items: center;
+        display: flex;
+        margin: 0 4px 0 4px;
+        text-align: center;
+        width: 100%;
+        &.error {
+          color: #990d08;
+        }
+      }
     }
+
     .Toastify__progress-bar--wrp {
       // Barra de progreso
       border-bottom-left-radius: var(--toastify-toast-bd-radius);

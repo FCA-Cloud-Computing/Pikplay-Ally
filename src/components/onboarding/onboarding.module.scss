@@ -221,6 +221,20 @@ section.Onboarding {
     margin: 0 0 40px;
     position: relative;
     z-index: 1;
+    h2 {
+      margin-bottom: 10px;
+    }
+    .categoriesContent {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      span {
+        background: #292983;
+        padding: 6px 6px 2px;
+        display: block;
+      }
+    }
     .items {
       display: flex;
     }
