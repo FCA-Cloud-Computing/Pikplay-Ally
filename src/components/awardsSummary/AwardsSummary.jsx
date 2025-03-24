@@ -30,12 +30,13 @@ const AwardsSummary = () => {
   }, [])
 
   const handleUpdateExperience = () => {
+    // handlePickRewardUp()
     createExperienceSrv(null, {
-       coins: gainedCoins, 
-       experience: gainedExperience, 
-       nid, 
-       type: notification_type
-      })
+      coins: gainedCoins,
+      experience: gainedExperience,
+      nid,
+      type: notification_type
+    })
     setPage(1)
   }
 
