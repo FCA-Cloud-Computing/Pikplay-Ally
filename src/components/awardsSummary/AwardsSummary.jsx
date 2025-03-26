@@ -11,11 +11,12 @@ import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummary
 import { motion, AnimatePresence } from "framer-motion"
 import useCommonStore from '../../hooks/commonStore';
 import { createExperienceSrv } from '@/services/experience';
+import { getNotificationsSrv } from '@/services/user/user';
 
 const AwardsSummary = () => {
   const [page, setPage] = useState(0);
   const currentUserCoins = 10
-  const { awardsSummaryModalHTML, awardSummaryModalDetail } = useCommonStore()
+  const { awardsSummaryModalHTML, awardSummaryModalDetail, setStoreValue, notifications } = useCommonStore()
   const {
     coins: gainedCoins,
     description,
@@ -28,7 +29,7 @@ const AwardsSummary = () => {
       startConfetti()
     }, 500)
   }, [])
-
+  
   const handleUpdateExperience = () => {
     // handlePickRewardUp()
     createExperienceSrv(null, {
@@ -37,6 +38,12 @@ const AwardsSummary = () => {
       nid,
       type: notification_type
     })
+    getNotificationsSrv().then(res => {
+      const currentNotifications = res.data;
+      if(JSON.stringify(notifications) !== JSON.stringify(currentNotifications)){
+        setStoreValue('notifications', res.data);
+      };
+    });
     setPage(1)
   }
 
