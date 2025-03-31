@@ -16,4 +16,13 @@ const getChallengesByUser = async (ctx) => {
   return data;
 }
 
-export { getChallenges, getChallengesByUser }
+const sendWordChallenge = async (ctx) => {
+  const url = BASE_URL + '/word'
+  const data = await post(ctx, url, {
+    word: ctx.word,
+    uid: ctx.uid,
+  });
+  return data;
+}
+
+export { getChallenges, getChallengesByUser, sendWordChallenge }
