@@ -27,7 +27,7 @@ import Button from '@/components/button/Button'
 import { useIAStore } from '@/components/ia/IAstore'
 import { HearingTwoTone, HeartBroken, HeartBrokenOutlined, HeartBrokenTwoTone, HeatPumpRounded } from '@mui/icons-material'
 import { getUserSrv } from '@/services/user/user'
-import WordChallenge from '@/components/wordCahllenge/WorkChallenge'
+import WordChallenge from '@/components/wordChallenge/WorkChallenge'
 
 const DefaultSellerPage = (props) => {
   const { params, sellerInformation } = props
