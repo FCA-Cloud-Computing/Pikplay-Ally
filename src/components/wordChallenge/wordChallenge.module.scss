@@ -48,17 +48,7 @@
         border-radius: 10px;
         overflow: hidden;
         padding: 2px;
-        transition: all 0.3s ease-in-out;
         position: relative;
-
-        &::before {
-            content: "";
-            height: calc(100% + 4px);
-            left: -2px;
-            position: absolute;
-            top: -2px;
-            width: calc(100% + 4px);
-        }
 
         input {
             border-radius: inherit;
@@ -70,9 +60,13 @@
             width: 40px;
             text-align: center;
         }
+
         &:has(input:focus){
-            background: linear-gradient(83.23deg, #feb154 -6.32%, #d263ee 23.89%, #5d5af6 67.88%, #09e0a0 107.67%),
-                linear-gradient(0deg, #0000004d, #0000004d);        }
+            background: 
+            linear-gradient(83.23deg, #feb154 -6.32%, #d263ee 23.89%, #5d5af6 67.88%, #09e0a0 107.67%),
+            linear-gradient(0deg, #0000004d, #0000004d);
+            top: -1px;
+        }
     }
 }
 
