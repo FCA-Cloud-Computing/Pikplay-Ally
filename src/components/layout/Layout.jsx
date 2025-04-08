@@ -112,7 +112,6 @@ const Layout = (props) => {
         notifications={notifications}
         userLogged={userLogged}>
         <ToastContainer />
-        <MessagesTop />
         {isFullLoading && <FullScreenLoading />}
         {isAwardSummaryModalOpen && <AwardsSummaryModal />}
         {children}

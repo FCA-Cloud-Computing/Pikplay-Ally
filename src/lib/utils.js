@@ -1,6 +1,7 @@
 import { PROFILE } from '@/consts/profile';
 import cookieCutter from '@boiseitguru/cookie-cutter';
 import confetti from 'canvas-confetti';
+import { toast } from 'react-toastify';
 
 export const animatePrice = (HTMLElement, targetNumber, fromNumber, speed = 100) => {
   if (HTMLElement == null) return;
@@ -183,6 +184,11 @@ export function getCookies(ctx = { req: { cookies: {} } }) {
   headers['User-ID'] = ctx?.req?.cookies['User-ID'] || (typeof window != 'undefined' && cookieCutter.get('User-ID')) || null;
   headers['X-Auth-Token'] = ctx?.req?.cookies['X-Auth-Token'] || (typeof window != 'undefined' && cookieCutter.get('X-Auth-Token')) || null;
   return headers;
+}
+
+export function setMessageTop(message) {
+  startConfetti()
+  toast(message)
 }
 
 export function logout() {

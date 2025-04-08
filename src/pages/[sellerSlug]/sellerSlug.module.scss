@@ -7,9 +7,16 @@
 }
 
 .menu {
+  background: #17173a;
+  border-radius: 20px 20px 0 0;
+  left: calc(0px - 30px);
   max-width: 420px;
   overflow-x: scroll;
-  width: 100vw;
+  padding: 0 20px;
+  position: relative;
+  top: -16px;
+  width: calc(100% + 20px);
+  z-index: 1;
   // &::-webkit-scrollbar-thumb {
   //     // background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Degradado facherito */
   //     background-color: #740e9f;
@@ -25,8 +32,8 @@
   // }
 
   .aboutMe {
-    margin: 20px 50px 0 0;
-    padding-bottom: 2px;
+    margin: 10px 50px 0 0;
+    padding-bottom: 6px;
     width: 500px;
     :global(.ButtonComponent) {
       width: 200px;

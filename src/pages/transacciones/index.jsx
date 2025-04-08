@@ -37,9 +37,9 @@ function Transactions() {
   const { setStoreValue } = useCommonStore()
 
   useEffect(() => {
-    setStoreValue('leftBottomMenuContent', <button className="btnLeftBottomMenu" onClick={() => setIsModalAddTransactionOpen(true)}>
-      <AddIcon />
-    </button>)
+    // setStoreValue('leftBottomMenuContent', <button className="btnLeftBottomMenu" onClick={() => setIsModalAddTransactionOpen(true)}>
+    //   <AddIcon />
+    // </button>)
   }, [])
 
   const GlobalStyle = createGlobalStyle`

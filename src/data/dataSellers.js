@@ -1,6 +1,36 @@
 import { slugify } from '@/lib/utils'
 
 const sellersInformation = {
+  'dra.bellysgutierrez': {
+    authorInformation: {
+      name: 'Dra. Bellys Johana Gutierrez',
+      slug: 'dra.bellysgutierrez',
+      pageBackground: "",
+      picture: "https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F177%2Fprofile_768x768.jpg?alt=media&token=b705c518-2ab8-4dc2-890d-056c02417a53",
+      uid: 177,
+      whatsappNumber: 573058101141,
+    },
+    products: [
+      {
+        images: [{
+          isHome: true,
+          url: "https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F177%2Fproducts%2Fmicro-disen%CC%83o_768x768.png?alt=media",
+        }],
+        title: "Microdiseño",
+        price: null,
+        priceHome: null,
+      },
+      {
+        images: [{
+          isHome: true,
+          url: "https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F177%2Fproducts%2Fdetartraje-y-profilaxis_768x768.png?alt=media",
+        }],
+        title: "Detartraje y profilaxis",
+        price: null,
+        priceHome: null,
+      }
+    ]
+  },
   'quilla-tenis': {
     authorInformation: {
       aboutHTML: <div>
@@ -29,6 +59,15 @@ const sellersInformation = {
         images: [{
           url: "https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F174%2Fproducts%2Fproducto-01_768x768.jpg?alt=media", isHome: true
         }],
+        title: "Programas grupales para edades de 5 años en adelante",
+        price: 250000,
+      },
+      {
+        images: [{
+          url: "https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F174%2Fproducts%2Fvacacionales-quilla-tenis_768x768.jpg?alt=media", isHome: true
+        }],
+        title: "Vacacionales de tenis",
+        price: 250000,
       }
     ]
   },
@@ -91,7 +130,7 @@ const sellersInformation = {
     productsTitle: 'Eventos',
     products: [{
       images: [{ url: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F159%2Fpublications%2Fcaribe-conf-entrada_768x768.jpg?alt=media&token=4f2cbd7b-3f78-44f8-8d31-25ebc191717b', isHome: true }],
-      price: 45000,
+      price: 60000,
       title: 'CaribeConf 2025',
 
     }],
@@ -205,6 +244,7 @@ const sellersInformation = {
       uid: 131,
       whatsappNumber: 573204863547
     },
+    rankingId: 5,
   },
   'le-fragance': {
     authorInformation: {
@@ -283,51 +323,51 @@ const sellersInformation = {
       slug: slugify('Calvin Klein Euphoria'),
     }],
   },
-  'bluepanther': {
-    authorInformation: {
-      aboutHTML: <div>
-        <video width="140" height="260" controls>
-          <source src="/images/users/bluepanther/video.mp4" type="video/mp4" />
-          Tu navegador no soporta el elemento de video.
-        </video>
-      </div>,
-      aboutHTMLButtonStyle: { color: 'white', textDecoration: 'underline' },
-      background: 'https://instagram.fbaq5-1.fna.fbcdn.net/v/t39.30808-6/454723787_18361896526109558_4048109518435842878_n.jpg?stp=dst-jpg_e35_p640x640_sh0.08_tt6&cb=30a688f7-cd073ddd&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xMjkweDIyOTMuc2RyLmYzMDgwOC5kZWZhdWx0X2ltYWdlIn0&_nc_ht=instagram.fbaq5-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=SBaMXu0ZfHMQ7kNvgGxH71O&_nc_gid=02ee83935d0d4f0e84bb6d63c8af7296&edm=AGFyKLkAAAAA&ccb=7-5&ig_cache_key=MzQzMDM0NDMyMzM0NTU0Mzc2Mw%3D%3D.3-ccb7-5-cb30a688f7-cd073ddd&oh=00_AYCmBCSoTpS6At3Z4SeUoBtE6-2OKzfu0JraN-Xp6-Tm8w&oe=6790662D&_nc_sid=5a0a6d',
-      description: 'Videojuegos Y Collecionables, Compramos consolas',
-      dividerColor: '#cbcbcb',
-      facebook: 'https://www.facebook.com/profile.php?id=100064982311928',
-      givenPikcoins: 0,
-      instagram: 'https://www.instagram.com/bluepanthervideogames/',
-      location: 'Medellín, Colombia',
-      name: 'Blue Panther',
-      pageBackground: 'images/users/bluepanther/bluepanther-bg.png',
-      picture: '/images/users/bluepanther/logo.jpg',
-      place: 'Medellín',
-      rankingId: 2,
-      slug: 'bluepanther',
-      whatsapp: 'https://api.whatsapp.com/send?phone=573106614305',
-      whatsappNumber: 573116453654,
-    },
-    competitions: ['act-4-sorteo-de-navidad'],
-    products: [
-      {
-        cashbackAvailable: true,
-        images: [{ url: 'https://bluepanther.store/cdn/shop/files/Instagrampost-37.png?v=1738270483&width=493' }],
-        isNew: true,
-        price: 2100000,
-        title: 'Steam Deck 564GB',
-        slug: 'steam-deck-564gb',
-      },
-      {
-        cashbackAvailable: true,
-        images: [{ url: 'https://bluepanther.store/cdn/shop/files/Instagrampost-36.png?v=1738270411&width=990' }],
-        isNew: true,
-        price: 2500000,
-        title: 'Rog Ally Z1 Extreme',
-        slug: 'rog-ally-z1-extreme'
-      }
-    ]
-  },
+  // 'bluepanther': {
+  //   authorInformation: {
+  //     aboutHTML: <div>
+  //       <video width="140" height="260" controls>
+  //         <source src="/images/users/bluepanther/video.mp4" type="video/mp4" />
+  //         Tu navegador no soporta el elemento de video.
+  //       </video>
+  //     </div>,
+  //     aboutHTMLButtonStyle: { color: 'white', textDecoration: 'underline' },
+  //     background: 'https://instagram.fbaq5-1.fna.fbcdn.net/v/t39.30808-6/454723787_18361896526109558_4048109518435842878_n.jpg?stp=dst-jpg_e35_p640x640_sh0.08_tt6&cb=30a688f7-cd073ddd&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xMjkweDIyOTMuc2RyLmYzMDgwOC5kZWZhdWx0X2ltYWdlIn0&_nc_ht=instagram.fbaq5-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=SBaMXu0ZfHMQ7kNvgGxH71O&_nc_gid=02ee83935d0d4f0e84bb6d63c8af7296&edm=AGFyKLkAAAAA&ccb=7-5&ig_cache_key=MzQzMDM0NDMyMzM0NTU0Mzc2Mw%3D%3D.3-ccb7-5-cb30a688f7-cd073ddd&oh=00_AYCmBCSoTpS6At3Z4SeUoBtE6-2OKzfu0JraN-Xp6-Tm8w&oe=6790662D&_nc_sid=5a0a6d',
+  //     description: 'Videojuegos Y Collecionables, Compramos consolas',
+  //     dividerColor: '#cbcbcb',
+  //     facebook: 'https://www.facebook.com/profile.php?id=100064982311928',
+  //     givenPikcoins: 0,
+  //     instagram: 'https://www.instagram.com/bluepanthervideogames/',
+  //     location: 'Medellín, Colombia',
+  //     name: 'Blue Panther',
+  //     pageBackground: 'images/users/bluepanther/bluepanther-bg.png',
+  //     picture: '/images/users/bluepanther/logo.jpg',
+  //     place: 'Medellín',
+  //     rankingId: 2,
+  //     slug: 'bluepanther',
+  //     whatsapp: 'https://api.whatsapp.com/send?phone=573106614305',
+  //     whatsappNumber: 573116453654,
+  //   },
+  //   competitions: ['act-4-sorteo-de-navidad'],
+  //   products: [
+  //     {
+  //       cashbackAvailable: true,
+  //       images: [{ url: 'https://bluepanther.store/cdn/shop/files/Instagrampost-37.png?v=1738270483&width=493' }],
+  //       isNew: true,
+  //       price: 2100000,
+  //       title: 'Steam Deck 564GB',
+  //       slug: 'steam-deck-564gb',
+  //     },
+  //     {
+  //       cashbackAvailable: true,
+  //       images: [{ url: 'https://bluepanther.store/cdn/shop/files/Instagrampost-36.png?v=1738270411&width=990' }],
+  //       isNew: true,
+  //       price: 2500000,
+  //       title: 'Rog Ally Z1 Extreme',
+  //       slug: 'rog-ally-z1-extreme'
+  //     }
+  //   ]
+  // },
   nataliatution: {
     authorInformation: {
       background: 'https://www.perfumesbogota.com.co/cdn/shop/products/fleur-orientica_580x.jpg?v=1677872919',

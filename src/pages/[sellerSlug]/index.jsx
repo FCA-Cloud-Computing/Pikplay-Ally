@@ -45,11 +45,11 @@ const DefaultSellerPage = (props) => {
   } = sellersInformation[sellerSlug?.toLowerCase()] || {}
   const { aboutHTML, aboutHTMLButtonStyle, name } = authorInformation || {}
 
-  const GlobalStyle = createGlobalStyle`
-  main.App {
-    background-image: url("${sellerInformation?.pageBackground}");
-    ${sellerInformation.pageBackgroundStyles}
-  }`;
+  const GlobalStyle = createGlobalStyle``
+  // main.App {
+  //   background-image: url("${sellerInformation?.pageBackground}");
+  //   ${sellerInformation.pageBackgroundStyles}
+  // }`;
 
   const { handleUserMessage, setIAMessage } = useIAStore()
 

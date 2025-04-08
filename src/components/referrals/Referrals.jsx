@@ -24,6 +24,7 @@ const Referrals = (props) => {
                     credits,
                     phone,
                 } = item
+
                 return <div className={styles.item}>
                     {picture && <ProfileImage picture={picture} small />}
                     <div className={styles.contentName}>
@@ -33,7 +34,7 @@ const Referrals = (props) => {
                             +{formatNumber(credits)} Puntos
                         </div>}
                         {!credits && <div className={styles.inviteButton}>
-                            <Button color='red'>
+                            <Button color='yellow'>
                                 <a href={inviteLink(phone)} target="_BLANK">Invitar</a>
                             </Button>
                         </div>}

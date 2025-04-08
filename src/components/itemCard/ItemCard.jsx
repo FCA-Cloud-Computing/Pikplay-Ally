@@ -15,7 +15,10 @@ import Image from 'next/image'
 import useCommonStore from '../../hooks/commonStore'
 import CashbackTag from './cashbackTag/CashbackTag'
 import Author from './Author'
-import { formatNumber } from '../../lib/utils'
+import { formatNumber, setMessageTop } from '../../lib/utils'
+import CustomFetch from '../fetch/CustomFetch'
+import { postChallengeDetail } from '@/services/challenges/challenges'
+import { CID_ASK_PRODUCT } from '@/consts/challenges'
 
 const ItemCard = (props) => {
   const {
@@ -37,6 +40,8 @@ const ItemCard = (props) => {
     whatsappNumber
   } = props
 
+  const { setStoreValue } = useCommonStore()
+
   const usuario =
     typeof localStorage != 'undefined'
       ? localStorage.getItem('user')
@@ -50,6 +55,14 @@ const ItemCard = (props) => {
   const shareLink = `https://api.whatsapp.com/send?phone=&text=Revisa%20esta%20publicacion%20en%20Pikplay%20que%20esta%20potente%20https://pikplay.com.co/${user.slug}%23${slug}`
   const showTags = isUsed || cashbackAvailable
 
+  const handlerAskProduct = () => {
+    const resp = postChallengeDetail(null, { challengeId: CID_ASK_PRODUCT })
+      .then(({ data }) => {
+        const { messageTop } = data
+        if (messageTop) setMessageTop(messageTop)
+      })
+  }
+
   return (
     <Grow key={publicationId} in={true} style={{ opacity: 1 }}>
       <div
@@ -60,6 +73,7 @@ const ItemCard = (props) => {
           <div className={styles.content_imagen}>
             {/* Image */}
             <a
+              onClick={handlerAskProduct}
               as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
               className={styles.image_wrapper}
               href={`https://api.whatsapp.com/send?phone=${user.whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}`}

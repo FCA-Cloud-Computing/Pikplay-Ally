@@ -133,13 +133,17 @@
       }
 
       .notificationType {
+        color: white;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 0 4px;
+        width: max-content;
         &.CHALLENGE {
           background: #4caf50;
-          color: white;
-          border-radius: 4px;
-          font-size: 12px;
-          padding: 0 4px;
-          width: max-content;
+        }
+        &.PURCHASE {
+          background: #521a93;
         }
       }
     }

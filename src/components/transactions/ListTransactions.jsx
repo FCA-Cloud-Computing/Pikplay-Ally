@@ -16,9 +16,9 @@ export function ListTransactions({ transactions }) {
   // );
 
   useEffect(() => {
-    setStoreValue('leftBottomMenuContent', <button className="btnLeftBottomMenu" onClick={() => setStoreValue('isModalAddTransactionOpen', true)}>
-      <AddIcon />
-    </button>)
+    // setStoreValue('leftBottomMenuContent', <button className="btnLeftBottomMenu" onClick={() => setStoreValue('isModalAddTransactionOpen', true)}>
+    //   <AddIcon />
+    // </button>)
   }, [])
 
   return (

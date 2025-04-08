@@ -10,10 +10,12 @@ import { rankingDataPoints } from './rankingData'
 import Button from '../button/Button'
 import { getUsersSrv } from '@/services/user/user'
 import { getRankingDetailSrv } from '@/services/rankings/rankings'
+import { useIAStore } from '../ia/IAstore'
 
 const RankingComponent = (props) => {
   const { rankingId } = props
   const [rankingData, setRankingData] = useState([])
+  const { setIAMessage } = useIAStore()
 
   useEffect(() => {
     try {
@@ -30,6 +32,7 @@ const RankingComponent = (props) => {
                   ...user,
                   league: 'bronce',
                   points: member.points,
+                  pointsDetail: member.pointsDetail,
                 }
               })
               setRankingData(pointsAndUserData)
@@ -44,6 +47,14 @@ const RankingComponent = (props) => {
     }
   }, [])
 
+  const handlePointsDetail = (pointsDetail) => {
+    const HTML = <div>
+      <p>Detalles de los puntos:</p>
+      {pointsDetail.map(item => <li>{item.detail} - {item.points}</li>)}
+    </div>
+    setIAMessage(HTML, null, null)
+  }
+
   return (
     <div className={styles.RankingComponent}>
       {/* <Button color="blue" fullWidth className="p-10">Quiero participar</Button> */}
@@ -55,7 +66,8 @@ const RankingComponent = (props) => {
             className={`${index == 0 ? 'starsFallingDown' : ''} ${styles.item} ${member.uid}`}
             initial={{ x: '-400px' }}
             key={index}
-            transition={{ delay: index * 0.3 }}>
+            transition={{ delay: index * 0.3 }}
+            onClick={() => handlePointsDetail(member.pointsDetail)}>
             <div className={styles.number}>
               {index + 1}
               <span className={styles.arrow}>

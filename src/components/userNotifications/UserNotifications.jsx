@@ -14,6 +14,7 @@ import { getNotificationsSrv, updateProfileSrv } from '../../services/user/user'
 import CoinIcon from '../coinIcon/CoinIcon'
 import useCommonStore from '../../hooks/commonStore'
 import uploadFile from "../../services/uploadFile";
+import { NOTIFICATION_TYPES } from '../../consts/messages'
 
 const { motion } = require('framer-motion')
 
@@ -196,7 +197,7 @@ const UserNotifications = () => {
                   width={48}
                 /> */}
                 <span className={`${styles.notificationType} ${styles[item.type]}`}>
-                  Desafío
+                  {NOTIFICATION_TYPES[item.type]}
                 </span>
                 <small>
                   hace {created}

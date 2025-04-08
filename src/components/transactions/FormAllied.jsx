@@ -60,7 +60,6 @@ export function FormAllied() {
   }
 
   const handleChange = (event, newValue) => {
-    debugger
     setValue(newValue)
   }
 

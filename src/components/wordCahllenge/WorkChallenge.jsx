@@ -93,6 +93,15 @@ const InputsOTP = ({ fullWord = "alvaro" }) => {
   )
 }
 
+const woekChallengeInformation = <div className={styles.wordChallengeInformation}>
+  <p>El Word Challenge 🔥 es una dinamica en la cual se debe colocar una palabra clave de acuerdo a las instrucciones del aliado comercial.</p>
+  <p>
+    El primer jugador en descubrir la palabra se lleva el&nbsp;
+    <span>100% de los puntos de categoria.</span><br />
+    El segundo jugador se llevará el 50%, y los demás consecuentes el 20%
+  </p>
+</div>
+
 const WordChallenge = (props) => {
   const { showModal, setShowModal } = props
   const [[page, direction], setPage] = useState([0, 0])
@@ -127,6 +136,37 @@ const WordChallenge = (props) => {
       </DialogContent>
     </Dialog>
   )
+  // return <div className={styles.WordChallenge}>
+  //     WordChallenge
+  // </div>
+  // return <Dialog
+  //   open={true}
+  //   TransitionComponent={Transition}
+  //   onClose={() => setShowModal(false)}
+  //   className={styles.WordChallenge}>
+  //   <DialogContent>
+  //     <div className={styles.content}>
+  //       <AnimatePresence initial={true} custom={direction}>
+  //         <p className={styles.title}>
+  //           Ingresa la palabra clave
+  //         </p>
+  //         <div className={styles.subtitle}>
+  //           Puedes obtener muchos <span>puntos <br />de categoria</span>
+  //         </div>
+  //         <InputComponent />
+  //         <center>
+  //           <Button fullWidth className="m-t-20" color="blue" realistic >Validar</Button>
+  //         </center>
+  //         <Button color="link" onClick={() => {
+  //           setShowModal(false)
+  //           setIAMessage(woekChallengeInformation)
+  //         }}>
+  //           ¿Como funciona el Word Challenge?
+  //         </Button>
+  //       </AnimatePresence>
+  //     </div>
+  //   </DialogContent>
+  // </Dialog>
 }
 
 export default WordChallenge
