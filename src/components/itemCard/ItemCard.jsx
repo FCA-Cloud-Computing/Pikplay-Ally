@@ -28,6 +28,7 @@ const ItemCard = (props) => {
     freeShipping,
     handleFavorite,
     isAddi,
+    isClickable = true,
     id: publicationId,
     images,
     isUsed,
@@ -73,10 +74,10 @@ const ItemCard = (props) => {
           <div className={styles.content_imagen}>
             {/* Image */}
             <a
-              onClick={handlerAskProduct}
+              onClick={isClickable && handlerAskProduct}
               as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
               className={styles.image_wrapper}
-              href={`https://api.whatsapp.com/send?phone=${user.whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}`}
+              href={isClickable ? `https://api.whatsapp.com/send?phone=${user.whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}` : null}
               key={publicationId}
               target='_blank'
             // href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
@@ -163,14 +164,13 @@ const ItemCard = (props) => {
                 as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
                 className={publicationId == 1 ? styles.destacada_Card : ''}
                 // href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
-                href={`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}`}
-                target='_blank'
-              >
-                <h2>
-                  {title ? title : 'Espacio para el título de la publicación'}
-                </h2>
+                href={isClickable ? `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}` : null}
+                target='_blank'>
+                {title && <h2>
+                  {title}
+                </h2>}
               </a>
-              {user?.name && <Author user={user} />}
+              {/* {user?.name && <Author user={user} />} */}
               {/* <small className={styles.location}> // TODO Mostrar la ciudad
                 {cityLabel}
                 &nbsp;-&nbsp;

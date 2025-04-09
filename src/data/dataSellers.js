@@ -1,10 +1,13 @@
 import { slugify } from '@/lib/utils'
 
 const sellersInformation = {
+  // 'hirotiendaanime': {
+  // },
   'dra.bellysgutierrez': {
     authorInformation: {
       name: 'Dra. Bellys Johana Gutierrez',
       slug: 'dra.bellysgutierrez',
+      givenPikcoins: 0,
       pageBackground: "",
       picture: "https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F177%2Fprofile_768x768.jpg?alt=media&token=b705c518-2ab8-4dc2-890d-056c02417a53",
       uid: 177,
@@ -232,19 +235,29 @@ const sellersInformation = {
     authorInformation: {
       aboutHTML: <div>English Club es un espacio para tener experiencias inmersivas en el idioma.</div>,
       aboutHTMLButtonStyle: { color: 'white', textDecoration: 'underline' },
-      pageBackground: 'https://lonelinessandinternationalstudent.wordpress.com/wp-content/uploads/2015/10/language-exchange.jpg',
+      // background: '/images/logos/pikplay_store_logo.png',
       cssClassPage: 'conversationClubPage',
       dividerColor: '#b0b0b0',
-      // background: '/images/logos/pikplay_store_logo.png',
-      name: 'English Club',
+      givenPikcoins: 65,
       location: 'Barranquilla - Soledad',
-      givenPikcoins: 0,
+      name: 'English Club',
+      pageBackground: 'https://lonelinessandinternationalstudent.wordpress.com/wp-content/uploads/2015/10/language-exchange.jpg',
       picture: '/images/users/conversation_club/logo.png',
       rankingId: 1,
       uid: 131,
       whatsappNumber: 573204863547
     },
     rankingId: 5,
+    rankingLabel: '2do Ranking English Club',
+    productsTitle: 'Eventos',
+    products: [
+      {
+        images: [{ isHome: true, url: "https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F61%2Feugenio-ganador-english-club_768x768.jpeg?alt=media&token=2cef0942-858e-4a0b-b3e8-a2610539645f" }],
+        title: "Ganador 1er Ranking English Club",
+        isClickable: false,
+        label: 'Ganador 1ra Ranking English Club',
+      },
+    ]
   },
   'le-fragance': {
     authorInformation: {
@@ -254,7 +267,7 @@ const sellersInformation = {
       // background: '/images/backgrounds/campo-bg.jpeg',
       name: 'Le Fragance',
       place: 'Barranquilla',
-      givenPikcoins: 12,
+      givenPikcoins: 6,
       location: 'Envíos a todo el pais',
       pageBackground: 'https://cloudfront-us-east-1.images.arcpublishing.com/infobae/UQLCPKQVN5AHHC2ZZDKTNN5XOM.jpg',
       picture: '/images/users/le-fragance/le-fragance.jpeg',
@@ -385,7 +398,7 @@ const sellersInformation = {
     },
     products: [{
       images: [
-        { url: '/images/users/nataliatution/products/product1.jpeg' }
+        { isHome: true, url: '/images/users/nataliatution/products/product1.jpeg' }
       ],
       isNew: true,
       title: 'Ropa, Calzado y Accesorios de Dama',
@@ -397,7 +410,7 @@ const sellersInformation = {
     },
     {
       images: [
-        { url: '/images/users/nataliatution/products/deportiva.jpg' }
+        { isHome: true, url: '/images/users/nataliatution/products/deportiva.jpg' }
       ],
       isNew: true,
       title: 'Ropa Deportiva de Dama',

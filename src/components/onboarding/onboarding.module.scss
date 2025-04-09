@@ -288,6 +288,16 @@ section.Onboarding {
         }
         .itemProduct {
           position: relative;
+          .label {
+            background: linear-gradient(228deg, #7a0ba19e 0%, #003875 100%);
+            border-radius: 10px;
+            bottom: 10px;
+            font-size: 12px;
+            left: 10px;
+            max-width: 100px;
+            padding: 6px 10px;
+            position: absolute;
+          }
           .zoomIcon {
             left: 4px;
             position: absolute;

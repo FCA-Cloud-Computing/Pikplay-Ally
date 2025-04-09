@@ -246,8 +246,13 @@ const Onboarding = () => {
             <div className={`${styles.products} ${(products && products.length > 1) && styles.manyProducts}`}>
               {products && products.map((product, i) => { // Interación de productos
                 // debugger
+                const { label } = product || {}
+
                 return product.images[0].isHome && <div className={styles.itemProduct}>
                   <Zoom>
+                    {label && <span className={styles.label}>
+                      {label}
+                    </span>}
                     <span className={styles.zoomIcon}>
                       <ZoomInIcon />
                     </span>
