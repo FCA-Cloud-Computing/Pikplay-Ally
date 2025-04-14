@@ -3,14 +3,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 import styles from './userNotifications.module.scss'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames'
 import moment from 'moment'
 import Router from 'next/router'
-import { toast } from 'react-toastify'
 
 // Custom
-import { getNotificationsSrv, updateProfileSrv } from '../../services/user/user'
+import { getNotificationsSrv } from '../../services/user/user'
 import CoinIcon from '../coinIcon/CoinIcon'
 import useCommonStore from '../../hooks/commonStore'
 import uploadFile from "../../services/uploadFile";
