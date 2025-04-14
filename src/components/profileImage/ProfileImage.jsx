@@ -3,10 +3,12 @@ import styles from './profileImage.module.scss';
 import React, { useEffect, useState } from 'react';
 import { getImageSize } from '@/lib/utils';
 import { getExperiencesSrv } from '@/services/experience';
+import {  useProfileImage } from '@/hooks/useProfileImage';
 
-const ProfileImage = ({ className, handleClickImage, picture, progress = 0, small }) => {
+const ProfileImage = ({ className, handleClickImage, picture, progress = 0, small, changeAvatar }) => {
   const [percentageBar, setPercentageBar] = useState(progress)
-
+  const { handlerInputFile, fileInputRef } = useProfileImage()
+  
   const getExperienceData = () => {
     getExperiencesSrv(null)
       .then(data => {
@@ -32,6 +34,15 @@ const ProfileImage = ({ className, handleClickImage, picture, progress = 0, smal
           <circle className={styles.bg} />
           <circle className={styles.fg} />
         </svg>
+      {changeAvatar && (
+        <button
+          className={styles.profileChangeImage}
+          title="Cambiar foto de perfil"
+          onClick={() => fileInputRef.current.click()}>
+          <input ref={fileInputRef} onChange={handlerInputFile} type="file" />
+          <img src="/images/icons/picture.svg" alt="Cambiar foto de perfil" />
+        </button>
+      )}
       </picture>
     </div>
   );

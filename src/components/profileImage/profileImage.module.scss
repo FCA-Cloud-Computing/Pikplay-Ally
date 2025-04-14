@@ -7,6 +7,7 @@
     border-radius: 50%;
     box-shadow: 3px 2px 4px #4545454d;
     display: flex;
+    position: relative;
     height: 120px;
     justify-content: center;
     margin: 0px auto 0;
@@ -18,7 +19,7 @@
       width: 50px;
     }
 
-    img {
+    & > img {
       border-radius: 50%;
       height: calc(100% - 2px);
       left: 0px;
@@ -77,6 +78,26 @@
     stroke: #53dbcc; /* color de la barra de carga */
     border-radius: 100%;
     filter: drop-shadow(0 0 5px #75f3e3) /*drop-shadow(0 0 10px #454545 )*/;
+  }
+}
+
+.profileChangeImage {
+  position: absolute;
+  padding: 12px;
+  top: -7px;
+  right: -14px;
+  margin: 0;
+  width: 40%;
+  height: 40%;
+  background-color: #07244c;
+  border-radius: 50%;
+  border: none;
+  border-left: 2px solid #f4c376;
+  border-bottom: 2px solid #f4c376;
+  cursor: pointer;
+
+  & input[type="file"] {
+    display: none;
   }
 }
 
