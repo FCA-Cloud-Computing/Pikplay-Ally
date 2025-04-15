@@ -10,6 +10,8 @@ import { ShareOutlined } from '@mui/icons-material'
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import classNames from 'classnames'
 import Image from 'next/image'
+import Zoom from 'react-medium-image-zoom'
+import ZoomInIcon from '@mui/icons-material/ZoomIn';
 
 // Custom
 import useCommonStore from '../../hooks/commonStore'
@@ -23,14 +25,14 @@ import { CID_ASK_PRODUCT } from '@/consts/challenges'
 const ItemCard = (props) => {
   const {
     acceptChanges,
-    cashbackAvailable,
+    cashbackAvailable = true,
     following,
     freeShipping,
     handleFavorite,
     isAddi,
     isClickable = true,
     id: publicationId,
-    images,
+    images = '',
     isUsed,
     likes,
     price,
@@ -42,7 +44,7 @@ const ItemCard = (props) => {
   } = props
 
   const { setStoreValue } = useCommonStore()
-
+  const imagesList = images ? images.split(",") : []
   const usuario =
     typeof localStorage != 'undefined'
       ? localStorage.getItem('user')
@@ -73,8 +75,8 @@ const ItemCard = (props) => {
         <div className={styles.descripcion_imagen}>
           <div className={styles.content_imagen}>
             {/* Image */}
-            <a
-              onClick={isClickable && handlerAskProduct}
+            {imagesList.length > 0 && <a
+              // onClick={isClickable && handlerAskProduct}
               as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
               className={styles.image_wrapper}
               href={isClickable ? `https://api.whatsapp.com/send?phone=${user.whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}` : null}
@@ -83,16 +85,22 @@ const ItemCard = (props) => {
             // href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
             >
               {
-                images && images.length > 0 && images.map(image => (
+                imagesList.map(image => (<>
+                  <span className={styles.zoomIcon}>
+                    <ZoomInIcon />
+                  </span>
                   <Image
                     alt="imagen del producto"
-                    layout='fill'
-                    objectFit='contain'
-                    src={image?.url}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    src={image}
+                  // height={300}
+                  // width={300}
                   />
+                </>
                 ))
               }
-            </a>
+            </a>}
           </div>
           {
             showTags && <div className={`tags ${styles.tags}`}>
@@ -119,10 +127,12 @@ const ItemCard = (props) => {
           }
           {/* Si tiene precio y Cashback */}
           {cashbackAvailable && price && <div className={styles.cashbackInformation}>
-            Con esta compra obtienes <b>{(price * 0.01) / 100} Points</b></div>}
+            Con esta compra obtienes <br />
+            <b>{(price * 0.01) / 100} Puntos</b> de prestigio</div>}
           {/* Si no tiene precio */}
           {cashbackAvailable && !price && <div className={styles.cashbackInformation}>
-            Preguntale al vendedor sobre los créditos por esta compra</div>}
+            Preguntale al comercio sobre <br /> los créditos por esta compra
+          </div>}
           {
             <div className={styles.descripcion}>
               <div className={styles.icons}>

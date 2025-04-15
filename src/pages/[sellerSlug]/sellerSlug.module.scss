@@ -8,13 +8,13 @@
 
 .menu {
   background: #17173a;
-  border-radius: 20px 20px 0 0;
-  left: calc(0px - 30px);
+  border-radius: 30px 0px 0 30px;
+  left: 0px;
   max-width: 420px;
   overflow-x: scroll;
   padding: 0 20px;
   position: relative;
-  top: -16px;
+  top: -30px;
   width: calc(100% + 20px);
   z-index: 1;
   // &::-webkit-scrollbar-thumb {
@@ -36,7 +36,7 @@
     padding-bottom: 6px;
     width: 500px;
     :global(.ButtonComponent) {
-      width: 200px;
+      // width: 200px;
       button {
         color: white;
         text-decoration: none;
@@ -50,6 +50,9 @@
 }
 
 .productsTitle {
+  .list {
+    display: flex;
+  }
   svg {
     position: relative;
     top: -3px;

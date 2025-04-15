@@ -251,17 +251,28 @@ section.Onboarding {
       width: 100%;
       a {
         color: white;
+        display: flex;
       }
+
       .sellerInformation {
-        width: 100px;
+        margin-right: 20px;
+        width: 110px;
         b {
           display: block;
         }
         span {
           display: block;
         }
-        img {
-          border-radius: 50%;
+        :global(.ProfileImageComponent) {
+          height: 80px;
+          width: 80px;
+        }
+        .location {
+          icon {
+            margin-right: 2px;
+            position: relative;
+            top: 2px;
+          }
         }
       }
 
@@ -272,6 +283,7 @@ section.Onboarding {
         padding-bottom: 2px;
         &.manyProducts {
           overflow-x: scroll;
+          width: 204px;
           // &::-webkit-scrollbar-thumb {
           //   // background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Degradado facherito */
           //   background-color: #c93530;

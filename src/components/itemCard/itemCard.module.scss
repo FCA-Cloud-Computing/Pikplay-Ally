@@ -11,15 +11,12 @@ h3.title_destacada {
   color: #585858;
   cursor: pointer;
   margin: 0px auto 20px;
-  max-width: 320px;
+  max-width: 280px;
   padding-bottom: 40px;
   position: relative;
   z-index: 1;
   &.small {
     height: 360px;
-    @media screen and (min-width: 1024px) {
-      width: 320px;
-    }
   }
   .tachado {
     font-size: 14px;
@@ -71,13 +68,11 @@ h3.title_destacada {
       }
       img {
         border-radius: 8px 8px 0 0;
-        max-height: 220px;
+        // max-height: 220px;
+        margin: initial;
         position: relative;
-        z-index: 1;
         transition: 0.2s ease;
-        @media screen and (max-width: 480px) {
-          margin: initial;
-        }
+        z-index: 1;
         &.image-back {
           display: none;
         }
@@ -136,7 +131,7 @@ h3.title_destacada {
       .nuevoPrecio {
         color: #ea4d42;
         font-weight: bold;
-        margin-bottom: 20px;
+        // margin-bottom: 20px;
       }
     }
     .descripcion {
@@ -204,9 +199,9 @@ h3.title_destacada {
       h2 {
         font-size: 16px;
         margin: 10px 20px 0 10px;
-        max-height: 44px;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        // max-height: 44px;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
       }
     }
   }
