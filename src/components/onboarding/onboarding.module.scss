@@ -255,7 +255,7 @@ section.Onboarding {
       }
 
       .sellerInformation {
-        margin-right: 20px;
+        margin-right: 10px;
         width: 110px;
         b {
           display: block;
@@ -309,15 +309,6 @@ section.Onboarding {
             max-width: 100px;
             padding: 6px 10px;
             position: absolute;
-          }
-          .zoomIcon {
-            left: 4px;
-            position: absolute;
-            top: 4px;
-            opacity: 0.5;
-            pointer-events: none;
-            svg {
-            }
           }
           img {
             border-radius: 10px;

@@ -57,6 +57,19 @@ h3.title_destacada {
         margin-bottom: 10px;
         width: auto;
       }
+      .zoomIcon {
+        background: white;
+        border-radius: 50%;
+        height: 26px;
+        pointer-events: none;
+        position: absolute;
+        right: 10px;
+        top: 44px;
+        width: 26px;
+        z-index: 2;
+        svg {
+        }
+      }
       .bg_picture {
         content: "";
         height: 180px;
@@ -168,15 +181,13 @@ h3.title_destacada {
           svg {
             background: white;
             border-radius: 50%;
-            // font-size: 20px;
             box-sizing: border-box;
-            height: 30px;
-            padding: 5px;
+            height: 28px;
+            padding: 2px;
             transition: 0.5s ease;
-            // width: 30px;
-            width: 30px;
+            width: 28px;
             &:hover {
-              transform: scale(1.4);
+              // transform: scale(1.4);
             }
           }
         }
@@ -188,7 +199,6 @@ h3.title_destacada {
         }
       }
       .faShare {
-        color: #0196b3;
         margin-left: 10px;
       }
       .user_picture {
