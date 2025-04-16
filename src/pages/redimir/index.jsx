@@ -1,16 +1,22 @@
 import styles from "./redimirPage.module.scss";
 
+import { useActionState } from "react";
+import { getServerSideProps } from '@/pages/perfil/[id]'
+
+// Custom
 import Layout from "../../components/layout/Layout";
 import { FormRedemption } from "../../components/redemption/FormRedemption";
 import {
   initialStateRedemptionCredits,
   redemptionCredits,
 } from "../../actions/redemptionCredits";
-import { useActionState } from "react";
 import { Code } from "../../components/redemption/Code";
 import BonusList from "@/components/bonusList/BonusList";
+import { getPublicationsSrv } from "@/services/publications/publications";
+import ItemCard from "@/components/itemCard/ItemCard";
 
-function CreditRedemptionPage() {
+function CreditRedemptionPage(props) {
+  const { productsReq } = props;
   const [{ result, error, success }, actionState, isPending] = useActionState(
     redemptionCredits,
     initialStateRedemptionCredits
@@ -68,10 +74,25 @@ function CreditRedemptionPage() {
             establecimientos afiliados.
           </p>
         </section>
+
+        <h2>Bonos</h2>
         <BonusList {...{ bonuses }} />
+
+        <h2>Productos</h2>
+        <section className={styles.products}>
+          {productsReq.data.map(item => <ItemCard {...item} />)}
+        </section>
       </section>
     </Layout>
   );
+}
+
+CreditRedemptionPage.getInitialProps = async (ctx) => {
+  const productsReq = await getPublicationsSrv(ctx, 'pikplay-store')
+
+  return {
+    productsReq
+  }
 }
 
 export default CreditRedemptionPage;

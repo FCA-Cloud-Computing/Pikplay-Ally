@@ -28,5 +28,15 @@ section.RedimirPage {
         p {
             margin: 6px 0 0;
         }
+        &.products {
+            display: flex;
+            flex-wrap: wrap;
+            > div {
+                flex: 0 0 45%;
+                .image_wrapper {
+                    height: 180px;
+                }
+            }
+        }
     }
 }

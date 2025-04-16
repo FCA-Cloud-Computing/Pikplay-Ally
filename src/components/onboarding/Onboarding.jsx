@@ -200,8 +200,8 @@ const Onboarding = (props) => {
     <div className={styles.texts}>
       <div className={styles.background}></div>
       <article>
-        Comprando con aliados de
-        <b>Pikplay</b> tienes la posibilidad de ganar <b>Cashback</b><CoinIcon hideNumber />,
+        Comprando con aliados de&nbsp;
+        <b>Pikplay</b>&nbsp;tienes la posibilidad de ganar <b>Cashback</b><CoinIcon hideNumber />,
         <br />esto basicamente es descuentos en otras tiendas aliadas.
         <br /><br />
         Tambien invitar a tus amigos y tener un Ranking de puntos los cuales te serviran para aumentar de liga, obtener descuentos

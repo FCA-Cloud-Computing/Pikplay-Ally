@@ -21,11 +21,13 @@ import { formatNumber, setMessageTop } from '../../lib/utils'
 import CustomFetch from '../fetch/CustomFetch'
 import { postChallengeDetail } from '@/services/challenges/challenges'
 import { CID_ASK_PRODUCT } from '@/consts/challenges'
+import CoinIcon from '../coinIcon/CoinIcon'
 
 const ItemCard = (props) => {
   const {
     acceptChanges,
     cashbackAvailable = true,
+    coins,
     following,
     freeShipping,
     handleFavorite,
@@ -203,6 +205,8 @@ const ItemCard = (props) => {
                   }
                 </div>
               </div>}
+
+              {coins && <CoinIcon size={32} coins={coins} />}
 
               {/* Envio */}
               {freeShipping && <div className={styles.shipping}>
