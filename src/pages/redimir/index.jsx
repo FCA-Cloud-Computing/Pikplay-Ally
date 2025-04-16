@@ -66,14 +66,18 @@ function CreditRedemptionPage(props) {
           // <Code code={result.verification_code} />
         )}
 
-        <section>
-          <img className={`rotating ${styles.imgLights}`} src="/images/elements/luces.png" />
-          <img className={styles.giftIcon} src="/images/icons/gift-2.svg" alt="gift" />
-          <h1>¡Redime tus Pikcoins!</h1>
-          <p>
-            Puedes redimir tus créditos por bonos, descuentos y premios en
-            establecimientos afiliados.
-          </p>
+        <section className={styles.headerInfo}>
+          <div>
+            <img className={`rotating ${styles.imgLights}`} src="/images/elements/luces.png" />
+            <img className={styles.giftIcon} src="/images/icons/gift-2.svg" alt="gift" />
+          </div>
+          <div>
+            <h1>¡Redime tus Pikcoins!</h1>
+            <p>
+              Puedes redimir tus créditos por bonos, descuentos y premios en
+              establecimientos afiliados.
+            </p>
+          </div>
         </section>
 
         <h2>Bonos</h2>

@@ -8,13 +8,15 @@
         // backdrop-filter: blur(10px);
         // background-position: center;
 
-        box-shadow: inset 0px 0px 4px #ededed;
         border-radius: 8px;
+        box-shadow: inset 0px 0px 4px #ededed;
         color: #0e3266;
         height: 190px;
-        padding: 20px 0 12px 30px;
+        margin: 0 auto 30px;
+        max-width: 280px;
+        padding: 10px 0 24px 40px;
         position: relative;
-        margin-bottom: 30px;
+
         &.withImage {
             // height: 200px;
         }

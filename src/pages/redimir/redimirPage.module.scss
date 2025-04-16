@@ -26,9 +26,8 @@ section.RedimirPage {
             margin: 20px 0 0;
         }
         p {
-            float: right;
             margin: 6px 0 0;
-            width: 120px;
+            width: 180px;
         }
         &.products {
             display: flex;
@@ -39,6 +38,10 @@ section.RedimirPage {
                     height: 180px;
                 }
             }
+        }
+        &.headerInfo {
+            column-gap: 20px;
+            display: flex;
         }
     }
 }
