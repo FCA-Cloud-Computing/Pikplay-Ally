@@ -23,10 +23,12 @@ section.RedimirPage {
             z-index: 1;
         }
         h1 {
-            margin: 0;
+            margin: 20px 0 0;
         }
         p {
+            float: right;
             margin: 6px 0 0;
+            width: 120px;
         }
         &.products {
             display: flex;
