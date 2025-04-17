@@ -40,7 +40,7 @@ const postChallengeDetail = async (ctx, body) => {
 export {
   getChallenges,
   getChallengesByUser,
+  getLengthWord,
   postChallengeDetail,
   sendWordChallenge,
-  getLengthWord
 }
