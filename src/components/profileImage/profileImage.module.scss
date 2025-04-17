@@ -1,5 +1,8 @@
-.profileImageContainer {
+.ProfileImageComponent {
   position: relative;
+  height: 100px;
+  margin: 0 auto;
+  width: 100px;
 
   .ProfileImage {
     align-items: center;
@@ -8,11 +11,13 @@
     box-shadow: 3px 2px 4px #4545454d;
     display: flex;
     position: relative;
-    height: 120px;
+    // height: 120px;
+    height: 100%;
     justify-content: center;
     margin: 0px auto 0;
     padding: 3px;
-    width: 120px;
+    position: relative;
+    width: 100%;
 
     &.previewUser {
       height: 50px;

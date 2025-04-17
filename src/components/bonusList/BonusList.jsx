@@ -30,21 +30,22 @@ const BonusList = ({ bonuses }) => {
                         <div className={styles.contentTexts}>
                             <h2>{bonus.title}</h2>
                             <p>{bonus.description}</p>
-                            <div className={styles.actions}>
-                                <Button color="red">
-                                    {/* {bonus.price && <div className={styles.price}>
+                        </div>
+                        {bonus.image && <div className={`m-t-30 ${styles.image}`}>
+                            <img src={bonus.image} />
+                        </div>}
+                    </div>
+
+                    <div className={styles.actions}>
+                        <Button color="red">
+                            {/* {bonus.price && <div className={styles.price}>
                                         <CoinIcon coins={bonus.price} />
                                     </div>} */}
-                                    <a target='_blank' href={href(bonus)} >
-                                        Redimir
-                                    </a>
-                                </Button>
-                                <Button color="darkBlue" style={{ color: "white" }}>Compartir</Button>
-                            </div>
-                        </div>
-                        {/* {bonus.image && <div className={styles.image}>
-                            <img src={bonus.image} />
-                        </div>} */}
+                            <a target='_blank' href={href(bonus)} >
+                                Redimir
+                            </a>
+                        </Button>
+                        <Button color="darkBlue" style={{ color: "white" }}>Compartir</Button>
                     </div>
                     {/* <hr /> */}
                     <div className={styles.terms}>

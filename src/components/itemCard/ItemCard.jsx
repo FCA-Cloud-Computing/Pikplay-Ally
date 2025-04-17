@@ -10,6 +10,8 @@ import { ShareOutlined } from '@mui/icons-material'
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import classNames from 'classnames'
 import Image from 'next/image'
+import Zoom from 'react-medium-image-zoom'
+import ZoomInIcon from '@mui/icons-material/ZoomIn';
 
 // Custom
 import useCommonStore from '../../hooks/commonStore'
@@ -19,30 +21,32 @@ import { formatNumber, setMessageTop } from '../../lib/utils'
 import CustomFetch from '../fetch/CustomFetch'
 import { postChallengeDetail } from '@/services/challenges/challenges'
 import { CID_ASK_PRODUCT } from '@/consts/challenges'
+import CoinIcon from '../coinIcon/CoinIcon'
 
 const ItemCard = (props) => {
   const {
     acceptChanges,
-    cashbackAvailable,
+    cashbackAvailable = true,
+    coins,
     following,
     freeShipping,
     handleFavorite,
     isAddi,
     isClickable = true,
     id: publicationId,
-    images,
+    images = '',
     isUsed,
     likes,
     price,
+    seller,
     slug,
     tags,
     title,
-    user,
     whatsappNumber
   } = props
 
   const { setStoreValue } = useCommonStore()
-
+  const imagesList = images ? images.split(",") : []
   const usuario =
     typeof localStorage != 'undefined'
       ? localStorage.getItem('user')
@@ -53,7 +57,7 @@ const ItemCard = (props) => {
   if (usuario) like = likes ? !!likes.find(like => like == usuario) : false
   const isDestacada = publicationId == 1 ? true : false
   const { loggedUser } = useCommonStore()
-  const shareLink = `https://api.whatsapp.com/send?phone=&text=Revisa%20esta%20publicacion%20en%20Pikplay%20que%20esta%20potente%20https://pikplay.com.co/${user.slug}%23${slug}`
+  const shareLink = `https://api.whatsapp.com/send?phone=&text=Revisa%20esta%20publicacion%20en%20Pikplay%20que%20esta%20potente%20https://pikplay.com.co/${seller.slug}%23${slug}`
   const showTags = isUsed || cashbackAvailable
 
   const handlerAskProduct = () => {
@@ -73,26 +77,34 @@ const ItemCard = (props) => {
         <div className={styles.descripcion_imagen}>
           <div className={styles.content_imagen}>
             {/* Image */}
-            <a
-              onClick={isClickable && handlerAskProduct}
+            {imagesList.length > 0 && <a
+              // onClick={isClickable && handlerAskProduct}
               as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
               className={styles.image_wrapper}
-              href={isClickable ? `https://api.whatsapp.com/send?phone=${user.whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}` : null}
+              // href={isClickable ? `https://api.whatsapp.com/send?phone=${user.whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}` : null}
               key={publicationId}
               target='_blank'
             // href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
             >
               {
-                images && images.length > 0 && images.map(image => (
-                  <Image
-                    alt="imagen del producto"
-                    layout='fill'
-                    objectFit='contain'
-                    src={image?.url}
-                  />
+                imagesList.map(image => (<>
+                  <Zoom>
+                    <span className={styles.zoomIcon}>
+                      <ZoomInIcon />
+                    </span>
+                    <Image
+                      alt="imagen del producto"
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      src={image}
+                    // height={300}
+                    // width={300}
+                    />
+                  </Zoom>
+                </>
                 ))
               }
-            </a>
+            </a>}
           </div>
           {
             showTags && <div className={`tags ${styles.tags}`}>
@@ -104,7 +116,7 @@ const ItemCard = (props) => {
                 </span>
               )}
               {/* Si aplica cashback */}
-              {cashbackAvailable && <CashbackTag />}
+              {cashbackAvailable && <CashbackTag value={'1%'} />}
               {acceptChanges && (
                 <span
                   className={styles.condition}
@@ -119,10 +131,12 @@ const ItemCard = (props) => {
           }
           {/* Si tiene precio y Cashback */}
           {cashbackAvailable && price && <div className={styles.cashbackInformation}>
-            Con esta compra obtienes <b>{(price * 0.01) / 100} Points</b></div>}
+            Con esta compra obtienes <br />
+            <b>{(price * 0.01) / 100} Puntos</b> de categoria</div>}
           {/* Si no tiene precio */}
           {cashbackAvailable && !price && <div className={styles.cashbackInformation}>
-            Preguntale al vendedor sobre los créditos por esta compra</div>}
+            Preguntale al comercio sobre <br /> los créditos por esta compra
+          </div>}
           {
             <div className={styles.descripcion}>
               <div className={styles.icons}>
@@ -146,19 +160,19 @@ const ItemCard = (props) => {
                     />
                   </a>
                 </Tooltip> */}
-                <Tooltip title='Compartir'>
-                  <a
-                    href={`${shareLink}`}
-                    rel="noreferrer"
-                    target='_BLANK'>
-                    <ShareOutlined
-                      className={styles.faShare} />
-                    {/* <FontAwesomeIcon
+                {/* <Tooltip title='Compartir'> */}
+                <a
+                  href={`${shareLink}`}
+                  rel="noreferrer"
+                  target='_BLANK'>
+                  <ShareOutlined
+                    className={styles.faShare} />
+                  {/* <FontAwesomeIcon
                       icon={faShare}
                       className={styles.faShare}
                     /> */}
-                  </a>
-                </Tooltip>
+                </a>
+                {/* </Tooltip> */}
               </div>
               <a
                 as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
@@ -191,6 +205,8 @@ const ItemCard = (props) => {
                   }
                 </div>
               </div>}
+
+              {coins && <CoinIcon size={32} coins={coins} />}
 
               {/* Envio */}
               {freeShipping && <div className={styles.shipping}>

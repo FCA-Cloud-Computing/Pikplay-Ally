@@ -1,0 +1,69 @@
+.RulleteComponent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+
+    .ruleta {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .segment-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform-origin: center center;
+    }
+
+    .segment {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(50% 50%, 0 0, 100% 0); /* Forma de porción */
+        transform-origin: 50% 100%; /* Para el efecto skew */
+    }
+
+    .option {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform-origin: center center;
+        transform: translate(-50%, -50%) skewY(-60deg) rotate(calc(60deg));
+        width: 80%;
+        height: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+        user-select: none;
+    }
+
+    .flecha {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 20px solid #333;
+        transform: translateX(-50%);
+        z-index: 10;
+    }
+
+    .resultado {
+        margin-top: 20px;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+}

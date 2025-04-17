@@ -7,19 +7,19 @@ import { motion, useAnimation, useMotionValue, useTransform } from 'framer-motio
 import { height } from '@mui/system'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
-import Zoom from 'react-medium-image-zoom'
-import ZoomInIcon from '@mui/icons-material/ZoomIn';
 
 // Custom
-import { sellersInformation } from '../../data/dataSellers'
 import Button from '../button/Button'
 import CoinIcon from '../coinIcon/CoinIcon'
 import MESSAGES from '../../consts/messages'
 import useCommonStore from '../../hooks/commonStore'
 import { getUsersSrv, saveLeadSrv, } from '../../services/user/user'
 import { useIAStore } from '../ia/IAstore'
+import ProfileImage from '../profileImage/ProfileImage'
+import { locationsList } from '@/consts/locations'
 
-const Onboarding = () => {
+const Onboarding = (props) => {
+  const { sellersInformation } = props
   const { ONBOARDING_LEAD_DUPLICATED, ONBOARDING_LEAD_SUCCESS } = MESSAGES
   const { setStoreValue } = useCommonStore()
   const [phoneNumber, setPhoneNumber] = useState("")
@@ -52,12 +52,12 @@ const Onboarding = () => {
     },
     {
       background: "https://i.pinimg.com/564x/f4/d4/b9/f4d4b991d2bccaf2202b8a07bae108de.jpg",
-      html: <>¡Refiere y gana!</>,
-      image: "/images/icons/gift.svg",
+      html: <>Refiere y <br />¡Gana!</>,
+      image: "/images/icons/opened-gift.svg",
       messageCode: "referrals",
       imageStyle: {
-        marginTop: "-26px",
-        width: 66,
+        marginTop: "-46px",
+        width: 112,
       }
     },
     // {
@@ -200,8 +200,8 @@ const Onboarding = () => {
     <div className={styles.texts}>
       <div className={styles.background}></div>
       <article>
-        Comprando con aliados de
-        <b>Pikplay</b> tienes la posibilidad de ganar <b>Cashback</b><CoinIcon hideNumber />,
+        Comprando con aliados de&nbsp;
+        <b>Pikplay</b>&nbsp;tienes la posibilidad de ganar <b>Cashback</b><CoinIcon hideNumber />,
         <br />esto basicamente es descuentos en otras tiendas aliadas.
         <br /><br />
         Tambien invitar a tus amigos y tener un Ranking de puntos los cuales te serviran para aumentar de liga, obtener descuentos
@@ -229,45 +229,57 @@ const Onboarding = () => {
             <span>Club de conversación</span>
           </div>
         </div>
-        {sellersInformation && Object.keys(sellersInformation).map((key, i) => { // Interación aliados
-          const { authorInformation: item, products } = sellersInformation[key]
+
+        {sellersInformation && sellersInformation.map((item, i) => { // Interación aliados
+          const { location, name, picture, publications, slug, storeName } = item
+          let publicationsList = []
+          try {
+            publicationsList = JSON.parse(publications)
+          } catch (error) {
+            console.log('Error al parsear publicaciones', error)
+          }
           // if (key == "quilla-tenis") debugger
-          return <div className="Card" key={key}>
-            <Link href={`/${key}`}>
+          // debugger
+          return <div className="Card" key={slug}>
+            <Link href={`/${slug}`}>
               <div className={styles.sellerInformation}>
-                <img src={item.picture} />
+                {/* {item?.picture && <img src={item.picture} />} */}
+                <ProfileImage picture={picture} progress={20} />
                 <p>
-                  <b>{item.name}</b>
+                  <b>{storeName}</b>
                   <span>{item?.category?.label}</span>
-                  {item.location}
+                  <span className={styles.location}>
+                    <icon>
+                      {locationsList.find(item => item.id == location)?.icon}
+                    </icon>
+                    {locationsList.find(item => item.id == location)?.name}
+                  </span>
                 </p>
               </div>
-            </Link>
-            <div className={`${styles.products} ${(products && products.length > 1) && styles.manyProducts}`}>
-              {products && products.map((product, i) => { // Interación de productos
-                // debugger
-                const { label } = product || {}
 
-                return product.images[0].isHome && <div className={styles.itemProduct}>
-                  <Zoom>
+              <div className={`${styles.products} ${(publicationsList && publicationsList.length > 1) && styles.manyProducts}`}>
+                {publicationsList && publicationsList.map((product, i) => { // Interación de productos
+                  // debugger
+                  const { label } = product || {}
+                  // if (name == 'Anuar') debugger
+                  if (!product.title) return
+
+                  return product.images && <div className={styles.itemProduct}>
                     {label && <span className={styles.label}>
                       {label}
                     </span>}
-                    <span className={styles.zoomIcon}>
-                      <ZoomInIcon />
-                    </span>
-                    <img src={product.images[0].url} />
+                    <img src={product.images} />
                     {product?.showPriceHome && <div className={styles.price}>
                       <label>Redímelo por:</label>
                       <CoinIcon coins={product.priceHome || product?.price} />
                     </div>}
-                  </Zoom>
-                </div>
-              })}
-            </div>
-            {(!products || !products[0].images[0]?.isHome) && <div className={styles.sellerDescription}>
+                  </div>
+                })}
+              </div>
+              {/* {(!products || !products[0].images[0]?.isHome) && <div className={styles.sellerDescription}>
               {item?.description}
-            </div>}
+            </div>} */}
+            </Link>
           </div>
         })}
         {/* <Link href='/conversation-club'>
