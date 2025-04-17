@@ -11,41 +11,14 @@ import Button from '../button/Button'
 import { getUsersSrv } from '@/services/user/user'
 import { getRankingDetailSrv } from '@/services/rankings/rankings'
 import { useIAStore } from '../ia/IAstore'
+import useCommonStore from '@/hooks/commonStore'
+import { useRanking } from '@/hooks/useRanking'
 
 const RankingComponent = (props) => {
   const { rankingId } = props
-  const [rankingData, setRankingData] = useState([])
   const { setIAMessage } = useIAStore()
-
-  useEffect(() => {
-    try {
-      getRankingDetailSrv(null, rankingId)
-        .then(rankingDataPointsRes => {
-          const { data: rankingDataPoints } = rankingDataPointsRes
-          const uids = rankingDataPoints.map(member => member.uid)
-          getUsersSrv(null, { uids: uids.join() })
-            .then(({ code, data }) => {
-              // debugger
-              const pointsAndUserData = rankingDataPoints.map(member => {
-                const user = data && data.find(user => user.uid === member.uid)
-                return {
-                  ...user,
-                  league: 'bronce',
-                  points: member.points,
-                  pointsDetail: member.pointsDetail,
-                }
-              })
-              setRankingData(pointsAndUserData)
-            })
-            .catch(err => {
-              debugger
-              console.log('Error getting users', err)
-            })
-        })
-    } catch (error) {
-      console.log('Error getting ranking data', error)
-    }
-  }, [])
+  const { setStoreValue } = useCommonStore()
+  const { rankingData, moveItem } = useRanking(rankingId)
 
   const handlePointsDetail = (pointsDetail) => {
     const HTML = <div>
@@ -58,16 +31,16 @@ const RankingComponent = (props) => {
   return (
     <div className={styles.RankingComponent}>
       {/* <Button color="blue" fullWidth className="p-10">Quiero participar</Button> */}
-      <div className={styles.list}>
-        {rankingData && rankingData.length > 0 && rankingData.sort((a, b) => b.points - a.points).map((member, index) => {
+      <ul className={styles.list}>
+      <AnimatePresence>
+        {rankingData && rankingData.length > 0 && rankingData.map((member, index) => {
           const { league } = member
           return <motion.div
-            animate={{ x: 0, }}
-            className={`${index == 0 ? 'starsFallingDown' : ''} ${styles.item} ${member.uid}`}
-            initial={{ x: '-400px' }}
-            key={index}
-            transition={{ delay: index * 0.3 }}
-            onClick={() => handlePointsDetail(member.pointsDetail)}>
+            layout
+            transition={{ type: "spring", stiffness: 500, damping: 25 }}
+            className={`${index == 0 ? 'starsFallingDown' : ''} ${styles.item}`}
+            key={member.uid}
+            >
             <div className={styles.number}>
               {index + 1}
               <span className={styles.arrow}>
@@ -88,9 +61,12 @@ const RankingComponent = (props) => {
             <div className={styles.points}>
               {formatNumber(member.points)} Points
             </div>
+            {/* <button onClick={() => moveItem(member.uid, -1)}>+1</button>
+            <button onClick={() => moveItem(member.uid, 1)}>-1</button> */}
           </motion.div>
         })}
-      </div>
+        </AnimatePresence>
+      </ul>
     </div>
   )
 }
