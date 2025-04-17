@@ -11,15 +11,12 @@ h3.title_destacada {
   color: #585858;
   cursor: pointer;
   margin: 0px auto 20px;
-  max-width: 320px;
+  max-width: 280px;
   padding-bottom: 40px;
   position: relative;
   z-index: 1;
   &.small {
     height: 360px;
-    @media screen and (min-width: 1024px) {
-      width: 320px;
-    }
   }
   .tachado {
     font-size: 14px;
@@ -60,6 +57,19 @@ h3.title_destacada {
         margin-bottom: 10px;
         width: auto;
       }
+      .zoomIcon {
+        background: white;
+        border-radius: 50%;
+        height: 26px;
+        pointer-events: none;
+        position: absolute;
+        right: 10px;
+        top: 44px;
+        width: 26px;
+        z-index: 2;
+        svg {
+        }
+      }
       .bg_picture {
         content: "";
         height: 180px;
@@ -71,13 +81,11 @@ h3.title_destacada {
       }
       img {
         border-radius: 8px 8px 0 0;
-        max-height: 220px;
+        // max-height: 220px;
+        margin: initial;
         position: relative;
-        z-index: 1;
         transition: 0.2s ease;
-        @media screen and (max-width: 480px) {
-          margin: initial;
-        }
+        z-index: 1;
         &.image-back {
           display: none;
         }
@@ -117,8 +125,8 @@ h3.title_destacada {
     .cashbackInformation {
       color: #2d81a9;
       display: block;
-      font-size: 12px;
-      margin: 16px 0 0 0;
+      font-size: 10px;
+      margin: 16px 10px 0;
       text-align: center;
     }
     .content_precio {
@@ -136,7 +144,7 @@ h3.title_destacada {
       .nuevoPrecio {
         color: #ea4d42;
         font-weight: bold;
-        margin-bottom: 20px;
+        // margin-bottom: 20px;
       }
     }
     .descripcion {
@@ -173,15 +181,13 @@ h3.title_destacada {
           svg {
             background: white;
             border-radius: 50%;
-            // font-size: 20px;
             box-sizing: border-box;
-            height: 30px;
-            padding: 5px;
+            height: 28px;
+            padding: 2px;
             transition: 0.5s ease;
-            // width: 30px;
-            width: 30px;
+            width: 28px;
             &:hover {
-              transform: scale(1.4);
+              // transform: scale(1.4);
             }
           }
         }
@@ -193,7 +199,6 @@ h3.title_destacada {
         }
       }
       .faShare {
-        color: #0196b3;
         margin-left: 10px;
       }
       .user_picture {
@@ -203,16 +208,14 @@ h3.title_destacada {
       }
       h2 {
         font-size: 16px;
-        margin: 10px 10px;
-        max-height: 44px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        @media screen and (max-width: 480px) {
-          margin: 20px 20px 0 10px;
-        }
+        margin: 10px 20px 0 10px;
+        // max-height: 44px;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
       }
     }
   }
+
   .fecha_sistema {
     margin-left: 10px;
   }
@@ -288,7 +291,7 @@ h3.title_destacada {
   .image_wrapper {
     display: block;
     height: 220px;
-    margin: 0 auto 20px;
+    margin: 0 auto 10px;
     position: relative;
     // width: 280px;
     &:hover :nth-of-type(2) {

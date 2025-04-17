@@ -8,8 +8,12 @@ const IACharacter = (props) => {
 		<div className={`IACharacter ${styles.IACharacter} ${className ? styles[className] : ''}`} onClick={() => setIsvisible(true)}>
 			<picture className={`${styles.head} ${styles[IAExpression]} `}>
 			</picture>
+			<div className={styles.hand}>
+				<img className={styles.initial} src="/images/ia/hand.svg" />
+				<img className={styles.explotion} src="/images/ia/boom.svg" />
+			</div>
 			<div className={`circle ${styles.circle}`}>
-				<img className={styles.body} src="/images/ia/cuerpo.png" />
+				<img className={styles.body} src="/images/ia/cuerpo.svg" />
 			</div>
 		</div>
 	)

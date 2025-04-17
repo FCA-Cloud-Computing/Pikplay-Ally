@@ -7,9 +7,16 @@
 }
 
 .menu {
+  background: #17173a;
+  border-radius: 30px 0px 0 30px;
+  left: 0px;
   max-width: 420px;
   overflow-x: scroll;
-  width: 100vw;
+  padding: 0 20px;
+  position: relative;
+  top: -30px;
+  width: calc(100% + 20px);
+  z-index: 1;
   // &::-webkit-scrollbar-thumb {
   //     // background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Degradado facherito */
   //     background-color: #740e9f;
@@ -25,11 +32,11 @@
   // }
 
   .aboutMe {
-    margin: 20px 50px 0 0;
-    padding-bottom: 2px;
+    margin: 10px 50px 0 0;
+    padding-bottom: 6px;
     width: 500px;
     :global(.ButtonComponent) {
-      width: 200px;
+      // width: 200px;
       button {
         color: white;
         text-decoration: none;
@@ -43,6 +50,9 @@
 }
 
 .productsTitle {
+  .list {
+    display: flex;
+  }
   svg {
     position: relative;
     top: -3px;

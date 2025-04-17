@@ -1,16 +1,22 @@
 import styles from "./redimirPage.module.scss";
 
+import { useActionState } from "react";
+import { getServerSideProps } from '@/pages/perfil/[id]'
+
+// Custom
 import Layout from "../../components/layout/Layout";
 import { FormRedemption } from "../../components/redemption/FormRedemption";
 import {
   initialStateRedemptionCredits,
   redemptionCredits,
 } from "../../actions/redemptionCredits";
-import { useActionState } from "react";
 import { Code } from "../../components/redemption/Code";
 import BonusList from "@/components/bonusList/BonusList";
+import { getPublicationsSrv } from "@/services/publications/publications";
+import ItemCard from "@/components/itemCard/ItemCard";
 
-function CreditRedemptionPage() {
+function CreditRedemptionPage(props) {
+  const { productsReq } = props;
   const [{ result, error, success }, actionState, isPending] = useActionState(
     redemptionCredits,
     initialStateRedemptionCredits
@@ -21,19 +27,20 @@ function CreditRedemptionPage() {
       description: 'Entradas a cine 2D de lunes a viernes',
       title: 'Entradas a cine',
       image: '/images/icons/popcorn.webp',
+      // image: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/general%2Fpublications%2Fentradas-cine.png?alt=media&token=2086fcf5-31c8-4b9d-90ab-ef98fba9d999',
       price: 4,
       isFavorite: true,
     },
     {
-      description: <>Perfume de preferencia en <a className="text-ul" href='/le-fragance'>Le Fragance</a></>,
-      title: 'Perfume de preferencia',
+      title: '50% OFF Perfume',
+      description: <>Perfume de preferencia en <br /><a className="text-ul" href='/le-fragance'>Le Fragance</a></>,
       image: '/images/icons/fragance-perfume.png',
       price: 50,
     },
     {
-      description: 'Helado McFlury',
-      title: 'Helado McFlury',
-      image: '/images/icons/ice-cream.png',
+      title: '20% OFF Tatuaje',
+      description: <>Tatuaje de preferencia en <br /><a className="text-ul" href='/monster-ink-bq'>Monster Ink</a></>,
+      image: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/products%2Ftattoo.png?alt=media&token=0cc0d1f1-1cfb-49f2-bb95-2c89588d8e5c',
       price: 4,
     },
     {
@@ -59,19 +66,38 @@ function CreditRedemptionPage() {
           // <Code code={result.verification_code} />
         )}
 
-        <section>
-          <img className={`rotating ${styles.imgLights}`} src="/images/elements/luces.png" />
-          <img className={styles.giftIcon} src="/images/icons/gift-2.svg" alt="gift" />
-          <h1>¡Redime tus Pikcoins!</h1>
-          <p>
-            Puedes redimir tus créditos por bonos, descuentos y premios en
-            establecimientos afiliados.
-          </p>
+        <section className={styles.headerInfo}>
+          <div>
+            <img className={`rotating ${styles.imgLights}`} src="/images/elements/luces.png" />
+            <img className={styles.giftIcon} src="/images/icons/gift-2.svg" alt="gift" />
+          </div>
+          <div>
+            <h1>¡Redime tus Pikcoins!</h1>
+            <p>
+              Puedes redimir tus créditos por bonos, descuentos y premios en
+              establecimientos afiliados.
+            </p>
+          </div>
         </section>
+
+        <h2>Bonos</h2>
         <BonusList {...{ bonuses }} />
+
+        <h2>Productos</h2>
+        <section className={styles.products}>
+          {productsReq.data.map(item => <ItemCard {...item} />)}
+        </section>
       </section>
     </Layout>
   );
+}
+
+CreditRedemptionPage.getInitialProps = async (ctx) => {
+  const productsReq = await getPublicationsSrv(ctx, 'pikplay-store')
+
+  return {
+    productsReq
+  }
 }
 
 export default CreditRedemptionPage;

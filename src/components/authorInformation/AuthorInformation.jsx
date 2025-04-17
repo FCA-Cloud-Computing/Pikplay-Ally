@@ -21,11 +21,12 @@ export const AuthorInformation = (props) => {
         storePicture,
         location,
         secondaryColor,
+        pageBackground,
         storeName,
         whatsapp,
     } = props?.authorInformation || {}
 
-    return <div className={`${styles.AuthorComponentPage}`} style={{ ['--backgroundImage']: `url(${background})` }}>
+    return <div className={`${styles.AuthorComponentPage}`} style={{ ['--backgroundImage']: `url(${pageBackground})` }}>
         <div className={styles.content}>
             <ProfileImage picture={storePicture} />
             <br />

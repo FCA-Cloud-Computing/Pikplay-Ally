@@ -37,6 +37,22 @@
             -webkit-text-fill-color: #0000;
         }
     }
+
+    :global(.ButtonComponent) {
+        button {
+            color: white;
+        }
+    }
+}
+
+.wordChallengeInformation {
+    span {
+        background: linear-gradient(90deg, #74ffd0, #3ac8be);
+        font-weight: bold;
+        text-shadow: initial;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: #0000;
+    }
 }
 
 .InputComponent {

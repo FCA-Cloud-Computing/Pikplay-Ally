@@ -28,9 +28,10 @@ import { useIAStore } from '@/components/ia/IAstore'
 import { HearingTwoTone, HeartBroken, HeartBrokenOutlined, HeartBrokenTwoTone, HeatPumpRounded } from '@mui/icons-material'
 import { getUserSrv } from '@/services/user/user'
 import WordChallenge from '@/components/wordChallenge/WorkChallenge'
+import { getPublicationsSrv } from '@/services/publications/publications'
 
 const DefaultSellerPage = (props) => {
-  const { params, sellerInformation } = props
+  const { params, publications, sellerInformation } = props
   const router = useRouter()
   const { sellerSlug } = router.query
   const [showWordChallenge, setShowWorkChallenge] = useState(false)
@@ -44,12 +45,12 @@ const DefaultSellerPage = (props) => {
     rankingId
   } = sellersInformation[sellerSlug?.toLowerCase()] || {}
   const { aboutHTML, aboutHTMLButtonStyle, name } = authorInformation || {}
-
-  const GlobalStyle = createGlobalStyle`
-  main.App {
-    background-image: url("${sellerInformation?.pageBackground}");
-    ${sellerInformation.pageBackgroundStyles}
-  }`;
+  const { description, picture, phone } = authorInformation || {}
+  const GlobalStyle = createGlobalStyle``
+  // main.App {
+  //   background-image: url("${sellerInformation?.pageBackground}");
+  //   ${sellerInformation.pageBackgroundStyles}
+  // }`;
 
   const { handleUserMessage, setIAMessage } = useIAStore()
 
@@ -70,7 +71,7 @@ const DefaultSellerPage = (props) => {
     console.log('competitions', competitions)
   }, [competitions])
 
-  return <Layout description={authorInformation.description} image={`https://pikplay.com.co/${authorInformation.picture}`} title={authorInformation.name} cssClassPage={authorInformation?.cssClassPage}>
+  return <Layout description={description} image={`https://pikplay.com.co/${picture}`} title={authorInformation?.name} cssClassPage={authorInformation?.cssClassPage}>
     <GlobalStyle />
     <section className="page">
       <AuthorInformation authorInformation={sellerInformation} />
@@ -98,6 +99,7 @@ const DefaultSellerPage = (props) => {
           Agregar al menu
         </div> */}
       </div>
+
       {competitionsArray && competitionsArray.length > 0 && <>
         <div className="contentTitle">
           <h1>
@@ -141,22 +143,26 @@ const DefaultSellerPage = (props) => {
       {/* <Loyalty uid={12} sellerId={1212} /> */}
 
       {/* Products */}
-      {products && <>
+      {publications?.data && <>
         <div className={`${sellerSlugStyles.productsTitle} contentTitle`}>
           <h1>
             <FontAwesomeIcon className="icon" icon={faDiceFive} />
             &nbsp;{productsTitle || 'Productos'}
           </h1>
         </div>
-        {products && products.map(product =>
-          <ItemCard
-            {...product}
-            {...{
-              user: authorInformation,
-              whatsappNumber: authorInformation.phone
-            }}
-          />
-        )}
+        <div className={sellerSlugStyles.list}>
+          {/* {JSON.stringify(publications)} */}
+          {publications.data.map(publication => {
+            return <ItemCard
+              {...publication}
+              {...{
+                user: authorInformation,
+                whatsappNumber: phone
+              }}
+            />
+          }
+          )}
+        </div>
       </>}
     </section>
   </Layout>
@@ -165,8 +171,10 @@ const DefaultSellerPage = (props) => {
 DefaultSellerPage.getInitialProps = async (ctx) => {
   const { asPath, req, query: { sellerSlug } } = ctx
   const { data: sellerInformation } = await getUserSrv(ctx, sellerSlug)
+  const publications = await getPublicationsSrv(ctx, sellerSlug)
 
   return {
+    publications,
     sellerInformation
   }
 }

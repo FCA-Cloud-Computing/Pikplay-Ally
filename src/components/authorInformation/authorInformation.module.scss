@@ -1,15 +1,23 @@
 .AuthorComponentPage {
-    margin: 0 0 20px 0;
+    left: -30px;
+    // margin: 0 0 20px 0;
     position: relative;
+    width: calc(100% + 60px);
     &::before {
         content: "";
-        // background-image: var(--backgroundImage);
-        // filter: blur(40px) saturate(400%);
+        background-image: var(--backgroundImage);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        filter: blur(0px) saturate(100%);
         height: 100%;
         position: absolute;
         width: 100%;
     }
     .content {
+        background: #525252b5;
+        // border-bottom: 1px solid #673AB7;
+        padding: 20px 0 40px;
         position: relative;
         text-align: center;
         z-index: 1;

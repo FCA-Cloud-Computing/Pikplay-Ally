@@ -31,4 +31,16 @@ const sendWordChallenge = async (ctx) => {
   return data;
 }
 
-export { getChallenges, getChallengesByUser, sendWordChallenge, getLengthWord }
+const postChallengeDetail = async (ctx, body) => {
+  const url = BASE_URL + '/detail/save'
+  const data = await post(ctx, url, body);
+  return data;
+}
+
+export {
+  getChallenges,
+  getChallengesByUser,
+  postChallengeDetail,
+  sendWordChallenge,
+  getLengthWord
+}

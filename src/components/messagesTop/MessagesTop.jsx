@@ -3,6 +3,7 @@ import styles from './messagesTop.module.scss';
 import classNames from 'classnames'
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion"
+import { toast } from 'react-toastify';
 
 // Custom
 import useCommonStore from '@/hooks/commonStore';
@@ -17,9 +18,13 @@ const MessagesTop = () => {
   }
 
   useEffect(() => {
-    messageTop && startConfetti()
+    if (messageTop) {
+      startConfetti()
+      toast(messageTop)
+    }
   }, [messageTop])
 
+  return <></>
   return (
     <>
       {

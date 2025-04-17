@@ -13,7 +13,7 @@ import useCommonStore from '../../hooks/commonStore';
 import { createExperienceSrv } from '@/services/experience';
 import { getNotificationsSrv } from '@/services/user/user';
 
-const AwardsSummary = () => {
+const AwardsSummary = ({ handleCloseModal }) => {
   const [page, setPage] = useState(0);
   const currentUserCoins = 10
   const { awardsSummaryModalHTML, awardSummaryModalDetail, setStoreValue, notifications } = useCommonStore()
@@ -29,7 +29,7 @@ const AwardsSummary = () => {
       startConfetti()
     }, 500)
   }, [])
-  
+
   const handleUpdateExperience = () => {
     // handlePickRewardUp()
     createExperienceSrv(null, {
@@ -40,7 +40,7 @@ const AwardsSummary = () => {
     })
     getNotificationsSrv().then(res => {
       const currentNotifications = res.data;
-      if(JSON.stringify(notifications) !== JSON.stringify(currentNotifications)){
+      if (JSON.stringify(notifications) !== JSON.stringify(currentNotifications)) {
         setStoreValue('notifications', res.data);
       };
     });
@@ -104,7 +104,7 @@ const AwardsSummary = () => {
       </>}
       {page == 1 && <>
         <ProfileSummaryExperience {...{ gainedCoins, gainedExperience }} />
-        <Button className={styles.closeModal} color='red' realistic onClick={() => setPage(0)}>Cerrar</Button>
+        <Button className={styles.closeModal} color='red' realistic onClick={handleCloseModal}>Cerrar</Button>
       </>}
     </>
   )
@@ -134,7 +134,7 @@ const AwardsSummaryModal = (props) => {
         <div className={styles.content}>
           <div className={styles.content_child}>
             <AnimatePresence initial={true} custom={direction}>
-              <AwardsSummary page={page} />
+              <AwardsSummary page={page} handleCloseModal={handleCloseModal} />
             </AnimatePresence>
           </div>
         </div>

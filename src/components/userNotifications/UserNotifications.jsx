@@ -3,17 +3,18 @@
 /* eslint-disable jsx-a11y/alt-text */
 import styles from './userNotifications.module.scss'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames'
 import moment from 'moment'
 import Router from 'next/router'
-import { toast } from 'react-toastify'
 
 // Custom
-import { getNotificationsSrv, updateProfileSrv } from '../../services/user/user'
+import { getNotificationsSrv } from '../../services/user/user'
 import CoinIcon from '../coinIcon/CoinIcon'
 import useCommonStore from '../../hooks/commonStore'
 import uploadFile from "../../services/uploadFile";
+import { NOTIFICATION_TYPES } from '../../consts/messages'
+import { useProfileImage } from '@/hooks/useProfileImage'
 
 const { motion } = require('framer-motion')
 
@@ -21,9 +22,8 @@ moment.locale('es-CO')
 
 const UserNotifications = () => {
   const { userLogged, notifications, setStoreValue } = useCommonStore((state => state))
+  const { handlerInputFile, fileInputRef } = useProfileImage()
   const { uid } = userLogged
-  const [fileUploaded, setFileUploaded] = useState(false);
-  const fileInputRef = useRef(null);
   const [bannerPictureProfile, setBannerPictureProfile] = useState(false);
   // const user = useSelector(state => state.user)
   // const notifications = useSelector(state => state.notifications) //.filter(item => item.closed == 0)
@@ -83,34 +83,6 @@ const UserNotifications = () => {
       handleDeleteNotification(id)
     }
     if (link) Router.push(link)
-  }
-
-  const ToastContent = (message, type) => {
-    return <>
-      <img src="/images/ia/5.png" />
-      <span className={type} onClick={() => setStoreValue('leftMenuBar', { isShow: true })}>{message}</span>
-    </>
-  }
-
-  const handlerInputFile = async (event) => {
-    const value = event.target.files[0]
-    if (value) {
-      setStoreValue('isFullLoading', true)
-      const urlImage = await uploadFile("profile", value, `${uid}`);
-      updateProfileSrv(null, uid, { picture: urlImage })
-        .then(resp => {
-          const { data } = resp
-          setStoreValue('userLogged', { ...userLogged, picture: urlImage })
-          setStoreValue('isFullLoading', false)
-          // if (data.messageTop) setStoreValue('messageTop', data.messageTop)
-          toast(ToastContent(data.messageTop, 'success'))
-          setStoreValue('leftMenuBar', { isShow: false })
-          getNotifications() // Actualizar notificaciones
-        })
-        .catch((err) => {
-          setStoreValue('isFullLoading', false)
-        })
-    }
   }
 
   const container = {
@@ -196,7 +168,7 @@ const UserNotifications = () => {
                   width={48}
                 /> */}
                 <span className={`${styles.notificationType} ${styles[item.type]}`}>
-                  Desafío
+                  {NOTIFICATION_TYPES[item.type]}
                 </span>
                 <small>
                   hace {created}

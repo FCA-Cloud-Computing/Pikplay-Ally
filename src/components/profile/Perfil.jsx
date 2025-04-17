@@ -209,6 +209,12 @@ const Interface = ({
         showDetails
       />
 
+      {/* <div className={styles.actionButtons}>
+        <Button color="blue">
+          Redimir código
+        </Button>
+      </div> */}
+
       <h2>Publicaciones guardadas</h2>
       {[].map((item, i) => {
         <ItemCard />

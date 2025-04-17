@@ -18,6 +18,12 @@ const getUsersSrv = async (ctx, { phones, uids }) => { // No envía informacion 
   return data;
 };
 
+const getSellerHomeSrv = async (ctx) => {
+  const url = `${BASE_URL}/home`;
+  const data = await get(ctx, url);
+  return data;
+};
+
 const saveLeadSrv = (ctx, phone) => {
   const path = BASE_URL + '/lead/save';
   return post(ctx, path, {
@@ -100,6 +106,7 @@ export {
   getCoinsSrv,
   getNotificationsSrv,
   getReferralsSrv,
+  getSellerHomeSrv,
   getUserSrv,
   getUsersSrv,
   loginSrv,

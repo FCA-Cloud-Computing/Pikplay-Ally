@@ -25,7 +25,7 @@ const MyApp = (props) => {
   }
 
   const handleError = () => {
-    console.log("Página con error :( ", url);
+    // console.log("Página con error :( ", url);
     setStoreValue('isFullLoading', false)
   }
 
