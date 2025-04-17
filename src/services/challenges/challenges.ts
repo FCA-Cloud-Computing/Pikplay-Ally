@@ -16,6 +16,12 @@ const getChallengesByUser = async (ctx) => {
   return data;
 }
 
+const getLengthWord = async (ctx) => {
+  const url = BASE_URL + '/word-length'
+  const data = await get(ctx, url);
+  return data;
+}
+
 const sendWordChallenge = async (ctx) => {
   const url = BASE_URL + '/word'
   const data = await post(ctx, url, {
@@ -31,4 +37,10 @@ const postChallengeDetail = async (ctx, body) => {
   return data;
 }
 
-export { getChallenges, getChallengesByUser, postChallengeDetail, sendWordChallenge }
+export {
+  getChallenges,
+  getChallengesByUser,
+  getLengthWord,
+  postChallengeDetail,
+  sendWordChallenge,
+}
