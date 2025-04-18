@@ -5,11 +5,13 @@
         width: 100%;
         .item {
             // background-color: #030c4b;
-            background-color: #07244c;
+            // background-color: #07244c;
+            background: linear-gradient(to right, #673ab75e, #191a3a);
             // border-bottom: 1px solid #2c2c2c;
             // border-radius: 10px;
             // border-top: 1px solid #2c2c2c;
-            box-shadow: inset 0px 2px 2px 1px #1d1d1da1;
+            // box-shadow: inset 0px 2px 2px 1px #1d1d1da1;
+            border-bottom: 1px solid #ffffff1a;
             box-sizing: border-box;
             color: white;
             column-gap: 10px;

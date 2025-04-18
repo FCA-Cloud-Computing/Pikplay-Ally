@@ -250,7 +250,6 @@
                     color: aquamarine;
                 }
                 :global(.Coins) {
-                    left: 30px;
                     margin-top: 60px;
                     position: relative;
                     :global(.number) {
@@ -259,8 +258,9 @@
                     }
                 }
             }
+
             .points {
-                color: #049dbc;
+                color: #3ac8be;
                 font-size: 22px;
                 margin: 20px 0 0;
             }

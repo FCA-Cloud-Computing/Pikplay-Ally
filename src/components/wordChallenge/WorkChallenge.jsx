@@ -30,7 +30,7 @@ const WordChallenge = (props) => {
       <DialogContent>
         <div className={styles.content}>
           <AnimatePresence initial={true} custom={direction}>
-            <p className={styles.title}>Ingresa la palabra clave</p>
+            <p className={styles.title}>Trivia Challenge</p>
             <div key="subtitle" className={styles.subtitle}>
               Puedes obtener muchos{" "}
               <span>

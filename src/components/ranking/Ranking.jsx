@@ -4,18 +4,20 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from "framer-motion"
 
 // Custom
-import { formatNumber } from '@/lib/utils'
+import { formatNumber, logout } from '@/lib/utils'
 import ProfileImage from '../profileImage/ProfileImage'
 import { rankingDataPoints } from './rankingData'
 import Button from '../button/Button'
-import { getUsersSrv } from '@/services/user/user'
-import { getRankingDetailSrv } from '@/services/rankings/rankings'
 import { useIAStore } from '../ia/IAstore'
+import useCommonStore from '@/hooks/commonStore'
+import { getUsersSrv } from '@/services/user/user'
+import { addRankingDetailSrv, getRankingDetailSrv } from '@/services/rankings/rankings'
 
 const RankingComponent = (props) => {
   const { rankingId } = props
   const [rankingData, setRankingData] = useState([])
   const { setIAMessage } = useIAStore()
+  const { setStoreValue } = useCommonStore((state => state))
 
   useEffect(() => {
     try {
@@ -55,9 +57,27 @@ const RankingComponent = (props) => {
     setIAMessage(HTML, null, null)
   }
 
+  const handleParticipate = () => {
+    addRankingDetailSrv(null, { rid: rankingId })
+      .then(res => {
+        debugger
+        const { code, errorCode, message } = res
+        if (code === 200) {
+          setIAMessage('Te has unido al ranking', null, null)
+        } else if (errorCode == 403) {
+          setStoreValue('leftMenuBar', { isShow: true })
+          setStoreValue('isOpenLoginModal', true)
+          logout()
+        }
+      })
+      .catch(err => {
+        console.log('Error adding ranking detail', err)
+      })
+  }
+
   return (
     <div className={styles.RankingComponent}>
-      {/* <Button color="blue" fullWidth className="p-10">Quiero participar</Button> */}
+      <Button color="blue" realistic fullWidth className="p-10" onClick={handleParticipate}>Quiero participar</Button>
       <div className={styles.list}>
         {rankingData && rankingData.length > 0 && rankingData.sort((a, b) => b.points - a.points).map((member, index) => {
           const { league } = member

@@ -8,6 +8,7 @@ import { Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
 import StarIcon from '@mui/icons-material/Star';
 import { createGlobalStyle } from "styled-components";
+import { HearingTwoTone, HeartBroken, HeartBrokenOutlined, HeartBrokenTwoTone, HeatPumpRounded } from '@mui/icons-material'
 
 // Icons
 import SavingsIcon from '@mui/icons-material/Savings';
@@ -25,16 +26,19 @@ import BonusList from '@/components/bonusList/BonusList'
 import { Loyalty } from '@/components/loyalCustomer/Loyalty'
 import Button from '@/components/button/Button'
 import { useIAStore } from '@/components/ia/IAstore'
-import { HearingTwoTone, HeartBroken, HeartBrokenOutlined, HeartBrokenTwoTone, HeatPumpRounded } from '@mui/icons-material'
-import { getUserSrv } from '@/services/user/user'
 import WordChallenge from '@/components/wordChallenge/WorkChallenge'
+import MESSAGES from '@/consts/messages'
+
+import { getUserSrv } from '@/services/user/user'
 import { getPublicationsSrv } from '@/services/publications/publications'
 
 const DefaultSellerPage = (props) => {
-  const { params, publications, sellerInformation } = props
   const router = useRouter()
-  const { sellerSlug } = router.query
   const [showWordChallenge, setShowWorkChallenge] = useState(false)
+
+  const { params, publications, sellerInformation } = props
+  const { registerInvoiceLabel } = sellerInformation
+  const { sellerSlug } = router.query
 
   const {
     authorInformation,
@@ -44,8 +48,15 @@ const DefaultSellerPage = (props) => {
     products,
     rankingId
   } = sellersInformation[sellerSlug?.toLowerCase()] || {}
-  const { aboutHTML, aboutHTMLButtonStyle, name } = authorInformation || {}
-  const { description, picture, phone } = authorInformation || {}
+
+  const {
+    aboutHTML,
+    aboutHTMLButtonStyle,
+    description,
+    name,
+    phone,
+    picture,
+  } = authorInformation || {}
   const GlobalStyle = createGlobalStyle``
   // main.App {
   //   background-image: url("${sellerInformation?.pageBackground}");
@@ -53,6 +64,7 @@ const DefaultSellerPage = (props) => {
   // }`;
 
   const { handleUserMessage, setIAMessage } = useIAStore()
+  const { REGISTER_INVOICE_LABEL } = MESSAGES;
 
   const {
     isLoading: isLoadingCompetition,
@@ -77,17 +89,17 @@ const DefaultSellerPage = (props) => {
       <AuthorInformation authorInformation={sellerInformation} />
       <div className={sellerSlugStyles.menu}>
         <div className={`flex ${sellerSlugStyles.aboutMe}`}>
-          <Button color='link' className='outline' onClick={() => setIAMessage(aboutHTML)}>
-            {/* <InfoIcon /> */}
-            Acerca de {name}
-          </Button>
           <Button color='link' className='outline' onClick={() => handleUserMessage('addTransactionSteps')}>
             {/* <SavingsIcon /> */}
-            Registrar factura
+            {registerInvoiceLabel || REGISTER_INVOICE_LABEL}
           </Button>
           <Button color='link' className='outline' onClick={() => setShowWorkChallenge(true)}>
             {/* <SavingsIcon /> */}
-            Word Challenge
+            Trivia Challenge
+          </Button>
+          <Button color='link' className='outline' onClick={() => setIAMessage(aboutHTML)}>
+            {/* <InfoIcon /> */}
+            Acerca de {name}
           </Button>
           <Button color='link' className='outline' onClick={() => handleUserMessage('referrals', { referralOrigin: sellerSlug })}>
             {/* <SavingsIcon /> */}
@@ -127,7 +139,6 @@ const DefaultSellerPage = (props) => {
 
       {showWordChallenge && <WordChallenge showModal={showWordChallenge} setShowModal={setShowWorkChallenge} />}
 
-      <br />
       {/* Ranking */}
       {rankingId && <>
         <div className={`contentTitle ${sellerSlugStyles.Ranking}`}>

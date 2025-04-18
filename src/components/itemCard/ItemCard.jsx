@@ -179,6 +179,7 @@ const ItemCard = (props) => {
                 className={publicationId == 1 ? styles.destacada_Card : ''}
                 // href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
                 href={isClickable ? `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}` : null}
+                onClick={isClickable && handlerAskProduct}
                 target='_blank'>
                 {title && <h2>
                   {title}

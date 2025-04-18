@@ -44,6 +44,7 @@ const useCommonStore = create((set, get) => ({
   isAwardSummaryModalOpen: false, // Modal de premios
   isFullLoading: false, // Pantalla de carga
   isOnboardingProcess: false,
+  isOpenLoginModal: false, // Modal de login
   leftBottomMenuContent: null,
   leftMenuBar: {
     isShow: false

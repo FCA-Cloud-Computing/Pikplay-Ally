@@ -10,7 +10,6 @@
   padding: 4px 0;
   position: relative;
   text-shadow: 1px 1px #5a5a5a;
-  text-transform: initial;
   &:hover {
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     cursor: pointer;
@@ -129,7 +128,6 @@
     font-style: italic;
     font-weight: bold;
     letter-spacing: 1px;
-    text-transform: uppercase;
   }
 
   &.red {
@@ -223,7 +221,8 @@
     font-weight: 600;
     padding: 8px 20px;
     text-decoration: inherit;
-    text-transform: capitalize;
+    text-transform: initial;
+    width: 100%;
     span {
       height: calc(100% + 8px);
       top: -4px;

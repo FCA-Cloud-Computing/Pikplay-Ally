@@ -44,7 +44,7 @@ function CreditRedemptionPage(props) {
       price: 4,
     },
     {
-      description: 'Corte de corte para caballero',
+      description: 'Corte para caballero',
       title: 'Corte de Cabello',
       image: 'https://cdn-icons-png.flaticon.com/512/7686/7686607.png',
       price: 0,

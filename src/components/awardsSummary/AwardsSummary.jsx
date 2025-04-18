@@ -93,8 +93,7 @@ const AwardsSummary = ({ handleCloseModal }) => {
               Recoger
             </Button>
             <Button
-              className={`text-ul ${styles.main_button}`}
-              color="link"
+              color=""
               onClick={handleUpdateExperience}
               style={{ color: 'white' }}>
               Conocer de los créditos

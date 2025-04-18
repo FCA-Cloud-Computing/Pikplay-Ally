@@ -12,6 +12,9 @@
       // animation-iteration-count: infinite;
     }
   }
+  .coinsContainer {
+    width: max-content;
+  }
   .coin {
     // background-image: url("/images/sprites/coin-v1.png");
     background-image: url("/images/icons/coin-v2.svg");
@@ -35,8 +38,8 @@
       right: 4px;
     }
     &:nth-of-type(3) {
-      position: relative;
-      right: 50px;
+      position: absolute;
+      left: 40px;
       top: -25px;
     }
   }
