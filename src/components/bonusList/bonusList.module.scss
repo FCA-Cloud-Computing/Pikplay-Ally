@@ -63,7 +63,8 @@
             // width: 160px;
         }
         .price {
-            margin: 10px 0 10px;
+            float: left;
+            margin: 10px 40px 10px 0;
         }
         .contentTexts {
             bottom: 20px;
@@ -72,7 +73,7 @@
             width: 50%;
             // position: absolute;
             h2 {
-                margin: 0 auto 0;
+                margin: 0 auto 20px;
             }
             p {
                 font-size: 14px;

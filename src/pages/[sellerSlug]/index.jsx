@@ -31,12 +31,13 @@ import MESSAGES from '@/consts/messages'
 
 import { getUserSrv } from '@/services/user/user'
 import { getPublicationsSrv } from '@/services/publications/publications'
+import { getCouponsSrv } from '@/services/coupon/couponService'
 
 const DefaultSellerPage = (props) => {
   const router = useRouter()
   const [showWordChallenge, setShowWorkChallenge] = useState(false)
 
-  const { params, publications, sellerInformation } = props
+  const { coupons, params, publications, sellerInformation } = props
   const { registerInvoiceLabel } = sellerInformation
   const { sellerSlug } = router.query
 
@@ -135,7 +136,7 @@ const DefaultSellerPage = (props) => {
       </>}
 
       {/* Bonos */}
-      {bonuses && <BonusList bonuses={bonuses} />}
+      {coupons && <BonusList bonuses={coupons.data} />}
 
       {showWordChallenge && <WordChallenge showModal={showWordChallenge} setShowModal={setShowWorkChallenge} />}
 
@@ -183,10 +184,12 @@ DefaultSellerPage.getInitialProps = async (ctx) => {
   const { asPath, req, query: { sellerSlug } } = ctx
   const { data: sellerInformation } = await getUserSrv(ctx, sellerSlug)
   const publications = await getPublicationsSrv(ctx, sellerSlug)
+  const coupons = await getCouponsSrv(ctx, sellerSlug)
 
   return {
     publications,
-    sellerInformation
+    sellerInformation,
+    coupons,
   }
 }
 

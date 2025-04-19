@@ -118,7 +118,7 @@ const MenuMobileOptions = () => {
     {/* Imagen de aplicación */}
     <motion.ol variants={item} style={{ justifyCcontent: 'center' }}>
       <a href="/files/pikplay-application.apk">
-        <Image style={{ margin: 0 }} className={styles.downloadAppImage} src="/images/logos/get-it-on-google-play.png" width="990" height="300" />
+        <Image style={{ margin: 0 }} className={styles.downloadAppImage} src="/images/icons/google-play-05.svg" width="990" height="300" />
       </a>
     </motion.ol>
     {/* Opciones de administrador */}

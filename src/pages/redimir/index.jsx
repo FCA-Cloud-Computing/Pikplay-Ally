@@ -24,28 +24,28 @@ function CreditRedemptionPage(props) {
 
   const bonuses = [
     {
-      description: 'Entradas a cine 2D de lunes a viernes',
-      title: 'Entradas a cine',
+      detail: 'Entradas a cine 2D de lunes a viernes',
+      title: '100% OFF',
       image: '/images/icons/popcorn.webp',
       // image: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/general%2Fpublications%2Fentradas-cine.png?alt=media&token=2086fcf5-31c8-4b9d-90ab-ef98fba9d999',
       price: 4,
       isFavorite: true,
     },
     {
-      title: '50% OFF Perfume',
-      description: <>Perfume de preferencia en <br /><a className="text-ul" href='/le-fragance'>Le Fragance</a></>,
+      title: '50% OFF',
+      detail: <>Perfume de preferencia en <br /><a className="text-ul" href='/le-fragance'>Le Fragance</a></>,
       image: '/images/icons/fragance-perfume.png',
       price: 50,
     },
     {
-      title: '20% OFF Tatuaje',
-      description: <>Tatuaje de preferencia en <br /><a className="text-ul" href='/monster-ink-bq'>Monster Ink</a></>,
+      title: '20% OFF',
+      detail: <>Tatuaje de preferencia en <br /><a className="text-ul" href='/monster-ink-bq'>Monster Ink</a></>,
       image: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/products%2Ftattoo.png?alt=media&token=0cc0d1f1-1cfb-49f2-bb95-2c89588d8e5c',
       price: 4,
     },
     {
-      description: 'Corte para caballero',
-      title: 'Corte de Cabello',
+      title: '100% OFF',
+      detail: 'Corte de Cabello',
       image: 'https://cdn-icons-png.flaticon.com/512/7686/7686607.png',
       price: 0,
     }

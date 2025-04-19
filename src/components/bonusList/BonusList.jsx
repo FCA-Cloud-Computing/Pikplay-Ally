@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 
 // Custom
 import Button from '../button/Button';
+import CoinIcon from '../coinIcon/CoinIcon';
 
 const BonusList = ({ bonuses }) => {
     const href = (item) => `https://api.whatsapp.com/send?phone=573204863547&text=¡Hola! Quisiera redimir ${item.title} en Pikplay`
@@ -29,15 +30,19 @@ const BonusList = ({ bonuses }) => {
                     <div className={styles.contentImageDescription}>
                         <div className={styles.contentTexts}>
                             <h2>{bonus.title}</h2>
-                            <p>{bonus.description}</p>
+                            <p>{bonus.detail}</p>
                         </div>
                         {bonus.image && <div className={`m-t-30 ${styles.image}`}>
                             <img src={bonus.image} />
                         </div>}
                     </div>
 
+                    {!!bonus.price && <div className={styles.price}>
+                        <CoinIcon coins={bonus.price} />
+                    </div>}
+
                     <div className={styles.actions}>
-                        <Button color="red">
+                        <Button color="main">
                             {/* {bonus.price && <div className={styles.price}>
                                         <CoinIcon coins={bonus.price} />
                                     </div>} */}
@@ -45,7 +50,7 @@ const BonusList = ({ bonuses }) => {
                                 Redimir
                             </a>
                         </Button>
-                        <Button color="darkBlue" style={{ color: "white" }}>Compartir</Button>
+                        {!bonus.price && <Button color="yellow" style={{ color: "white" }}>Compartir</Button>}
                     </div>
                     {/* <hr /> */}
                     <div className={styles.terms}>
