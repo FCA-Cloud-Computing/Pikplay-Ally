@@ -4,6 +4,7 @@
         flex-direction: column;
         width: 100%;
         .item {
+            align-items: center;
             // background-color: #030c4b;
             // background-color: #07244c;
             background: linear-gradient(to right, #673ab75e, #191a3a);
@@ -17,6 +18,7 @@
             column-gap: 10px;
             display: flex;
             height: 90px;
+            justify-content: space-around;
             margin: 0 auto 0px;
             padding: 10px 10px 14px 20px;
             position: relative;
@@ -34,7 +36,7 @@
             }
             .number {
                 font-weight: 600;
-                margin: 30px 10px 0 0;
+                margin: 10px 0 0 0;
                 position: relative;
                 .arrow {
                     color: #3095b3;
@@ -50,6 +52,7 @@
                 }
             }
             .picture {
+                height: 70px;
                 &::before {
                     // animation: moveSprite 2s infinite;
                     // background-image: url(/images/sprites/red-fire.svg);
@@ -75,8 +78,11 @@
             .name {
                 // color: #aeaeb1;
                 font-weight: bold;
-                margin: 11px 0 0 10px;
-                max-width: 120px;
+                margin: 11px 0 0 0;
+                max-width: 80px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                // white-space: nowrap;
                 div {
                     // color: rgb(96, 96, 96);
                     font-weight: initial;
@@ -84,9 +90,16 @@
                 }
             }
             .points {
-                position: absolute;
-                right: 20px;
-                top: 30px;
+                background: linear-gradient(90deg, #74ffd0, #3ac8be);
+                font-weight: bold;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: #0000;
+                // position: absolute;
+                // right: 20px;
+                // top: 30px;
+            }
+            :global(.ButtonComponent) {
+                height: 40px;
             }
         }
     }

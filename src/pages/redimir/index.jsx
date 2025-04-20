@@ -28,27 +28,27 @@ function CreditRedemptionPage(props) {
       title: '100% OFF',
       image: '/images/icons/popcorn.webp',
       // image: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/general%2Fpublications%2Fentradas-cine.png?alt=media&token=2086fcf5-31c8-4b9d-90ab-ef98fba9d999',
-      price: 4,
-      isFavorite: true,
+      price: 2000,
+      // isFavorite: true,
     },
     {
-      title: '50% OFF',
+      title: '30% OFF',
       detail: <>Perfume de preferencia en <br /><a className="text-ul" href='/le-fragance'>Le Fragance</a></>,
       image: '/images/icons/fragance-perfume.png',
-      price: 50,
+      price: 1000,
     },
     {
-      title: '20% OFF',
+      title: '30% OFF',
       detail: <>Tatuaje de preferencia en <br /><a className="text-ul" href='/monster-ink-bq'>Monster Ink</a></>,
       image: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/products%2Ftattoo.png?alt=media&token=0cc0d1f1-1cfb-49f2-bb95-2c89588d8e5c',
-      price: 4,
+      price: 600,
     },
-    {
-      title: '100% OFF',
-      detail: 'Corte de Cabello',
-      image: 'https://cdn-icons-png.flaticon.com/512/7686/7686607.png',
-      price: 0,
-    }
+    // {
+    //   title: '100% OFF',
+    //   detail: 'Corte de Cabello',
+    //   image: 'https://cdn-icons-png.flaticon.com/512/7686/7686607.png',
+    //   price: 0,
+    // }
   ]
 
   return (
