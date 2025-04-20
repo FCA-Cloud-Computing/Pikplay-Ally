@@ -2,23 +2,28 @@ import CustomFetch from "../../components/fetch/CustomFetch";
 
 const { get, post, put, del } = CustomFetch();
 
-const BASE_URL = "/redemption";
+const BASE_URL = "/redemptions";
 
-const getRedemption = async (credits) => {
+const getRedemptionSrv = async (credits) => {
   const json = await post(
     { headers: { "Content-Type": "application/json" } },
     `${BASE_URL}`,
     { amount: credits }
   );
   return json;
-};
+}
 
-const cancelRedemption = async (id) => {
+const cancelRedemptionSrv = async (id) => {
   const json = await del(
     { headers: { "Content-Type": "application/json" } },
     `${BASE_URL}/cancel/${id}`
   );
   return json;
-};
+}
 
-export { getRedemption, cancelRedemption };
+const postRedemptionSrv = async (pid) => {
+  const data = await post(null, `${BASE_URL}/create`, { pid });
+  return data;
+}
+
+export { getRedemptionSrv, cancelRedemptionSrv, postRedemptionSrv };

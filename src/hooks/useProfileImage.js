@@ -22,7 +22,8 @@ export const useProfileImage = () => {
         setStoreValue('userLogged', { ...userLogged, picture: urlImage })
         setStoreValue('isFullLoading', false)
         // if (data.messageTop) setStoreValue('messageTop', data.messageTop)
-        toast(ToastContent(data.messageTop, 'success'))
+        setStoreValue('messageTop', data.messageTop)
+        // toast(ToastContent(data.messageTop, 'success'))
         setStoreValue('leftMenuBar', { isShow: false })
         getNotificationsSrv() // Actualizar notificaciones
       })

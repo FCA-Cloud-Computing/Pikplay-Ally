@@ -1,7 +1,7 @@
 "use server";
 
 import { toast } from "react-toastify";
-import { getRedemption } from "../services/redemption/redemption";
+import { getRedemptionSrv } from "../services/redemption/redemption";
 
 export const initialStateRedemptionCredits = {
   success: false,
@@ -11,7 +11,7 @@ export const initialStateRedemptionCredits = {
 
 export async function redemptionCredits(prevState, formData) {
   const credits = formData.get("credits");
-  const json = await getRedemption(credits);
+  const json = await getRedemptionSrv(credits);
   if (json.error) {
     toast("Ha ocurrido un error al intentar redimir los créditos.");
     return {

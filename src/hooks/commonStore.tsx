@@ -35,7 +35,11 @@ const initialLoginStorage = (set) => {
   logout()
 }
 
-const useCommonStore = create((set, get) => ({
+interface CommonStoreState {
+  setStoreValue: (property: string, value: any) => void;
+}
+
+const useCommonStore = create<CommonStoreState>((set, get) => ({
   awardsSummaryModalHTML: null,
   awardSummaryModalDetail: null,
   darkMode: true,
@@ -49,7 +53,7 @@ const useCommonStore = create((set, get) => ({
   leftMenuBar: {
     isShow: false
   },
-  messageTop: initialMessageTop, // Banner flotante que se muestra debajo del menu
+  messageTop: /*<span><b>Bienvenido,</b><br />¡Disfruta de tu experiencia!</span>, */ initialMessageTop, // Banner flotante que se muestra debajo del menu
   notifications: [initialNotification],
   newNotifications: true,
   userLogged: loadFromLocalStorage('userLogged') || defaultUserLogged,

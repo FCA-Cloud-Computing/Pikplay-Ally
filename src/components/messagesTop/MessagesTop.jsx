@@ -11,20 +11,17 @@ import { startConfetti } from '@/lib/utils';
 
 const MessagesTop = () => {
   const { messageTop, setStoreValue } = useCommonStore()
+  const { message, type } = messageTop || {}
 
   const handleClick = () => {
     setStoreValue('messageTop', null)
-    setTimeout(() => setStoreValue('leftMenuBar', { isShow: true }), 500)
+    // setTimeout(() => setStoreValue('leftMenuBar', { isShow: true }), 500)
   }
 
   useEffect(() => {
-    if (messageTop) {
-      startConfetti()
-      toast(messageTop)
-    }
+    if (messageTop && type === 'success') startConfetti()
   }, [messageTop])
 
-  return <></>
   return (
     <>
       {
@@ -36,8 +33,17 @@ const MessagesTop = () => {
             [styles.MessagesTop]: true,
             [styles.isVisible]: messageTop
           })}
-          onClick={handleClick}>
-          {messageTop}
+          onClick={handleClick}
+        >
+          <div className={styles.content}>
+            {message}
+          </div>
+          <span className={`${styles.icon}`}>
+            <div className={styles.imgLights__container}>
+              <img className={`rotating ${styles.imgLights}`} src="/images/elements/luces.png" />
+            </div>
+            <img src="/images/backgrounds/message-top/star.svg" alt="icon" />
+          </span>
         </motion.div>}
 
     </>

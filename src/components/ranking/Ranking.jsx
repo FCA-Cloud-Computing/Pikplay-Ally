@@ -27,7 +27,6 @@ const RankingComponent = (props) => {
           const uids = rankingDataPoints.map(member => member.uid)
           getUsersSrv(null, { uids: uids.join() })
             .then(({ code, data }) => {
-              // debugger
               const pointsAndUserData = rankingDataPoints.map(member => {
                 const user = data && data.find(user => user.uid === member.uid)
                 return {
@@ -40,7 +39,6 @@ const RankingComponent = (props) => {
               setRankingData(pointsAndUserData)
             })
             .catch(err => {
-              debugger
               console.log('Error getting users', err)
             })
         })
