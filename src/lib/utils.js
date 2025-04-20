@@ -1,4 +1,5 @@
 import { PROFILE } from '@/consts/profile';
+import { saveReferralSrv } from '@/services/user/user';
 import cookieCutter from '@boiseitguru/cookie-cutter';
 import confetti from 'canvas-confetti';
 import { toast } from 'react-toastify';
@@ -254,14 +255,14 @@ export async function getContacts(callbackSuccess, callbackError) {
       })
     )
     if (erorrsFound) {
-      alert(0)
+      callbackError()
       // toast.warning('Algunos referidos no pudieron guardarse con exito porque se ya se encontraron en Pikplay')
     }
-    alert(1)
+    callbackSuccess()
     // else toast.success('¡Referidos guardados!')
     set({ isVisible: false })
   } catch (err) {
-    alert(3)
+    alert(JSON.stringify(err))
     // toast.warning('No se pudo obtener los contactos')
   }
 }

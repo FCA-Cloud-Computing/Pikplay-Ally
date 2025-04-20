@@ -13,15 +13,15 @@ const Message = () => <p>Con cada referido ganas 🎉 <br /><br />
 
 const Options = ({ handleUserMessage, set }) => {
   const callBackContacsSuccess = async (contacts) => {
-    
+    alert('Contacts retrieved successfully.')
   }
 
   const callBackContacsFail = async (contacts) => {
-
+    alert('Failed to get contacts. Please try again.')
   }
 
   return <>
-    <Button color='blue' realistic onClick={() => getContacts(handleUserMessage, set)}>
+    <Button color='blue' realistic onClick={() => getContacts(callBackContacsSuccess, callBackContacsFail)}>
       Agregar referidos
     </Button>
     {/* <Link href='/perfil'>
