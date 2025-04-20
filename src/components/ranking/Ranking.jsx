@@ -83,7 +83,8 @@ const RankingComponent = (props) => {
   }
 
   const callbackSuccess = () => {
-    setStoreValue('messageTop', 'Se han añadido tus contactos')
+    setStoreValue('messageTop', { message: 'Se han añadido tus contactos', type: 'success' })
+    getRankingDetail()
   }
 
   return (

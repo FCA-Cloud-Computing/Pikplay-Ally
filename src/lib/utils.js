@@ -260,7 +260,7 @@ export async function getContacts(callbackSuccess, callbackError) {
     }
     callbackSuccess()
     // else toast.success('¡Referidos guardados!')
-    set({ isVisible: false })
+    // set({ isVisible: false })
   } catch (err) {
     alert(JSON.stringify(err))
     // toast.warning('No se pudo obtener los contactos')
