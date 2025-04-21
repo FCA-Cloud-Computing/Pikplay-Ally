@@ -32,6 +32,7 @@ const ProfileSummaryExperience = (props) => {
     newInfo,
     gainedCoins = 0,
     gainedExperience,
+    changeAvatar,
   } = props
   const {
     points,
@@ -144,7 +145,7 @@ const ProfileSummaryExperience = (props) => {
         {/* <div asd={backgroundImage} className={styles.bg} style={{ backgroundImage: `url( ${backgroundImage})` }}></div> */}
         <div asd={backgroundImage} className={styles.bg}></div>
         <div className={styles.left}>
-          <ProfileImage picture={picture} progress={percentageBar} />
+          <ProfileImage picture={picture} progress={percentageBar} changeAvatar={changeAvatar} />
           {/* <div className={`shine ${styles[league]} ${league == 'oro' && 'starsFallingDown'} `}> */}
           <input className={`${styles.fullName} ${isEditProfile && styles.editable}`}
             value={newNickname}

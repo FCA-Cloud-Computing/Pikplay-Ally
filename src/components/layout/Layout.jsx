@@ -111,7 +111,8 @@ const Layout = (props) => {
         mobileMenuHidden={mobileMenuHidden}
         notifications={notifications}
         userLogged={userLogged}>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
+        <MessagesTop />
         {isFullLoading && <FullScreenLoading />}
         {isAwardSummaryModalOpen && <AwardsSummaryModal />}
         {children}

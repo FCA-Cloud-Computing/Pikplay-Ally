@@ -2,24 +2,26 @@
     .item {
         background-image: url(/images/marcos/marco-01.svg);
         background-position: -8px -8px;
-        background-size: calc(100% + 10px);
+        background-size: calc(100% + 40px);
         background-color: #fef7ea;
         background-repeat: no-repeat;
         // backdrop-filter: blur(10px);
         // background-position: center;
 
-        box-shadow: inset 0px 0px 4px #ededed;
         border-radius: 8px;
+        box-shadow: inset 0px 0px 4px #ededed;
         color: #0e3266;
         height: 190px;
-        padding: 40px 0 0px 30px;
+        margin: 0 auto 30px;
+        max-width: 280px;
+        padding: 10px 0 24px 40px;
         position: relative;
-        margin-bottom: 30px;
+
         &.withImage {
             // height: 200px;
         }
         .leagueIcon {
-            left: 20px;
+            right: 20px;
             position: absolute;
             top: 0px;
             width: 60px;
@@ -55,31 +57,36 @@
         }
         .image img {
             display: block;
-            margin: 0px auto 0;
-            max-height: 100px;
-            object-fit: contain;
-            width: 160px;
+            margin: 0px 0 0 20px;
+            max-height: 80px;
+            // object-fit: contain;
+            // width: 160px;
         }
         .price {
-            margin: 10px 0 10px;
+            float: left;
+            margin: 10px 40px 10px 0;
         }
         .contentTexts {
             bottom: 20px;
             left: 20px;
-            margin: 10px 0 10px 10px;
+            margin: 20px 0 10px 0px;
+            width: 50%;
             // position: absolute;
             h2 {
-                margin: 0 auto 0;
+                margin: 0 auto 20px;
             }
             p {
                 font-size: 14px;
                 margin: 0 auto 0;
             }
         }
+
         .actions {
             display: flex;
             justify-content: center;
-            margin: 10px 0 10px;
+            left: -30px;
+            margin: 0px 0 10px;
+            position: relative;
         }
         hr {
             border-top: 1px dashed #ecb349;

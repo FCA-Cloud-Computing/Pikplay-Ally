@@ -204,6 +204,7 @@ const Interface = ({
         </span>
       </p>
       <ProfileSummaryExperience
+        changeAvatar
         isEditProfile
         setIsEditProfile={setIsEditProfile}
         showDetails
@@ -223,8 +224,11 @@ const Interface = ({
       <h2>Desafios</h2>
       <ChallengesList challenges={challenges} />
 
-      <h2>Referidos</h2>
-      <Referrals {...{ referrals }} />
+      <h2>Ranking amigos</h2>
+      <RankingComponent isButtonReferral rankingData={referrals} />
+
+      {/* <h2>Referidos</h2>
+      <Referrals {...{ referrals }} /> */}
     </section>
   )
 }

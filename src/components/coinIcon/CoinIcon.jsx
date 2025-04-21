@@ -16,6 +16,7 @@ const CoinIcon = ({
   gainedCoins = 0,
   multicoin,
   textColor,
+  size,
 }) => {
   // const prevCountCoins = useRef();
   // const previousCoins = prevCountCoins.current ? prevCountCoins.current : 0;
@@ -40,41 +41,49 @@ const CoinIcon = ({
   const animatedCoins = gainedCoins > 0
     ? useAnimatedNumber(coins, (coins + gainedCoins), 2000)
     : coins
+
   return (
     <div
       className={classNames("Coins", {
         [styles.Coins]: true,
+        [styles.withNumber]: !hideNumber,
         // [styles.animatedZoom]: true,
         // [styles.animated]: true
       })}>
+      <div className={styles.coinsContainer}>
+        <motion.picture
+          animate={{ scale: 1 }}
+          style={{ width: size + 'px', height: size + 'px', backgroundSize: size + 'px' }}
+          initial={{ scale: 1.5 }}
+          className={`shine ${styles.coin}`}
+          transition={{ delay: .2, type: "spring", stiffness: 400, damping: 10 }}
+        />
+        {multicoin && (<>
+          <motion.picture
+            animate={{ scale: 1 }}
+            style={{ width: size + 'px', height: size + 'px', backgroundSize: size + 'px' }}
+            initial={{ scale: 1.5 }}
+            className={`shine ${styles.coin}`}
+            transition={{ delay: .6, type: "spring", stiffness: 400, damping: 10 }}
+          />
+          <motion.picture
+            animate={{ scale: 1 }}
+            style={{ width: size + 'px', height: size + 'px', backgroundSize: size + 'px' }}
+            initial={{ scale: 1.5 }}
+            className={`shine ${styles.coin}`}
+            transition={{ delay: 1, type: "spring", stiffness: 400, damping: 10 }}
+          />
+        </>)}
+      </div>
       {!hideNumber && (<>
         <span
           className={`f-s-14 ${styles.number} number`}
-          style={{ color: textColor ? textColor : "#e5961d" }}>
+        // style={{ color: textColor ? textColor : "#e5961d" }}
+        >
           {formatNumber(animatedCoins)}
         </span>
       </>
       )}
-      <motion.picture
-        animate={{ scale: 1 }}
-        initial={{ scale: 1.5 }}
-        className={`shine ${styles.coin}`}
-        transition={{ delay: .2, type: "spring", stiffness: 400, damping: 10 }}
-      />
-      {multicoin && (<>
-        <motion.picture
-          animate={{ scale: 1 }}
-          initial={{ scale: 1.5 }}
-          className={`shine ${styles.coin}`}
-          transition={{ delay: .6, type: "spring", stiffness: 400, damping: 10 }}
-        />
-        <motion.picture
-          animate={{ scale: 1 }}
-          initial={{ scale: 1.5 }}
-          className={`shine ${styles.coin}`}
-          transition={{ delay: 1, type: "spring", stiffness: 400, damping: 10 }}
-        />
-      </>)}
       {isLabel && (
         <label style={{ color: textColor ? textColor : "#e5961d" }}>
           Pikcoins

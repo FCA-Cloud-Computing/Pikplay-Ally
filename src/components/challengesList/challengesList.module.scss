@@ -1,4 +1,10 @@
 .ChallengesList {
+  column-gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  > * {
+    width: calc(50% - 10px);
+  }
   :global(.Card) {
     background: #07244c;
     padding: 10px 20px 20px;

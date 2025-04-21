@@ -93,8 +93,7 @@ const AwardsSummary = ({ handleCloseModal }) => {
               Recoger
             </Button>
             <Button
-              className={`text-ul ${styles.main_button}`}
-              color="link"
+              color=""
               onClick={handleUpdateExperience}
               style={{ color: 'white' }}>
               Conocer de los créditos
@@ -103,7 +102,7 @@ const AwardsSummary = ({ handleCloseModal }) => {
         </div>
       </>}
       {page == 1 && <>
-        <ProfileSummaryExperience {...{ gainedCoins, gainedExperience }} />
+        <ProfileSummaryExperience {...{ gainedCoins, gainedExperience, changeAvatar: false }} />
         <Button className={styles.closeModal} color='red' realistic onClick={handleCloseModal}>Cerrar</Button>
       </>}
     </>

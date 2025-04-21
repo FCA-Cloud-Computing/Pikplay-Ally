@@ -32,7 +32,7 @@
         }
         &.happy {
             animation: abrirCerrar 4s infinite;
-            background-image: url("/images/ia/4.png");
+            background-image: url("/images/ia/4.svg");
         }
         &.sad {
             animation: abrirCerrar 4s infinite;
@@ -54,15 +54,26 @@
         width: 80px;
         height: 80px;
         .body {
-            position: relative;
+            height: 160px;
+            left: -25px;
             margin-top: 20px;
             max-height: initial;
             max-width: initial;
-            height: 120px;
-            width: 120px;
+            position: relative;
+            top: 2px;
+            width: 140px;
         }
-        .rightArm {
-            position: absolute;
+    }
+    .hand img {
+        left: 60px;
+        position: absolute;
+        top: 10px;
+        width: 70px;
+        z-index: 1;
+        &.explotion {
+            animation: handAnimation 4s infinite;
+            opacity: 0;
+            transition: 0.5s ease in-out;
         }
     }
 
@@ -93,9 +104,19 @@
 @keyframes abrirCerrar {
     0%,
     80% {
-        background-image: url("/images/ia/4.png"); // Ojos abiertos
+        background-image: url("/images/ia/4.svg"); // Ojos abiertos
     }
     90% {
-        background-image: url("/images/ia/1.png"); // Ojos cerrados
+        background-image: url("/images/ia/1.svg"); // Ojos cerrados
+    }
+}
+
+@keyframes handAnimation {
+    0%,
+    80% {
+        opacity: 0;
+    }
+    90% {
+        opacity: 1;
     }
 }

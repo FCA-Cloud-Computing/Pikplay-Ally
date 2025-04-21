@@ -26,7 +26,9 @@ const Referrals = (props) => {
                 } = item
 
                 return <div className={styles.item}>
-                    {picture && <ProfileImage picture={picture} small />}
+                    <div className={styles.profileImageContainer}>
+                        {picture && <ProfileImage picture={picture} small />}
+                    </div>
                     <div className={styles.contentName}>
                         <h3>{name}</h3>
                         {league && <small className={`leagueBox`}>{league}</small>}

@@ -39,10 +39,47 @@
     top: -8px;
   }
 
-  .coins {
+  // .notificationContainer {
+  //   background: #f89f04;
+  //   border-radius: 50%;
+  //   box-sizing: border-box;
+  //   height: 32px;
+  //   padding: 6px;
+  //   position: absolute;
+  //   right: 90px;
+  //   top: 27px;
+  //   width: 32px;
+  //   z-index: 1;
+  //   &::before {
+  //     background: #d6d6d6;
+  //     // box-shadow: 1px 1px #cecece;
+  //     content: "";
+  //     height: 26px;
+  //     position: absolute;
+  //     left: 44px;
+  //     top: -1px;
+  //     width: 1px;
+  //   }
+
+  //   .notificationNew {
+  //     background-color: red;
+  //   }
+  // }
+
+  .coinsContainer {
     position: absolute;
-    right: -30px;
-    top: 4px;
+    left: 90px;
+    top: 30px;
+    &::before {
+      background: #d6d6d6;
+      // box-shadow: 1px 1px #cecece;
+      content: "";
+      height: 26px;
+      position: absolute;
+      right: 70px;
+      top: -4px;
+      width: 1px;
+    }
 
     .experience {
       color: rgb(25 89 107);

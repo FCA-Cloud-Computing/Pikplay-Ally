@@ -23,10 +23,25 @@ section.RedimirPage {
             z-index: 1;
         }
         h1 {
-            margin: 0;
+            margin: 20px 0 0;
         }
         p {
             margin: 6px 0 0;
+            width: 180px;
+        }
+        &.products {
+            display: flex;
+            flex-wrap: wrap;
+            > div {
+                flex: 0 0 45%;
+                .image_wrapper {
+                    height: 180px;
+                }
+            }
+        }
+        &.headerInfo {
+            column-gap: 20px;
+            display: flex;
         }
     }
 }

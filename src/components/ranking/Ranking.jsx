@@ -4,12 +4,10 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from "framer-motion"
 
 // Custom
-import { formatNumber } from '@/lib/utils'
+import { formatNumber, getContacts, logout } from '@/lib/utils'
 import ProfileImage from '../profileImage/ProfileImage'
 import { rankingDataPoints } from './rankingData'
 import Button from '../button/Button'
-import { getUsersSrv } from '@/services/user/user'
-import { getRankingDetailSrv } from '@/services/rankings/rankings'
 import { useIAStore } from '../ia/IAstore'
 import useCommonStore from '@/hooks/commonStore'
 import { useRanking } from '@/hooks/useRanking'
@@ -26,6 +24,29 @@ const RankingComponent = (props) => {
       {pointsDetail.map(item => <li>{item.detail} - {item.points}</li>)}
     </div>
     setIAMessage(HTML, null, null)
+  }
+
+  const handleParticipate = () => {
+    addRankingDetailSrv(null, { rid: rankingId })
+      .then(res => {
+        debugger
+        const { code, errorCode, message } = res
+        if (code === 200) {
+          setIAMessage('Te has unido al ranking', null, null)
+        } else if (errorCode == 403) {
+          setStoreValue('leftMenuBar', { isShow: true })
+          setStoreValue('isOpenLoginModal', true)
+          logout()
+        }
+      })
+      .catch(err => {
+        console.log('Error adding ranking detail', err)
+      })
+  }
+
+  const callbackSuccess = () => {
+    setStoreValue('messageTop', { message: 'Se han añadido tus amigos', type: 'success' })
+    getReferrals()
   }
 
   return (

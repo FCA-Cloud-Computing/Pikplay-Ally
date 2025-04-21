@@ -10,9 +10,8 @@ import { toast } from 'react-toastify'
 import LoginInterface from './LoginInterface'
 
 function Login(props) {
-  const { env, setStoreValue } = useCommonStore()
+  const { env, setStoreValue, isOpenLoginModal: isOpen } = useCommonStore()
   const router = useRouter()
-  const [isOpen, setIsOpen] = useState(false)
   const [isHuman, setIsHuman] = useState(env == 'dev')
   const [isCodeSent, setIsCodeSent] = useState(false)
   const [phoneNumber, setPhoneNumber] = useState(null)
@@ -89,7 +88,7 @@ function Login(props) {
   const handleCloseDialog = () => {
     setIsHuman(false)
     setIsCodeSent(false)
-    setIsOpen(false)
+    setStoreValue('isOpenLoginModal', false)
   }
 
   const handleFixPhone = () => {
@@ -98,7 +97,7 @@ function Login(props) {
   }
 
   const handleClickOpen = () => {
-    setIsOpen(true)
+    setStoreValue('isOpenLoginModal', true)
   }
 
   const handleKeyUp = async (e) => {

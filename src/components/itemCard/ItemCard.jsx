@@ -21,28 +21,35 @@ import { formatNumber, setMessageTop } from '../../lib/utils'
 import CustomFetch from '../fetch/CustomFetch'
 import { postChallengeDetail } from '@/services/challenges/challenges'
 import { CID_ASK_PRODUCT } from '@/consts/challenges'
+import CoinIcon from '../coinIcon/CoinIcon'
+import Button from '../button/Button'
+import useRedemption from '@/hooks/useRedemption'
+
 
 const ItemCard = (props) => {
   const {
     acceptChanges,
     cashbackAvailable = true,
+    coins,
     following,
     freeShipping,
     handleFavorite,
     isAddi,
     isClickable = true,
-    id: publicationId,
+    pid: publicationId,
     images = '',
     isUsed,
     likes,
     price,
     seller,
     slug,
+    status,
     tags,
     title,
     whatsappNumber
   } = props
 
+  const { handleRedemption } = useRedemption()
   const { setStoreValue } = useCommonStore()
   const imagesList = images ? images.split(",") : []
   const usuario =
@@ -177,6 +184,7 @@ const ItemCard = (props) => {
                 className={publicationId == 1 ? styles.destacada_Card : ''}
                 // href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
                 href={isClickable ? `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}` : null}
+                onClick={isClickable ? handlerAskProduct : null}
                 target='_blank'>
                 {title && <h2>
                   {title}
@@ -203,6 +211,11 @@ const ItemCard = (props) => {
                   }
                 </div>
               </div>}
+
+              {coins && <CoinIcon size={32} coins={coins} />}
+
+              {(coins && status == 1) && <Button color="main" onClick={() => handleRedemption(publicationId)}>Redimir</Button>}
+              {status != 1 && <span className={styles.notAvailableLabel}>Agotado</span>}
 
               {/* Envio */}
               {freeShipping && <div className={styles.shipping}>

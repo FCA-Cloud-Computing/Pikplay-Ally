@@ -38,7 +38,7 @@ const Header = ({
       <link rel='alternate' href={url} hrefLang='es-CO' />
       <link rel='canonical' href={url} />
       <link rel='icon' type='image/png' href='/images/logos/192x192.png' />
-      <link rel="icon" type="image/png" sizes="/images/logos/32x32" href="/32x32.png" />
+      <link rel="icon" type="image/png" sizes="/images/logos/32x32" href="/images/logos/32x32.png" />
       <link rel='manifest' href='/manifest.json' />
       {() => {
         window.dataLayer = window.dataLayer || []

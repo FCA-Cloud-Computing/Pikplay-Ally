@@ -171,7 +171,7 @@ export default function LoginInterface({
                   onKeyUp={handleKeyUp}
                   type='number' />
                 <small>
-                  <a href='https://api.whatsapp.com/send?phone=573187414972&text=Tengo problemas al recibir mi código de ingreso'
+                  <a href='https://api.whatsapp.com/send?phone=573204863547&text=Tengo problemas al recibir mi código de ingreso'
                     target='_BLANK'
                     rel="noreferrer">
                     Tengo problemas al recibir mi código de ingreso

@@ -4,32 +4,7 @@ import { toast } from 'react-toastify'
 // Custom
 import Button from '../../../button/Button'
 import { saveReferralSrv } from '@/services/user/user'
-
-async function getContacts(handleUserMessage, set) {
-  const props = ["name", "email", "tel", "address", "icon"]
-  const opts = { multiple: true }
-  let erorrsFound = false
-  try {
-    const contacts = await navigator.contacts.select(props, opts)
-    // const contacts = [{ name: ['Juan'], tel: ['+56912345678'] }] // For testing
-    await Promise.all(
-      contacts.map(async (item) => {
-        const itemFormatted = {
-          name: item.name[0],
-          phone: item.tel[0].replace(/ /g, "")
-        }
-        const resp = await saveReferralSrv(null, itemFormatted)
-        // alert(JSON.stringify(resp))
-        if (resp?.errorCode == 409) erorrsFound = true
-      })
-    )
-    if (erorrsFound) toast.warning('Algunos referidos no pudieron guardarse con exito porque se ya se encontraron en Pikplay')
-    else toast.success('¡Referidos guardados!')
-    set({ isVisible: false })
-  } catch (err) {
-    toast.warning('No se pudo obtener los contactos')
-  }
-}
+import { getContacts } from '@/lib/utils'
 
 const HTML = <></>
 
@@ -37,8 +12,16 @@ const Message = () => <p>Con cada referido ganas 🎉 <br /><br />
   Recuerdale a tus referidos aceptar la invitacion enviada por wsp ó por mensaje de texto.</p>
 
 const Options = ({ handleUserMessage, set }) => {
+  const callBackContacsSuccess = async (contacts) => {
+    alert('Contacts retrieved successfully.')
+  }
+
+  const callBackContacsFail = async (contacts) => {
+    alert('Failed to get contacts. Please try again.')
+  }
+
   return <>
-    <Button color='blue' realistic onClick={() => getContacts(handleUserMessage, set)}>
+    <Button color='blue' realistic onClick={() => getContacts(callBackContacsSuccess, callBackContacsFail)}>
       Agregar referidos
     </Button>
     {/* <Link href='/perfil'>

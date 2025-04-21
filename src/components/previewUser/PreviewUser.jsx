@@ -34,6 +34,10 @@ const PreviewUser = () => {
       ${userLogged?.uid ? styles.userLogged : null}
       `}>
       <div>
+        {/* <div className={styles.notificationContainer}>
+          <img src="/images/icons/notification.png" />
+          <span className={styles.notificationNew} />
+        </div> */}
         <ProfileImage
           className="previewUser"
           handleClickImage={IS_MOBILE ? handleClickImage : null}
@@ -43,8 +47,8 @@ const PreviewUser = () => {
         />
         {/* TODO */}
         {/* Icono */}
-        <div className={styles.coins} id="PreviewProfile--Coins">
-          <CoinIcon coins={coins} hideNumber />
+        <div className={styles.coinsContainer} id="PreviewProfile--Coins">
+          <CoinIcon coins={coins} />
           {/* <span className={styles.experience}>
               <FontAwesomeIcon icon={faHeartbeat} />
               <span>&nbsp;10/20.500</span>

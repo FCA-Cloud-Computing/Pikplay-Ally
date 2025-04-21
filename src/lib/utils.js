@@ -1,4 +1,5 @@
 import { PROFILE } from '@/consts/profile';
+import { saveReferralSrv } from '@/services/user/user';
 import cookieCutter from '@boiseitguru/cookie-cutter';
 import confetti from 'canvas-confetti';
 import { toast } from 'react-toastify';
@@ -233,4 +234,35 @@ export function getImageSize(url, size = "MD") {
   const currentSize = PROFILE.SIZES[size]
   const formatted = url.replace(/(\.\w+)(\?.*)?$/, `_${currentSize}x${currentSize}$1$2`)
   return formatted
+}
+
+export async function getContacts(callbackSuccess, callbackError) {
+  const props = ["name", "email", "tel", "address", "icon"]
+  const opts = { multiple: true }
+  let erorrsFound = false
+  try {
+    const contacts = await navigator.contacts.select(props, opts)
+    // const contacts = [{ name: ['Juan'], tel: ['+56912345678'] }] // For testing
+    await Promise.all(
+      contacts.map(async (item) => {
+        const itemFormatted = {
+          name: item.name[0],
+          phone: item.tel[0].replace(/ /g, "")
+        }
+        const resp = await saveReferralSrv(null, itemFormatted)
+        // alert(JSON.stringify(resp))
+        if (resp?.errorCode == 409) erorrsFound = true
+      })
+    )
+    if (erorrsFound) {
+      callbackError()
+      // toast.warning('Algunos referidos no pudieron guardarse con exito porque se ya se encontraron en Pikplay')
+    }
+    callbackSuccess()
+    // else toast.success('¡Referidos guardados!')
+    // set({ isVisible: false })
+  } catch (err) {
+    alert(JSON.stringify(err))
+    // toast.warning('No se pudo obtener los contactos')
+  }
 }

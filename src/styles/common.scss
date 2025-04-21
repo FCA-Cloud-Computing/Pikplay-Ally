@@ -664,7 +664,7 @@ section.page {
   // margin: 0px auto 90px;
   min-height: 100vh;
   overflow: hidden;
-  padding: 58px 30px 80px;
+  padding: 58px 30px 120px;
   position: relative;
   .contentTitle,
   .contentSubTitle {
@@ -772,6 +772,7 @@ section.page {
 .m-20 {
   margin: 10px;
 }
+
 .m-b-10 {
   margin-bottom: 10px !important;
 }
@@ -779,6 +780,11 @@ section.page {
 .m-b-20 {
   margin-bottom: 20px !important;
 }
+
+.m-t-30 {
+  margin-top: 30px !important;
+}
+
 .m-t-20 {
   margin-top: 20px !important;
 }

@@ -10,10 +10,13 @@ const getRankingDetailSrv = async (ctx, rankingId) => {
   return data;
 }
 
-const addRankingDetailSrv = async (body) => {
+const addRankingDetailSrv = async (ctx, body) => {
   const url = BASE_URL + '/member/add';
-  const data = await post(null, url, {});
+  const data = await post(null, url, body);
   return data;
 }
 
-export { addRankingDetailSrv, getRankingDetailSrv }
+export { 
+  addRankingDetailSrv,
+  getRankingDetailSrv,
+}
