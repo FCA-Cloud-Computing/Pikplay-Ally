@@ -6,7 +6,7 @@ import CoinIcon from '../coinIcon/CoinIcon'
 import { slugify } from '../../lib/utils'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import useCommonStore from '../../hooks/commonStore'
+import useCommonStore, { loadFromLocalStorage } from '../../hooks/commonStore'
 import { useIAStore } from '../ia/IAstore'
 import Button from '../button/Button'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
@@ -70,6 +70,8 @@ const MenuMobileOptions = () => {
     }
   };
 
+  const favoritesSellers = loadFromLocalStorage("favoritesSellers") || []
+
   return <motion.div
     animate="visible"
     className={styles.MenuOptionsComponent}
@@ -129,7 +131,7 @@ const MenuMobileOptions = () => {
           Ranking
         </Link>
       </motion.ol>
-      <motion.ol variants={item} className={styles.favoriteSeller}>
+      {/* <motion.ol variants={item} className={styles.favoriteSeller}>
         <Link href="/caribe-dev">
           <img className='br-5' src="https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F159%2Flogo_768x768.png?alt=media&token=2022f676-ed81-4bbb-bb5a-405d689de0cd" />
           Caribe Dev
@@ -140,7 +142,15 @@ const MenuMobileOptions = () => {
           <img className='br-5' src="/images/users/conversation_club/logo.png" />
           English Club
         </Link>
+      </motion.ol> */}
+      {favoritesSellers.map(favoriteSeller => (
+        <motion.ol key={favoriteSeller.uid} variants={item} className={styles.favoriteSeller}>
+        <Link href={`/${favoriteSeller.slug}`}>
+          <img className='br-5' src={favoriteSeller.picture} />
+          {favoriteSeller.storeName}
+        </Link>
       </motion.ol>
+      ))}
       <motion.ol variants={item} onClick={changeToSellerUser}>
         Cambiar a Seller
       </motion.ol>
