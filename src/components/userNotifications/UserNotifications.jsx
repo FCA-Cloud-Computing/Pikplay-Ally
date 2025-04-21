@@ -120,9 +120,10 @@ const UserNotifications = () => {
     <div className={`UserNotifications ${styles.UserNotifications}`}>
       <div className={styles.options}>
         {/* <FontAwesomeIcon icon={faBell} className='m-r-10 icon' /> */}
-        <motion.span>
+        <span>
+          <img src="/images/icons/notification.png" />
           Mis notificaciones
-        </motion.span>
+        </span>
         {/* <span>Marcar todas como leídas</span> */}
       </div>
       <motion.ul

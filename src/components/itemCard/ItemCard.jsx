@@ -214,7 +214,7 @@ const ItemCard = (props) => {
 
               {coins && <CoinIcon size={32} coins={coins} />}
 
-              {(coins && status == 1) && <Button color="yellow" onClick={() => handleRedemption(publicationId)}>Redimir</Button>}
+              {(coins && status == 1) && <Button color="main" onClick={() => handleRedemption(publicationId)}>Redimir</Button>}
               {status != 1 && <span className={styles.notAvailableLabel}>Agotado</span>}
 
               {/* Envio */}

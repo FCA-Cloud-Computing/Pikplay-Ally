@@ -204,6 +204,7 @@ const Interface = ({
         </span>
       </p>
       <ProfileSummaryExperience
+        changeAvatar
         isEditProfile
         setIsEditProfile={setIsEditProfile}
         showDetails

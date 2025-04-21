@@ -1,8 +1,14 @@
 .Coins {
   align-items: center;
   display: flex;
-  justify-content: center;
   height: 30px;
+  justify-content: center;
+  margin: 0 auto;
+  width: max-content;
+  &.withNumber {
+    background: linear-gradient(to left, #ffaf02, #f56d05);
+    border-radius: 20px;
+  }
   &.animated {
     .coin {
       animation:
@@ -13,6 +19,7 @@
     }
   }
   .coinsContainer {
+    margin-top: 2px;
     width: max-content;
   }
   .coin {
@@ -25,7 +32,7 @@
     border-radius: 50%;
     display: inline-block;
     height: 31px;
-    margin: 0 0 0 4px;
+    // margin: 0 0 0 4px;
     position: relative;
     // transition: 0.5s linear;
     width: 31px;
@@ -48,14 +55,17 @@
   }
   .number {
     border-radius: 5px;
+    color: white;
     display: inline-block;
     font-size: 20px;
     font-weight: bold;
     height: 20px;
     margin: 0 5px 0 5px;
+    padding-right: 2px;
     position: relative;
-    text-shadow: 1px 1px #000;
-    top: -4px;
+    // text-shadow: 1px 1px #000;
+    text-shadow: 1px 1px #a2a2a2;
+    top: -2px;
   }
 
   label {

@@ -6,7 +6,8 @@
 
   .ProfileImage {
     align-items: center;
-    background: linear-gradient(180deg, #f4c376, #ba7821);
+    // background: linear-gradient(180deg, #f4c376, #ba7821);
+    background: linear-gradient(#7138c1, #290d56);
     border-radius: 50%;
     box-shadow: 3px 2px 4px #4545454d;
     display: flex;
@@ -97,12 +98,16 @@
   background-color: #07244c;
   border-radius: 50%;
   border: none;
-  border-left: 2px solid #f4c376;
-  border-bottom: 2px solid #f4c376;
+  // border-left: 2px solid #f4c376;
+  // border-bottom: 2px solid #f4c376;
   cursor: pointer;
 
   & input[type="file"] {
     display: none;
+  }
+
+  .icon {
+    color: white;
   }
 }
 

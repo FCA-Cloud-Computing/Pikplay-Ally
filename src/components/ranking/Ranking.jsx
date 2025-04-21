@@ -10,7 +10,7 @@ import { rankingDataPoints } from './rankingData'
 import Button from '../button/Button'
 import { useIAStore } from '../ia/IAstore'
 import useCommonStore from '@/hooks/commonStore'
-import { getUsersSrv } from '@/services/user/user'
+import { getReferralsSrv, getUsersSrv } from '@/services/user/user'
 import { addRankingDetailSrv, getRankingDetailSrv } from '@/services/rankings/rankings'
 
 const RankingComponent = (props) => {
@@ -52,8 +52,16 @@ const RankingComponent = (props) => {
     }
   }
 
+  const getReferrals = async () => {
+    const req = await getReferralsSrv(null, null)
+    if (req.code === 200) {
+      setRankingData(req.data)
+    }
+  }
+
   useEffect(() => {
     !rankingDataProp && getRankingDetail()
+    getReferrals()
   }, [])
 
   const handlePointsDetail = (pointsDetail) => {
@@ -83,8 +91,8 @@ const RankingComponent = (props) => {
   }
 
   const callbackSuccess = () => {
-    setStoreValue('messageTop', { message: 'Se han añadido tus contactos', type: 'success' })
-    getRankingDetail()
+    setStoreValue('messageTop', { message: 'Se han añadido tus amigos', type: 'success' })
+    getReferrals()
   }
 
   return (
@@ -117,7 +125,7 @@ const RankingComponent = (props) => {
                   {member.name}
                 </span>
                 <div>
-                  {league && <small className={`leagueBox`}>{league}</small>}
+                  {league && <small className={`${styles.leagueBox} leagueBox`}>{league}</small>}
                 </div>
               </div>
               {member.points && <div className={styles.points}>

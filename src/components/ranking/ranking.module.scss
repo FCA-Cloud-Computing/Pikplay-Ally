@@ -17,10 +17,10 @@
             color: white;
             column-gap: 10px;
             display: flex;
-            height: 90px;
+            // height: 90px;
             justify-content: space-around;
             margin: 0 auto 0px;
-            padding: 10px 10px 14px 20px;
+            padding: 0px 10px 0 20px;
             position: relative;
             width: 100%;
             &:first-child {
@@ -88,6 +88,9 @@
                     font-weight: initial;
                     font-size: 13px;
                 }
+            }
+            .leagueBox {
+                margin-bottom: 10px;
             }
             .points {
                 background: linear-gradient(90deg, #74ffd0, #3ac8be);

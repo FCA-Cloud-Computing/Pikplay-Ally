@@ -102,7 +102,7 @@ const AwardsSummary = ({ handleCloseModal }) => {
         </div>
       </>}
       {page == 1 && <>
-        <ProfileSummaryExperience {...{ gainedCoins, gainedExperience }} />
+        <ProfileSummaryExperience {...{ gainedCoins, gainedExperience, changeAvatar: false }} />
         <Button className={styles.closeModal} color='red' realistic onClick={handleCloseModal}>Cerrar</Button>
       </>}
     </>
