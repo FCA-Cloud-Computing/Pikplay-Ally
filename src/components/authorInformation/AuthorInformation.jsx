@@ -1,17 +1,21 @@
 import { motion } from 'framer-motion'
 
 // Custom
-import { formatNumber } from '@/lib/utils'
 import CoinIcon from '../coinIcon/CoinIcon'
 import ProfileImage from '../profileImage/ProfileImage'
 import styles from './authorInformation.module.scss'
 import Button from '../button/Button'
 import { useIAStore } from '../ia/IAstore'
+import { postChallengeDetail } from '@/services/challenges/challenges'
+import { formatNumber } from '@/lib/utils'
 
 // Icons
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import useCommonStore, { loadFromLocalStorage } from '@/hooks/commonStore'
+import { useEffect, useState } from 'react'
+
 export const AuthorInformation = (props) => {
     const {
         aboutHTML,
@@ -29,6 +33,29 @@ export const AuthorInformation = (props) => {
         storeName,
         whatsapp,
     } = props?.authorInformation || {}
+    const [isFavorite, setIsFavorite] = useState(false)
+    const { setStoreValue } = useCommonStore()
+    const stored = loadFromLocalStorage("favoritesSellers") || []
+
+    useEffect(() => {
+        const exists = stored.some((item) => item.storeName === storeName)
+        setIsFavorite(exists)
+      }, [storeName])
+
+    const handleFavoriteClick = async () => {
+        let updated
+    
+        if (isFavorite) {
+          updated = stored.filter((item) => item.storeName !== storeName)
+        } else {
+          updated = [...stored, props.authorInformation]
+        }
+    
+        setStoreValue("favoritesSellers", updated)
+        setIsFavorite(!isFavorite)
+    
+        await postChallengeDetail(null, { challengeId: 11 })
+      }
 
     return <div className={`${styles.AuthorComponentPage}`} style={{ ['--backgroundImage']: `url(${pageBackground})` }}>
         <div className={styles.content}>
@@ -37,11 +64,19 @@ export const AuthorInformation = (props) => {
             <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
-                className={styles.namePlace}>
+                className={styles.namePlace}
+                onClick={handleFavoriteClick}
+                >
                 <img
-                    className={styles.star} src="/images/icons/star.png" />
+                  className={`${styles.star} ${isFavorite && styles.active}`} 
+                  src="/images/icons/star.png" 
+                />
                 <b>{storeName || name}</b>
-                <small style={{ color: dividerColor }}>{location}</small>
+                <small 
+                  style={{ color: dividerColor }}
+                >
+                  {location}
+                </small>
             </motion.div>
             <hr style={{ background: dividerColor }} />
             {<div className={styles.creditsGiven}>
