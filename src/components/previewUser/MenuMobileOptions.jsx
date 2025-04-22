@@ -143,8 +143,8 @@ const MenuMobileOptions = () => {
           English Club
         </Link>
       </motion.ol> */}
-      {favoritesSellers.map(favoriteSeller => (
-        <motion.ol key={favoriteSeller.uid} variants={item} className={styles.favoriteSeller}>
+      {favoritesSellers.map((favoriteSeller, index) => (
+        <motion.ol key={index} variants={item} className={styles.favoriteSeller}>
         <Link href={`/${favoriteSeller.slug}`}>
           <img className='br-5' src={favoriteSeller.picture} />
           {favoriteSeller.storeName}
