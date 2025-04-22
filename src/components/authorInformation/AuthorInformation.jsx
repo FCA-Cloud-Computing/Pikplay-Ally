@@ -44,11 +44,11 @@ export const AuthorInformation = (props) => {
 
     const handleFavoriteClick = async () => {
         let updated
-    
+        const { picture, storeName, slug } = props.authorInformation
         if (isFavorite) {
           updated = stored.filter((item) => item.storeName !== storeName)
         } else {
-          updated = [...stored, props.authorInformation]
+          updated = [...stored, { picture, storeName, slug }]
         }
     
         setStoreValue("favoritesSellers", updated)
