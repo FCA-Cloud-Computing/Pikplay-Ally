@@ -70,7 +70,7 @@ const MenuMobileOptions = () => {
     }
   };
 
-  const favoritesSellers = loadFromLocalStorage("favoritesSellers") || '[]'
+  const favoritesSellers = loadFromLocalStorage("favoritesSellers") || []
 
   return <motion.div
     animate="visible"
@@ -131,7 +131,7 @@ const MenuMobileOptions = () => {
           Ranking
         </Link>
       </motion.ol>
-      {favoritesSellers.length > 0 && favoritesSellers.map(favoriteSeller => {
+      {favoritesSellers && favoritesSellers.map(favoriteSeller => {
         return <motion.ol key={favoriteSeller.uid} variants={item} className={styles.favoriteSeller}>
           <Link href={`/${favoriteSeller.slug}`}>
             <img className='br-5' src={favoriteSeller.picture} />

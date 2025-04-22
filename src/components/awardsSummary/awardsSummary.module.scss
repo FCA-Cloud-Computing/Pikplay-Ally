@@ -97,8 +97,8 @@
             // border: 1px solid red;
             height: 350px;
             margin: 0 auto;
-            overflow-y: scroll;
-            overflow-x: hidden;
+            // overflow-y: scroll;
+            // overflow-x: hidden;
             // padding-top: 50px;
             position: relative;
             width: calc(100% - 50px);
@@ -201,7 +201,7 @@
             border: double 4px transparent;
             margin: 0 auto;
             position: relative;
-            width: 320px;
+            // width: 320px;
             // width: 330px;
             @media screen and (max-width: 480px) {
                 box-sizing: border-box;
@@ -268,23 +268,14 @@
     }
 
     .actions {
-        // position: absolute;
-        right: 10px;
-        top: 300px;
-        @media screen and (max-width: 480px) {
-            // background: white;
-            box-sizing: border-box;
-            bottom: 0;
-            left: 0;
-            padding: 20px;
-            // position: fixed;
-            right: initial;
-            text-align: center;
-            top: initial;
-            width: 100%;
-            div > button {
-                width: 80%;
-            }
+        box-sizing: border-box;
+        bottom: 0;
+        left: 0;
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+        div > button {
+            width: 80%;
         }
     }
 

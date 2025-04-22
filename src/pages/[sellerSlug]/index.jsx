@@ -148,7 +148,7 @@ const DefaultSellerPage = (props) => {
             &nbsp;Ranking
           </h1>
         </div>
-        <RankingComponent {...{ rankingId }} />
+        <RankingComponent isButtonJoinRanking {...{ rankingId }} />
       </>}
 
       {/* Loyalty */}
