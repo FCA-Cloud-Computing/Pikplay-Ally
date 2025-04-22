@@ -55,7 +55,7 @@ const AwardsSummary = ({ handleCloseModal }) => {
           initial={{ x: '-600px' }}
           transition={{ delay: .5 }}
           className={styles.title}>
-          ¡Recoge tus recompensas!
+          <img className={styles.ganasteLabel} src="/images/backgrounds/ganaste.svg" />
         </motion.div>
         {description
           && <motion.div
@@ -92,12 +92,12 @@ const AwardsSummary = ({ handleCloseModal }) => {
               shine>
               Recoger
             </Button>
-            <Button
+            {/* <Button
               color=""
               onClick={handleUpdateExperience}
               style={{ color: 'white' }}>
               Conocer de los créditos
-            </Button>
+            </Button> */}
           </motion.div>
         </div>
       </>}

@@ -70,7 +70,7 @@ const MenuMobileOptions = () => {
     }
   };
 
-  const favoritesSellers = loadFromLocalStorage("favoritesSellers") || []
+  const favoritesSellers = loadFromLocalStorage("favoritesSellers") || '[]'
 
   return <motion.div
     animate="visible"
@@ -143,20 +143,20 @@ const MenuMobileOptions = () => {
           English Club
         </Link>
       </motion.ol> */}
-      {favoritesSellers.map(favoriteSeller => (
-        <motion.ol key={favoriteSeller.uid} variants={item} className={styles.favoriteSeller}>
-        <Link href={`/${favoriteSeller.slug}`}>
-          <img className='br-5' src={favoriteSeller.picture} />
-          {favoriteSeller.storeName}
-        </Link>
-      </motion.ol>
-      ))}
-      <motion.ol variants={item} onClick={changeToSellerUser}>
+      {favoritesSellers && favoritesSellers.map(favoriteSeller => {
+        return <motion.ol key={favoriteSeller.uid} variants={item} className={styles.favoriteSeller}>
+          <Link href={`/${favoriteSeller.slug}`}>
+            <img className='br-5' src={favoriteSeller.picture} />
+            {favoriteSeller.storeName}
+          </Link>
+        </motion.ol>
+      })}
+      {/* <motion.ol variants={item} onClick={changeToSellerUser}>
         Cambiar a Seller
       </motion.ol>
       <motion.ol variants={item} onClick={changeToOriginalUser}>
         Cambiar a Usuario
-      </motion.ol>
+      </motion.ol> */}
     </>
     }
     {isLogged && <motion.ol variants={item} onClick={() => handleLogout()}>

@@ -4,13 +4,12 @@ section.Onboarding {
   // margin: 0px auto 90px;
   width: calc(100%);
   .bannerCaribeConf2025 {
-    color: transparent;
+    border-bottom: 1px solid #f79c01;
     display: block;
     height: auto;
     left: -30px;
     max-width: initial;
     position: relative;
-    top: -10px;
     width: calc(100% + 60px);
     z-index: 2;
   }

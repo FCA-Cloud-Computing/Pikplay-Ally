@@ -19,7 +19,7 @@ import CashbackTag from './cashbackTag/CashbackTag'
 import Author from './Author'
 import { formatNumber, setMessageTop } from '../../lib/utils'
 import CustomFetch from '../fetch/CustomFetch'
-import { postChallengeDetail } from '@/services/challenges/challenges'
+import { postChallengeDetailSrv } from '@/services/challenges/challenges'
 import { CID_ASK_PRODUCT } from '@/consts/challenges'
 import CoinIcon from '../coinIcon/CoinIcon'
 import Button from '../button/Button'
@@ -66,7 +66,7 @@ const ItemCard = (props) => {
   const showTags = isUsed || cashbackAvailable
 
   const handlerAskProduct = () => {
-    const resp = postChallengeDetail(null, { challengeId: CID_ASK_PRODUCT })
+    const resp = postChallengeDetailSrv(null, { challengeId: CID_ASK_PRODUCT })
       .then(({ data }) => {
         const { messageTop } = data
         if (messageTop) setMessageTop(messageTop)
