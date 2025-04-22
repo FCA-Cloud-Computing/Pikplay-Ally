@@ -46,7 +46,7 @@ const ProfileSummaryExperience = (props) => {
   const [percentageBar, setPercentageBar] = useState("0%")
   // userInfoData: Props que se utiliza para mostrar la información de un usuario en particular
   const currentUserCoins = 10
-  const { userLogged, setUserLogged } = useCommonStore()
+  const { userLogged, setUserLogged, setStoreValue } = useCommonStore()
   const { uid } = userLogged
   const {
     handleUserMessage,
@@ -75,7 +75,9 @@ const ProfileSummaryExperience = (props) => {
       <Button color='blue' realistic
         onClick={() => {
           updateProfileSrv(null, uid, { name: value })
-            .then(data => {
+            .then(resp => {
+              const { data: { messageTop } } = resp
+              { messageTop && setStoreValue('messageTop', messageTop) }
               setUserLogged({ name: value })
               setIAMessage(null)
               toast("¡Perfil actualizado correctamente!")
@@ -148,9 +150,10 @@ const ProfileSummaryExperience = (props) => {
           <ProfileImage picture={picture} progress={percentageBar} changeAvatar={changeAvatar} />
           {/* <div className={`shine ${styles[league]} ${league == 'oro' && 'starsFallingDown'} `}> */}
           <input className={`${styles.fullName} ${isEditProfile && styles.editable}`}
-            value={newNickname}
             onChange={e => isEditProfile && setNewNickname(e.target.value)}
-            onBlur={isEditProfile && handleBlurName} />
+            onBlur={isEditProfile && handleBlurName}
+            value={newNickname}
+          />
           {/* <div className={styles.icons}>
             <Tooltip title="Plataforma más utilizada">
               <img width={40} className={styles.platform} src="/images/icons/ps-icon.png" />

@@ -250,6 +250,7 @@
                     color: aquamarine;
                 }
                 :global(.Coins) {
+                    background: initial;
                     margin-top: 60px;
                     position: relative;
                     :global(.number) {

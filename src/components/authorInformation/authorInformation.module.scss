@@ -45,22 +45,24 @@
             width: 150px;
         }
         .creditsGiven {
-            display: block;
+            column-gap: 10px;
+            display: flex;
             height: 60px;
             margin: 20px auto 0;
             position: relative;
             text-align: center;
-            width: 280px;
+            // width: 200px;
+            width: max-content;
             :global(.Coins) {
-                left: -30px;
-                margin-right: 80px;
-                position: absolute;
-                right: 0;
-                top: -5px;
+                // left: -30px;
+                // margin-right: 80px;
+                // position: absolute;
+                // right: 0;
+                // top: -5px;
             }
             small {
                 // left: 130px;
-                position: absolute;
+                // position: absolute;
             }
         }
         .socialContent {
