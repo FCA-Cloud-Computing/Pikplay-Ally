@@ -18,7 +18,7 @@ const MenuMobileOptions = dynamic(() => import('./MenuMobileOptions'), { ssr: fa
 
 const PreviewUser = () => {
   const router = useRouter()
-  const { userLogged, leftMenuBar, leftMenuBar: { isShow: isShowLeftMenu }, setStoreValue, leftBottomMenuContent } = useCommonStore((state => state))
+  const { currentCoins, userLogged, leftMenuBar, leftMenuBar: { isShow: isShowLeftMenu }, setStoreValue, leftBottomMenuContent } = useCommonStore((state => state))
   const { picture, name, coins } = userLogged || {}
 
   const handleClickImage = () => {
@@ -48,7 +48,7 @@ const PreviewUser = () => {
         {/* TODO */}
         {/* Icono */}
         <div className={styles.coinsContainer} id="PreviewProfile--Coins">
-          <CoinIcon coins={coins} />
+          <CoinIcon coins={currentCoins} />
           {/* <span className={styles.experience}>
               <FontAwesomeIcon icon={faHeartbeat} />
               <span>&nbsp;10/20.500</span>

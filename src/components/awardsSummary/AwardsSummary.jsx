@@ -13,10 +13,9 @@ import useCommonStore from '../../hooks/commonStore';
 import { createExperienceSrv } from '@/services/experience';
 import { getNotificationsSrv } from '@/services/user/user';
 
-const AwardsSummary = ({ handleCloseModal }) => {
-  const [page, setPage] = useState(0);
-  const currentUserCoins = 10
-  const { awardsSummaryModalHTML, awardSummaryModalDetail, setStoreValue, notifications } = useCommonStore()
+const AwardsSummary = ({ handleCloseModal, page, setPage, setStoreValue }) => {
+  const { awardsSummaryModalHTML, awardSummaryModalDetail, currentCoins, notifications } = useCommonStore()
+
   const {
     coins: gainedCoins,
     description,
@@ -24,6 +23,7 @@ const AwardsSummary = ({ handleCloseModal }) => {
     experience: gainedExperience,
     type: notification_type
   } = awardSummaryModalDetail
+
   useEffect(() => {
     setTimeout(() => {
       startConfetti()
@@ -31,19 +31,21 @@ const AwardsSummary = ({ handleCloseModal }) => {
   }, [])
 
   const handleUpdateExperience = () => {
-    // handlePickRewardUp()
     createExperienceSrv(null, {
       coins: gainedCoins,
       experience: gainedExperience,
       nid,
       type: notification_type
+    }).then(res => {
+      setStoreValue('currentCoins', res.currentPikcoins);
     })
-    getNotificationsSrv().then(res => {
-      const currentNotifications = res.data;
-      if (JSON.stringify(notifications) !== JSON.stringify(currentNotifications)) {
-        setStoreValue('notifications', res.data);
-      };
-    });
+    getNotificationsSrv()
+      .then(res => {
+        const currentNotifications = res.data;
+        if (JSON.stringify(notifications) !== JSON.stringify(currentNotifications)) {
+          setStoreValue('notifications', res.data);
+        };
+      });
     setPage(1)
   }
 
@@ -60,10 +62,11 @@ const AwardsSummary = ({ handleCloseModal }) => {
         {description
           && <motion.div
             animate={{ x: 0, y: 10 }}
+            className={styles.subtitle}
+            dangerouslySetInnerHTML={{ __html: description }}
             initial={{ y: '0px', x: '600px' }}
             transition={{ delay: .2 }}
-            className={styles.subtitle}>
-            {description}
+          >
           </motion.div>
         }
         <img className={`rotating ${styles.imgLights}`} src="/images/elements/luces.png" />
@@ -110,10 +113,11 @@ const AwardsSummary = ({ handleCloseModal }) => {
 }
 
 const AwardsSummaryModal = (props) => {
-  const { setStoreValue } = useCommonStore((state => state))
-  const [[page, direction], setPage] = useState([0, 0]);
+  const { setStoreValue } = useCommonStore()
+  const [page, setPage] = useState(0)
+  const direction = 0
   const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="left" ref={ref} {...props} />;
+    return <Slide direction="left" ref={ref} {...props} />
   })
 
   const handleCloseModal = () => {
@@ -133,7 +137,12 @@ const AwardsSummaryModal = (props) => {
         <div className={styles.content}>
           <div className={styles.content_child}>
             <AnimatePresence initial={true} custom={direction}>
-              <AwardsSummary page={page} handleCloseModal={handleCloseModal} />
+              <AwardsSummary
+                handleCloseModal={handleCloseModal}
+                page={page}
+                setPage={setPage}
+                setStoreValue={setStoreValue}
+              />
             </AnimatePresence>
           </div>
         </div>

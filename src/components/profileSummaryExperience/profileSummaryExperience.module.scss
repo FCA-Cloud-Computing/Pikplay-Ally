@@ -27,7 +27,7 @@
         color: white;
         font-weight: bold;
         line-height: 20px;
-        margin: 20px auto 0px;
+        margin: 10px auto 0px;
         padding: 10px;
         position: relative;
         text-align: center;
@@ -177,6 +177,10 @@
             }
         }
 
+        .coinsContainer {
+            margin: 0 auto 20px;
+        }
+
         .experience_status {
             margin: 0 auto 20px auto;
         }
@@ -226,7 +230,7 @@
                 background: linear-gradient(45deg, #f4c376, #ba7821);
                 font-size: 18px;
                 font-weight: 600;
-                margin: 0px auto 20px;
+                margin: 0px auto 10px;
                 text-align: center;
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;

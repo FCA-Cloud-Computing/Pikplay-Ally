@@ -27,16 +27,16 @@ const MessagesTop = () => {
       {
         messageTop && <motion.div
           animate={{ y: 0 }}
-          initial={{ y: '-200px' }}
-          transition={{ delay: .5 }}
           className={classNames('MessagesTop', {
             [styles.MessagesTop]: true,
             [styles.isVisible]: messageTop
           })}
+          initial={{ y: '-200px' }}
           onClick={handleClick}
+          transition={{ delay: .5 }}
         >
-          <div className={styles.content}>
-            {message}
+          <div className={styles.content} dangerouslySetInnerHTML={{ __html: message }}>
+            {/* {message} */}
           </div>
           <span className={`${styles.icon}`}>
             <div className={styles.imgLights__container}>

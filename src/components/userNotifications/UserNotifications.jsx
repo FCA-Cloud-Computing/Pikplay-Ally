@@ -79,6 +79,7 @@ const UserNotifications = () => {
       // reclamarCoins(coins, id)
       setStoreValue('isAwardSummaryModalOpen', true)
       setStoreValue('awardSummaryModalDetail', item)
+      setStoreValue('leftMenuBar', { isShow: false })
     } else {
       handleDeleteNotification(id)
     }

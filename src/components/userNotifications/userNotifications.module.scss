@@ -61,8 +61,8 @@
     padding: 0 0;
     li {
       align-items: center;
-      border-bottom: 1px solid #42495029;
-      border-radius: 5px 0 0 0;
+      border: 1px solid #521a9329;
+      border-radius: 8px;
       display: flex;
       height: min-content;
       margin: 0;
@@ -83,7 +83,7 @@
       }
 
       &:not(.read) {
-        border-bottom: 2px solid #3095b3;
+        // border: 2px solid #521a93;
       }
 
       &.read {

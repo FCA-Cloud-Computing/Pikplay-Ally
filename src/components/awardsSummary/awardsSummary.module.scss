@@ -95,17 +95,15 @@
         .content_child {
             // display: none;
             // border: 1px solid red;
-            height: 350px;
+            // height: 350px;
             margin: 0 auto;
             // overflow-y: scroll;
             // overflow-x: hidden;
             // padding-top: 50px;
             position: relative;
             width: calc(100% - 50px);
-            @media screen and (max-width: 480px) {
-                height: 400px;
-                overflow-y: hidden;
-            }
+            // height: 400px;
+            overflow: hidden;
             :global(.ProfileSummaryExperience) {
                 display: block;
                 margin: 0 auto 0;
@@ -135,8 +133,8 @@
         .subtitle {
             color: white;
             // font-style: italic;
-            font-size: 18px;
-            margin-top: 10px;
+            font-size: 16px;
+            margin: 0px auto;
             // $color: orange;
             text-align: center;
         }

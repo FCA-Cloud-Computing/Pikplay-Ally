@@ -43,6 +43,7 @@ interface CommonStoreState {
 const useCommonStore = create<CommonStoreState>((set, get) => ({
   awardsSummaryModalHTML: null,
   awardSummaryModalDetail: null,
+  currentCoins: loadFromLocalStorage('currentCoins') || null,
   darkMode: true,
   env: 'dev',
   experiences: [],

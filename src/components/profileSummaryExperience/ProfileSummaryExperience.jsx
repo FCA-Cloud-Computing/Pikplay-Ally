@@ -16,7 +16,6 @@ import Button from '../button/Button'
 
 // Servicios
 import {
-  getCoinsSrv,
   updateProfileSrv
 } from '../../services/user/user'
 import useAnimatedNumber from '@/hooks/useAnimatedNumber'
@@ -25,14 +24,14 @@ import { getExperiencesSrv } from '@/services/experience'
 const ProfileSummaryExperience = (props) => {
   const { DEFAULT_NAME } = MESSAGES
   const {
+    changeAvatar,
+    gainedCoins = 0,
+    gainedExperience,
     isEditProfile = false,
+    newInfo,
     setIsEditProfile,
     showDetails,
     userInfoData,
-    newInfo,
-    gainedCoins = 0,
-    gainedExperience,
-    changeAvatar,
   } = props
   const {
     points,
@@ -45,7 +44,6 @@ const ProfileSummaryExperience = (props) => {
   const [targetExperience, setTargetExperience] = useState(0)
   const [percentageBar, setPercentageBar] = useState("0%")
   // userInfoData: Props que se utiliza para mostrar la información de un usuario en particular
-  const currentUserCoins = 10
   const { userLogged, setUserLogged, setStoreValue } = useCommonStore()
   const { uid } = userLogged
   const {
@@ -102,9 +100,6 @@ const ProfileSummaryExperience = (props) => {
   // }
 
   useEffect(() => {
-    const element = document.querySelector('.ProfileSummaryExperience .Coins .number')
-    const fromNumber = element?.innerHTML
-    const targetNumber = currentUserCoins + gainedCoins
     // animatePrice(element, targetNumber, fromNumber)
     // getExperienceInfo()
   }, [])
@@ -123,12 +118,11 @@ const ProfileSummaryExperience = (props) => {
   }
 
   useEffect(() => {
-    const promisesList = [getExperiencesSrv(), getCoinsSrv()]
+    const promisesList = [getExperiencesSrv()]
     Promise.allSettled(promisesList)
-      .then(([expData, coinsData]) => {
-        // debugger;
+      .then(([expData]) => {
+        // No se puede actualizar el estado global porque al recoger una notificacion se explota
         const { currentPikcoins, expTotal: currentExperience } = expData.value || {}
-        // debugger;
         setCurrentExperience(currentExperience)
         setCurrentCoins(currentPikcoins)
         validateNewAwards(currentPikcoins, currentExperience)
@@ -163,6 +157,9 @@ const ProfileSummaryExperience = (props) => {
           <div className={styles.currentCategory}>
             Bronce
           </div>
+          <div className={styles.coinsContainer}>
+            <CoinIcon coins={currentCoins} gainedCoins={gainedCoins} hideNumber={false} />
+          </div>
           <div className={styles.experience_status}>
             <ExperienceBar {...{
               currentExperience,
@@ -171,7 +168,6 @@ const ProfileSummaryExperience = (props) => {
           </div>
           {/* currentCoins:{currentCoins}
           gainedCoins={gainedCoins} */}
-          <CoinIcon coins={currentCoins} gainedCoins={gainedCoins} hideNumber={false} />
         </div>
         {/* <p className={styles.rankingMessage}>
           <img src="/images/icons/ranking-icon.png" />
