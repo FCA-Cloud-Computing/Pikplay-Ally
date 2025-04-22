@@ -14,7 +14,7 @@ const initialNotification = {
 
 const initialMessageTop: string | null = null;
 
-const loadFromLocalStorage = (property) => {
+export const loadFromLocalStorage = (property) => {
   let value = null
   if (typeof window != 'undefined' && property) {
     value = localStorage.getItem(property)
@@ -36,6 +36,7 @@ const initialLoginStorage = (set) => {
 }
 
 interface CommonStoreState {
+  userLogged: any;
   setStoreValue: (property: string, value: any) => void;
 }
 
