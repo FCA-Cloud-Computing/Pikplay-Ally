@@ -131,19 +131,7 @@ const MenuMobileOptions = () => {
           Ranking
         </Link>
       </motion.ol>
-      {/* <motion.ol variants={item} className={styles.favoriteSeller}>
-        <Link href="/caribe-dev">
-          <img className='br-5' src="https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F159%2Flogo_768x768.png?alt=media&token=2022f676-ed81-4bbb-bb5a-405d689de0cd" />
-          Caribe Dev
-        </Link>
-      </motion.ol>
-      <motion.ol variants={item} className={styles.favoriteSeller}>
-        <Link href="/english-club">
-          <img className='br-5' src="/images/users/conversation_club/logo.png" />
-          English Club
-        </Link>
-      </motion.ol> */}
-      {favoritesSellers && favoritesSellers.map(favoriteSeller => {
+      {favoritesSellers.length > 0 && favoritesSellers.map(favoriteSeller => {
         return <motion.ol key={favoriteSeller.uid} variants={item} className={styles.favoriteSeller}>
           <Link href={`/${favoriteSeller.slug}`}>
             <img className='br-5' src={favoriteSeller.picture} />

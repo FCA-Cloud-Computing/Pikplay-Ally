@@ -55,7 +55,7 @@ const AwardsSummary = ({ handleCloseModal }) => {
           initial={{ x: '-600px' }}
           transition={{ delay: .5 }}
           className={styles.title}>
-          <img className={styles.ganasteLabel} src="/images/backgrounds/ganaste.svg" />
+          <img className={styles.ganasteLabel} src="/images/backgrounds/ganaste-v2.svg" />
         </motion.div>
         {description
           && <motion.div
