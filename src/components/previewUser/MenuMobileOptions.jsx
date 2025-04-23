@@ -100,11 +100,11 @@ const MenuMobileOptions = () => {
         Configuración
       </a>
     </motion.ol> */}
-      <motion.ol variants={item}>
+      {/* <motion.ol variants={item}>
         <Link href="/onboarding">
           Onboarding
         </Link>
-      </motion.ol>
+      </motion.ol> */}
     </>)}
     <motion.ol variants={item}>
       <Link href="/redimir">
@@ -125,12 +125,12 @@ const MenuMobileOptions = () => {
     </motion.ol>
     {/* Opciones de administrador */}
     {userLogged.isAdmin && <>
-      <motion.ol variants={item}>
+      {/* <motion.ol variants={item}>
         <Link href="/ranking">
           <img src="https://cdn-icons-png.flaticon.com/512/1420/1420338.png" />
           Ranking
         </Link>
-      </motion.ol>
+      </motion.ol> */}
       {favoritesSellers && favoritesSellers.map(favoriteSeller => {
         return <motion.ol key={favoriteSeller.uid} variants={item} className={styles.favoriteSeller}>
           <Link href={`/${favoriteSeller.slug}`}>
