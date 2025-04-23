@@ -10,12 +10,15 @@ import classNames from 'classnames';
 import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummaryExperience';
 import { motion, AnimatePresence } from "framer-motion"
 import useCommonStore from '../../hooks/commonStore';
-import { createExperienceSrv } from '@/services/experience';
+import { createExperienceSrv, getExperiencesSrv } from '@/services/experience';
 import { getNotificationsSrv } from '@/services/user/user';
 
 const AwardsSummary = ({ handleCloseModal, page, setPage }) => {
-  const { awardsSummaryModalHTML, awardSummaryModalDetail, currentCoins, notifications, set: setStoreValue } = useCommonStore()
-  // const setStoreValue = useCommonStore.getState().setStoreValue
+  const awardsSummaryModalHTML = useCommonStore(state => state.awardsSummaryModalHTML)
+  const awardSummaryModalDetail = useCommonStore(state => state.awardSummaryModalDetail)
+  const currentCoins = useCommonStore(state => state.currentCoins)
+  const notifications = useCommonStore(state => state.notifications)
+  const setStoreValue = useCommonStore(state => state.setStoreValue)
 
   const {
     coins: gainedCoins,
@@ -31,24 +34,23 @@ const AwardsSummary = ({ handleCloseModal, page, setPage }) => {
     }, 500)
   }, [])
 
-  const handleUpdateExperience = async () => {
-    const createExpReq = await createExperienceSrv(null, {
-      coins: gainedCoins,
-      experience: gainedExperience,
-      nid,
-      type: notification_type
-    })
-
-    const notificationsReq = await getNotificationsSrv()
-    const currentNotifications = notificationsReq.data;
-    // if (JSON.stringify(notifications) !== JSON.stringify(currentNotifications)) {
-    //   // setStoreValue('notifications', res.data);
-    // };
-    setStoreValue({
-      currentCoins: createExpReq.currentPikcoins,
-      notifications: currentNotifications
-    })
+  const handleUpdateExperience = () => { // Haciendo el UPDATE en la BD
     setPage(1)
+    setTimeout(() => {
+      const createExpReq = createExperienceSrv(null, {
+        coins: gainedCoins,
+        experience: gainedExperience,
+        nid,
+        type: notification_type
+      })
+        .then(() => {
+          getExperiencesSrv()
+            .then(data => {
+              const { currentPikcoins } = data
+              setStoreValue('currentCoins', currentPikcoins)
+            })
+        })
+    }, 5000)
   }
 
   return (
@@ -108,7 +110,13 @@ const AwardsSummary = ({ handleCloseModal, page, setPage }) => {
       </>}
 
       {page == 1 && <>
-        <ProfileSummaryExperience {...{ gainedCoins, gainedExperience, changeAvatar: false }} />
+        <ProfileSummaryExperience {
+          ...{
+            gainedCoins,
+            gainedExperience,
+            changeAvatar: false,
+          }}
+        />
         <Button className={styles.closeModal} color='red' realistic onClick={handleCloseModal}>Cerrar</Button>
       </>}
     </>
@@ -116,7 +124,7 @@ const AwardsSummary = ({ handleCloseModal, page, setPage }) => {
 }
 
 const AwardsSummaryModal = (props) => {
-  const { setStoreValue } = useCommonStore()
+  const setStoreValue = useCommonStore(state => state.setStoreValue)
   const [page, setPage] = useState(0)
   const direction = 0
 
@@ -145,7 +153,6 @@ const AwardsSummaryModal = (props) => {
               handleCloseModal={handleCloseModal}
               page={page}
               setPage={setPage}
-              setStoreValue={setStoreValue}
             />
             {/* </AnimatePresence> */}
           </div>

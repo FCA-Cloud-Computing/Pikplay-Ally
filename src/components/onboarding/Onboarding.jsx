@@ -126,7 +126,7 @@ const Onboarding = (props) => {
 
   useEffect(() => {
     // handleUserMessage('onboarding', {})
-    setStoreValue('isOnboardingProcess', true)
+    // setStoreValue('isOnboardingProcess', true)
   }, [])
 
   return <section className={`page ${styles.Onboarding}`}>

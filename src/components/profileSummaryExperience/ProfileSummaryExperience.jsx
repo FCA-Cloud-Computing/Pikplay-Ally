@@ -39,12 +39,14 @@ const ProfileSummaryExperience = (props) => {
   let animatedCoins = null
   // const [animatedCoins, setAnimatedCoins] = useState(null)
   const [currentCoins, setCurrentCoins] = useState(0)
-  const [targetCoins, setTargetCoins] = useState(0)
   const [currentExperience, setCurrentExperience] = useState(0)
   const [targetExperience, setTargetExperience] = useState(0)
   const [percentageBar, setPercentageBar] = useState("0%")
   // userInfoData: Props que se utiliza para mostrar la información de un usuario en particular
-  const { userLogged, setUserLogged, setStoreValue } = useCommonStore()
+  // const currentCoins = useCommonStore(state => state.currentCoins)
+  const userLogged = useCommonStore(state => state.userLogged)
+  const setStoreValue = useCommonStore(state => state.setStoreValue)
+  // const { userLogged, setUserLogged, setStoreValue, set } = useCommonStore(state => state.userLogged)
   const { uid } = userLogged
   const {
     handleUserMessage,
@@ -76,7 +78,7 @@ const ProfileSummaryExperience = (props) => {
             .then(resp => {
               const { data: { messageTop } } = resp
               { messageTop && setStoreValue('messageTop', messageTop) }
-              setUserLogged({ name: value })
+              setStoreValue('userLogged', { name: value })
               setIAMessage(null)
               toast("¡Perfil actualizado correctamente!")
             })
@@ -86,50 +88,20 @@ const ProfileSummaryExperience = (props) => {
     </>)
   }
 
-  // const getExperienceInfo = () => {
-  //   const exp = 0
-
-  //   getExperiencesSrv()
-  //     .then(data => {
-  //       const { expTotal, exp, percentageBar } = data
-  //       setCurrentExp(expTotal)
-  //       setPercentageBar(percentageBar + "%")
-  //     });
-  //   const widthBar = (exp / 1000) * 100;
-  //   setPercentageBar(widthBar + "%")
-  // }
-
-  useEffect(() => {
-    // animatePrice(element, targetNumber, fromNumber)
-    // getExperienceInfo()
-  }, [])
-
-  // const exp = 0
-  // const [currentExperience, setCurrentExp] = useState(exp)
-  // const [percentageBar, setPercentageBar] = useState("0%")
-  const validateNewAwards = (currentCoins, currentExperience) => { // Añadiendo puntos y coins ganados
-    if (gainedCoins) {
-      const targetNumber = currentCoins + gainedCoins
-      setTargetCoins(targetNumber)
-      // setTimeout(() => { // Animando los puntos ganados despues de 2 segundos
-      setTargetExperience(currentExperience + gainedExperience)
-      // }, 2000)
-    }
-  }
-
-  useEffect(() => {
+  const getExperience = () => {
     const promisesList = [getExperiencesSrv()]
     Promise.allSettled(promisesList)
       .then(([expData]) => {
-        // No se puede actualizar el estado global porque al recoger una notificacion se explota
-        const { currentPikcoins, expTotal: currentExperience } = expData.value || {}
+        const { currentPikcoins: currentPikcoinsUpdated, expTotal: currentExperience } = expData.value || {}
         setCurrentExperience(currentExperience)
-        setCurrentCoins(currentPikcoins)
-        validateNewAwards(currentPikcoins, currentExperience)
+        setCurrentCoins(currentPikcoinsUpdated)
+        setStoreValue('currentCoins', currentPikcoinsUpdated)
       })
-  }, [])
+  }
 
-  // animatedCoins = useAnimatedNumber(currentCoins, targetCoins, 2000)
+  useEffect(() => {
+    getExperience()
+  }, [])
 
   return (
     <div className={classNames("ProfileSummaryExperience", { [styles.ProfileSummaryExperience]: true })}>
