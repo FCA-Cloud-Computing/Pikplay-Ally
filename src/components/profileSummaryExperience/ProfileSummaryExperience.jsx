@@ -96,6 +96,7 @@ const ProfileSummaryExperience = (props) => {
         setCurrentExperience(currentExperience)
         setCurrentCoins(currentPikcoinsUpdated)
         setStoreValue('currentCoins', currentPikcoinsUpdated)
+        setPercentageBar(`${(currentExperience / 10000) * 100}`)
       })
   }
 
@@ -113,7 +114,11 @@ const ProfileSummaryExperience = (props) => {
         {/* <div asd={backgroundImage} className={styles.bg} style={{ backgroundImage: `url( ${backgroundImage})` }}></div> */}
         <div asd={backgroundImage} className={styles.bg}></div>
         <div className={styles.left}>
-          <ProfileImage picture={picture} progress={percentageBar} changeAvatar={changeAvatar} />
+          <ProfileImage
+            changeAvatar={changeAvatar}
+            percentageBar={percentageBar}
+            picture={picture}
+          />
           {/* <div className={`shine ${styles[league]} ${league == 'oro' && 'starsFallingDown'} `}> */}
           <input className={`${styles.fullName} ${isEditProfile && styles.editable}`}
             onChange={e => isEditProfile && setNewNickname(e.target.value)}

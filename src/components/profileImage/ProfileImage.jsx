@@ -7,32 +7,20 @@ import { getImageSize } from '@/lib/utils';
 import { getExperiencesSrv } from '@/services/experience';
 import { useProfileImage } from '@/hooks/useProfileImage';
 
-const ProfileImage = ({ className, handleClickImage, picture, progress = 0, small, changeAvatar }) => {
-  const [percentageBar, setPercentageBar] = useState(progress)
+const ProfileImage = ({ className, handleClickImage, picture, small, changeAvatar, percentageBar }) => {
   const { handlerInputFile, fileInputRef } = useProfileImage()
-
-  const getExperienceData = () => {
-    getExperiencesSrv(null)
-      .then(data => {
-        const { percentageBar } = data
-        setPercentageBar(percentageBar)
-      });
-  }
-
-  useEffect(() => {
-    if (!progress) getExperienceData()
-  }, []);
 
   return (
     <div className={`ProfileImageComponent ${styles.ProfileImageComponent}`} onClick={handleClickImage}>
       <picture className={`${styles.ProfileImage} ${styles[className]}`}>
         <img src={getImageSize(picture) || '/images/logos/logo-pikplay-bg-azul_768x768.png'} alt="Perfil" />
         <svg
-          width="250"
-          height="250"
-          viewBox="0 0 250 250"
           className={`${small ? styles.small : ''} ${styles.circularProgress}`}
-          style={{ '--progress-bar': progress }}>
+          height="250"
+          style={{ '--progress-bar': percentageBar }}
+          viewBox="0 0 250 250"
+          width="250"
+          >
           <circle className={styles.bg} />
           <circle className={styles.fg} />
         </svg>

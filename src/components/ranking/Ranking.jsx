@@ -98,13 +98,23 @@ const RankingComponent = (props) => {
   return (
     <div className={styles.RankingComponent}>
       {isButtonJoinRanking && <Button color="blue" realistic fullWidth className="p-10" onClick={handleParticipate}>Quiero participar</Button>}
-      {isButtonReferral && <Button color="blue" realistic fullWidth className="p-10" onClick={() => getContacts(callbackSuccess)}>Añadir a un amigo</Button>}
+      {isButtonReferral && <Button
+        className="p-10"
+        color="blue"
+        fullWidth
+        onClick={() => getContacts(callbackSuccess)}
+        realistic
+        style={{ marginBottom: '10px' }}
+      >
+        Añadir a un amigo
+      </Button>}
 
       <div className={styles.list}>
         {rankingData && rankingData.length > 0 && rankingData
           .sort((a, b) => b.points - a.points)
           .map((member, index) => {
             const { league } = member
+            const percentageBar = member.points / 100;
 
             return <motion.div
               animate={{ x: 0, }}
@@ -118,7 +128,7 @@ const RankingComponent = (props) => {
                 <span className={styles.arrow}>«</span>
               </div>
               <div className={styles.picture}>
-                <ProfileImage picture={member.picture} small progress={member.points} />
+                <ProfileImage picture={member.picture} small percentageBar={percentageBar} />
               </div>
               <div className={styles.name}>
                 <span>
