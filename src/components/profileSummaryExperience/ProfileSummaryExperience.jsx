@@ -78,9 +78,11 @@ const ProfileSummaryExperience = (props) => {
             .then(resp => {
               const { data: { messageTop } } = resp
               { messageTop && setStoreValue('messageTop', messageTop) }
-              setStoreValue('userLogged', { name: value })
               setIAMessage(null)
-              toast("¡Perfil actualizado correctamente!")
+              setStoreValue({
+                messageTop: { message: "¡Perfil actualizado correctamente!", type: 'success' },
+                userLogged: { ...userLogged, name: value }
+              }, true)
             })
         }}>
         Cambiar

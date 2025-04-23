@@ -70,16 +70,6 @@
     position: absolute;
     left: 90px;
     top: 30px;
-    &::before {
-      background: #d6d6d6;
-      // box-shadow: 1px 1px #cecece;
-      content: "";
-      height: 26px;
-      position: absolute;
-      right: 70px;
-      top: -4px;
-      width: 1px;
-    }
 
     .experience {
       color: rgb(25 89 107);
