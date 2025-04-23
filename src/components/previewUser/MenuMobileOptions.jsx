@@ -112,11 +112,11 @@ const MenuMobileOptions = () => {
         Redimir
       </Link>
     </motion.ol>
-    <motion.ol variants={item}>
+    {/* <motion.ol variants={item}>
       <Link href="/servicios">
         Nuestros Servicios
       </Link>
-    </motion.ol>
+    </motion.ol> */}
     {/* Imagen de aplicación */}
     <motion.ol variants={item} style={{ justifyCcontent: 'center' }}>
       <a href="/files/pikplay-application.apk">
