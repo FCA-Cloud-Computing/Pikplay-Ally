@@ -16,21 +16,6 @@ const getChallengesByUser = async (ctx) => {
   return data;
 }
 
-const getLengthWord = async (ctx) => {
-  const url = BASE_URL + '/word-length'
-  const data = await get(ctx, url);
-  return data;
-}
-
-const sendWordChallenge = async (ctx) => {
-  const url = BASE_URL + '/word'
-  const data = await post(ctx, url, {
-    word: ctx.word,
-    uid: ctx.uid,
-  });
-  return data;
-}
-
 const postChallengeDetailSrv = async (ctx, body) => {
   const url = BASE_URL + '/detail/save'
   const data = await post(ctx, url, body);
@@ -40,7 +25,5 @@ const postChallengeDetailSrv = async (ctx, body) => {
 export {
   getChallenges,
   getChallengesByUser,
-  getLengthWord,
   postChallengeDetailSrv,
-  sendWordChallenge,
 }

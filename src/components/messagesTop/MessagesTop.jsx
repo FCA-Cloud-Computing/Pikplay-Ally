@@ -22,6 +22,8 @@ const MessagesTop = () => {
     if (messageTop && type === 'success') startConfetti()
   }, [messageTop])
 
+  const contentClassType = type == 'error' ? styles.error : styles.success
+
   return (
     <>
       {
@@ -29,21 +31,21 @@ const MessagesTop = () => {
           animate={{ y: 0 }}
           className={classNames('MessagesTop', {
             [styles.MessagesTop]: true,
-            [styles.isVisible]: messageTop
+            [styles.isVisible]: messageTop,
           })}
           initial={{ y: '-200px' }}
           onClick={handleClick}
           transition={{ delay: .5 }}
         >
-          <div className={styles.content} dangerouslySetInnerHTML={{ __html: message }}>
+          <div className={`${contentClassType} ${styles.content}`} dangerouslySetInnerHTML={{ __html: message }}>
             {/* {message} */}
           </div>
-          <span className={`${styles.icon}`}>
+          {type == 'success' && <span className={`${styles.icon}`}>
             <div className={styles.imgLights__container}>
               <img className={`rotating ${styles.imgLights}`} src="/images/elements/luces.png" />
             </div>
             <img src="/images/backgrounds/message-top/star.svg" alt="icon" />
-          </span>
+          </span>}
         </motion.div>}
 
     </>

@@ -1,6 +1,6 @@
 import styles from './awardsSummary.module.scss'
 
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from "@mui/material";
 import ReactTyped from 'react-typed'
 import CoinIcon from '../coinIcon/CoinIcon';
@@ -13,8 +13,9 @@ import useCommonStore from '../../hooks/commonStore';
 import { createExperienceSrv } from '@/services/experience';
 import { getNotificationsSrv } from '@/services/user/user';
 
-const AwardsSummary = ({ handleCloseModal, page, setPage, setStoreValue }) => {
-  const { awardsSummaryModalHTML, awardSummaryModalDetail, currentCoins, notifications } = useCommonStore()
+const AwardsSummary = ({ handleCloseModal, page, setPage }) => {
+  const { awardsSummaryModalHTML, awardSummaryModalDetail, currentCoins, notifications, set: setStoreValue } = useCommonStore()
+  // const setStoreValue = useCommonStore.getState().setStoreValue
 
   const {
     coins: gainedCoins,
@@ -30,22 +31,23 @@ const AwardsSummary = ({ handleCloseModal, page, setPage, setStoreValue }) => {
     }, 500)
   }, [])
 
-  const handleUpdateExperience = () => {
-    createExperienceSrv(null, {
+  const handleUpdateExperience = async () => {
+    const createExpReq = await createExperienceSrv(null, {
       coins: gainedCoins,
       experience: gainedExperience,
       nid,
       type: notification_type
-    }).then(res => {
-      setStoreValue('currentCoins', res.currentPikcoins);
     })
-    getNotificationsSrv()
-      .then(res => {
-        const currentNotifications = res.data;
-        if (JSON.stringify(notifications) !== JSON.stringify(currentNotifications)) {
-          setStoreValue('notifications', res.data);
-        };
-      });
+
+    const notificationsReq = await getNotificationsSrv()
+    const currentNotifications = notificationsReq.data;
+    // if (JSON.stringify(notifications) !== JSON.stringify(currentNotifications)) {
+    //   // setStoreValue('notifications', res.data);
+    // };
+    setStoreValue({
+      currentCoins: createExpReq.currentPikcoins,
+      notifications: currentNotifications
+    })
     setPage(1)
   }
 
@@ -104,6 +106,7 @@ const AwardsSummary = ({ handleCloseModal, page, setPage, setStoreValue }) => {
           </motion.div>
         </div>
       </>}
+
       {page == 1 && <>
         <ProfileSummaryExperience {...{ gainedCoins, gainedExperience, changeAvatar: false }} />
         <Button className={styles.closeModal} color='red' realistic onClick={handleCloseModal}>Cerrar</Button>
@@ -116,6 +119,7 @@ const AwardsSummaryModal = (props) => {
   const { setStoreValue } = useCommonStore()
   const [page, setPage] = useState(0)
   const direction = 0
+
   const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="left" ref={ref} {...props} />
   })
@@ -136,14 +140,14 @@ const AwardsSummaryModal = (props) => {
         <div className={styles.bg_city}></div>
         <div className={styles.content}>
           <div className={styles.content_child}>
-            <AnimatePresence initial={true} custom={direction}>
-              <AwardsSummary
-                handleCloseModal={handleCloseModal}
-                page={page}
-                setPage={setPage}
-                setStoreValue={setStoreValue}
-              />
-            </AnimatePresence>
+            {/* <AnimatePresence initial={true} custom={direction}> */}
+            <AwardsSummary
+              handleCloseModal={handleCloseModal}
+              page={page}
+              setPage={setPage}
+              setStoreValue={setStoreValue}
+            />
+            {/* </AnimatePresence> */}
           </div>
         </div>
       </div>
@@ -151,4 +155,4 @@ const AwardsSummaryModal = (props) => {
   </Dialog>
 }
 
-export default AwardsSummaryModal;
+export default memo(AwardsSummaryModal);

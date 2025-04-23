@@ -154,6 +154,7 @@ const UserNotifications = () => {
                   : type === 'COINS_BY_PURCHASE'
                     ? '/images/type_notification/coins_by_purchase.png'
                     : '/images/type_notification/coins_by_purchase_completed.png'
+
             return (
               // <Tooltip title={created} key={id}>
               <motion.li
