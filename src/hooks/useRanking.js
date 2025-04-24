@@ -84,5 +84,12 @@ export const useRanking = (rankingId, uid) => {
     animateStep(index)
   }
 
-  return { moveItem, rankingData }
+  const getReferrals = async () => {
+    const req = await getReferralsSrv(null, null)
+    if (req.code === 200) {
+      setRankingData(req.data)
+    }
+  }
+
+  return { moveItem, rankingData, getReferrals }
 }

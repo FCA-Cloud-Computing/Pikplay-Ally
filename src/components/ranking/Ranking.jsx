@@ -11,13 +11,20 @@ import Button from "../button/Button"
 import { useIAStore } from "../ia/IAstore"
 import useCommonStore from "@/hooks/commonStore"
 import { useRanking } from "@/hooks/useRanking"
+import { getExperiencesSrv } from "@/services/experience"
 
 const RankingComponent = (props) => {
-  const { rankingId, isButtonJoinRanking, isButtonReferral, isInviteButton } = props
+  const {
+    rankingId,
+    isButtonJoinRanking,
+    isButtonReferral,
+    isInviteButton,
+    isPointsByExperience,
+  } = props
   const setIAMessage = useIAStore((item) => item.setIAMessage)
   const setStoreValue = useCommonStore((state) => state.setStoreValue)
   const userLogged = useCommonStore((state) => state.userLogged)
-  const { rankingData, moveItem } = useRanking(rankingId, userLogged?.uid)
+  const { rankingData, moveItem, getReferrals } = useRanking(rankingId, userLogged?.uid)
 
   const handlePointsDetail = (pointsDetail) => {
     const HTML = (
@@ -156,8 +163,13 @@ const RankingComponent = (props) => {
                     </div>
                   </div>
                   <div className={styles.points}>
-                    {formatNumber(member.points)} Points
+                    {formatNumber(member.points)} Pts.
                   </div>
+                  {!member.points && isInviteButton && (
+                    <Button class="f-r" color="yellow" target="_link">
+                      Invitar
+                    </Button>
+                  )}
                   <button onClick={() => moveItem(member.uid, -1)}>+1</button>
                   <button onClick={() => moveItem(member.uid, 1)}>-1</button>
                 </motion.div>

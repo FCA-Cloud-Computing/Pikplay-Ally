@@ -188,7 +188,7 @@ const Onboarding = (props) => {
         </h2>
       </div>
       <div className={styles.inputContent}>
-        <input type="text" placeholder='Aquí tu Whastapp' onChange={handleInputChange} value={phoneNumber} />
+        <input type="text" placeholder='Aquí tu whatsapp' onChange={handleInputChange} value={phoneNumber} />
         <div className={styles.btnSend}>
           <Button color='blue' onClick={saveLead}>
             Enviar
