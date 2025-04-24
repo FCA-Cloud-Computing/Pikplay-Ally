@@ -76,6 +76,8 @@ const DefaultSellerPage = (props) => {
     setSelectedNumber,
   } = useCompetitions()
 
+  const isPointsByExperience = sellerSlug == 'caribe-dev'
+
   useEffect(() => {
     competitionsArray && competitionsArray.length > 0 && getCompetitions(competitionsArray)
   }, [])
@@ -148,7 +150,7 @@ const DefaultSellerPage = (props) => {
             &nbsp;Ranking
           </h1>
         </div>
-        <RankingComponent isButtonJoinRanking {...{ rankingId }} />
+        <RankingComponent isPointsByExperience={isPointsByExperience} isButtonJoinRanking {...{ rankingId }} />
       </>}
 
       {/* Loyalty */}

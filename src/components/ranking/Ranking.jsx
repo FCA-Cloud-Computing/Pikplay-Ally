@@ -12,13 +12,16 @@ import { useIAStore } from '../ia/IAstore'
 import useCommonStore from '@/hooks/commonStore'
 import { getReferralsSrv, getUsersSrv } from '@/services/user/user'
 import { addRankingDetailSrv, getRankingDetailSrv } from '@/services/rankings/rankings'
+import { getExperiencesSrv } from '@/services/experience'
 
 const RankingComponent = (props) => {
   const {
     rankingData: rankingDataProp,
     rankingId,
     isButtonJoinRanking,
-    isButtonReferral
+    isButtonReferral,
+    isInviteButton,
+    isPointsByExperience,
   } = props
   const [rankingData, setRankingData] = useState(rankingDataProp ? rankingDataProp : [])
   const setIAMessage = useIAStore(item => item.setIAMessage)
@@ -32,14 +35,26 @@ const RankingComponent = (props) => {
           const { data: rankingDataPoints } = rankingDataPointsRes
           const uids = rankingDataPoints.map(member => member.uid)
           getUsersSrv(null, { uids: uids.join() })
-            .then(({ code, data }) => {
-              const pointsAndUserData = rankingDataPoints.map(member => {
+            .then(async ({ code, data }) => {
+              // debugger
+              const uidsAndExperiences = await getExperiencesSrv(null, uids)
+
+              const pointsAndUserData = rankingDataPoints.map(member => { // Recorriendo usuarios
                 const user = data && data.find(user => user.uid === member.uid)
+                // const currentExperience = experiences.data && experiences.data.reduce((acc, exp) => exp.uid === member.uid ? exp : acc, null)
+                const currentExperience = uidsAndExperiences.reduce((acc, exp) => {
+                  if (exp.uid === member.uid) {
+                    return exp.experience
+                  }
+                  return acc
+                }, 0)
+
                 return {
                   ...user,
+                  currentExperience,
                   league: 'bronce',
-                  points: member.points,
-                  pointsDetail: member.pointsDetail,
+                  points: isPointsByExperience ? currentExperience : member.points,
+                  pointsDetail: !isPointsByExperience ? member.pointsDetail : null,
                 }
               })
               setRankingData(pointsAndUserData)
@@ -145,10 +160,10 @@ const RankingComponent = (props) => {
                   {league && <small className={`${styles.leagueBox} leagueBox`}>{league}</small>}
                 </div>
               </div>
-              {member.points && <div className={styles.points}>
+              {member.points >= 0 && <div className={styles.points}>
                 {formatNumber(member.points)} Pts.
               </div>}
-              {!member.points && <Button class="f-r" color="yellow" target='_link'>Invitar</Button>}
+              {(!member.points && isInviteButton) && <Button class="f-r" color="yellow" target='_link'>Invitar</Button>}
             </motion.div>
           })}
       </div>
