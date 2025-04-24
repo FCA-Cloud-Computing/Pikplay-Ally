@@ -8,10 +8,11 @@ import React, { useState, useEffect } from 'react'
 // import { toast } from 'react-toastify'
 // import { interestsList } from '../../lib/utils'
 // import { Alert } from '@mui/material';
-import { ChargingStation, EditNote, NotificationAdd, NotificationImportant, Notifications, NotificationsActive, Person, PhonelinkLockOutlined, PowerOffOutlined } from '@mui/icons-material'
+import { ChargingStation, EditNote, ExpandMore, NotificationAdd, NotificationImportant, Notifications, NotificationsActive, Person, PhonelinkLockOutlined, PowerOffOutlined } from '@mui/icons-material'
 import {
   Box,
   Chip,
+  Collapse,
   Modal,
   Tab,
   Tabs,
@@ -51,6 +52,7 @@ const Interface = ({
   userLogged,
 }) => {
   // const handleFavorite = useSelector(state => state.handleFavorite)
+  const [expanded, setExpanded] = useState(false);
   const [tabValue, setTabValue] = useState(0)
   const [isEditProfile, setIsEditProfile] = useState(false)
   const [currentExp, setCurrentExp] = useState(0)
@@ -216,13 +218,24 @@ const Interface = ({
         </Button>
       </div> */}
 
-      <h2>Publicaciones guardadas</h2>
+      {/* <h2>Publicaciones guardadas</h2>
       {[].map((item, i) => {
         <ItemCard />
-      })}
+      })} */}
 
-      <h2>Desafios</h2>
-      <ChallengesList challenges={challenges} />
+      <h2 onClick={() => setExpanded(!expanded)}>
+        Desafíos
+        <ExpandMore
+          className={`${styles.icon} ${expanded ? styles.expanded : ''}`}
+          expand={expanded}
+          onClick={() => setExpanded(!expanded)}
+          aria-expanded={expanded}
+          aria-label="show more"
+        />
+      </h2>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <ChallengesList challenges={challenges} />
+      </Collapse>
 
       <h2>Ranking amigos</h2>
       <RankingComponent isButtonReferral rankingData={referrals} />

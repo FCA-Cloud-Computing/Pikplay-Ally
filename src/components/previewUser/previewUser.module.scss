@@ -70,16 +70,6 @@
     position: absolute;
     left: 90px;
     top: 30px;
-    &::before {
-      background: #d6d6d6;
-      // box-shadow: 1px 1px #cecece;
-      content: "";
-      height: 26px;
-      position: absolute;
-      right: 70px;
-      top: -4px;
-      width: 1px;
-    }
 
     .experience {
       color: rgb(25 89 107);
@@ -255,12 +245,9 @@
         margin-bottom: 8px;
       }
       :global(.Coins) {
-        background: #eaeaea;
-        border-radius: 10px 0 0 10px;
-        box-shadow: 0 2px #f8af06;
         float: right;
-        margin: 4px -26px 0 0;
-        padding: 6px 10px 6px 0px;
+        margin: 4px 0px 0 0;
+        padding: 6px 10px 6px 0;
         position: relative;
       }
     }

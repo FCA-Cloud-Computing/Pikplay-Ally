@@ -30,6 +30,8 @@ const getExperiencesSrv = async (ctx) => {
 const createExperienceSrv = async (ctx, body) => {
   try {
     await post(ctx, `/experiences`, body)
+    const currentCoins = await getExperiencesSrv(ctx)
+    return currentCoins
   } catch (err) {
     // TODO - Implementar un logger
     console.error('Error al crear la experiencia del usuario', err)

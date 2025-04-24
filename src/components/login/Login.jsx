@@ -8,9 +8,10 @@ import useCommonStore from '../../hooks/commonStore'
 import { loginSrv } from '../../services/user/user'
 import { toast } from 'react-toastify'
 import LoginInterface from './LoginInterface'
+import { getExperiencesSrv } from '@/services/experience'
 
 function Login(props) {
-  const { env, setStoreValue, isOpenLoginModal: isOpen } = useCommonStore()
+  const { env, setStoreValue, isOpenLoginModal: isOpen } = useCommonStore(state => state)
   const router = useRouter()
   const [isHuman, setIsHuman] = useState(env == 'dev')
   const [isCodeSent, setIsCodeSent] = useState(false)
@@ -40,13 +41,13 @@ function Login(props) {
     try {
       setStoreValue('isFullLoading', true)
       const req = await loginSrv(null, fullPhone, parseInt(loginCode, 10))
-      const { code, data } = req
+      const { code, data: userLoggedData } = req
       if (code == 200) {
-        const { token, uid } = data
-        setStoreValue("userLogged", data)
+        const { token, uid } = userLoggedData
+        const experiencesData = await getExperiencesSrv(null)
+        const { currentPikcoins } = experiencesData
+        setStoreValue({ 'userLogged': userLoggedData, 'currentPikcoins': currentPikcoins }, null, true)
         handleCloseDialog()
-        // cookieCutter.set('X-Auth-Token', token)
-        // cookieCutter.set('User-ID', uid)
         router.push('?login=true')
       }
       else if (code == 400) {

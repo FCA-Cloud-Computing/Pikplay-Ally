@@ -30,8 +30,6 @@ const Message = () => <p>
 
 const Expresion = 'loved'
 const Options = ({ handleUserMessage, set }) => {
-    const { isOnboardingProcess } = useCommonStore()
-
     return <>
         <Button color='link'>
             <Link href='/redimir?paco=que-puedo-redimir'>

@@ -14,7 +14,7 @@ const initialNotification = {
 
 const initialMessageTop: string | null = null;
 
-const loadFromLocalStorage = (property) => {
+export const loadFromLocalStorage = (property) => {
   let value = null
   if (typeof window != 'undefined' && property) {
     value = localStorage.getItem(property)
@@ -32,16 +32,19 @@ const defaultUserLogged = {
 const initialLoginStorage = (set) => {
   set({ userLogged: { uid: null } })
   set({ notifications: [initialNotification] })
+  set({ currentCoins: 0 })
   logout()
 }
 
 interface CommonStoreState {
-  setStoreValue: (property: string, value: any) => void;
+  userLogged: any;
+  setStoreValue: (property: string | object, value: any) => void;
 }
 
 const useCommonStore = create<CommonStoreState>((set, get) => ({
   awardsSummaryModalHTML: null,
   awardSummaryModalDetail: null,
+  currentCoins: loadFromLocalStorage('currentCoins') || 0,
   darkMode: true,
   env: 'dev',
   experiences: [],
@@ -53,7 +56,7 @@ const useCommonStore = create<CommonStoreState>((set, get) => ({
   leftMenuBar: {
     isShow: false
   },
-  messageTop: /*<span><b>Bienvenido,</b><br />¡Disfruta de tu experiencia!</span>, */ initialMessageTop, // Banner flotante que se muestra debajo del menu
+  messageTop: initialMessageTop,
   notifications: [initialNotification],
   newNotifications: true,
   userLogged: loadFromLocalStorage('userLogged') || defaultUserLogged,
@@ -61,13 +64,25 @@ const useCommonStore = create<CommonStoreState>((set, get) => ({
     messageIA: null
   },
   logout: () => initialLoginStorage(set),
-  setStoreValue: (property, value) => {
-    localStorage.setItem(property, JSON.stringify(value));
-    set({ [property]: value });
+  setStoreValue: (property, value, isLocalStorage = false) => {
+    if (typeof property == 'object') {
+      set(property);
+      Object.keys(property).forEach((item) => {
+        if (isLocalStorage) {
+          localStorage.setItem(item, JSON.stringify(property[item]));
+        }
+      });
+    } else {
+      if (isLocalStorage) {
+        localStorage.setItem(property, JSON.stringify(value));
+      }
+      set({ [property]: value });
+    }
   },
   setUserLogged: (data) => {
     set((state) => ({ userLogged: { ...state.userLogged, ...data } }));
   },
+  set,
 }));
 
 export default useCommonStore

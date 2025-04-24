@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.49;fill:url(#SVGID_3_);}
+	.st1{fill:#FFFFFF;}
+	.st2{opacity:0.67;clip-path:url(#SVGID_5_);}
+	.st3{opacity:0.4;clip-path:url(#SVGID_5_);}
+</style>
+<g>
+	<g>
+		<defs>
+			<rect id="SVGID_1_" x="-1" width="331" height="330"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<g style="clip-path:url(#SVGID_2_);">
+			
+				<image style="overflow:visible;" width="419" height="775" xlink:href="../../image.png"  transform="matrix(0.8404 0 0 0.8708 -10.4907 -128.8752)">
+			</image>
+		</g>
+	</g>
+	
+		<radialGradient id="SVGID_3_" cx="139.6937" cy="-122.1037" r="779.4041" gradientTransform="matrix(0.9651 0 0 0.9675 26.5873 77.0286)" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#C800FF"/>
+		<stop  offset="8.586663e-03" style="stop-color:#C100F7"/>
+		<stop  offset="6.608101e-02" style="stop-color:#9502C8"/>
+		<stop  offset="0.1271" style="stop-color:#6D049F"/>
+		<stop  offset="0.1908" style="stop-color:#4D057C"/>
+		<stop  offset="0.2578" style="stop-color:#320660"/>
+		<stop  offset="0.3293" style="stop-color:#1D074A"/>
+		<stop  offset="0.4075" style="stop-color:#0E083A"/>
+		<stop  offset="0.4972" style="stop-color:#060831"/>
+		<stop  offset="0.6247" style="stop-color:#03082E"/>
+		<stop  offset="0.6736" style="stop-color:#080834"/>
+		<stop  offset="0.7375" style="stop-color:#180744"/>
+		<stop  offset="0.8097" style="stop-color:#31065F"/>
+		<stop  offset="0.888" style="stop-color:#540485"/>
+		<stop  offset="0.9704" style="stop-color:#8103B5"/>
+		<stop  offset="0.9899" style="stop-color:#8D02C1"/>
+	</radialGradient>
+	<rect x="-1" class="st0" width="335.2" height="330"/>
+	<g>
+		<g>
+			<polygon class="st1" points="75.4,43.2 69.3,43.5 68.9,49.6 68.6,43.5 62.5,43.2 68.6,42.9 68.9,36.8 69.3,42.9 			"/>
+			<g>
+				<polygon class="st1" points="46,54.4 43.6,57.1 46,59.7 43.4,57.3 40.7,59.7 43.1,57.1 40.7,54.4 43.4,56.8 				"/>
+				<polygon class="st1" points="43.4,45.8 43.6,56.9 54.6,57.1 43.6,57.3 43.4,68.3 43.2,57.3 32.1,57.1 43.2,56.9 				"/>
+			</g>
+			<polygon class="st1" points="301.2,115.9 301.3,126.7 312.1,126.8 301.3,127 301.2,137.8 301,127 290.2,126.8 301,126.7 			"/>
+			<polygon class="st1" points="282.3,129.5 282.5,137.7 290.7,137.8 282.5,138 282.3,146.2 282.2,138 274,137.8 282.2,137.7 			"/>
+			<polygon class="st1" points="30.2,36.3 30.3,43.1 37.1,43.2 30.3,43.3 30.2,50.1 30.1,43.3 23.3,43.2 30.1,43.1 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<defs>
+			<polygon id="SVGID_4_" points="0,343.8 330,344.4 330,0.6 0,0 			"/>
+		</defs>
+		<clipPath id="SVGID_5_">
+			<use xlink:href="#SVGID_4_"  style="overflow:visible;"/>
+		</clipPath>
+		<g class="st3">
+			
+				<image style="overflow:visible;" width="141" height="141" xlink:href="3A05F81D.png"  transform="matrix(1 0 0 1 -15.7867 -0.4861)">
+			</image>
+		</g>
+		<g class="st3">
+			
+				<image style="overflow:visible;" width="141" height="141" xlink:href="3A05F823.png"  transform="matrix(1 0 0 1 200.5449 177.1591)">
+			</image>
+		</g>
+		<g class="st3">
+			
+				<image style="overflow:visible;" width="114" height="114" xlink:href="3A05F825.png"  transform="matrix(1 0 0 1 -56.7867 192.5139)">
+			</image>
+		</g>
+		<g class="st3">
+			
+				<image style="overflow:visible;" width="121" height="124" xlink:href="3A05F827.png"  transform="matrix(1 0 0 1 229.8313 -50.993)">
+			</image>
+		</g>
+	</g>
+</g>
+</svg>

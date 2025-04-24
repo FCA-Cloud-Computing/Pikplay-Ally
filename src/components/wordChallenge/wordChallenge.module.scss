@@ -1,93 +1,101 @@
 .WordChallenge {
-    // background: red;
-    :global(.MuiPaper-root) {
-        background-color: initial;
-        border-radius: 10px;
-    }
+  // background: red;
+  :global(.MuiPaper-root) {
+    background-color: initial;
+    border-radius: 10px;
+  }
 
-    :global(.MuiDialogContent-root) {
-        background-image: url(/images/backgrounds/general-bg.png);
-    }
+  :global(.MuiDialogContent-root) {
+    background-image: url(/images/backgrounds/general-bg.png);
+  }
 
-    .title {
-        color: #f79c01;
-        font-size: 24px;
-        font-weight: 400;
-        margin: 0 0 20px;
-        text-shadow:
-            2px 0 #2e2e2e,
-            -2px 0 #2e2e2e,
-            0 2px #2e2e2e,
-            0 -2px #2e2e2e,
-            1px 1px #2e2e2e,
-            -1px -1px #2e2e2e,
-            1px -1px #2e2e2e,
-            -1px 1px #2e2e2e;
-    }
+  .title {
+    color: #f79c01;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0;
+    text-shadow:
+      2px 0 #2e2e2e,
+      -2px 0 #2e2e2e,
+      0 2px #2e2e2e,
+      0 -2px #2e2e2e,
+      1px 1px #2e2e2e,
+      -1px -1px #2e2e2e,
+      1px -1px #2e2e2e,
+      -1px 1px #2e2e2e;
+  }
 
-    .subtitle {
-        color: white;
-        margin-bottom: 20px;
-        text-align: center;
+  .subtitle {
+    color: white;
+    margin-bottom: 20px;
+    text-align: center;
 
-        span {
-            background: linear-gradient(90deg, #74ffd0, #3ac8be);
-            font-weight: bold;
-            background-clip: text;
-            -webkit-text-fill-color: #0000;
-        }
+    span {
+      background: linear-gradient(90deg, #74ffd0, #3ac8be);
+      font-weight: bold;
+      background-clip: text;
+      -webkit-text-fill-color: #0000;
     }
+  }
 
-    :global(.ButtonComponent) {
-        button {
-            color: white;
-        }
+  .question {
+    color: white;
+  }
+
+  :global(.ButtonComponent) {
+    button {
+      color: white;
     }
+  }
 }
 
 .wordChallengeInformation {
-    span {
-        background: linear-gradient(90deg, #74ffd0, #3ac8be);
-        font-weight: bold;
-        text-shadow: initial;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: #0000;
-    }
+  span {
+    background: linear-gradient(90deg, #74ffd0, #3ac8be);
+    font-weight: bold;
+    text-shadow: initial;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #0000;
+  }
 }
 
 .InputComponent {
-    column-gap: 20px;
-    display: flex;
-    flex-direction: column;
+  column-gap: 20px;
+  display: flex;
+  flex-direction: column;
 
-    .inputContent {
-        border-radius: 10px;
-        overflow: hidden;
-        padding: 2px;
-        position: relative;
+  .inputContent {
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 2px;
+    position: relative;
+    background-color: #6f00ef;
 
-        input {
-            border-radius: inherit;
-            border: none;
-            color: #521a93;
-            font-size: 42px;
-            height: 60px;
-            position: relative;
-            width: 40px;
-            text-align: center;
-        }
-
-        &:has(input:focus){
-            background: 
-            linear-gradient(83.23deg, #feb154 -6.32%, #d263ee 23.89%, #5d5af6 67.88%, #09e0a0 107.67%),
-            linear-gradient(0deg, #0000004d, #0000004d);
-            top: -1px;
-        }
+    &:has(input:focus) {
+      background: linear-gradient(83.23deg, #feb154 -6.32%, #d263ee 23.89%, #5d5af6 67.88%, #09e0a0 107.67%),
+        linear-gradient(0deg, #0000004d, #0000004d);
+      // top: -1px;
     }
+
+    input {
+      border-radius: inherit;
+      border: none;
+      color: #521a93;
+      font-size: 42px;
+      height: 60px;
+      position: relative;
+      width: 40px;
+      text-align: center;
+    }
+  }
+
+  .errorMessage {
+    color: white;
+  }
 }
 
-.inputContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
