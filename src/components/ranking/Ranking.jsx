@@ -21,8 +21,9 @@ const RankingComponent = (props) => {
     isButtonReferral
   } = props
   const [rankingData, setRankingData] = useState(rankingDataProp ? rankingDataProp : [])
-  const { setIAMessage } = useIAStore()
-  const { setStoreValue } = useCommonStore((state => state))
+  const setIAMessage = useIAStore(item => item.setIAMessage)
+  const setStoreValue = useCommonStore(state => state.setStoreValue)
+  const userLogged = useCommonStore(state => state.userLogged)
 
   const getRankingDetail = () => {
     try {
@@ -73,6 +74,12 @@ const RankingComponent = (props) => {
   }
 
   const handleParticipate = () => {
+    const isLogged = !!userLogged?.uid
+    if (!isLogged) {
+      setStoreValue({ isOpenLoginModal: true, leftMenuBar: { isShow: true } })
+      return
+    }
+
     addRankingDetailSrv(null, { rid: rankingId })
       .then(res => {
         debugger
