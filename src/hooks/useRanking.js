@@ -28,7 +28,7 @@ export const useRanking = (rankingId, uid) => {
         })
 
         const storedPosition = JSON.parse(
-          localStorage.getItem(`ranking${rankingId}_currentUser`)
+          localStorage.getItem(`ranking${rankingId}-${uid}`)
         )
         const currentUserIndex = pointsAndUserData.findIndex(
           (user) => user.uid === uid
@@ -44,7 +44,7 @@ export const useRanking = (rankingId, uid) => {
         }
 
         localStorage.setItem(
-          `ranking${rankingId}_currentUser`,
+          `ranking${rankingId}_${uid}`,
           JSON.stringify(currentUserIndex)
         )
         setRankingData(pointsAndUserData.sort((a, b) => b.points - a.points))
