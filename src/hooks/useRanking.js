@@ -7,59 +7,53 @@ export const useRanking = (rankingId, uid) => {
   const [rankingData, setRankingData] = useState([])
 
   useEffect(() => {
-    try {
-      getRankingDetailSrv(null, rankingId).then((rankingDataPointsRes) => {
+    const fetchRankingData = async () => {
+      try {
+        const rankingDataPointsRes = await getRankingDetailSrv(null, rankingId)
         const { data: rankingDataPoints } = rankingDataPointsRes
         const uids = rankingDataPoints.map((member) => member.uid)
-        getUsersSrv(null, { uids: uids.join() })
-          .then(({ code, data }) => {
-            const pointsAndUserData = rankingDataPoints.map((member) => {
-              const user = data && data.find((user) => user.uid === member.uid)
-              return {
-                ...user,
-                league: "bronce",
-                points: member.points,
-                pointsDetail: member.pointsDetail,
-              }
-            })
 
-            // Compare and update position for the current user
-            const storedPosition = JSON.parse(
-              localStorage.getItem(`ranking${rankingId}_${uid}`)
-            )
-            const currentUserIndex = pointsAndUserData.findIndex(
-              (user) => user.uid === uid
-            )
+        const usersRes = await getUsersSrv(null, { uids: uids.join() })
+        const { data: usersData } = usersRes
 
-            if (!uid || currentUserIndex < 0) {
-              setRankingData(
-                pointsAndUserData.sort((a, b) => b.points - a.points)
-              )
-              return
-            }
+        const pointsAndUserData = rankingDataPoints.map((member) => {
+          const user =
+            usersData && usersData.find((user) => user.uid === member.uid)
+          return {
+            ...user,
+            league: "bronce",
+            points: member.points,
+            pointsDetail: member.pointsDetail,
+          }
+        })
 
-            if (
-              storedPosition !== null &&
-              storedPosition !== currentUserIndex
-            ) {
-              moveItem(uid, currentUserIndex - storedPosition)
-            }
+        const storedPosition = JSON.parse(
+          localStorage.getItem(`ranking${rankingId}_currentUser`)
+        )
+        const currentUserIndex = pointsAndUserData.findIndex(
+          (user) => user.uid === uid
+        )
 
-            localStorage.setItem(
-              `ranking${rankingId}_${uid}`,
-              JSON.stringify(currentUserIndex)
-            )
-            setRankingData(
-              pointsAndUserData.sort((a, b) => b.points - a.points)
-            )
-          })
-          .catch((err) => {
-            console.log("Error getting users", err)
-          })
-      })
-    } catch (error) {
-      console.log("Error getting ranking data", error)
+        if (!uid || currentUserIndex < 0) {
+          setRankingData(pointsAndUserData.sort((a, b) => b.points - a.points))
+          return
+        }
+
+        if (storedPosition !== null && storedPosition !== currentUserIndex) {
+          moveItem(uid, currentUserIndex - storedPosition)
+        }
+
+        localStorage.setItem(
+          `ranking${rankingId}_currentUser`,
+          JSON.stringify(currentUserIndex)
+        )
+        setRankingData(pointsAndUserData.sort((a, b) => b.points - a.points))
+      } catch (error) {
+        console.log("Error fetching ranking data", error)
+      }
     }
+
+    fetchRankingData()
   }, [rankingId, uid])
 
   const moveItem = (uid, positions) => {
