@@ -14,15 +14,16 @@ import Zoom from 'react-medium-image-zoom'
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 
 // Custom
-import useCommonStore from '../../hooks/commonStore'
 import CashbackTag from './cashbackTag/CashbackTag'
 import Author from './Author'
 import { formatNumber, setMessageTop } from '../../lib/utils'
 import CustomFetch from '../fetch/CustomFetch'
-import { postChallengeDetail } from '@/services/challenges/challenges'
-import { CID_ASK_PRODUCT } from '@/consts/challenges'
 import CoinIcon from '../coinIcon/CoinIcon'
 import Button from '../button/Button'
+
+import { postChallengeDetailSrv } from '@/services/challenges/challenges'
+import { CID_ASK_PRODUCT, CID_SHARE_PRODUCT } from '@/consts/challenges'
+import useCommonStore from '@/hooks/commonStore'
 import useRedemption from '@/hooks/useRedemption'
 
 
@@ -50,7 +51,7 @@ const ItemCard = (props) => {
   } = props
 
   const { handleRedemption } = useRedemption()
-  const { setStoreValue } = useCommonStore()
+  const { loggedUser, setStoreValue } = useCommonStore()
   const imagesList = images ? images.split(",") : []
   const usuario =
     typeof localStorage != 'undefined'
@@ -61,15 +62,14 @@ const ItemCard = (props) => {
   let like = null
   if (usuario) like = likes ? !!likes.find(like => like == usuario) : false
   const isDestacada = publicationId == 1 ? true : false
-  const { loggedUser } = useCommonStore()
-  const shareLink = `https://api.whatsapp.com/send?phone=&text=Revisa%20esta%20publicacion%20en%20Pikplay%20que%20esta%20potente%20https://pikplay.com.co/${seller.slug}%23${slug}`
+  const shareLink = `https://api.whatsapp.com/send?phone=&text=Revisa%20esta%20publicación%20en%20Pikplay%20que%20esta%20potente%20https://pikplay.com.co/${seller.slug}%23${slug}`
   const showTags = isUsed || cashbackAvailable
 
-  const handlerAskProduct = () => {
-    const resp = postChallengeDetail(null, { challengeId: CID_ASK_PRODUCT })
+  const handlerChallengeProduct = (challengeId) => {
+    const resp = postChallengeDetailSrv(null, { challengeId })
       .then(({ data }) => {
         const { messageTop } = data
-        if (messageTop) setMessageTop(messageTop)
+        if (messageTop) setStoreValue('messageTop', messageTop)
       })
   }
 
@@ -88,7 +88,7 @@ const ItemCard = (props) => {
               className={styles.image_wrapper}
               // href={isClickable ? `https://api.whatsapp.com/send?phone=${user.whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}` : null}
               key={publicationId}
-              target='_blank'
+            // target='_blank'
             // href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
             >
               {
@@ -168,6 +168,7 @@ const ItemCard = (props) => {
                 {/* <Tooltip title='Compartir'> */}
                 <a
                   href={`${shareLink}`}
+                  onClick={isClickable ? () => handlerChallengeProduct(CID_SHARE_PRODUCT) : null}
                   rel="noreferrer"
                   target='_BLANK'>
                   <ShareOutlined
@@ -183,8 +184,8 @@ const ItemCard = (props) => {
                 as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
                 className={publicationId == 1 ? styles.destacada_Card : ''}
                 // href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
-                href={isClickable ? `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}` : null}
-                onClick={isClickable ? handlerAskProduct : null}
+                // href={isClickable ? `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}` : null}
+                onClick={isClickable ? () => handlerChallengeProduct(CID_ASK_PRODUCT) : null}
                 target='_blank'>
                 {title && <h2>
                   {title}

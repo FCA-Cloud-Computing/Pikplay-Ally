@@ -77,6 +77,46 @@ const RankingComponent = (props) => {
               </span>
               <div>
                 {league && <small className={`leagueBox`}>{league}</small>}
+      {isButtonJoinRanking && <Button color="blue" realistic fullWidth className="p-10" onClick={handleParticipate}>Quiero participar</Button>}
+      {isButtonReferral && <Button
+        className="p-10"
+        color="blue"
+        fullWidth
+        onClick={() => getContacts(callbackSuccess)}
+        realistic
+        style={{ marginBottom: '10px' }}
+      >
+        Añadir a un amigo
+      </Button>}
+
+      <div className={styles.list}>
+        {rankingData && rankingData.length > 0 && rankingData
+          .sort((a, b) => b.points - a.points)
+          .map((member, index) => {
+            const { league } = member
+            const percentageBar = member.points / 100;
+
+            return <motion.div
+              animate={{ x: 0, }}
+              className={`${index == 0 ? 'starsFallingDown' : ''} ${styles.item} ${member.uid}`}
+              initial={{ x: '-400px' }}
+              key={index}
+              transition={{ delay: index * 0.3 }}
+              onClick={() => member.pointsDetail && handlePointsDetail(member.pointsDetail)}>
+              <div className={styles.number}>
+                {index + 1}
+                <span className={styles.arrow}>«</span>
+              </div>
+              <div className={styles.picture}>
+                <ProfileImage picture={member.picture} small percentageBar={percentageBar} />
+              </div>
+              <div className={styles.name}>
+                <span>
+                  {member.name}
+                </span>
+                <div>
+                  {league && <small className={`${styles.leagueBox} leagueBox`}>{league}</small>}
+                </div>
               </div>
             </div>
             <div className={styles.points}>

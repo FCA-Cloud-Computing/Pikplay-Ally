@@ -138,7 +138,7 @@ const DefaultSellerPage = (props) => {
       {/* Bonos */}
       {coupons && <BonusList bonuses={coupons.data} />}
 
-      {showWordChallenge && <WordChallenge showModal={showWordChallenge} setShowModal={setShowWorkChallenge} />}
+      {showWordChallenge && <WordChallenge setShowWorkChallenge={setShowWorkChallenge} />}
 
       {/* Ranking */}
       {rankingId && <>
@@ -148,7 +148,7 @@ const DefaultSellerPage = (props) => {
             &nbsp;Ranking
           </h1>
         </div>
-        <RankingComponent {...{ rankingId }} />
+        <RankingComponent isButtonJoinRanking {...{ rankingId }} />
       </>}
 
       {/* Loyalty */}

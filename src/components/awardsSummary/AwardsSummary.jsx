@@ -1,6 +1,6 @@
 import styles from './awardsSummary.module.scss'
 
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from "@mui/material";
 import ReactTyped from 'react-typed'
 import CoinIcon from '../coinIcon/CoinIcon';
@@ -10,13 +10,16 @@ import classNames from 'classnames';
 import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummaryExperience';
 import { motion, AnimatePresence } from "framer-motion"
 import useCommonStore from '../../hooks/commonStore';
-import { createExperienceSrv } from '@/services/experience';
+import { createExperienceSrv, getExperiencesSrv } from '@/services/experience';
 import { getNotificationsSrv } from '@/services/user/user';
 
-const AwardsSummary = ({ handleCloseModal }) => {
-  const [page, setPage] = useState(0);
-  const currentUserCoins = 10
-  const { awardsSummaryModalHTML, awardSummaryModalDetail, setStoreValue, notifications } = useCommonStore()
+const AwardsSummary = ({ handleCloseModal, page, setPage }) => {
+  const awardsSummaryModalHTML = useCommonStore(state => state.awardsSummaryModalHTML)
+  const awardSummaryModalDetail = useCommonStore(state => state.awardSummaryModalDetail)
+  const currentCoins = useCommonStore(state => state.currentCoins)
+  const notifications = useCommonStore(state => state.notifications)
+  const setStoreValue = useCommonStore(state => state.setStoreValue)
+
   const {
     coins: gainedCoins,
     description,
@@ -24,27 +27,30 @@ const AwardsSummary = ({ handleCloseModal }) => {
     experience: gainedExperience,
     type: notification_type
   } = awardSummaryModalDetail
+
   useEffect(() => {
     setTimeout(() => {
       startConfetti()
     }, 500)
   }, [])
 
-  const handleUpdateExperience = () => {
-    // handlePickRewardUp()
-    createExperienceSrv(null, {
-      coins: gainedCoins,
-      experience: gainedExperience,
-      nid,
-      type: notification_type
-    })
-    getNotificationsSrv().then(res => {
-      const currentNotifications = res.data;
-      if (JSON.stringify(notifications) !== JSON.stringify(currentNotifications)) {
-        setStoreValue('notifications', res.data);
-      };
-    });
+  const handleUpdateExperience = () => { // Haciendo el UPDATE en la BD
     setPage(1)
+    setTimeout(() => {
+      const createExpReq = createExperienceSrv(null, {
+        coins: gainedCoins,
+        experience: gainedExperience,
+        nid,
+        type: notification_type
+      })
+        .then(() => {
+          getExperiencesSrv()
+            .then(data => {
+              const { currentPikcoins } = data
+              setStoreValue('currentCoins', currentPikcoins)
+            })
+        })
+    }, 5000)
   }
 
   return (
@@ -55,15 +61,16 @@ const AwardsSummary = ({ handleCloseModal }) => {
           initial={{ x: '-600px' }}
           transition={{ delay: .5 }}
           className={styles.title}>
-          ¡Recoge tus recompensas!
+          <img className={styles.ganasteLabel} src="/images/backgrounds/ganaste-v2.svg" />
         </motion.div>
         {description
           && <motion.div
             animate={{ x: 0, y: 10 }}
+            className={styles.subtitle}
+            dangerouslySetInnerHTML={{ __html: description }}
             initial={{ y: '0px', x: '600px' }}
             transition={{ delay: .2 }}
-            className={styles.subtitle}>
-            {description}
+          >
           </motion.div>
         }
         <img className={`rotating ${styles.imgLights}`} src="/images/elements/luces.png" />
@@ -92,17 +99,24 @@ const AwardsSummary = ({ handleCloseModal }) => {
               shine>
               Recoger
             </Button>
-            <Button
+            {/* <Button
               color=""
               onClick={handleUpdateExperience}
               style={{ color: 'white' }}>
               Conocer de los créditos
-            </Button>
+            </Button> */}
           </motion.div>
         </div>
       </>}
+
       {page == 1 && <>
-        <ProfileSummaryExperience {...{ gainedCoins, gainedExperience, changeAvatar: false }} />
+        <ProfileSummaryExperience {
+          ...{
+            gainedCoins,
+            gainedExperience,
+            changeAvatar: false,
+          }}
+        />
         <Button className={styles.closeModal} color='red' realistic onClick={handleCloseModal}>Cerrar</Button>
       </>}
     </>
@@ -110,10 +124,12 @@ const AwardsSummary = ({ handleCloseModal }) => {
 }
 
 const AwardsSummaryModal = (props) => {
-  const { setStoreValue } = useCommonStore((state => state))
-  const [[page, direction], setPage] = useState([0, 0]);
+  const setStoreValue = useCommonStore(state => state.setStoreValue)
+  const [page, setPage] = useState(0)
+  const direction = 0
+
   const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="left" ref={ref} {...props} />;
+    return <Slide direction="left" ref={ref} {...props} />
   })
 
   const handleCloseModal = () => {
@@ -132,9 +148,13 @@ const AwardsSummaryModal = (props) => {
         <div className={styles.bg_city}></div>
         <div className={styles.content}>
           <div className={styles.content_child}>
-            <AnimatePresence initial={true} custom={direction}>
-              <AwardsSummary page={page} handleCloseModal={handleCloseModal} />
-            </AnimatePresence>
+            {/* <AnimatePresence initial={true} custom={direction}> */}
+            <AwardsSummary
+              handleCloseModal={handleCloseModal}
+              page={page}
+              setPage={setPage}
+            />
+            {/* </AnimatePresence> */}
           </div>
         </div>
       </div>
@@ -142,4 +162,4 @@ const AwardsSummaryModal = (props) => {
   </Dialog>
 }
 
-export default AwardsSummaryModal;
+export default memo(AwardsSummaryModal);
