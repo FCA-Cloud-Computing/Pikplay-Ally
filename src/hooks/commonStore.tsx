@@ -30,9 +30,11 @@ const defaultUserLogged = {
 }
 
 const initialLoginStorage = (set) => {
-  set({ userLogged: { uid: null } })
-  set({ notifications: [initialNotification] })
-  set({ currentCoins: 0 })
+  set({
+    currentCoins: 0,
+    notifications: [initialNotification],
+    userLogged: { uid: null }
+  })
   logout()
 }
 

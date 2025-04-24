@@ -1,21 +1,25 @@
-import { getRankingDetailSrv } from "@/services/rankings/rankings";
-import { getUsersSrv } from "@/services/user/user";
-import { useEffect, useState } from "react";
-import useCommonStore from "./commonStore";
+import { getRankingDetailSrv } from "@/services/rankings/rankings"
+import { getUsersSrv } from "@/services/user/user"
+import { useEffect, useState } from "react"
+import useCommonStore from "./commonStore"
 
 export const useRanking = (rankingId) => {
-  const [rankingData, setRankingData] = useState([]);
+  const [rankingData, setRankingData] = useState([])
 
   useEffect(() => {
     try {
       getRankingDetailSrv(null, rankingId)
         .then((rankingDataPointsRes) => {
-          const { data: rankingDataPoints } = rankingDataPointsRes;
-          const uids = rankingDataPoints.map((member) => member.uid);
+          const { data: rankingDataPoints } = rankingDataPointsRes
+          const uids = rankingDataPoints.map((member) => member.uid)
           getUsersSrv(null, { uids: uids.join() })
-            .then(({ code, data }) => {
+            .then(async ({ code, data }) => {
+              // const experiences = await getExperiencesSrv(null, { uids: uids.join() })
+
               const pointsAndUserData = rankingDataPoints.map((member) => {
-                const user = data && data.find((user) => user.uid === member.uid);
+                const user = data && data.find((user) => user.uid === member.uid)
+                // const experiencesArray = experiences && experiences.filter(exp => exp.uid === member.uid)
+
                 return {
                   ...user,
                   league: "bronce",
@@ -23,6 +27,7 @@ export const useRanking = (rankingId) => {
                   pointsDetail: member.pointsDetail,
                 };
               });
+
               // Compare and update positions
               const storedPositions = JSON.parse(localStorage.getItem(`ranking${rankingId}`)) || {};
               pointsAndUserData.forEach((user, index) => {
@@ -69,9 +74,12 @@ export const useRanking = (rankingId) => {
       setRankingData(newItems);
       setTimeout(() => animateStep(nextIndex), 300); // Espera para cada paso
     };
-    
+
     animateStep(index);
   };
 
-  return { moveItem, rankingData };
-};
+  return {
+    moveItem,
+    rankingData
+  }
+}

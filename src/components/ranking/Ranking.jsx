@@ -11,23 +11,27 @@ import Button from '../button/Button'
 import { useIAStore } from '../ia/IAstore'
 import useCommonStore from '@/hooks/commonStore'
 import { useRanking } from '@/hooks/useRanking'
+
+// Services
 import { getReferralsSrv, getUsersSrv } from '@/services/user/user'
 import { addRankingDetailSrv, getRankingDetailSrv } from '@/services/rankings/rankings'
+import { getExperiencesSrv } from '@/services/experience'
 
 const RankingComponent = (props) => {
   const {
     rankingData: rankingDataProp,
     rankingId,
     isButtonJoinRanking,
-    isButtonReferral
+    isButtonReferral,
+    isInviteButton,
   } = props
-  const [rankingData, setRankingData] = useState(rankingDataProp ? rankingDataProp : [])
+  // const [rankingData, setRankingData] = useState(rankingDataProp ? rankingDataProp : [])
   const setIAMessage = useIAStore(item => item.setIAMessage)
   const setStoreValue = useCommonStore(state => state.setStoreValue)
   const userLogged = useCommonStore(state => state.userLogged)
+  const { rankingData, moveItem } = useRanking(rankingId)
 
   const getRankingDetail = () => {
-    debugger
     try {
       getRankingDetailSrv(null, rankingId)
         .then(rankingDataPointsRes => {
@@ -35,16 +39,23 @@ const RankingComponent = (props) => {
           const uids = rankingDataPoints.map(member => member.uid)
           getUsersSrv(null, { uids: uids.join() })
             .then(({ code, data }) => {
-              const pointsAndUserData = rankingDataPoints.map(member => {
-                const user = data && data.find(user => user.uid === member.uid)
-                return {
-                  ...user,
-                  league: 'bronce',
-                  points: member.points,
-                  pointsDetail: member.pointsDetail,
-                }
-              })
-              setRankingData(pointsAndUserData)
+              getExperiencesSrv(null, { uids: uids.join() })
+                .then(({ code, data: experiences }) => {
+                  const pointsAndUserData = rankingDataPoints.map(member => {
+                    const user = data && data.find(user => user.uid === member.uid)
+                    const experiencesArray = experiences && experiences.filter(exp => exp.uid === member.uid)
+                    // debugger
+
+                    return {
+                      ...user,
+                      experiences: experiencesArray,
+                      league: 'bronce',
+                      points: member.points,
+                      pointsDetail: member.pointsDetail,
+                    }
+                  })
+                  setRankingData(pointsAndUserData)
+                })
             })
             .catch(err => {
               console.log('Error getting users', err)
@@ -63,7 +74,7 @@ const RankingComponent = (props) => {
   }
 
   useEffect(() => {
-    !rankingDataProp && getRankingDetail()
+    // !rankingDataProp && getRankingDetail()
     // getReferrals()
   }, [])
 
@@ -119,42 +130,47 @@ const RankingComponent = (props) => {
       </Button>}
 
       <div className={styles.list}>
-        {rankingData && rankingData.length > 0 && rankingData
-          .sort((a, b) => b.points - a.points)
-          .map((member, index) => {
-            const { league } = member
-            const percentageBar = member.points / 100;
+        <AnimatePresence>
+          {rankingData && rankingData.length > 0 && rankingData
+            .sort((a, b) => b.points - a.points)
+            .map((member, index) => {
+              const { league } = member
+              const percentageBar = member.points / 100;
 
-            return <motion.div
-              animate={{ x: 0, }}
-              layout
-              transition={{ type: "spring", stiffness: 500, damping: 25 }}
-              className={`${index == 0 ? 'starsFallingDown' : ''} ${styles.item} ${member.uid}`}
-              initial={{ x: '-400px' }}
-              key={index}
+              return <motion.div
+                animate={{ x: 0, }}
+                layout
+                transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                className={`${index == 0 ? 'starsFallingDown' : ''} ${styles.item} ${member.uid}`}
+                // initial={{ x: '-400px' }}
+                key={index}
               // transition={{ delay: index * 0.3 }}
-              onClick={() => member.pointsDetail && handlePointsDetail(member.pointsDetail)}>
-              <div className={styles.number}>
-                {index + 1}
-                <span className={styles.arrow}>«</span>
-              </div>
-              <div className={styles.picture}>
-                <ProfileImage picture={member.picture} small percentageBar={percentageBar} />
-              </div>
-              <div className={styles.name}>
-                <span>
-                  {member.name}
-                </span>
-                <div>
-                  {league && <small className={`${styles.leagueBox} leagueBox`}>{league}</small>}
+              // onClick={() => member.pointsDetail && handlePointsDetail(member.pointsDetail)}
+              >
+                <div className={styles.number}>
+                  {index + 1}
+                  <span className={styles.arrow}>«</span>
                 </div>
-              </div>
-              {member.points && <div className={styles.points}>
-                {formatNumber(member.points)} Pts.
-              </div>}
-              {!member.points && <Button class="f-r" color="yellow" target='_link'>Invitar</Button>}
-            </motion.div>
-          })}
+                <div className={styles.picture}>
+                  <ProfileImage picture={member.picture} small percentageBar={percentageBar} />
+                </div>
+                <div className={styles.name}>
+                  <span>
+                    {member.name}
+                  </span>
+                  <div>
+                    {league && <small className={`${styles.leagueBox} leagueBox`}>{league}</small>}
+                  </div>
+                </div>
+                {member.points != null && <div className={styles.points}>
+                  {formatNumber(member.points)} Pts.
+                </div>}
+                {(!member.points && isInviteButton) && <Button class="f-r" color="yellow" target='_link'>Invitar</Button>}
+                <button onClick={() => moveItem(member.uid, -1)}>+1</button>
+                <button onClick={() => moveItem(member.uid, 1)}>-1</button>
+              </motion.div>
+            })}
+        </AnimatePresence>
       </div>
     </div>
   )
