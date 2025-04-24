@@ -78,6 +78,10 @@ const DefaultSellerPage = (props) => {
 
   const isPointsByExperience = sellerSlug == 'caribe-dev'
 
+  const handleTriviaChallenge = () => {
+    setShowWorkChallenge(true)
+  }
+
   useEffect(() => {
     competitionsArray && competitionsArray.length > 0 && getCompetitions(competitionsArray)
   }, [])
@@ -96,7 +100,7 @@ const DefaultSellerPage = (props) => {
             {/* <SavingsIcon /> */}
             {registerInvoiceLabel || REGISTER_INVOICE_LABEL}
           </Button>
-          <Button color='link' className='outline' onClick={() => setShowWorkChallenge(true)}>
+          <Button color='link' className='outline' onClick={handleTriviaChallenge}>
             {/* <SavingsIcon /> */}
             Trivia Challenge
           </Button>
@@ -150,7 +154,11 @@ const DefaultSellerPage = (props) => {
             &nbsp;Ranking
           </h1>
         </div>
-        <RankingComponent isPointsByExperience={isPointsByExperience} isButtonJoinRanking {...{ rankingId }} />
+        <RankingComponent
+          isInviteButton={false}
+          isButtonJoinRanking {...{ rankingId }}
+          isPointsByExperience={isPointsByExperience}
+        />
       </>}
 
       {/* Loyalty */}

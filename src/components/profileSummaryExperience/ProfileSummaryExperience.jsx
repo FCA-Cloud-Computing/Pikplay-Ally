@@ -71,7 +71,6 @@ const ProfileSummaryExperience = (props) => {
     if (value == name) return
     setIAMessage(`Deseas cambiar tu nombre a ${value}?`)
     setIAOptions(<>
-      <Button color='transparent'>Cancelar</Button>
       <Button color='blue' realistic
         onClick={() => {
           updateProfileSrv(null, uid, { name: value })
@@ -87,6 +86,7 @@ const ProfileSummaryExperience = (props) => {
         }}>
         Cambiar
       </Button>
+      <Button color='transparent'>Cancelar</Button>
     </>)
   }
 
