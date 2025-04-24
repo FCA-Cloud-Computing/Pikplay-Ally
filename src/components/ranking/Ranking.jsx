@@ -13,7 +13,7 @@ import useCommonStore from "@/hooks/commonStore"
 import { useRanking } from "@/hooks/useRanking"
 
 const RankingComponent = (props) => {
-  const { rankingId, isButtonJoinRanking, isButtonReferral } = props
+  const { rankingId, isButtonJoinRanking, isButtonReferral, isInviteButton } = props
   const setIAMessage = useIAStore((item) => item.setIAMessage)
   const setStoreValue = useCommonStore((state) => state.setStoreValue)
   const userLogged = useCommonStore((state) => state.userLogged)

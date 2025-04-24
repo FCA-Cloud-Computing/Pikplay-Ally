@@ -163,6 +163,7 @@ export default function LoginInterface({
               <>
                 <TextField
                   autoComplete={false}
+                  className={styles.inputCode}
                   disabled={buttonText == 'Validando...' ? true : false}
                   fullWidth
                   id='verificationCode'
