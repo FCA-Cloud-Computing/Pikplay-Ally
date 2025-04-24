@@ -5,7 +5,6 @@ import { motion } from "framer-motion"
 import CoinIcon from '../coinIcon/CoinIcon'
 import { slugify } from '../../lib/utils'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import useCommonStore, { loadFromLocalStorage } from '../../hooks/commonStore'
 import { useIAStore } from '../ia/IAstore'
 import Button from '../button/Button'
@@ -13,8 +12,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Image from 'next/image'
 import Login from '../login/Login'
 
-const MenuMobileOptions = () => {
-  const router = useRouter()
+const MenuMobileOptions = ({ router }) => {
   const {
     darkMode,
     logout,

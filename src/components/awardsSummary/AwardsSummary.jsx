@@ -25,7 +25,8 @@ const AwardsSummary = ({ handleCloseModal, page, setPage }) => {
     description,
     nid,
     experience: gainedExperience,
-    type: notification_type
+    type: notification_type,
+    cid,
   } = awardSummaryModalDetail
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const AwardsSummary = ({ handleCloseModal, page, setPage }) => {
     setPage(1)
     setTimeout(() => {
       const createExpReq = createExperienceSrv(null, {
+        cid: cid || null,
         coins: gainedCoins,
         experience: gainedExperience,
         nid,

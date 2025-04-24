@@ -47,7 +47,7 @@ const ProfileSummaryExperience = (props) => {
   const userLogged = useCommonStore(state => state.userLogged)
   const setStoreValue = useCommonStore(state => state.setStoreValue)
   // const { userLogged, setUserLogged, setStoreValue, set } = useCommonStore(state => state.userLogged)
-  const { uid } = userLogged
+  const { uid } = userLogged || {}
   const {
     handleUserMessage,
     setIAMessage,
@@ -69,7 +69,7 @@ const ProfileSummaryExperience = (props) => {
   const handleBlurName = (e) => {
     const { value } = e.target
     if (value == name) return
-    setIAMessage(`Deseas cambiar tu nombre a ${value}?`)
+    setIAMessage(<>Deseas cambiar tu nombre a {value}?<br /><br /></>)
     setIAOptions(<>
       <Button color='blue' realistic
         onClick={() => {
@@ -81,7 +81,7 @@ const ProfileSummaryExperience = (props) => {
                 messageTop: {
                   message: "¡Perfil actualizado correctamente!", type: 'success'
                 },
-                userLogged: userUpdated
+                userLogged: userUpdated || userLogged,
               }, null, true)
             })
         }}>
