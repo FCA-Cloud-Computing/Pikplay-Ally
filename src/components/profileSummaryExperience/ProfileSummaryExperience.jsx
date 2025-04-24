@@ -75,13 +75,14 @@ const ProfileSummaryExperience = (props) => {
         onClick={() => {
           updateProfileSrv(null, uid, { name: value })
             .then(resp => {
-              const { data: { messageTop } } = resp
-              { messageTop && setStoreValue('messageTop', messageTop) }
+              const { data: { messageTop, userUpdated } } = resp
               setIAMessage(null)
               setStoreValue({
-                messageTop: { message: "¡Perfil actualizado correctamente!", type: 'success' },
-                userLogged: { ...userLogged, name: value }
-              }, true)
+                messageTop: {
+                  message: "¡Perfil actualizado correctamente!", type: 'success'
+                },
+                userLogged: userUpdated
+              }, null, true)
             })
         }}>
         Cambiar

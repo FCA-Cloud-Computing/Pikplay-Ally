@@ -20,7 +20,8 @@ const PerfilPage = props => {
   const url = 'https://pikplay.co/perfil'
   const router = useRouter()
   const showSavedMessage = !!Object.keys(router.query).find(x => x == 'updated')
-  const { userLogged, setStoreValue } = useCommonStore()
+  const setStoreValue = useCommonStore(state => state.setStoreValue)
+  const userLogged = useCommonStore(state => state.userLogged)
   const [userDataUpdated, setUserData] = useState({
     ...userLogged,
   })
@@ -40,7 +41,7 @@ const PerfilPage = props => {
     if (imageUpdated) userDataUpdated.picture = imageUpdated
       // updateProfileSrv(userDataUpdated) // Updating Information
       .then(data => {
-        setStoreValue('userLogged', userDataUpdated);
+        setStoreValue('userLogged', userDataUpdated, null, true);
       })
       .catch(err => {
         toast('Error')

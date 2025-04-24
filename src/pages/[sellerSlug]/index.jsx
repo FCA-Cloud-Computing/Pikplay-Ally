@@ -32,10 +32,13 @@ import MESSAGES from '@/consts/messages'
 import { getUserSrv } from '@/services/user/user'
 import { getPublicationsSrv } from '@/services/publications/publications'
 import { getCouponsSrv } from '@/services/coupon/couponService'
+import useCommonStore from '@/hooks/commonStore'
 
 const DefaultSellerPage = (props) => {
   const router = useRouter()
   const [showWordChallenge, setShowWorkChallenge] = useState(false)
+  const userLogged = useCommonStore(state => state.userLogged)
+  const setStoreValue = useCommonStore(state => state.setStoreValue)
 
   const { coupons, params, publications, sellerInformation } = props
   const { registerInvoiceLabel } = sellerInformation
@@ -79,6 +82,16 @@ const DefaultSellerPage = (props) => {
   const isPointsByExperience = sellerSlug == 'caribe-dev'
 
   const handleTriviaChallenge = () => {
+    if (!userLogged?.uid) {
+      setStoreValue({
+        isOpenLoginModal: true,
+        leftMenuBar: {
+          isShow: true
+        }
+      })
+
+      return false
+    }
     setShowWorkChallenge(true)
   }
 
