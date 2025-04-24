@@ -24,12 +24,24 @@ function CreditRedemptionPage(props) {
 
   const bonuses = [
     {
-      detail: 'Entradas a cine 2D de lunes a viernes',
+      detail: 'Dos(2) Entradas a cine 2D de lunes a jueves',
       title: '100% OFF',
       image: '/images/icons/popcorn.webp',
       // image: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/general%2Fpublications%2Fentradas-cine.png?alt=media&token=2086fcf5-31c8-4b9d-90ab-ef98fba9d999',
       price: 2000,
       // isFavorite: true,
+    },
+    {
+      title: '100% OFF',
+      detail: <>Clase de Baile en <br /><a className="text-ul" href='/enrumbatebaq'>Enrumbate BAQ</a></>,
+      image: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/profile%2F181%2Fenrumbate_768x768.jpg?alt=media',
+      price: 2000,
+    },
+    {
+      title: '100% OFF',
+      detail: <>Clase de Musica en <br /><a className="text-ul" href='/musique.fala'>Falamusique</a></>,
+      image: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/general%2Fpublications%2Fmusic-icon.png?alt=media&token=d1d8138d-94a8-461f-92ee-ff5448a0178c',
+      price: 2000,
     },
     {
       title: '30% OFF',
@@ -41,7 +53,7 @@ function CreditRedemptionPage(props) {
       title: '30% OFF',
       detail: <>Tatuaje de preferencia en <br /><a className="text-ul" href='/monster-ink-bq'>Monster Ink</a></>,
       image: 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/products%2Ftattoo.png?alt=media&token=0cc0d1f1-1cfb-49f2-bb95-2c89588d8e5c',
-      price: 600,
+      price: 1000,
     },
     // {
     //   title: '100% OFF',

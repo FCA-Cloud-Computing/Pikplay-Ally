@@ -95,6 +95,36 @@ const DefaultSellerPage = (props) => {
     setShowWorkChallenge(true)
   }
 
+  const handleRegisterInvoice = () => {
+    if (!userLogged?.uid) {
+      setStoreValue({
+        isOpenLoginModal: true,
+        leftMenuBar: {
+          isShow: true
+        }
+      })
+
+      return false
+    }
+
+    handleUserMessage('addTransactionSteps')
+  }
+
+  const handleReferirFriend = () => {
+    if (!userLogged?.uid) {
+      setStoreValue({
+        isOpenLoginModal: true,
+        leftMenuBar: {
+          isShow: true
+        }
+      })
+
+      return false
+    }
+
+    handleUserMessage('referrals', { referralOrigin: sellerSlug })
+  }
+
   useEffect(() => {
     competitionsArray && competitionsArray.length > 0 && getCompetitions(competitionsArray)
   }, [])
@@ -109,7 +139,7 @@ const DefaultSellerPage = (props) => {
       <AuthorInformation authorInformation={sellerInformation} />
       <div className={sellerSlugStyles.menu}>
         <div className={`flex ${sellerSlugStyles.aboutMe}`}>
-          <Button color='link' className='outline' onClick={() => handleUserMessage('addTransactionSteps')}>
+          <Button color='link' className='outline' onClick={handleRegisterInvoice}>
             {/* <SavingsIcon /> */}
             {registerInvoiceLabel || REGISTER_INVOICE_LABEL}
           </Button>
@@ -121,7 +151,7 @@ const DefaultSellerPage = (props) => {
             {/* <InfoIcon /> */}
             Acerca de {name}
           </Button>
-          <Button color='link' className='outline' onClick={() => handleUserMessage('referrals', { referralOrigin: sellerSlug })}>
+          <Button color='link' className='outline' onClick={handleReferirFriend}>
             {/* <SavingsIcon /> */}
             Referir amigo
           </Button>
