@@ -78,7 +78,16 @@
       margin: 10px 0 0 0;
       width: 260px;
     }
+    .icon {
+      position: relative;
+      top: 4px;
+      left: 10px;
+      &.expanded {
+        transform: rotate(180deg);
+      }
+    }
   }
+
   .content {
     display: flex;
     margin: 20px auto 0;

@@ -79,6 +79,7 @@ const UserNotifications = () => {
       // reclamarCoins(coins, id)
       setStoreValue('isAwardSummaryModalOpen', true)
       setStoreValue('awardSummaryModalDetail', item)
+      setStoreValue('leftMenuBar', { isShow: false })
     } else {
       handleDeleteNotification(id)
     }
@@ -153,6 +154,7 @@ const UserNotifications = () => {
                   : type === 'COINS_BY_PURCHASE'
                     ? '/images/type_notification/coins_by_purchase.png'
                     : '/images/type_notification/coins_by_purchase_completed.png'
+
             return (
               // <Tooltip title={created} key={id}>
               <motion.li

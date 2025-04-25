@@ -16,7 +16,6 @@ import Button from '../button/Button'
 
 // Servicios
 import {
-  getCoinsSrv,
   updateProfileSrv
 } from '../../services/user/user'
 import useAnimatedNumber from '@/hooks/useAnimatedNumber'
@@ -25,14 +24,14 @@ import { getExperiencesSrv } from '@/services/experience'
 const ProfileSummaryExperience = (props) => {
   const { DEFAULT_NAME } = MESSAGES
   const {
+    changeAvatar,
+    gainedCoins = 0,
+    gainedExperience,
     isEditProfile = false,
+    newInfo,
     setIsEditProfile,
     showDetails,
     userInfoData,
-    newInfo,
-    gainedCoins = 0,
-    gainedExperience,
-    changeAvatar,
   } = props
   const {
     points,
@@ -40,13 +39,14 @@ const ProfileSummaryExperience = (props) => {
   let animatedCoins = null
   // const [animatedCoins, setAnimatedCoins] = useState(null)
   const [currentCoins, setCurrentCoins] = useState(0)
-  const [targetCoins, setTargetCoins] = useState(0)
   const [currentExperience, setCurrentExperience] = useState(0)
   const [targetExperience, setTargetExperience] = useState(0)
   const [percentageBar, setPercentageBar] = useState("0%")
   // userInfoData: Props que se utiliza para mostrar la información de un usuario en particular
-  const currentUserCoins = 10
-  const { userLogged, setUserLogged, setStoreValue } = useCommonStore()
+  // const currentCoins = useCommonStore(state => state.currentCoins)
+  const userLogged = useCommonStore(state => state.userLogged)
+  const setStoreValue = useCommonStore(state => state.setStoreValue)
+  // const { userLogged, setUserLogged, setStoreValue, set } = useCommonStore(state => state.userLogged)
   const { uid } = userLogged
   const {
     handleUserMessage,
@@ -78,9 +78,11 @@ const ProfileSummaryExperience = (props) => {
             .then(resp => {
               const { data: { messageTop } } = resp
               { messageTop && setStoreValue('messageTop', messageTop) }
-              setUserLogged({ name: value })
               setIAMessage(null)
-              toast("¡Perfil actualizado correctamente!")
+              setStoreValue({
+                messageTop: { message: "¡Perfil actualizado correctamente!", type: 'success' },
+                userLogged: { ...userLogged, name: value }
+              }, true)
             })
         }}>
         Cambiar
@@ -88,54 +90,21 @@ const ProfileSummaryExperience = (props) => {
     </>)
   }
 
-  // const getExperienceInfo = () => {
-  //   const exp = 0
-
-  //   getExperiencesSrv()
-  //     .then(data => {
-  //       const { expTotal, exp, percentageBar } = data
-  //       setCurrentExp(expTotal)
-  //       setPercentageBar(percentageBar + "%")
-  //     });
-  //   const widthBar = (exp / 1000) * 100;
-  //   setPercentageBar(widthBar + "%")
-  // }
-
-  useEffect(() => {
-    const element = document.querySelector('.ProfileSummaryExperience .Coins .number')
-    const fromNumber = element?.innerHTML
-    const targetNumber = currentUserCoins + gainedCoins
-    // animatePrice(element, targetNumber, fromNumber)
-    // getExperienceInfo()
-  }, [])
-
-  // const exp = 0
-  // const [currentExperience, setCurrentExp] = useState(exp)
-  // const [percentageBar, setPercentageBar] = useState("0%")
-  const validateNewAwards = (currentCoins, currentExperience) => { // Añadiendo puntos y coins ganados
-    if (gainedCoins) {
-      const targetNumber = currentCoins + gainedCoins
-      setTargetCoins(targetNumber)
-      // setTimeout(() => { // Animando los puntos ganados despues de 2 segundos
-      setTargetExperience(currentExperience + gainedExperience)
-      // }, 2000)
-    }
+  const getExperience = () => {
+    const promisesList = [getExperiencesSrv()]
+    Promise.allSettled(promisesList)
+      .then(([expData]) => {
+        const { currentPikcoins: currentPikcoinsUpdated, expTotal: currentExperience } = expData.value || {}
+        setCurrentExperience(currentExperience)
+        setCurrentCoins(currentPikcoinsUpdated)
+        setStoreValue('currentCoins', currentPikcoinsUpdated)
+        setPercentageBar(`${(currentExperience / 10000) * 100}`)
+      })
   }
 
   useEffect(() => {
-    const promisesList = [getExperiencesSrv(), getCoinsSrv()]
-    Promise.allSettled(promisesList)
-      .then(([expData, coinsData]) => {
-        // debugger;
-        const { currentPikcoins, expTotal: currentExperience } = expData.value || {}
-        // debugger;
-        setCurrentExperience(currentExperience)
-        setCurrentCoins(currentPikcoins)
-        validateNewAwards(currentPikcoins, currentExperience)
-      })
+    getExperience()
   }, [])
-
-  // animatedCoins = useAnimatedNumber(currentCoins, targetCoins, 2000)
 
   return (
     <div className={classNames("ProfileSummaryExperience", { [styles.ProfileSummaryExperience]: true })}>
@@ -147,7 +116,11 @@ const ProfileSummaryExperience = (props) => {
         {/* <div asd={backgroundImage} className={styles.bg} style={{ backgroundImage: `url( ${backgroundImage})` }}></div> */}
         <div asd={backgroundImage} className={styles.bg}></div>
         <div className={styles.left}>
-          <ProfileImage picture={picture} progress={percentageBar} changeAvatar={changeAvatar} />
+          <ProfileImage
+            changeAvatar={changeAvatar}
+            percentageBar={percentageBar}
+            picture={picture}
+          />
           {/* <div className={`shine ${styles[league]} ${league == 'oro' && 'starsFallingDown'} `}> */}
           <input className={`${styles.fullName} ${isEditProfile && styles.editable}`}
             onChange={e => isEditProfile && setNewNickname(e.target.value)}
@@ -163,6 +136,9 @@ const ProfileSummaryExperience = (props) => {
           <div className={styles.currentCategory}>
             Bronce
           </div>
+          <div className={styles.coinsContainer}>
+            <CoinIcon coins={currentCoins} gainedCoins={gainedCoins} hideNumber={false} />
+          </div>
           <div className={styles.experience_status}>
             <ExperienceBar {...{
               currentExperience,
@@ -171,7 +147,6 @@ const ProfileSummaryExperience = (props) => {
           </div>
           {/* currentCoins:{currentCoins}
           gainedCoins={gainedCoins} */}
-          <CoinIcon coins={currentCoins} gainedCoins={gainedCoins} hideNumber={false} />
         </div>
         {/* <p className={styles.rankingMessage}>
           <img src="/images/icons/ranking-icon.png" />

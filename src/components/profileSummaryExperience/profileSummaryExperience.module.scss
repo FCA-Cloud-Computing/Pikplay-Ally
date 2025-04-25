@@ -1,5 +1,6 @@
 .ProfileSummaryExperience {
-    background-image: url("https://i.blogs.es/ff4f41/elqk-v1wmauw09m/1366_2000.jpg");
+    // background-image: url("https://i.blogs.es/ff4f41/elqk-v1wmauw09m/1366_2000.jpg");
+    background-image: url(/images/backgrounds/bg-profile.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -26,7 +27,7 @@
         color: white;
         font-weight: bold;
         line-height: 20px;
-        margin: 20px auto 0px;
+        margin: 10px auto 0px;
         padding: 10px;
         position: relative;
         text-align: center;
@@ -99,7 +100,7 @@
 
     .box {
         // background: linear-gradient(45deg, #3095b3, #126781);
-        background: linear-gradient(180deg, #0f90b6a3, #032834eb);
+        // background: linear-gradient(180deg, #0f90b6a3, #032834eb);
         // background: linear-gradient(45deg, #3095b359, #81127eb5);
         // border-radius: 20px;
         // box-shadow: inset 5px 5px 4px #505050;
@@ -176,6 +177,10 @@
             }
         }
 
+        .coinsContainer {
+            margin: 0 auto 20px;
+        }
+
         .experience_status {
             margin: 0 auto 20px auto;
         }
@@ -225,7 +230,7 @@
                 background: linear-gradient(45deg, #f4c376, #ba7821);
                 font-size: 18px;
                 font-weight: 600;
-                margin: 0px auto 20px;
+                margin: 0px auto 10px;
                 text-align: center;
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;

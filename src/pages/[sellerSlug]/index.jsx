@@ -76,6 +76,8 @@ const DefaultSellerPage = (props) => {
     setSelectedNumber,
   } = useCompetitions()
 
+  const isPointsByExperience = sellerSlug == 'caribe-dev'
+
   useEffect(() => {
     competitionsArray && competitionsArray.length > 0 && getCompetitions(competitionsArray)
   }, [])
@@ -138,7 +140,7 @@ const DefaultSellerPage = (props) => {
       {/* Bonos */}
       {coupons && <BonusList bonuses={coupons.data} />}
 
-      {showWordChallenge && <WordChallenge showModal={showWordChallenge} setShowModal={setShowWorkChallenge} />}
+      {showWordChallenge && <WordChallenge setShowWorkChallenge={setShowWorkChallenge} />}
 
       {/* Ranking */}
       {rankingId && <>
@@ -148,7 +150,11 @@ const DefaultSellerPage = (props) => {
             &nbsp;Ranking
           </h1>
         </div>
-        <RankingComponent {...{ rankingId }} />
+        <RankingComponent 
+          isPointsByExperience={isPointsByExperience} 
+          isInviteButton={false} 
+          isButtonJoinRanking {...{ rankingId }} 
+        />
       </>}
 
       {/* Loyalty */}

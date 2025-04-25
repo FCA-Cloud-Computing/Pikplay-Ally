@@ -126,13 +126,13 @@ const Onboarding = (props) => {
 
   useEffect(() => {
     // handleUserMessage('onboarding', {})
-    setStoreValue('isOnboardingProcess', true)
+    // setStoreValue('isOnboardingProcess', true)
   }, [])
 
   return <section className={`page ${styles.Onboarding}`}>
     <Link href="/caribe-dev">
       {/* Caribe Conf 2025 */}
-      <Image className={styles.bannerCaribeConf2025} src="images/banners/banner-caribe-conf-2025.jpg" alt="Banner Caribe Conf 2025" height="100" width="420" />
+      <Image className={styles.bannerCaribeConf2025} src="images/banners/banner-caribe-conf-2025-v2.jpeg" alt="Banner Caribe Conf 2025" height="100" width="420" />
     </Link>
     <div className={styles.titleContent}>
       <div className={styles.background}></div>
@@ -188,7 +188,7 @@ const Onboarding = (props) => {
         </h2>
       </div>
       <div className={styles.inputContent}>
-        <input type="text" placeholder='Aquí tu Whastapp' onChange={handleInputChange} value={phoneNumber} />
+        <input type="text" placeholder='Aquí tu whatsapp' onChange={handleInputChange} value={phoneNumber} />
         <div className={styles.btnSend}>
           <Button color='blue' onClick={saveLead}>
             Enviar

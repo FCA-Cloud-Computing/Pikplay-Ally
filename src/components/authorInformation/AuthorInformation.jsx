@@ -6,7 +6,7 @@ import ProfileImage from '../profileImage/ProfileImage'
 import styles from './authorInformation.module.scss'
 import Button from '../button/Button'
 import { useIAStore } from '../ia/IAstore'
-import { postChallengeDetail } from '@/services/challenges/challenges'
+import { postChallengeDetailSrv } from '@/services/challenges/challenges'
 import { formatNumber } from '@/lib/utils'
 
 // Icons
@@ -44,17 +44,17 @@ export const AuthorInformation = (props) => {
 
     const handleFavoriteClick = async () => {
         let updated
-    
+        const { picture, storeName, slug } = props.authorInformation
         if (isFavorite) {
           updated = stored.filter((item) => item.storeName !== storeName)
         } else {
-          updated = [...stored, props.authorInformation]
+          updated = [...stored, { picture, storeName, slug }]
         }
     
         setStoreValue("favoritesSellers", updated)
         setIsFavorite(!isFavorite)
     
-        await postChallengeDetail(null, { challengeId: 11 })
+        await postChallengeDetailSrv(null, { challengeId: 11 })
       }
 
     return <div className={`${styles.AuthorComponentPage}`} style={{ ['--backgroundImage']: `url(${pageBackground})` }}>
