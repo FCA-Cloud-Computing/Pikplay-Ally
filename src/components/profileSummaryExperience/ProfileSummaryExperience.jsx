@@ -119,6 +119,7 @@ const ProfileSummaryExperience = (props) => {
         <div className={styles.left}>
           <ProfileImage
             changeAvatar={changeAvatar}
+            isZoom
             percentageBar={percentageBar}
             picture={picture}
           />

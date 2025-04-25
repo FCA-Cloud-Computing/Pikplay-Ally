@@ -25,13 +25,23 @@
       width: 50px;
     }
 
-    & > img {
+    img {
       border-radius: 50%;
-      height: calc(100% - 2px);
-      left: 0px;
+      // height: calc(100% - 2px);
+      // left: 0px;
       object-fit: fill;
       position: relative;
-      width: calc(100% - 2px);
+      // width: calc(100% - 2px);
+
+      // Actualizacion despues de implementar zoom
+      height: 100%;
+      left: 0;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+      &.isZoomed {
+        top: 2px;
+      }
     }
   }
 
@@ -88,18 +98,19 @@
 }
 
 .profileChangeImage {
-  position: absolute;
-  padding: 12px;
-  top: -7px;
-  right: -14px;
-  margin: 0;
-  width: 40%;
-  height: 40%;
+  // border-bottom: 2px solid #f4c376;
+  // border-left: 2px solid #f4c376;
   background-color: #07244c;
   border-radius: 50%;
   border: none;
-  // border-left: 2px solid #f4c376;
-  // border-bottom: 2px solid #f4c376;
+  height: 40%;
+  margin: 0;
+  padding: 12px;
+  position: absolute;
+  right: -14px;
+  top: -7px;
+  width: 40%;
+  z-index: 1;
   cursor: pointer;
 
   & input[type="file"] {
