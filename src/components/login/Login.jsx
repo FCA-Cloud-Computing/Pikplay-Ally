@@ -50,6 +50,7 @@ function Login(props) {
         handleCloseDialog()
         router.push('?login=true')
       }
+
       else if (code == 400) {
         document.getElementById('verificationCode').value = ''
         toast('Código no valido')

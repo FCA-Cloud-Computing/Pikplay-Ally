@@ -47,7 +47,7 @@ const ProfileSummaryExperience = (props) => {
   const userLogged = useCommonStore(state => state.userLogged)
   const setStoreValue = useCommonStore(state => state.setStoreValue)
   // const { userLogged, setUserLogged, setStoreValue, set } = useCommonStore(state => state.userLogged)
-  const { uid } = userLogged
+  const { uid } = userLogged || {}
   const {
     handleUserMessage,
     setIAMessage,
@@ -69,24 +69,25 @@ const ProfileSummaryExperience = (props) => {
   const handleBlurName = (e) => {
     const { value } = e.target
     if (value == name) return
-    setIAMessage(`Deseas cambiar tu nombre a ${value}?`)
+    setIAMessage(<>Deseas cambiar tu nombre a {value}?<br /><br /></>)
     setIAOptions(<>
-      <Button color='transparent'>Cancelar</Button>
       <Button color='blue' realistic
         onClick={() => {
           updateProfileSrv(null, uid, { name: value })
             .then(resp => {
-              const { data: { messageTop } } = resp
-              { messageTop && setStoreValue('messageTop', messageTop) }
+              const { data: { messageTop, userUpdated } } = resp
               setIAMessage(null)
               setStoreValue({
-                messageTop: { message: "¡Perfil actualizado correctamente!", type: 'success' },
-                userLogged: { ...userLogged, name: value }
-              }, true)
+                messageTop: {
+                  message: "¡Perfil actualizado correctamente!", type: 'success'
+                },
+                userLogged: userUpdated || userLogged,
+              }, null, true)
             })
         }}>
         Cambiar
       </Button>
+      <Button color='transparent'>Cancelar</Button>
     </>)
   }
 
@@ -118,6 +119,7 @@ const ProfileSummaryExperience = (props) => {
         <div className={styles.left}>
           <ProfileImage
             changeAvatar={changeAvatar}
+            isZoom
             percentageBar={percentageBar}
             picture={picture}
           />

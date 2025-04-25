@@ -6,7 +6,7 @@ import { IS_MOBILE } from '../../lib/variables'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-const CustomHeader = React.memo(() => {
+const CustomHeader = React.memo(({ handleClickLogo }) => {
   const images = [
     {
       original: '/images/banners/ps3-azul.jpeg',
@@ -18,28 +18,23 @@ const CustomHeader = React.memo(() => {
     },
   ]
 
-  // const cityLabelSearch = cities.find(row => row.id == city) ? cities.find(row => row.id === city)?.label : null
-  // const premiumResult = results.length > 0 ? results[0] : null
-
   return (
     <div id={styles.CustomHeader}>
-      {/* <ChangeCity handleCity={handleCity} /> */}
       <ul>
-        <Link href='/'>
-          <motion.div
-            whileTap={{ scale: 0.7 }}>
-            <Image
-              alt='Logo de Pikplay'
-              className={styles.logo}
-              height={43}
-              src='/images/logos/logo.svg'
-              width={160}
-            />
-            <div className={styles.slogan}>
-              Compra y vende subiendo de nivel
-            </div>
-          </motion.div>
-        </Link>
+        <motion.div
+          whileTap={{ scale: 0.7 }}>
+          <Image
+            alt='Logo de Pikplay'
+            className={styles.logo}
+            height={43}
+            onClick={handleClickLogo}
+            src='/images/logos/logo.svg'
+            width={160}
+          />
+          <div className={styles.slogan}>
+            Compra y vende subiendo de nivel
+          </div>
+        </motion.div>
         <span className={styles.beta}>Beta</span>
         {/* TODO Descomentar cuando se implementen los productos */}
         {/* <SearchBox

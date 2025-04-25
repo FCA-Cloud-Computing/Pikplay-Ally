@@ -32,10 +32,13 @@ import MESSAGES from '@/consts/messages'
 import { getUserSrv } from '@/services/user/user'
 import { getPublicationsSrv } from '@/services/publications/publications'
 import { getCouponsSrv } from '@/services/coupon/couponService'
+import useCommonStore from '@/hooks/commonStore'
 
 const DefaultSellerPage = (props) => {
   const router = useRouter()
   const [showWordChallenge, setShowWorkChallenge] = useState(false)
+  const userLogged = useCommonStore(state => state.userLogged)
+  const setStoreValue = useCommonStore(state => state.setStoreValue)
 
   const { coupons, params, publications, sellerInformation } = props
   const { registerInvoiceLabel } = sellerInformation
@@ -78,6 +81,50 @@ const DefaultSellerPage = (props) => {
 
   const isPointsByExperience = sellerSlug == 'caribe-dev'
 
+  const handleTriviaChallenge = () => {
+    if (!userLogged?.uid) {
+      setStoreValue({
+        isOpenLoginModal: true,
+        leftMenuBar: {
+          isShow: true
+        }
+      })
+
+      return false
+    }
+    setShowWorkChallenge(true)
+  }
+
+  const handleRegisterInvoice = () => {
+    if (!userLogged?.uid) {
+      setStoreValue({
+        isOpenLoginModal: true,
+        leftMenuBar: {
+          isShow: true
+        }
+      })
+
+      return false
+    }
+
+    handleUserMessage('addTransactionSteps')
+  }
+
+  const handleReferirFriend = () => {
+    if (!userLogged?.uid) {
+      setStoreValue({
+        isOpenLoginModal: true,
+        leftMenuBar: {
+          isShow: true
+        }
+      })
+
+      return false
+    }
+
+    handleUserMessage('referrals', { referralOrigin: sellerSlug })
+  }
+
   useEffect(() => {
     competitionsArray && competitionsArray.length > 0 && getCompetitions(competitionsArray)
   }, [])
@@ -92,11 +139,11 @@ const DefaultSellerPage = (props) => {
       <AuthorInformation authorInformation={sellerInformation} />
       <div className={sellerSlugStyles.menu}>
         <div className={`flex ${sellerSlugStyles.aboutMe}`}>
-          <Button color='link' className='outline' onClick={() => handleUserMessage('addTransactionSteps')}>
+          <Button color='link' className='outline' onClick={handleRegisterInvoice}>
             {/* <SavingsIcon /> */}
             {registerInvoiceLabel || REGISTER_INVOICE_LABEL}
           </Button>
-          <Button color='link' className='outline' onClick={() => setShowWorkChallenge(true)}>
+          <Button color='link' className='outline' onClick={handleTriviaChallenge}>
             {/* <SavingsIcon /> */}
             Trivia Challenge
           </Button>
@@ -104,7 +151,7 @@ const DefaultSellerPage = (props) => {
             {/* <InfoIcon /> */}
             Acerca de {name}
           </Button>
-          <Button color='link' className='outline' onClick={() => handleUserMessage('referrals', { referralOrigin: sellerSlug })}>
+          <Button color='link' className='outline' onClick={handleReferirFriend}>
             {/* <SavingsIcon /> */}
             Referir amigo
           </Button>
@@ -150,10 +197,10 @@ const DefaultSellerPage = (props) => {
             &nbsp;Ranking
           </h1>
         </div>
-        <RankingComponent 
-          isPointsByExperience={isPointsByExperience} 
-          isInviteButton={false} 
-          isButtonJoinRanking {...{ rankingId }} 
+        <RankingComponent
+          isInviteButton={false}
+          isButtonJoinRanking {...{ rankingId }}
+          isPointsByExperience={isPointsByExperience}
         />
       </>}
 

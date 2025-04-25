@@ -12,6 +12,7 @@ import { useIAStore } from "../ia/IAstore"
 import useCommonStore from "@/hooks/commonStore"
 import { useRanking } from "@/hooks/useRanking"
 import { getExperiencesSrv } from "@/services/experience"
+import { addRankingDetailSrv } from "@/services/rankings/rankings"
 
 const RankingComponent = (props) => {
   const {
@@ -24,7 +25,12 @@ const RankingComponent = (props) => {
   const setIAMessage = useIAStore((item) => item.setIAMessage)
   const setStoreValue = useCommonStore((state) => state.setStoreValue)
   const userLogged = useCommonStore((state) => state.userLogged)
-  const { rankingData, moveItem, getReferrals } = useRanking(rankingId, userLogged?.uid)
+  const { currentPosition, rankingData, moveItem, getReferrals, fetchRankingData } = useRanking({
+    isPointsByExperience,
+    rankingId,
+    uid: userLogged?.uid,
+    userLogged,
+  })
 
   const handlePointsDetail = (pointsDetail) => {
     const HTML = (
@@ -49,9 +55,10 @@ const RankingComponent = (props) => {
 
     addRankingDetailSrv(null, { rid: rankingId })
       .then((res) => {
-        debugger
+        // debugger
         const { code, errorCode, message } = res
         if (code === 200) {
+          fetchRankingData()
           setIAMessage("Te has unido al ranking", null, null)
         } else if (errorCode == 403) {
           setStoreValue("leftMenuBar", { isShow: true })
@@ -74,7 +81,9 @@ const RankingComponent = (props) => {
 
   return (
     <div className={styles.RankingComponent}>
-      {isButtonJoinRanking && (
+      {currentPosition && <div>Posición actual: {currentPosition}</div>}
+
+      {isButtonJoinRanking && !currentPosition && (
         <Button
           color="blue"
           realistic
@@ -109,9 +118,8 @@ const RankingComponent = (props) => {
                 <motion.div
                   layout
                   transition={{ type: "spring", stiffness: 500, damping: 25 }}
-                  className={`${index == 0 ? "starsFallingDown" : ""} ${
-                    styles.item
-                  }`}
+                  className={`${index == 0 ? "starsFallingDown" : ""} ${styles.item
+                    }`}
                   onClick={() =>
                     member.pointsDetail &&
                     handlePointsDetail(member.pointsDetail)
@@ -124,9 +132,10 @@ const RankingComponent = (props) => {
                   </div>
                   <div className={styles.picture}>
                     <ProfileImage
+                      isZoom
+                      percentageBar={percentageBar}
                       picture={member.picture}
                       small
-                      percentageBar={percentageBar}
                     />
                   </div>
                   <div className={styles.name}>
@@ -136,29 +145,6 @@ const RankingComponent = (props) => {
                         <small className={`${styles.leagueBox} leagueBox`}>
                           {league}
                         </small>
-                      )}
-                      {isButtonJoinRanking && (
-                        <Button
-                          color="blue"
-                          realistic
-                          fullWidth
-                          className="p-10"
-                          onClick={handleParticipate}
-                        >
-                          Quiero participar
-                        </Button>
-                      )}
-                      {isButtonReferral && (
-                        <Button
-                          className="p-10"
-                          color="blue"
-                          fullWidth
-                          onClick={() => getContacts(callbackSuccess)}
-                          realistic
-                          style={{ marginBottom: "10px" }}
-                        >
-                          Añadir a un amigo
-                        </Button>
                       )}
                     </div>
                   </div>
@@ -170,8 +156,8 @@ const RankingComponent = (props) => {
                       Invitar
                     </Button>
                   )}
-                  <button onClick={() => moveItem(member.uid, -1)}>+1</button>
-                  <button onClick={() => moveItem(member.uid, 1)}>-1</button>
+                  {/* <button onClick={() => moveItem(member.uid, -1)}>+1</button>
+                     <button onClick={() => moveItem(member.uid, 1)}>-1</button>*/}
                 </motion.div>
               )
             })}

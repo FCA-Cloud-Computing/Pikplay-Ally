@@ -2,8 +2,9 @@
 import styles from './layout.module.scss'
 
 import React from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import classNames from 'classnames'
 
 // Customs
@@ -18,7 +19,16 @@ const Body = ({
   children,
   isReady,
 }) => {
-  const { darkMode } = useCommonStore((state => state))
+  const router = useRouter()
+  const darkMode = useCommonStore((state => state.darkMode))
+  const leftMenuBar = useCommonStore((state => state.leftMenuBar))
+  const setStoreValue = useCommonStore((state => state.setStoreValue))
+
+  const handleClickLogo = () => {
+    if (leftMenuBar?.isShow) {
+      setStoreValue('leftMenuBar', { isShow: false })
+    } else router.push('/')
+  }
 
   return <>
     <main
@@ -28,7 +38,7 @@ const Body = ({
         [styles.AppComponent]: true,
         [styles.ready]: isReady,
       })}>
-      <CustomHeader />
+      <CustomHeader handleClickLogo={handleClickLogo} />
       {false && (
         <div className={styles.announcement}>
           Actualmente estamos en una versión piloto
