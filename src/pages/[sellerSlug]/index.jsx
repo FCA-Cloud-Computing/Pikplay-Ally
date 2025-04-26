@@ -41,7 +41,7 @@ const DefaultSellerPage = (props) => {
   const setStoreValue = useCommonStore(state => state.setStoreValue)
 
   const { coupons, params, publications, sellerInformation } = props
-  const { registerInvoiceLabel } = sellerInformation
+  const { isTriviaChallenge, registerInvoiceLabel } = sellerInformation
   const { sellerSlug } = router.query
 
   const {
@@ -50,7 +50,7 @@ const DefaultSellerPage = (props) => {
     bonuses,
     productsTitle,
     products,
-    rankingId
+    rankingId,
   } = sellersInformation[sellerSlug?.toLowerCase()] || {}
 
   const {
@@ -143,10 +143,10 @@ const DefaultSellerPage = (props) => {
             {/* <SavingsIcon /> */}
             {registerInvoiceLabel || REGISTER_INVOICE_LABEL}
           </Button>
-          <Button color='link' className='outline' onClick={handleTriviaChallenge}>
+          {!!isTriviaChallenge && <Button color='link' className='outline' onClick={handleTriviaChallenge}>
             {/* <SavingsIcon /> */}
             Trivia Challenge
-          </Button>
+          </Button>}
           <Button color='link' className='outline' onClick={() => setIAMessage(aboutHTML)}>
             {/* <InfoIcon /> */}
             Acerca de {name}
@@ -163,14 +163,14 @@ const DefaultSellerPage = (props) => {
       </div>
 
       {competitionsArray && competitionsArray.length > 0 && <>
-        <div className="contentTitle">
+        {/* <div className="contentTitle">
           <h1>
             <FontAwesomeIcon className="icon" icon={faDiceFive} />
             &nbsp;Sorteos
           </h1>
-        </div>
+        </div> */}
         {/* Competitions */}
-        <div className={`${styles.CompetitionsComponent}`}>
+        {/* <div className={`${styles.CompetitionsComponent}`}>
           {!isLoadingCompetition && competitions.length > 0 && <CompetitionsList
             isLoading={isLoadingCompetition}
             competitions={competitions}
@@ -181,7 +181,7 @@ const DefaultSellerPage = (props) => {
           {isLoadingCompetition && <div> {
             new Array(3).fill(null).map((_, i) => (<Skeleton key={i} variant="rectangular" width='100%' height={120} className='Card' />))}
           </div>}
-        </div>
+        </div> */}
       </>}
 
       {/* Bonos */}

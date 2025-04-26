@@ -43,6 +43,7 @@ const ItemCard = (props) => {
     likes,
     price,
     seller,
+    shippingLabel,
     slug,
     status,
     tags,
@@ -137,11 +138,12 @@ const ItemCard = (props) => {
           {/* Si tiene precio y Cashback */}
           {cashbackAvailable && price && <div className={styles.cashbackInformation}>
             Con esta compra obtienes <br />
-            <b>{(price * 0.01) / 100} Puntos</b> de categoria</div>}
-          {/* Si no tiene precio */}
-          {cashbackAvailable && !price && <div className={styles.cashbackInformation}>
-            Preguntale al comercio sobre <br /> los créditos por esta compra
+            <b>{(price * 0.01) / 100} Puntos</b>
           </div>}
+          {/* Si no tiene precio */}
+          {/* {cashbackAvailable && !price && <div className={styles.cashbackInformation}>
+            Preguntale al comercio sobre <br /> los créditos por esta compra
+          </div>} */}
           {
             <div className={styles.descripcion}>
               <div className={styles.icons}>
@@ -184,7 +186,7 @@ const ItemCard = (props) => {
                 as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
                 className={publicationId == 1 ? styles.destacada_Card : ''}
                 // href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
-                // href={isClickable ? `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}` : null}
+                href={isClickable ? `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=¡Hola! me interesa este producto de Pikplay ${title}` : null}
                 onClick={isClickable ? () => handlerChallengeProduct(CID_ASK_PRODUCT) : null}
                 target='_blank'>
                 {title && <h2>
@@ -219,9 +221,10 @@ const ItemCard = (props) => {
               {status != 1 && <span className={styles.notAvailableLabel}>Agotado</span>}
 
               {/* Envio */}
-              {freeShipping && <div className={styles.shipping}>
+              {(freeShipping || shippingLabel) && <div className={styles.shipping}>
                 <LocalShippingIcon className='icon' />
-                <span>Envío gratis</span>
+                {freeShipping && <span>Envío gratis</span>}
+                {shippingLabel && <span>{shippingLabel}</span>}
               </div>}
 
               {/* Banner de ADDI */}
