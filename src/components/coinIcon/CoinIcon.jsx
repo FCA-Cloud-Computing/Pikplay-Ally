@@ -15,6 +15,7 @@ const CoinIcon = ({
   isLabel,
   gainedCoins = 0,
   multicoin,
+  onClick,
   textColor,
   size,
 }) => {
@@ -49,7 +50,9 @@ const CoinIcon = ({
         [styles.withNumber]: !hideNumber,
         // [styles.animatedZoom]: true,
         // [styles.animated]: true
-      })}>
+      })}
+      onClick={onClick ? onClick : null}
+    >
       <div className={styles.coinsContainer}>
         <motion.picture
           animate={{ scale: 1 }}

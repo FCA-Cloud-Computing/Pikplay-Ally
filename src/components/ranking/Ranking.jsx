@@ -114,6 +114,7 @@ const RankingComponent = (props) => {
             rankingData.map((member, index) => {
               const { league } = member
               const percentageBar = member.points / 100
+
               return (
                 <motion.div
                   layout

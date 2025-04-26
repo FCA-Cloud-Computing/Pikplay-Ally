@@ -23,6 +23,9 @@ export function ListTransactions({ transactions }) {
 
   return (
     <ul className={styles.TransactionListComponent}>
+      {transactionsSorted.length == 0 && <>
+        <center>No tienes transacciones aún</center>
+      </>}
       {transactionsSorted && transactionsSorted.map((transaction) => (
         <Transaction transaction={transaction} key={transaction.id} />
       ))}

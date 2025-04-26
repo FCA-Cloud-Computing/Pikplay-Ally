@@ -258,10 +258,12 @@ export async function getContacts(callbackSuccess, callbackError) {
       callbackError()
       // toast.warning('Algunos referidos no pudieron guardarse con exito porque se ya se encontraron en Pikplay')
     }
-    callbackSuccess()
+    if (contacts.lenght > 0) {
+      callbackSuccess()
+    }
     // else toast.success('¡Referidos guardados!')
     // set({ isVisible: false })
   } catch (err) {
-    alert("Error al obtener los contactos, contacta a soporte.")
+    toast.error("Error al obtener los contactos, comunicate con soporte")
   }
 }

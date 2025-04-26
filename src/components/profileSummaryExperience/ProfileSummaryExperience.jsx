@@ -68,27 +68,33 @@ const ProfileSummaryExperience = (props) => {
 
   const handleBlurName = (e) => {
     const { value } = e.target
-    if (value == name) return
-    setIAMessage(<>Deseas cambiar tu nombre a {value}?<br /><br /></>)
-    setIAOptions(<>
-      <Button color='blue' realistic
-        onClick={() => {
-          updateProfileSrv(null, uid, { name: value })
-            .then(resp => {
-              const { data: { messageTop, userUpdated } } = resp
-              setIAMessage(null)
-              setStoreValue({
-                messageTop: {
-                  message: "¡Perfil actualizado correctamente!", type: 'success'
-                },
-                userLogged: userUpdated || userLogged,
-              }, null, true)
-            })
-        }}>
-        Cambiar
-      </Button>
-      <Button color='transparent'>Cancelar</Button>
-    </>)
+
+    if (value == '' && name == null) {
+      setNewNickname(DEFAULT_NAME)
+    } else if (value == '' && name != null) {
+      setNewNickname(name)
+    } else if (value != '' && value != name) {
+      setIAMessage(<>Deseas cambiar tu nombre a {value}?<br /><br /></>)
+      setIAOptions(<>
+        <Button color='blue' realistic
+          onClick={() => {
+            updateProfileSrv(null, uid, { name: value })
+              .then(resp => {
+                const { data: { messageTop, userUpdated } } = resp
+                setIAMessage(null)
+                setStoreValue({
+                  messageTop: {
+                    message: "¡Perfil actualizado correctamente!", type: 'success'
+                  },
+                  userLogged: userUpdated || userLogged,
+                }, null, true)
+              })
+          }}>
+          Cambiar
+        </Button>
+        <Button color='transparent'>Cancelar</Button>
+      </>)
+    }
   }
 
   const getExperience = () => {
@@ -124,9 +130,11 @@ const ProfileSummaryExperience = (props) => {
             picture={picture}
           />
           {/* <div className={`shine ${styles[league]} ${league == 'oro' && 'starsFallingDown'} `}> */}
-          <input className={`${styles.fullName} ${isEditProfile && styles.editable}`}
+          <input
+            className={`${styles.fullName} ${isEditProfile && styles.editable}`}
             onChange={e => isEditProfile && setNewNickname(e.target.value)}
             onBlur={isEditProfile && handleBlurName}
+            onClick={() => setNewNickname('')}
             value={newNickname}
           />
           {/* <div className={styles.icons}>

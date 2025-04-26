@@ -38,6 +38,7 @@ function Login(props) {
     const contryCode = '57'
     const formattedPhoneNumber = phoneNumber.replace(/-/g, '');
     const fullPhone = contryCode + formattedPhoneNumber
+
     try {
       setStoreValue('isFullLoading', true)
       const req = await loginSrv(null, fullPhone, parseInt(loginCode, 10))
@@ -46,9 +47,14 @@ function Login(props) {
         const { token, uid } = userLoggedData
         const experiencesData = await getExperiencesSrv(null)
         const { currentPikcoins } = experiencesData
-        setStoreValue({ 'userLogged': userLoggedData, 'currentPikcoins': currentPikcoins }, null, true)
+        setStoreValue({
+          'currentPikcoins': currentPikcoins,
+          'leftMenuBar': { isShow: false },
+          'userLogged': userLoggedData,
+        }, null, true)
         handleCloseDialog()
-        router.push('?login=true')
+        if (!userLoggedData.name) router.push('/perfil/user-name')
+        else router.push('?login=true')
       }
 
       else if (code == 400) {
@@ -72,10 +78,11 @@ function Login(props) {
       setButtonText('Enviar código')
       return false
     }
+
     setStoreValue('isFullLoading', true)
 
     const contryCode = '57'
-    const fullPhone = contryCode + phoneNumber
+    const fullPhone = contryCode + formattedPhoneNumber
     const req = await loginSrv(null, fullPhone, null, name)
     if (req.code == 200) {
       toast('¡Código enviado!, ahora solo debes colocarlo allí ⬇️')

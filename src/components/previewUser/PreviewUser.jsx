@@ -13,6 +13,7 @@ import MenuMobileOptions from './MenuMobileOptions'
 import UserNotifications from '../userNotifications/UserNotifications'
 import useCommonStore from '../../hooks/commonStore'
 import { IS_MOBILE } from '../../lib/variables'
+import { getExperiencesSrv } from '@/services/experience';
 
 const ProfileImage = dynamic(() => import('../profileImage/ProfileImage'), { ssr: false })
 
@@ -24,6 +25,12 @@ const PreviewUser = () => {
   const handleClickImage = () => {
     router.push('#menu')
     setStoreValue('leftMenuBar', { ...leftMenuBar, isShow: !isShowLeftMenu })
+  }
+
+  const handlerUpadteCoins = async () => {
+    const response = await getExperiencesSrv()
+    const { currentPikcoins, experience } = response
+    setStoreValue('currentCoins', currentPikcoins)
   }
 
   return (
@@ -48,7 +55,7 @@ const PreviewUser = () => {
         {/* TODO */}
         {/* Icono */}
         <div className={styles.coinsContainer} id="PreviewProfile--Coins">
-          <CoinIcon coins={currentCoins} />
+          <CoinIcon coins={currentCoins} onClick={handlerUpadteCoins} />
           {/* <span className={styles.experience}>
               <FontAwesomeIcon icon={faHeartbeat} />
               <span>&nbsp;10/20.500</span>
