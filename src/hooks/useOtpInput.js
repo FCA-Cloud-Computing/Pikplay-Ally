@@ -37,7 +37,6 @@ export const useOtpInput = (wordLength) => {
     if (!letter && index > 0 && !key) {
       setLetterIndexActive(index - 1)
     }
-    console.log(updatedWord)
     setWord(updatedWord.map(letter => letter.toLowerCase()))
   }
 
