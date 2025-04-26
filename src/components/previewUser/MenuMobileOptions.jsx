@@ -121,6 +121,14 @@ const MenuMobileOptions = ({ router }) => {
         <Image style={{ margin: 0 }} className={styles.downloadAppImage} src="/images/icons/google-play-05.svg" width="990" height="300" />
       </a>
     </motion.ol>
+    {favoritesSellers && favoritesSellers.map(favoriteSeller => {
+        return <motion.ol key={favoriteSeller.uid} variants={item} className={styles.favoriteSeller}>
+          <Link href={`/${favoriteSeller.slug}`}>
+            <img className='br-5' src={favoriteSeller.picture} />
+            {favoriteSeller.storeName}
+          </Link>
+        </motion.ol>
+      })}
     {/* Opciones de administrador */}
     {userLogged.isAdmin && <>
       {/* <motion.ol variants={item}>
@@ -129,14 +137,6 @@ const MenuMobileOptions = ({ router }) => {
           Ranking
         </Link>
       </motion.ol> */}
-      {favoritesSellers && favoritesSellers.map(favoriteSeller => {
-        return <motion.ol key={favoriteSeller.uid} variants={item} className={styles.favoriteSeller}>
-          <Link href={`/${favoriteSeller.slug}`}>
-            <img className='br-5' src={favoriteSeller.picture} />
-            {favoriteSeller.storeName}
-          </Link>
-        </motion.ol>
-      })}
       {/* <motion.ol variants={item} onClick={changeToSellerUser}>
         Cambiar a Seller
       </motion.ol>
