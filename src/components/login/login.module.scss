@@ -5,7 +5,7 @@
     margin-top: 0px;
     width: 100%;
   }
-  .contryAndPhone {
+  :global(.contryAndPhone) {
     display: flex;
     [role="combobox"] {
       padding: 0 10px;
