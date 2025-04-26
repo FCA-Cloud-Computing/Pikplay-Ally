@@ -17,11 +17,12 @@
       width: 100%;
       border: none;
       background-color: transparent;
-      border: 2px solid #0056b3;
+      border-bottom: 2px solid #fff;
       border-radius: 10px;
     }
 
     & > label {
+      font-weight: 700;
       margin-right: 10px;
     }
 
@@ -45,35 +46,32 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    list-style: none;
     padding: 0;
     
     .item {
+      display: flex;
       align-items: center;
-      // background-color: #030c4b;
-      // background-color: #07244c;
+      justify-content: space-between;
+      padding-block: 10px;
+      padding-inline: 1.4rem;
       background: linear-gradient(to right, #673ab75e, #191a3a);
-      // border-bottom: 1px solid #2c2c2c;
-      // border-radius: 10px;
-      // border-top: 1px solid #2c2c2c;
-      // box-shadow: inset 0px 2px 2px 1px #1d1d1da1;
       border-bottom: 1px solid #ffffff1a;
       box-sizing: border-box;
       color: white;
-      column-gap: 10px;
-      display: flex;
-      // height: 90px;
-      justify-content: space-around;
-      margin: 0 auto 0px;
-      padding: 0px 10px 10px 20px;
       position: relative;
       width: 100%;
+      
       &:first-child {
         border-radius: 10px 10px 0 0;
       }
+      
       &:last-child {
         border-radius: 0 0 10px 10px;
       }
       .number {
+        display: flex;
+        align-items: center;
         font-weight: 600;
         margin: 10px 0 0 0;
         position: relative;
@@ -90,28 +88,28 @@
           }
         }
       }
+
       .name {
-        // color: #aeaeb1;
         font-weight: bold;
         margin: 11px 0 0 0;
-        max-width: 80px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        // white-space: nowrap;
         div {
           // color: rgb(96, 96, 96);
           font-weight: initial;
           font-size: 13px;
         }
       }
-      .credits {
-        background: linear-gradient(90deg, #74ffd0, #3ac8be);
-        font-weight: bold;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: #0000;
-        // position: absolute;
-        // right: 20px;
-        // top: 30px;
+      .info{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .date{
+        font-size: .8em;
+        background-color: #0056b3;
+        padding: 5px 10px;
+        background: #191a3a;
+        border-radius: 12px;
+        width: fit-content;
       }
     }
   }

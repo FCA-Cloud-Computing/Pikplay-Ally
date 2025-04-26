@@ -19,6 +19,9 @@ import styles from "./redemption.module.scss"
 import { MenuItem, Select, TextField } from "@mui/material"
 import Image from "next/image"
 import Button from "@/components/button/Button"
+import CoinIcon from "@/components/coinIcon/CoinIcon"
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import './redemptionAnimations.scss';
 
 const RedeemPage = (props) => {
   const descripcion =
@@ -39,16 +42,19 @@ const RedeemPage = (props) => {
         id: 1,
         name: "Redención 1",
         credits: 100,
+        date: "2023-10-01",
       },
       {
         id: 2,
         name: "Redención 2",
         credits: 200,
+        date: "2024-11-01",
       },
       {
         id: 3,
         name: "Redención 3",
         credits: 300,
+        date: "2025-12-01",
       },
     ])
   }, [])
@@ -59,6 +65,12 @@ const RedeemPage = (props) => {
 
     console.log(phone)
   }
+
+  const handleAcceptRedemption = (id) => {
+    setRedemptions((prevRedemptions) =>
+      prevRedemptions.filter((redemption) => redemption.id !== id)
+    );
+  };
 
   return (
     <Layout image={image} descripcion={descripcion} title={title} url={url}>
@@ -90,36 +102,34 @@ const RedeemPage = (props) => {
         {redemptions.length > 0 && (
           <div>
             <h2>🎁 Redenciones</h2>
-            <ul className={styles.list}>
+            <TransitionGroup component="ul" className={styles.list}>
               {redemptions.map((redemption, index) => (
-                <li className={styles.item} key={index}>
-                  <div className={styles.number}>
-                    {index + 1}
-                    <span className={styles.arrow}>«</span>
-                  </div>
-                  <div className={styles.name}>
-                    <span>{redemption.name}</span>
-                  </div>
-                  <div className={styles.points}>{redemption.credits}</div>
-                </li>
-                // <li key={redemption.id}>
-                //   <div className={styles.redemption}>
-                //     <div className={styles.redemptionInfo}>
-                //       <h2>{redemption.title}</h2>
-                //       <p>{redemption.description}</p>
-                //     </div>
-                //     <div className={styles.redemptionActions}>
-                //       <button onClick={() => handleAccept(redemption.id)}>
-                //         Aceptar
-                //       </button>
-                //       <button onClick={() => handleReject(redemption.id)}>
-                //         Rechazar
-                //       </button>
-                //     </div>
-                //   </div>
-                // </li>
+                <CSSTransition
+                  key={redemption.id}
+                  timeout={300}
+                  classNames="fade"
+                >
+                  <li className={styles.item}>
+                    <div className={styles.info}>
+                      <span className={styles.name}>{redemption.name}</span>
+                      <span className={styles.date}>{redemption.date}</span>
+                    </div>
+                    <div className={styles.credits}>
+                      <CoinIcon coins={redemption.credits} />
+                    </div>
+                    <div className={styles.switchContainer}>
+                      <label className={styles.switch}>
+                        <input
+                          type="checkbox"
+                          onChange={() => handleAcceptRedemption(redemption.id)}
+                        />
+                        <span className={styles.slider}></span>
+                      </label>
+                    </div>
+                  </li>
+                </CSSTransition>
               ))}
-            </ul>
+            </TransitionGroup>
           </div>
         )}
       </section>
