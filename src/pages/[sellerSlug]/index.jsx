@@ -41,7 +41,7 @@ const DefaultSellerPage = (props) => {
   const setStoreValue = useCommonStore(state => state.setStoreValue)
 
   const { coupons, params, publications, sellerInformation } = props
-  const { isTriviaChallenge, registerInvoiceLabel } = sellerInformation
+  const { uid: sellerUid, isTriviaChallenge, registerInvoiceLabel } = sellerInformation
   const { sellerSlug } = router.query
 
   const {
@@ -187,7 +187,7 @@ const DefaultSellerPage = (props) => {
       {/* Bonos */}
       {coupons && <BonusList bonuses={coupons.data} />}
 
-      {showWordChallenge && <WordChallenge setShowWorkChallenge={setShowWorkChallenge} />}
+      {showWordChallenge && <WordChallenge sellerUid={sellerUid} setShowWorkChallenge={setShowWorkChallenge} />}
 
       {/* Ranking */}
       {rankingId && <>
