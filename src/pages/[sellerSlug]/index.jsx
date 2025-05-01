@@ -58,7 +58,7 @@ const DefaultSellerPage = (props) => {
     aboutHTMLButtonStyle,
     description,
     name,
-    phone,
+    whatsappNumber,
     picture,
   } = authorInformation || {}
   const GlobalStyle = createGlobalStyle``
@@ -222,7 +222,7 @@ const DefaultSellerPage = (props) => {
               {...publication}
               {...{
                 user: authorInformation,
-                whatsappNumber: phone
+                whatsappNumber: whatsappNumber,
               }}
             />
           }
