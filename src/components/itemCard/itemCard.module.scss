@@ -98,15 +98,13 @@ h3.title_destacada {
       }
     }
     .tags {
+      bottom: 10px;
       display: flex;
       justify-content: center;
-      // margin-top: 10px;
+      margin-bottom: 20px;
       right: 0;
       z-index: 2;
-      @media screen and (max-width: 480px) {
-        bottom: 10px;
-        margin-bottom: 10px;
-      }
+
       span {
         background: #f1f1f1;
         border-radius: 10px;
@@ -126,7 +124,7 @@ h3.title_destacada {
     .cashbackInformation {
       color: #2d81a9;
       display: block;
-      font-size: 10px;
+      font-size: 12px;
       margin: 16px 10px 0;
       text-align: center;
     }
@@ -183,6 +181,7 @@ h3.title_destacada {
             background: white;
             border-radius: 50%;
             box-sizing: border-box;
+            color: #521a93;
             height: 28px;
             padding: 2px;
             transition: 0.5s ease;
@@ -208,6 +207,7 @@ h3.title_destacada {
         margin-left: 20px;
       }
       h2 {
+        color: grey;
         font-size: 16px;
         margin: 10px 20px 0 10px;
         // max-height: 44px;
@@ -327,7 +327,7 @@ h3.title_destacada {
   }
   .shipping {
     svg {
-      color: #3095b3;
+      color: #521a93;
       margin-right: 4px;
       position: relative;
       top: 4px;

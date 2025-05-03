@@ -34,7 +34,7 @@ export const AuthorInformation = (props) => {
         whatsapp,
     } = props?.authorInformation || {}
     const [isFavorite, setIsFavorite] = useState(false)
-    const { setStoreValue } = useCommonStore()
+    const setStoreValue = useCommonStore((state) => state.setStoreValue)
     const stored = loadFromLocalStorage("favoritesSellers") || []
 
     useEffect(() => {
@@ -51,10 +51,11 @@ export const AuthorInformation = (props) => {
           updated = [...stored, { picture, storeName, slug }]
         }
     
-        setStoreValue("favoritesSellers", updated)
+        setStoreValue("favoritesSellers", updated, true)
         setIsFavorite(!isFavorite)
     
         await postChallengeDetailSrv(null, { challengeId: 11 })
+        console.log("Challenge 11 completed");
       }
 
     return <div className={`${styles.AuthorComponentPage}`} style={{ ['--backgroundImage']: `url(${pageBackground})` }}>
