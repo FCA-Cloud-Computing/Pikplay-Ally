@@ -62,7 +62,7 @@ export default function LoginInterface({
   return (
     <div className={styles.LoginComponent}>
       <Button
-        alt='Ingersar con número de teléfono'
+        alt='Ingresar con número de teléfono'
         className={`${styles.playButton}`}
         color='blue'
         id='btnStart'

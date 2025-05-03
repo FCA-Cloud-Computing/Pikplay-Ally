@@ -1,0 +1,116 @@
+.redemptionPage {
+  width: 100%;
+  background-image: url("/images/backgrounds/general-bg.png");
+  padding: 20px;
+
+  .contryAndPhone {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .phoneInput {
+      color: #fff;
+      padding: 0px;
+      padding-left: 10px;
+      margin: 0px;
+      outline: none;
+      width: 100%;
+      border: none;
+      background-color: transparent;
+      border-bottom: 2px solid #fff;
+      border-radius: 10px;
+    }
+
+    & > label {
+      font-weight: 700;
+      margin-right: 10px;
+    }
+
+    .phoneInputContainer {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+  }
+
+  .selectCountry {
+    width: 120px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 10px;
+      padding-inline: 1.4rem;
+      background: linear-gradient(to right, #673ab75e, #191a3a);
+      border-bottom: 1px solid #ffffff1a;
+      box-sizing: border-box;
+      color: white;
+      position: relative;
+      width: 100%;
+      
+      &:first-child {
+        border-radius: 10px 10px 0 0;
+      }
+      
+      &:last-child {
+        border-radius: 0 0 10px 10px;
+      }
+      .number {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        margin: 10px 0 0 0;
+        position: relative;
+        .arrow {
+          color: #3095b3;
+          font-size: 18px;
+          left: 0px;
+          position: absolute;
+          top: -17px;
+          transform: rotate(90deg);
+          &.down {
+            color: red;
+            transform: rotate(270deg);
+          }
+        }
+      }
+
+      .name {
+        font-weight: bold;
+        margin: 11px 0 0 0;
+        div {
+          // color: rgb(96, 96, 96);
+          font-weight: initial;
+          font-size: 13px;
+        }
+      }
+      .info{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .date{
+        font-size: .8em;
+        background-color: #0056b3;
+        padding: 5px 10px;
+        background: #191a3a;
+        border-radius: 12px;
+        width: fit-content;
+      }
+    }
+  }
+}
