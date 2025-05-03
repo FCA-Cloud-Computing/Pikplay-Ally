@@ -1,6 +1,6 @@
 import styles from "./wordChallenge.module.scss"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 // Custom
 import Button from "../button/Button"
@@ -12,11 +12,11 @@ import { postTriviaResponseSrv } from "@/services/trivias/trivias"
 import useWordChallenge, { useWordChallengeStore } from "./useWordChallenge"
 
 export const InputsOTP = ({ triviaId, setShowModal, wordLength }) => {
-  const { word, inputRefs, handleChange, cleanWord } = useOtpInput(wordLength)
+  const { inputRefs, cleanWord } = useOtpInput(wordLength)
   const { isCooldown, triggerCooldown } = useCooldown()
   const { messageTop, userLogged, setStoreValue } = useCommonStore()
-  const { handleSendResponse } = useWordChallenge()
-  const { errorMessage, loading } = useWordChallengeStore(state => state)
+  const { handleSendResponse, handleChange, handleKeyUp } = useWordChallenge(setStoreValue)
+  const { errorMessage, letterIndexActive, loading, word } = useWordChallengeStore(state => state)
 
   const handleValidate = () => {
     if (isCooldown) {
@@ -38,6 +38,12 @@ export const InputsOTP = ({ triviaId, setShowModal, wordLength }) => {
     // cleanWord()
   }
 
+  useEffect(() => {
+    if (inputRefs.current[letterIndexActive]) {
+      inputRefs.current[letterIndexActive].focus()
+    }
+  }, [letterIndexActive])
+
   return (
     <div className={styles.InputComponent}>
       {/* {JSON.stringify(messageTop)} */}
@@ -50,15 +56,11 @@ export const InputsOTP = ({ triviaId, setShowModal, wordLength }) => {
               value={word[index] || ""}
               maxLength={1}
               onChange={(e) => handleChange(e, index)}
-              onKeyDown={(e) => handleChange(e, index)}
+              onKeyDown={(e) => handleKeyUp(e, index)}
             />
           </div>
         ))}
       </div>
-
-      {errorMessage && <p className={styles.errorMessage} onClick={() => setErrorMessage(null)}>
-        {errorMessage}
-      </p>}
 
       <Button
         className="m-t-20"

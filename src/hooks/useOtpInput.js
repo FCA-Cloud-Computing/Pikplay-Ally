@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 
 export const useOtpInput = (wordLength) => {
-  const [word, setWord] = useState(Array(wordLength).fill(""))
+  // const [word, setWord] = useState(Array(wordLength).fill(""))
   const [letterIndexActive, setLetterIndexActive] = useState(0)
   const inputRefs = useRef([])
 
@@ -11,7 +11,7 @@ export const useOtpInput = (wordLength) => {
     }
   }, [letterIndexActive])
 
-  const handleChange = (event, index) => {
+  const handleChangeWord = (event, index) => {
     const updatedWord = [...word]
     const letter = event.currentTarget?.value
     const key = event?.key
@@ -40,18 +40,18 @@ export const useOtpInput = (wordLength) => {
     setWord(updatedWord.map(letter => letter.toLowerCase()))
   }
 
-  const cleanWord = () => {
-    // debugger
-    setWord(Array(wordLength).fill(""))
-    setLetterIndexActive(0)
-    // inputRefs.current[0].focus()
-  }
+  // const cleanWord = () => {
+  //   debugger
+  //   setWord(Array(wordLength).fill(""))
+  //   setLetterIndexActive(0)
+  //   inputRefs.current[0].focus()
+  // }
 
   return { 
-    cleanWord,
-    handleChange, 
+    // cleanWord,
+    // handleChange, 
     inputRefs, 
-    setWord, 
-    word, 
+    // setWord, 
+    // word, 
   }
 }

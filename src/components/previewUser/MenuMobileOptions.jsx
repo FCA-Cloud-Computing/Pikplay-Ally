@@ -144,13 +144,11 @@ const MenuMobileOptions = ({ router }) => {
       </motion.ol> */}
       <motion.ol variants={item}>
         <Link href="/canjear">
-          <div className={styles.coinContent}>
-            <CoinIcon coins={coins} hideNumber />
-          </div>
-          Canjear
+          Mis canjes
         </Link>
       </motion.ol>
       {favoritesSellers && favoritesSellers.map(favoriteSeller => {
+
         return <motion.ol key={favoriteSeller.uid} variants={item} className={styles.favoriteSeller}>
           <Link href={`/${favoriteSeller.slug}`}>
             <img className='br-5' src={favoriteSeller.picture} />

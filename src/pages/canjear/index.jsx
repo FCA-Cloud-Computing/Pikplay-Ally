@@ -1,3 +1,5 @@
+import './redemption.module.scss'
+
 import React from "react"
 import Perfil from "../../components/profile/Perfil"
 import Layout from "../../components/layout/Layout"
@@ -21,7 +23,6 @@ import Image from "next/image"
 import Button from "@/components/button/Button"
 import CoinIcon from "@/components/coinIcon/CoinIcon"
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import './redemptionAnimations.scss';
 
 const RedeemPage = (props) => {
   const descripcion =

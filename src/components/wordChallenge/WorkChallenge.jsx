@@ -22,19 +22,19 @@ const WordChallenge = (props) => {
   const {
     getTrivia,
     handleSendResponse,
-    setShowModal,
-    showModal,
-    triviaId,
     selectedOption,
     setSelectedOption,
-  } = useWordChallenge(setStoreValue, setShowWorkChallenge)
+    setShowModal,
+  } = useWordChallenge(setStoreValue)
 
   const {
     errorMessage,
     triviaInformation,
-    triviaInformation: { length: wordLength, options, question }
+    showModal,
+    set,
   } = useWordChallengeStore()
   // if (triviaInformation.ud) debugger
+  const { length: wordLength, options, triviaId, question } = triviaInformation || {}
 
   const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="left" ref={ref} {...props} />
@@ -57,7 +57,7 @@ const WordChallenge = (props) => {
       open={showModal}
       // TransitionComponent={Transition}
       className={styles.WordChallenge}
-      onClose={() => setShowWorkChallenge(false)}
+      onClose={() => set({ showModal: false })}
     >
       <DialogContent>
         <div className={styles.content}>
@@ -73,10 +73,12 @@ const WordChallenge = (props) => {
               triviaId={triviaId}
               wordLength={wordLength}
             />}
+
             {/* Trivia opciones */}
-            <div className={styles.options}>
+            {options && options.length > 0 && <div className={styles.triviaOptions}>
               {
                 options && options.map(item => {
+
                   return <motion.div
                     className={selectedOption == item.detalle ? styles.selected : null}
                     key={item.detalle}
@@ -88,7 +90,12 @@ const WordChallenge = (props) => {
                   </motion.div>
                 })
               }
-            </div>
+            </div>}
+
+            {errorMessage && <p className={styles.errorMessage} onClick={() => set({ errorMessage: null })}>
+              {errorMessage}
+            </p>}
+
             {selectedOption && <Button fullWidth color="main" onClick={handleValidate}>Enviar respuesta</Button>}
             <small key="subtitle" className={`${styles.subtitle}`}>
               Puedes obtener muchos{" "}

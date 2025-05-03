@@ -22,17 +22,18 @@ const Layout = (props) => {
     title,
     url,
   } = props
-  const {
-    darkMode,
-    env,
-    isAwardSummaryModalOpen,
-    notifications,
-    setStoreValue,
-    leftMenuBar: { isShow: isShowLeftMenu },
-    userLogged,
-    isFullLoading,
-  } = useCommonStore((state => state))
+
+  const env = useCommonStore(state => state.env)
+  const isAwardSummaryModalOpen = useCommonStore(state => state.isAwardSummaryModalOpen)
+  const isFullLoading = useCommonStore(state => state.isFullLoading)
+  const leftMenuBar = useCommonStore(state => state.leftMenuBar)
+  const messageTop = useCommonStore(state => state.messageTop)
+  const notifications = useCommonStore(state => state.notifications)
+  const setStoreValue = useCommonStore(state => state.setStoreValue)
+  const userLogged = useCommonStore(state => state.userLogged)
   const { checkIAMessage, IAMessage, setIsvisible } = useIAStore()
+
+  const { isShow: isShowLeftMenu } = leftMenuBar
   const router = useRouter()
 
   Router.onRouteChangeStart = url => {
@@ -112,7 +113,7 @@ const Layout = (props) => {
         notifications={notifications}
         userLogged={userLogged}>
         <ToastContainer />
-        <MessagesTop />
+        {messageTop && <MessagesTop messageTop={messageTop} setStoreValue={setStoreValue} />}
         {isFullLoading && <FullScreenLoading />}
         {isAwardSummaryModalOpen && <AwardsSummaryModal />}
         {children}

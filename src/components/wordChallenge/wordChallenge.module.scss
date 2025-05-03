@@ -1,5 +1,4 @@
 .WordChallenge {
-  // background: red;
   :global(.MuiPaper-root) {
     background-color: initial;
     border-radius: 10px;
@@ -107,6 +106,8 @@
   // column-gap: 10px;
   // display: flex;
   // justify-content: center;
+  margin: 0 auto;
+  width: 90%;
   > * {
     background-color: white;
     border-radius: 10px;

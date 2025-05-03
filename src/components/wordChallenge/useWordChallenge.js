@@ -1,85 +1,155 @@
-import { useState } from "react"
-
-// Custom
-import { getTriviaSrv, postTriviaResponseSrv } from "@/services/trivias/trivias"
-import { useIAStore } from "../ia/IAstore"
-import { useOtpInput } from "@/hooks/useOtpInput"
+import { useEffect, useState } from "react"
 import { create } from "zustand"
 
-const useWordChallenge = (setStoreValue, setShowWorkChallenge) => {
-    const { set, triviaInformation } = useWordChallengeStore(state => state)
-    const { length: wordLength } = triviaInformation || {}
-    const [showModal, setShowModal] = useState(false)
-    const [triviaId, setTriviaId] = useState(null)
-    const [triviaQuestion, setTriviaQuestion] = useState("")
-    const [triviaOptions, setTriviaOptions] = useState([])
-    const [selectedOption, setSelectedOption] = useState(null)
-    const setIAMessage = useIAStore(state => state.setIAMessage)
-    const { cleanWord } = useOtpInput(wordLength)
+// Custom
+import { useIAStore } from "../ia/IAstore"
+// import { useOtpInput } from "@/hooks/useOtpInput"
+import { getTriviaSrv, postTriviaResponseSrv } from "@/services/trivias/trivias"
 
-    const getTrivia = (sellerUid) => {
-        getTriviaSrv(null, sellerUid)
-            .then((res) => {
-                const { code } = res
-                if (code == 500) return
-                if (res.data.messagePepe) {
-                    // debugger
-                    setIAMessage(<>{res.data.messagePepe.message}</>)
-                    setShowWorkChallenge(false)
-                    return
-                }
-                set({ triviaInformation: res.data })
-                setShowModal(true)
-                // setTriviaId(res.data.id)
-                // setWordLength(res.data.length)
-                // setTriviaQuestion(res.data.question)
-                // setTriviaOptions(res.data.options)
-            })
+const useWordChallenge = (setStoreValue) => {
+  // debugger
+  const {
+    letterIndexActive,
+    set,
+    triviaInformation,
+    word,
+    showModal,
+    setShowModal,
+  } = useWordChallengeStore(state => state)
+
+  const { length: wordLength } = triviaInformation || {}
+  const [triviaId, setTriviaId] = useState(null)
+  const [triviaQuestion, setTriviaQuestion] = useState("")
+  const [triviaOptions, setTriviaOptions] = useState([])
+  const [selectedOption, setSelectedOption] = useState(null)
+  const setIAMessage = useIAStore(state => state.setIAMessage)
+  // const { cleanWord } = useOtpInput(wordLength)
+
+  const getTrivia = (sellerUid) => {
+    getTriviaSrv(null, sellerUid)
+      .then((res) => {
+        const { code } = res
+        if (code == 500) return
+        if (res.data.messagePepe) {
+          // debugger
+          setIAMessage(<>{res.data.messagePepe.message}</>)
+          set({ showModal: false })
+
+          return
+        }
+        set({ triviaInformation: res.data })
+        setShowModal(true)
+        // setTriviaId(res.data.id)
+        // setWordLength(res.data.length)
+        // setTriviaQuestion(res.data.question)
+        // setTriviaOptions(res.data.options)
+      })
+  }
+
+  const handleKeyUp = (event, index) => {
+    const key = event?.key
+    if (key === "Backspace" && index > 0) {
+      const updatedWord = [...word]
+      const currentLetter = updatedWord[index]
+
+      // word.length === 0
+      //   ? (updatedWord[index - 1] = "")
+      //   : (updatedWord[index] = "")
+
+      // if (currentWord.length === 0) 
+      set({ letterIndexActive: index - 1 })
+      // set({ word: updatedWord })
+
+      return
+    }
+  }
+
+  const handleChange = (event, index) => {
+    // Cuando cambia una letra en la trivia sencilla
+    const updatedWord = [...word]
+    const letter = event.currentTarget?.value
+    const key = event?.key
+
+    // if (letter === "") return null
+
+    updatedWord[index] = letter
+    if (letter && index < wordLength - 1 && !key) {
+      set({ letterIndexActive: index + 1 })
     }
 
-    const handleSendResponse = (word) => {
-        set({ loading: true })
-        postTriviaResponseSrv(null, { response: word, triviaId: triviaInformation.id })
-            .then(res => {
-                set({ loading: false })
-                const { data: { closeModal, isCleanWord, messageTop, message } } = res
-                if (closeModal) setShowModal(false)
-                if (messageTop && type == 'success') {
-                    const { message, type } = messageTop || {}
-                    setStoreValue("messageTop", { message, type })
-                } else {
-                    if (isCleanWord) cleanWord()
-                    set({ errorMessage: message })
-                }
-            })
-            .catch(err => {
-                set({ loading: false })
-                console.error(err)
-            })
-    }
+    // if (!letter && index > 0 && !key) {
+    //     debugger
+    //     setLetterIndexActive(index - 1)
+    // }
+    // debugger
+    // minusculas
+    set({ word: updatedWord.map(letter => letter.toLowerCase()) })
+  }
 
-    return {
-        getTrivia,
-        handleSendResponse,
-        selectedOption,
-        setSelectedOption,
-        setShowModal,
-        setTriviaId,
-        showModal,
-        triviaId,
-        triviaOptions,
-        triviaQuestion,
-        wordLength,
+  const handleSendResponse = (word) => {
+    set({ loading: true })
+    postTriviaResponseSrv(null, { response: word, triviaId: triviaInformation.id })
+      .then(res => {
+        set({ loading: false })
+        const { data: { closeModal, isCleanWord, messageTop }, message } = res
+        if (closeModal) set({ showModal: false })
+        const { message: messagePepe, type } = messageTop || {}
+        if (messageTop) {
+          setStoreValue("messageTop", { message: messagePepe, type })
+        } else {
+          if (isCleanWord) cleanWord()
+          set({ errorMessage: message })
+        }
+      })
+      .catch(err => {
+        set({ loading: false })
+        console.error(err)
+      })
+  }
+
+  const cleanWord = () => {
+    set({ word: Array(wordLength).fill("") })
+    // setLetterIndexActive(0)
+    // inputRefs.current[0].focus()
+  }
+
+  useEffect(() => {
+    return () => {
+      set({
+        letterIndexActive: 0,
+        triviaInformation: null,
+        word: Array(0).fill('')
+      })
     }
+  }, [])
+
+  return {
+    getTrivia,
+    handleChange,
+    handleKeyUp,
+    handleSendResponse,
+    selectedOption,
+    setSelectedOption,
+    setShowModal,
+    setTriviaId,
+    showModal,
+    triviaId,
+    triviaOptions,
+    triviaQuestion,
+    wordLength,
+  }
 }
 
 export const useWordChallengeStore = create((set) => ({
-    errorMessage: null,
-    loading: false,
-    triviaInformation: { id: null },
-    showModal: false,
-    setShowModal: (value) => set({ showModal: value }),
-    set,
+  errorMessage: null,
+  letterIndexActive: 0,
+  loading: false,
+  showModal: false,
+  triviaInformation: { id: null },
+  wordLength: 0,
+  word: Array(0).fill(''),
+  setShowModal: (value) => set({ showModal: value }),
+  set,
 }));
 
 export default useWordChallenge

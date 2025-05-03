@@ -33,12 +33,16 @@ import { getUserSrv } from '@/services/user/user'
 import { getPublicationsSrv } from '@/services/publications/publications'
 import { getCouponsSrv } from '@/services/coupon/couponService'
 import useCommonStore from '@/hooks/commonStore'
+import { useWordChallengeStore } from '@/components/wordChallenge/useWordChallenge'
 
 const DefaultSellerPage = (props) => {
   const router = useRouter()
-  const [showWordChallenge, setShowWorkChallenge] = useState(false)
+
   const userLogged = useCommonStore(state => state.userLogged)
   const setStoreValue = useCommonStore(state => state.setStoreValue)
+
+  const showWordChallenge = useWordChallengeStore(state => state.showModal)
+  const setShowWorkChallenge = useWordChallengeStore(state => state.set)
 
   const { coupons, params, publications, sellerInformation } = props
   const { uid: sellerUid, isTriviaChallenge, registerInvoiceLabel } = sellerInformation || {}
@@ -91,7 +95,7 @@ const DefaultSellerPage = (props) => {
 
       return false
     }
-    setShowWorkChallenge(true)
+    setShowWorkChallenge({ showModal: true })
   }
 
   const handleRegisterInvoice = () => {
@@ -160,7 +164,6 @@ const DefaultSellerPage = (props) => {
           Agregar al menu
         </div> */}
       </div>
-
       {competitionsArray && competitionsArray.length > 0 && <>
         {/* <div className="contentTitle">
           <h1>
@@ -186,7 +189,7 @@ const DefaultSellerPage = (props) => {
       {/* Bonos */}
       {coupons && <BonusList bonuses={coupons.data} />}
 
-      {showWordChallenge && <WordChallenge sellerUid={sellerUid} setShowWorkChallenge={setShowWorkChallenge} />}
+      {showWordChallenge && <WordChallenge sellerUid={sellerUid} />}
 
       {/* Ranking */}
       {rankingId && <>
