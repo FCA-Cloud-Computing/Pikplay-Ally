@@ -26,7 +26,7 @@ const ChallengesList = (props) => {
     }
   }
 
-  if (challenges.code !== 200) {
+  if (challenges?.code !== 200) {
     return <div>Error obteniendo los desafios</div>
   }
 

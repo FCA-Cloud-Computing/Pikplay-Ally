@@ -215,7 +215,7 @@ const Onboarding = (props) => {
     </div>
     <div className={styles.challenges}>
       <h2>¿Cómo ganar <strong>Pikcoins</strong>?</h2>
-      <ChallengesList challenges={challenges} />
+      {/* <ChallengesList challenges={challenges} /> */}
     </div>
 
     <div className={styles.aliados}>
@@ -235,7 +235,7 @@ const Onboarding = (props) => {
           </div>
         </div>
 
-        {sellersInformation.length > 0 && sellersInformation.map((item, i) => { // Interación aliados
+        {sellersInformation && sellersInformation.length > 0 && sellersInformation.map((item, i) => { // Interación aliados
           const { location, name, picture, publications, slug, storeName } = item
           let publicationsList = []
           try {

@@ -6,13 +6,14 @@ const OnboardingPage = () => {
     const descripcion = ''
     const title = 'Te presentamos Pikplay Ally'
     const url = ''
+
     return <Layout
         image={image}
         descripcion={descripcion}
         title={title}
         url={url}>
         <Onboarding />
-    </Layout>   
+    </Layout>
 }
 
 export default OnboardingPage

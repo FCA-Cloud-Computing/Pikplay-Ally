@@ -5,11 +5,11 @@ import { ToastContainer } from 'react-toastify';
 
 import useCommonStore from '../../hooks/commonStore'
 import Body from './Body.jsx'
+import Header from './Head.jsx';
 import { useIAStore } from '../ia/IAstore.js'
 import AwardsSummaryModal from '../awardsSummary/AwardsSummary.jsx';
 import MessagesTop from '../messagesTop/MessagesTop.jsx';
 import FullScreenLoading from '../fullScreenLoading/FullScreenLoading.jsx';
-import Header from './Head.jsx';
 
 const Layout = (props) => {
   const [isReady, setIsReady] = useState(false)

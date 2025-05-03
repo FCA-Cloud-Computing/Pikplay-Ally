@@ -28,7 +28,8 @@ const useWordChallenge = (setStoreValue) => {
   const getTrivia = (sellerUid) => {
     getTriviaSrv(null, sellerUid)
       .then((res) => {
-        const { code } = res
+        const { code } = res || {}
+
         if (code == 500) return
         if (res.data.messagePepe) {
           // debugger
