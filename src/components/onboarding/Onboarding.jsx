@@ -17,9 +17,10 @@ import { getUsersSrv, saveLeadSrv, } from '../../services/user/user'
 import { useIAStore } from '../ia/IAstore'
 import ProfileImage from '../profileImage/ProfileImage'
 import { locationsList } from '@/consts/locations'
+import ChallengesList from '../challengesList/ChallengesList'
 
 const Onboarding = (props) => {
-  const { sellersInformation } = props
+  const { sellersInformation, challenges } = props
   const { ONBOARDING_LEAD_DUPLICATED, ONBOARDING_LEAD_SUCCESS } = MESSAGES
   const { setStoreValue } = useCommonStore()
   const [phoneNumber, setPhoneNumber] = useState("")
@@ -211,6 +212,10 @@ const Onboarding = (props) => {
         Por ello en Pikplay solo encontraras <b>Aliados certificados</b>.
         <br />Tiendas que han sido estudiadas y validadas por nuestro equipo. Tienen nuestro total respaldo y confianza.
       </p> */}
+    </div>
+    <div className={styles.challenges}>
+      <h2>¿Cómo ganar <strong>Pikcoins</strong>?</h2>
+      <ChallengesList challenges={challenges} />
     </div>
 
     <div className={styles.aliados}>

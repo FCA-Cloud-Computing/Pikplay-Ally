@@ -339,6 +339,12 @@ section.Onboarding {
       }
     }
   }
+
+  .challenges{
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
   h2 {
     color: white;
     font-size: 24px;
@@ -379,3 +385,4 @@ section.Onboarding {
     }
   }
 }
+
