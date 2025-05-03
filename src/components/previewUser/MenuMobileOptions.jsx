@@ -2,15 +2,19 @@ import styles from './previewUser.module.scss'
 
 import React from 'react'
 import { motion } from "framer-motion"
+import Link from 'next/link'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import Image from 'next/image'
+
+// Custom
 import CoinIcon from '../coinIcon/CoinIcon'
 import { slugify } from '../../lib/utils'
-import Link from 'next/link'
+import Login from '../login/Login'
 import useCommonStore, { loadFromLocalStorage } from '../../hooks/commonStore'
 import { useIAStore } from '../ia/IAstore'
 import Button from '../button/Button'
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import Image from 'next/image'
-import Login from '../login/Login'
 
 const MenuMobileOptions = ({ router }) => {
   const {
@@ -106,7 +110,8 @@ const MenuMobileOptions = ({ router }) => {
     </>)}
     <motion.ol variants={item}>
       <Link href="/redimir">
-        <img src="https://cdn-icons-png.flaticon.com/512/4213/4213958.png" />
+        {/* <img src="https://cdn-icons-png.flaticon.com/512/4213/4213958.png" /> */}
+        <CardGiftcardIcon />
         Redimir
       </Link>
     </motion.ol>
@@ -122,13 +127,13 @@ const MenuMobileOptions = ({ router }) => {
       </a>
     </motion.ol>
     {favoritesSellers && favoritesSellers.map(favoriteSeller => {
-        return <motion.ol key={favoriteSeller.uid} variants={item} className={styles.favoriteSeller}>
-          <Link href={`/${favoriteSeller.slug}`}>
-            <img className='br-5' src={favoriteSeller.picture} />
-            {favoriteSeller.storeName}
-          </Link>
-        </motion.ol>
-      })}
+      return <motion.ol key={favoriteSeller.uid} variants={item} className={styles.favoriteSeller}>
+        <Link href={`/${favoriteSeller.slug}`}>
+          <img className='br-5' src={favoriteSeller.picture} />
+          {favoriteSeller.storeName}
+        </Link>
+      </motion.ol>
+    })}
     {/* Opciones de administrador */}
     {userLogged.isAdmin && <>
       {/* <motion.ol variants={item}>
@@ -148,12 +153,20 @@ const MenuMobileOptions = ({ router }) => {
     {isLogged && <motion.ol variants={item} onClick={() => handleLogout()}>
       Salir
     </motion.ol>}
-    <Button className={styles.closeButton} onClick={() => {
-      setStoreValue('leftMenuBar', { isShow: false })
-    }}>
-      <ArrowBackIosIcon />
-      Cerrar menu
-    </Button>
+    <div className={styles.bottomContainer}>
+      <Button>
+        <a href="https://api.whatsapp.com/send?phone=573204863547&text=%C2%A1Hola!,%20quisiera%20ayuda%20con%20algo%20de%20Pikplay" target="_blank">
+          <HeadphonesIcon />
+          Hablar con soporte
+        </a>
+      </Button>
+      <Button className={styles.closeButton} onClick={() => {
+        setStoreValue('leftMenuBar', { isShow: false })
+      }}>
+        <ArrowBackIosIcon />
+        Cerrar menu
+      </Button>
+    </div>
   </motion.div >
 }
 

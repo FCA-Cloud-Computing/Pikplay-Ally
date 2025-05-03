@@ -12,7 +12,6 @@ const MESSAGES = {
   INVITATION_MESSAGE: (phone) => `https://api.whatsapp.com/send?phone=${phone}&text=¡Hola!, te invito a unirte a Pikplay, donde ambos ganamos cashback por referir amigos y compras en: tiendas del barrio, barberias, tiendas geek, gamer y más!`,
 
   // Seller
-  REGISTER_INVOICE_LABEL: 'Registrar factura',
 }
 
 export const NOTIFICATION_TYPES = {

@@ -41,7 +41,7 @@ const DefaultSellerPage = (props) => {
   const setStoreValue = useCommonStore(state => state.setStoreValue)
 
   const { coupons, params, publications, sellerInformation } = props
-  const { uid: sellerUid, isTriviaChallenge, registerInvoiceLabel } = sellerInformation
+  const { uid: sellerUid, isTriviaChallenge, registerInvoiceLabel } = sellerInformation || {}
   const { sellerSlug } = router.query
 
   const {
@@ -68,7 +68,6 @@ const DefaultSellerPage = (props) => {
   // }`;
 
   const { handleUserMessage, setIAMessage } = useIAStore()
-  const { REGISTER_INVOICE_LABEL } = MESSAGES;
 
   const {
     isLoading: isLoadingCompetition,
@@ -139,10 +138,10 @@ const DefaultSellerPage = (props) => {
       <AuthorInformation authorInformation={sellerInformation} />
       <div className={sellerSlugStyles.menu}>
         <div className={`flex ${sellerSlugStyles.aboutMe}`}>
-          <Button color='link' className='outline' onClick={handleRegisterInvoice}>
+          {registerInvoiceLabel && <Button color='link' className='outline' onClick={handleRegisterInvoice}>
             {/* <SavingsIcon /> */}
-            {registerInvoiceLabel || REGISTER_INVOICE_LABEL}
-          </Button>
+            {registerInvoiceLabel}
+          </Button>}
           {!!isTriviaChallenge && <Button color='link' className='outline' onClick={handleTriviaChallenge}>
             {/* <SavingsIcon /> */}
             Trivia Challenge

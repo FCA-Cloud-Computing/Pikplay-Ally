@@ -41,10 +41,17 @@ export const useOtpInput = (wordLength) => {
   }
 
   const cleanWord = () => {
+    // debugger
     setWord(Array(wordLength).fill(""))
     setLetterIndexActive(0)
-    inputRefs.current[0].focus()
+    // inputRefs.current[0].focus()
   }
 
-  return { word, setWord, inputRefs, handleChange, cleanWord }
+  return { 
+    cleanWord,
+    handleChange, 
+    inputRefs, 
+    setWord, 
+    word, 
+  }
 }

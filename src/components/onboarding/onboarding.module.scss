@@ -5,12 +5,15 @@ section.Onboarding {
   width: calc(100%);
   .bannerCaribeConf2025 {
     border-bottom: 1px solid #f79c01;
+    border-radius: 10px;
+    color: transparent;
     display: block;
     height: auto;
     left: -30px;
+    margin: 10px;
     max-width: initial;
     position: relative;
-    width: calc(100% + 60px);
+    width: calc(100% + 40px);
     z-index: 2;
   }
   .cta {

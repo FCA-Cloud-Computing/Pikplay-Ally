@@ -169,6 +169,7 @@ export default function LoginInterface({
                   id='verificationCode'
                   label={`Coloca aquí tu código`}
                   margin='dense'
+                  onChange={handleKeyUp}
                   onKeyUp={handleKeyUp}
                   type='number'
                 />

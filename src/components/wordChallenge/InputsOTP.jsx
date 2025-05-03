@@ -9,13 +9,14 @@ import { useCooldown } from "@/hooks/useCooldown"
 import useCommonStore from "@/hooks/commonStore"
 import { sendWordChallenge } from "@/services/challenges/challenges"
 import { postTriviaResponseSrv } from "@/services/trivias/trivias"
+import useWordChallenge, { useWordChallengeStore } from "./useWordChallenge"
 
 export const InputsOTP = ({ triviaId, setShowModal, wordLength }) => {
   const { word, inputRefs, handleChange, cleanWord } = useOtpInput(wordLength)
   const { isCooldown, triggerCooldown } = useCooldown()
   const { messageTop, userLogged, setStoreValue } = useCommonStore()
-  const [errorMessage, setErrorMessage] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const { handleSendResponse } = useWordChallenge()
+  const { errorMessage, loading } = useWordChallengeStore(state => state)
 
   const handleValidate = () => {
     if (isCooldown) {
@@ -28,24 +29,7 @@ export const InputsOTP = ({ triviaId, setShowModal, wordLength }) => {
       return
     }
 
-    setLoading(true)
-    postTriviaResponseSrv(null, { response: word.join(""), triviaId })
-      .then(res => {
-        setLoading(false)
-        const { data: { messageTop } } = res
-        const { message, type } = messageTop || {}
-        if (messageTop && type == 'success') {
-          setShowModal(false)
-          setStoreValue("messageTop", { message, type })
-        } else {
-          cleanWord()
-          setErrorMessage(message)
-        }
-      })
-      .catch(err => {
-        setLoading(false)
-        console.error(err)
-      })
+    handleSendResponse(word.join(""))
 
     // const wordToSend = word.join("")
     // // await sendWordChallenge({ word: wordToSend, uid: userLogged.uid })

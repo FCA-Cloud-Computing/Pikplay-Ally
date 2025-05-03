@@ -1,43 +1,55 @@
 import styles from "./wordChallenge.module.scss"
+
 import { useState, forwardRef, useEffect } from "react"
+import { motion, useAnimation, useMotionValue, useTransform } from 'framer-motion'
 import { Dialog, DialogContent, Slide } from "@mui/material"
+import { get } from "http"
 import { AnimatePresence } from "framer-motion"
+
+// Custom
 import { InputsOTP } from "./InputsOTP"
 import { getLengthWord } from "@/services/challenges/challenges"
-import { getTriviaSrv } from "@/services/trivias/trivias"
-import { get } from "http"
 import { useIAStore } from "../ia/IAstore"
+import Button from "../button/Button"
+import useWordChallenge, { useWordChallengeStore } from "./useWordChallenge"
+import useCommonStore from "@/hooks/commonStore"
 
 const WordChallenge = (props) => {
-  const { setShowWorkChallenge } = props
+  const { setShowWorkChallenge, sellerUid } = props
   const { setIAMessage } = useIAStore()
-  const [showModal, setShowModal] = useState(false)
   const [[page, direction], setPage] = useState([0, 0])
-  const [wordLength, setWordLength] = useState(5)
-  const [triviaQuestion, setTriviaQuestion] = useState("")
-  const [triviaId, setTriviaId] = useState(null)
+  const { setStoreValue } = useCommonStore()
+  const {
+    getTrivia,
+    handleSendResponse,
+    setShowModal,
+    showModal,
+    triviaId,
+    selectedOption,
+    setSelectedOption,
+  } = useWordChallenge(setStoreValue, setShowWorkChallenge)
+
+  const {
+    errorMessage,
+    triviaInformation,
+    triviaInformation: { length: wordLength, options, question }
+  } = useWordChallengeStore()
+  // if (triviaInformation.ud) debugger
+
   const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="left" ref={ref} {...props} />
   })
 
-  const getTrivia = () => {
-    getTriviaSrv()
-      .then((res) => {
-        if (res.data.messagePepe) {
-          // debugger
-          setIAMessage(<>{res.data.messagePepe.message}</>)
-          setShowWorkChallenge(false)
-          return
-        }
-        setShowModal(true)
-        setTriviaId(res.data.id)
-        setWordLength(res.data.length)
-        setTriviaQuestion(res.data.question)
-      })
+  const handlerSelectOption = (value) => {
+    setSelectedOption(value)
+  }
+
+  const handleValidate = () => {
+    handleSendResponse(selectedOption)
   }
 
   useEffect(() => {
-    getTrivia()
+    getTrivia(sellerUid)
   }, [])
 
   return (
@@ -50,23 +62,38 @@ const WordChallenge = (props) => {
       <DialogContent>
         <div className={styles.content}>
           <AnimatePresence initial={true} custom={direction}>
-          <p className={styles.title}>Trivia Challenge</p>
-          <small key="subtitle" className={styles.subtitle}>
-            Puedes obtener muchos{" "}
-            <span>
-              Puntos <br />
-              de Categoria y Pikcoins
-            </span>
-          </small>
-          <p className={styles.question}>
-            {triviaQuestion}
-          </p>
-          <InputsOTP
-            key="inputs"
-            setShowModal={setShowModal}
-            triviaId={triviaId}
-            wordLength={wordLength}
-          />
+            <p className={styles.title}>Trivia Challenge</p>
+            <p className={styles.question}>
+              {question}
+            </p>
+            {/* Trivia sin opciones */}
+            {options && options.length == 0 && <InputsOTP
+              key="inputs"
+              setShowModal={setShowModal}
+              triviaId={triviaId}
+              wordLength={wordLength}
+            />}
+            {/* Trivia opciones */}
+            <div className={styles.options}>
+              {
+                options && options.map(item => {
+                  return <motion.div
+                    className={selectedOption == item.detalle ? styles.selected : null}
+                    key={item.detalle}
+                    onClick={() => handlerSelectOption(item.detalle)}
+                    whileHover={{ scale: 1 }}
+                    whileTap={{ scale: 0.7 }}
+                  >
+                    {item.detalle}
+                  </motion.div>
+                })
+              }
+            </div>
+            {selectedOption && <Button fullWidth color="main" onClick={handleValidate}>Enviar respuesta</Button>}
+            <small key="subtitle" className={`${styles.subtitle}`}>
+              Puedes obtener muchos{" "}
+              <span className="animatedZoom">puntos de categoria y pikcoins</span>
+            </small>
           </AnimatePresence>
         </div>
       </DialogContent>

@@ -130,9 +130,9 @@ const Onboarding = (props) => {
   }, [])
 
   return <section className={`page ${styles.Onboarding}`}>
-    <Link href="/caribe-dev">
+    <Link href="/fundacion-codigo-abierto">
       {/* Caribe Conf 2025 */}
-      <Image className={styles.bannerCaribeConf2025} src="images/banners/banner-caribe-conf-2025-v2.jpeg" alt="Banner Caribe Conf 2025" height="100" width="420" />
+      <Image className={`${styles.bannerCaribeConf2025}`} src="images/banners/banner-barranquiia.jpg" alt="Banner Barranqui-IA 2025" height="100" width="420" />
     </Link>
     <div className={styles.titleContent}>
       <div className={styles.background}></div>
@@ -230,7 +230,7 @@ const Onboarding = (props) => {
           </div>
         </div>
 
-        {sellersInformation && sellersInformation.map((item, i) => { // Interación aliados
+        {sellersInformation.length > 0 && sellersInformation.map((item, i) => { // Interación aliados
           const { location, name, picture, publications, slug, storeName } = item
           let publicationsList = []
           try {
