@@ -1,0 +1,42 @@
+.PulseIndicatorComponent {
+    .pulse-indicator {
+        animation: pulse 1.5s infinite;
+        background-color: #931a6f;
+        border-radius: 50%;
+        box-shadow: 0 0 0 rgba(255, 0, 0, 0.4);
+        height: 12px;
+        width: 12px;
+    }
+
+    .pulse-text {
+        background: #ffffffd9;
+        border-radius: 4px;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+        color: grey;
+        font-size: 14px;
+        font-size: 14px;
+        padding: 2px 6px;
+        text-align: center;
+
+        // Position
+        left: 10px;
+        position: absolute;
+        top: -90px;
+        z-index: -1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+    }
+    70% {
+        transform: scale(1.3);
+        box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+    }
+}

@@ -10,6 +10,7 @@ import { useIAStore } from '../ia/IAstore.js'
 import AwardsSummaryModal from '../awardsSummary/AwardsSummary.jsx';
 import MessagesTop from '../messagesTop/MessagesTop.jsx';
 import FullScreenLoading from '../fullScreenLoading/FullScreenLoading.jsx';
+import PulseIndicator from '../pulseIndicator/PulseIndicator';
 
 const Layout = (props) => {
   const [isReady, setIsReady] = useState(false)
@@ -31,6 +32,7 @@ const Layout = (props) => {
   const notifications = useCommonStore(state => state.notifications)
   const setStoreValue = useCommonStore(state => state.setStoreValue)
   const userLogged = useCommonStore(state => state.userLogged)
+  const visualIndicator = useCommonStore(state => state.visualIndicator)
   const { checkIAMessage, IAMessage, setIsvisible } = useIAStore()
 
   const { isShow: isShowLeftMenu } = leftMenuBar
@@ -113,6 +115,7 @@ const Layout = (props) => {
         notifications={notifications}
         userLogged={userLogged}>
         <ToastContainer />
+        {visualIndicator.targetId && <PulseIndicator />}
         {messageTop && <MessagesTop messageTop={messageTop} setStoreValue={setStoreValue} />}
         {isFullLoading && <FullScreenLoading />}
         {isAwardSummaryModalOpen && <AwardsSummaryModal />}

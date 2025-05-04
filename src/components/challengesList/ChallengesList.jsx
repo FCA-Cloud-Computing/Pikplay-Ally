@@ -5,13 +5,17 @@ import { getServerSideProps } from "@/pages/perfil/[id]"
 import { getChallengesByUser } from "@/services/challenges/challenges"
 import useCommonStore from "@/hooks/commonStore"
 import { slugify } from "@/lib/utils"
+import { useChallengesList } from "./useChallengeList"
 
 const ChallengesList = (props) => {
   const { challenges } = props
   const router = useRouter()
   const userLogged = useCommonStore((state) => state.userLogged)
+  const { startVisualIndicator } = useChallengesList()
 
   const handleClick = (challenge) => {
+    startVisualIndicator(challenge.id)
+    /*
     if (challenge.title.includes("comercio") || challenge.title.includes("producto")) {
       router.push("/fundacion-codigo-abierto?helper=sellerFavorite")
       return
@@ -23,7 +27,7 @@ const ChallengesList = (props) => {
     ) {
       router.push(`/perfil/${slugify(userLogged.name)}`)
       return
-    }
+    }*/
   }
 
   if (challenges?.code !== 200) {

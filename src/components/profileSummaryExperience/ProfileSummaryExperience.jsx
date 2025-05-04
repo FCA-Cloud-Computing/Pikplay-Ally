@@ -132,6 +132,8 @@ const ProfileSummaryExperience = (props) => {
           {/* <div className={`shine ${styles[league]} ${league == 'oro' && 'starsFallingDown'} `}> */}
           <input
             className={`${styles.fullName} ${isEditProfile && styles.editable}`}
+            disabled={!isEditProfile}
+            id="perfil--input"
             onChange={e => isEditProfile && setNewNickname(e.target.value)}
             onBlur={isEditProfile && handleBlurName}
             onClick={() => setNewNickname('')}

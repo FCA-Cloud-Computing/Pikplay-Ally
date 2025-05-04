@@ -45,7 +45,12 @@ const DefaultSellerPage = (props) => {
   const setShowWorkChallenge = useWordChallengeStore(state => state.set)
 
   const { coupons, params, publications, sellerInformation } = props
-  const { uid: sellerUid, isTriviaChallenge, registerInvoiceLabel } = sellerInformation || {}
+  const {
+    instagram,
+    isTriviaChallenge,
+    registerInvoiceLabel,
+    uid: sellerUid,
+  } = sellerInformation || {}
   const { sellerSlug } = router.query
 
   const {

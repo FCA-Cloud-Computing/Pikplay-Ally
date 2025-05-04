@@ -14,22 +14,28 @@ import UserNotifications from '../userNotifications/UserNotifications'
 import useCommonStore from '../../hooks/commonStore'
 import { IS_MOBILE } from '../../lib/variables'
 import { getExperiencesSrv } from '@/services/experience';
-
+import { useSound } from '@/hooks/useSound';
+import { useChallengesList } from '@/components/challengesList/useChallengeList'
 const ProfileImage = dynamic(() => import('../profileImage/ProfileImage'), { ssr: false })
 
 const PreviewUser = () => {
   const router = useRouter()
   const { currentCoins, userLogged, leftMenuBar, leftMenuBar: { isShow: isShowLeftMenu }, setStoreValue, leftBottomMenuContent } = useCommonStore((state => state))
+  const { play: playSound } = useSound('/sounds/best-notification2.mp3');
+  const { play: playSoundCoins } = useSound('/sounds/coin-recieved.mp3');
   const { picture, name, coins } = userLogged || {}
+  const { nextVisualIndicator } = useChallengesList(state => state)
 
   const handleClickImage = () => {
     router.push('#menu')
     setStoreValue('leftMenuBar', { ...leftMenuBar, isShow: !isShowLeftMenu })
+    setTimeout(() => nextVisualIndicator(), 1000) // Se espera porque el menu tiene un delay
   }
 
   const handlerUpadteCoins = async () => {
     const response = await getExperiencesSrv()
     const { currentPikcoins, experience } = response
+    playSoundCoins()
     setStoreValue('currentCoins', currentPikcoins)
   }
 
@@ -40,7 +46,7 @@ const PreviewUser = () => {
       ${isShowLeftMenu ? styles.actived : null}
       ${userLogged?.uid ? styles.userLogged : null}
       `}>
-      <div>
+      <div id="user-profile--image">
         {/* <div className={styles.notificationContainer}>
           <img src="/images/icons/notification.png" />
           <span className={styles.notificationNew} />
@@ -64,7 +70,7 @@ const PreviewUser = () => {
         <div className={styles.bg_white}></div>
         {isShowLeftMenu && <>
           <MenuMobileOptions router={router} />
-          <UserNotifications />
+          <UserNotifications playSound={playSound} />
         </>}
         {/* <div className={styles.elementToCloseBgBlack} onClick={() => setStoreValue('leftMenuBar', false)}></div> */}
         {leftBottomMenuContent}

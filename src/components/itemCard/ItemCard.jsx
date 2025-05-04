@@ -25,6 +25,7 @@ import { postChallengeDetailSrv } from '@/services/challenges/challenges'
 import { CID_ASK_PRODUCT, CID_SHARE_PRODUCT } from '@/consts/challenges'
 import useCommonStore from '@/hooks/commonStore'
 import useRedemption from '@/hooks/useRedemption'
+import { useSound } from '@/hooks/useSound'
 
 
 const ItemCard = (props) => {
@@ -53,6 +54,7 @@ const ItemCard = (props) => {
 
   const { handleRedemption } = useRedemption()
   const { loggedUser, setStoreValue } = useCommonStore()
+  const { play } = useSound('/sounds/notification.mp3');
   const imagesList = images ? images.split(",") : []
   const usuario =
     typeof localStorage != 'undefined'
@@ -70,7 +72,10 @@ const ItemCard = (props) => {
     const resp = postChallengeDetailSrv(null, { challengeId })
       .then(({ data }) => {
         const { messageTop } = data
-        if (messageTop) setStoreValue('messageTop', messageTop)
+        if (messageTop){
+          play()
+          setStoreValue('messageTop', messageTop)
+        }
       })
   }
 

@@ -15,6 +15,7 @@ import Login from '../login/Login'
 import useCommonStore, { loadFromLocalStorage } from '../../hooks/commonStore'
 import { useIAStore } from '../ia/IAstore'
 import Button from '../button/Button'
+import { useChallengesList } from '../challengesList/useChallengeList';
 
 const MenuMobileOptions = ({ router }) => {
   const {
@@ -29,6 +30,8 @@ const MenuMobileOptions = ({ router }) => {
   const {
     handleUserMessage,
   } = useIAStore((state => state))
+  
+  const { nextVisualIndicator } = useChallengesList(state => state)
 
   const handleLogout = () => {
     logout()
@@ -72,6 +75,10 @@ const MenuMobileOptions = ({ router }) => {
     }
   };
 
+  const handlerMenuOption = () => {
+    nextVisualIndicator()
+  }
+
   const favoritesSellers = loadFromLocalStorage("favoritesSellers") || []
 
   return <motion.div
@@ -85,7 +92,7 @@ const MenuMobileOptions = ({ router }) => {
     </motion.ol>}
     {isLogged && (<>
       <motion.ol variants={item}>
-        <Link href={`/perfil/${slugify(name || "User Name")}`}>
+        <Link href={`/perfil/${slugify(name || "User Name")}`} id="menu--my-account" onClick={handlerMenuOption}>
           <div className={styles.coinContent}>
             <CoinIcon coins={coins} hideNumber />
           </div>

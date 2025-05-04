@@ -1,0 +1,14 @@
+.GalleryComponent {
+    .items {
+        display: flex;
+        gap: 20px;
+        height: 80px;
+        margin: 10px auto 20px;
+        div {
+            height: 100%;
+        }
+        .item {
+            border-radius: 10px;
+        }
+    }
+}

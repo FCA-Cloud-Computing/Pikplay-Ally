@@ -18,6 +18,7 @@ import { useIAStore } from '../ia/IAstore'
 import ProfileImage from '../profileImage/ProfileImage'
 import { locationsList } from '@/consts/locations'
 import ChallengesList from '../challengesList/ChallengesList'
+import GalleryComponent from '../gallery/Gallery'
 
 const Onboarding = (props) => {
   const { sellersInformation, challenges } = props
@@ -125,6 +126,8 @@ const Onboarding = (props) => {
     handleUserMessage(messageCode, {})
   }
 
+  const galleryItems = ['https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/gallery%2Fganadores%202.webp?alt=media&token=e6f32157-8171-4e43-9437-1d39203a71c6', 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/gallery%2Fganadores%203.webp?alt=media&token=e6925fa5-857f-44fe-b55e-5e842fab00f5', 'https://firebasestorage.googleapis.com/v0/b/pikplay-72843.firebasestorage.app/o/gallery%2Fganadores.webp?alt=media&token=ff5ed6e3-8a49-4e37-8ec0-5725f5717e31']
+
   useEffect(() => {
     // handleUserMessage('onboarding', {})
     // setStoreValue('isOnboardingProcess', true)
@@ -182,6 +185,8 @@ const Onboarding = (props) => {
         )}
     </div>
 
+    <GalleryComponent items={galleryItems} title="Algunos ganadores" />
+
     <div className={styles.cta}>
       <div className={styles.titleContent}>
         <h2>
@@ -215,7 +220,7 @@ const Onboarding = (props) => {
     </div>
     <div className={styles.challenges}>
       <h2>¿Cómo ganar <strong>Pikcoins</strong>?</h2>
-      {/* <ChallengesList challenges={challenges} /> */}
+      <ChallengesList challenges={challenges} />
     </div>
 
     <div className={styles.aliados}>

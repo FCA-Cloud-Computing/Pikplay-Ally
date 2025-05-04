@@ -66,6 +66,12 @@ const useCommonStore = create<CommonStoreState>((set, get) => ({
     messageIA: null
   },
   logout: () => initialLoginStorage(set),
+  visualIndicator: {
+    currentStep: null,
+    steps: [],
+    targetId: null,
+    text: null
+  },
   setStoreValue: (property, value, isLocalStorage = false) => {
     if (typeof property == 'object') {
       set(property);

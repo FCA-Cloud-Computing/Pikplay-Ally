@@ -15,12 +15,14 @@ import useCommonStore from '../../hooks/commonStore'
 import uploadFile from "../../services/uploadFile";
 import { NOTIFICATION_TYPES } from '../../consts/messages'
 import { useProfileImage } from '@/hooks/useProfileImage'
+import { useSound } from '@/hooks/useSound'
 
 const { motion } = require('framer-motion')
 
 moment.locale('es-CO')
 
-const UserNotifications = () => {
+const UserNotifications = (props) => {
+  const { playSound } = props
   const { userLogged, notifications, setStoreValue } = useCommonStore((state => state))
   const { handlerInputFile, fileInputRef } = useProfileImage()
   const { uid } = userLogged
@@ -74,6 +76,7 @@ const UserNotifications = () => {
   }
 
   const handleNotification = async (item) => {
+    playSound()
     const { coins, experience, id, link, type } = item
     if (coins || experience) {
       // reclamarCoins(coins, id)

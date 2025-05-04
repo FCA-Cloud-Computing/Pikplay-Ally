@@ -3,11 +3,10 @@ import { create } from "zustand"
 
 // Custom
 import { useIAStore } from "../ia/IAstore"
-// import { useOtpInput } from "@/hooks/useOtpInput"
 import { getTriviaSrv, postTriviaResponseSrv } from "@/services/trivias/trivias"
+import { useSound } from "@/hooks/useSound"
 
 const useWordChallenge = (setStoreValue) => {
-  // debugger
   const {
     letterIndexActive,
     set,
@@ -96,7 +95,7 @@ const useWordChallenge = (setStoreValue) => {
         if (closeModal) set({ showModal: false })
         const { message: messagePepe, type } = messageTop || {}
         if (messageTop) {
-          setStoreValue("messageTop", { message: messagePepe, type })
+          setStoreValue("messageTop", { message: messagePepe, type, mp3: 'wrong.mp3' })
         } else {
           if (isCleanWord) cleanWord()
           set({ errorMessage: message })

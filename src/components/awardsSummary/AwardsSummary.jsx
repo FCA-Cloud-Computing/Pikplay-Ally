@@ -12,6 +12,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import useCommonStore from '../../hooks/commonStore';
 import { createExperienceSrv, getExperiencesSrv } from '@/services/experience';
 import { getNotificationsSrv } from '@/services/user/user';
+import { useSound } from '@/hooks/useSound';
 
 const AwardsSummary = ({ handleCloseModal, page, setPage }) => {
   const awardsSummaryModalHTML = useCommonStore(state => state.awardsSummaryModalHTML)
@@ -19,6 +20,7 @@ const AwardsSummary = ({ handleCloseModal, page, setPage }) => {
   const currentCoins = useCommonStore(state => state.currentCoins)
   const notifications = useCommonStore(state => state.notifications)
   const setStoreValue = useCommonStore(state => state.setStoreValue)
+  const { play } = useSound('/sounds/coin-recieved.mp3');
 
   const {
     coins: gainedCoins,
@@ -36,6 +38,7 @@ const AwardsSummary = ({ handleCloseModal, page, setPage }) => {
   }, [])
 
   const handleUpdateExperience = () => { // Haciendo el UPDATE en la BD
+    play()
     setPage(1)
     setTimeout(() => {
       const createExpReq = createExperienceSrv(null, {
@@ -114,9 +117,9 @@ const AwardsSummary = ({ handleCloseModal, page, setPage }) => {
       {page == 1 && <>
         <ProfileSummaryExperience {
           ...{
+            changeAvatar: false,
             gainedCoins,
             gainedExperience,
-            changeAvatar: false,
           }}
         />
         <Button className={styles.closeModal} color='red' realistic onClick={handleCloseModal}>Cerrar</Button>

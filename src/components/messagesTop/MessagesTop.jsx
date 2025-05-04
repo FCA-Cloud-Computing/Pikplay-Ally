@@ -8,10 +8,12 @@ import { toast } from 'react-toastify';
 // Custom
 import useCommonStore from '@/hooks/commonStore';
 import { startConfetti } from '@/lib/utils';
+import { useSound } from '@/hooks/useSound';
 
 const MessagesTop = ({ messageTop, setStoreValue }) => {
-  const { message, type } = messageTop || {}
+  const { message, type, mp3 } = messageTop || {}
   const [closeMessageTopClass, setCloseMessaTopClass] = useState(false)
+  const { play: playSound } = useSound('/sounds/' + mp3);
   const delayClose = type == 'success' ? 6000 : 4000
 
   const handleCloseMessageTop = () => {
@@ -28,6 +30,7 @@ const MessagesTop = ({ messageTop, setStoreValue }) => {
       setTimeout(() => {
         handleCloseMessageTop()
       }, delayClose)
+      playSound()
     }
   }, [messageTop])
 
@@ -42,7 +45,7 @@ const MessagesTop = ({ messageTop, setStoreValue }) => {
         [styles.closeMessageTopClass]: closeMessageTopClass,
       })}
       initial={{ y: '200px' }}
-      onClick={handleCloseMessageTop}
+      // onClick={handleCloseMessageTop}
       transition={{ delay: .5 }}
     >
       <div className={`${contentClassType} ${styles.content}`} dangerouslySetInnerHTML={{ __html: message }}>
