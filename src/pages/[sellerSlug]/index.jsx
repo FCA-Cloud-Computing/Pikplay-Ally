@@ -50,6 +50,7 @@ const DefaultSellerPage = (props) => {
     isTriviaChallenge,
     registerInvoiceLabel,
     uid: sellerUid,
+    rankingId,
   } = sellerInformation || {}
   const { sellerSlug } = router.query
 
@@ -59,7 +60,6 @@ const DefaultSellerPage = (props) => {
     bonuses,
     productsTitle,
     products,
-    rankingId,
   } = sellersInformation[sellerSlug?.toLowerCase()] || {}
 
   const {
@@ -87,7 +87,7 @@ const DefaultSellerPage = (props) => {
     setSelectedNumber,
   } = useCompetitions()
 
-  const isPointsByExperience = sellerSlug == 'caribe-dev'
+  const isPointsByExperience = sellerSlug == 'caribe-dev' || sellerSlug == 'fundacion-codigo-abierto'
 
   const handleTriviaChallenge = () => {
     if (!userLogged?.uid) {

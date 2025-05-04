@@ -27,10 +27,10 @@ const MessagesTop = ({ messageTop, setStoreValue }) => {
   useEffect(() => {
     if (messageTop) {
       if (type === 'success') startConfetti()
+      else playSound() // Error
       setTimeout(() => {
         handleCloseMessageTop()
       }, delayClose)
-      playSound()
     }
   }, [messageTop])
 

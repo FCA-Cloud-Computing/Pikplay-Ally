@@ -68,6 +68,7 @@ const ProfileSummaryExperience = (props) => {
 
   const handleBlurName = (e) => {
     const { value } = e.target
+    setStoreValue({ visualIndicator: { targetId: null } })
 
     if (value == '' && name == null) {
       setNewNickname(DEFAULT_NAME)

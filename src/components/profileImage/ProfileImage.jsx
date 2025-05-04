@@ -40,7 +40,7 @@ const ProfileImage = ({ className, handleClickImage, isZoom, picture, small, cha
             onClick={() => fileInputRef.current.click()}>
             <input ref={fileInputRef} onChange={handlerInputFile} type="file" />
             {/* <img src="/images/icons/picture.svg" alt="Cambiar foto de perfil" /> */}
-            <CreateIcon className={`icon ${styles.icon}`} />
+            <CreateIcon className={`icon ${styles.icon}`} id="profile--change-picture" />
           </button>
         )}
       </picture>

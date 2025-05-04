@@ -54,7 +54,6 @@ const ItemCard = (props) => {
 
   const { handleRedemption } = useRedemption()
   const { loggedUser, setStoreValue } = useCommonStore()
-  const { play } = useSound('/sounds/notification.mp3');
   const imagesList = images ? images.split(",") : []
   const usuario =
     typeof localStorage != 'undefined'
@@ -73,7 +72,6 @@ const ItemCard = (props) => {
       .then(({ data }) => {
         const { messageTop } = data
         if (messageTop){
-          play()
           setStoreValue('messageTop', messageTop)
         }
       })

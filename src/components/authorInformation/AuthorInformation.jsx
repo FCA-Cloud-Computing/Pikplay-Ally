@@ -37,7 +37,7 @@ export const AuthorInformation = (props) => {
   const [isFavorite, setIsFavorite] = useState(false)
   const setStoreValue = useCommonStore((state) => state.setStoreValue)
   const stored = loadFromLocalStorage("favoritesSellers") || []
-  const { play } = useSound('/sounds/notification.mp3');
+  // const { play } = useSound('/sounds/notification.mp3');
   const whatsapp = 'https://api.whatsapp.com/send?phone=' + phone
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export const AuthorInformation = (props) => {
     setIsFavorite(!isFavorite)
 
     await postChallengeDetailSrv(null, { challengeId: 11 })
-    play()
+    // play()
   }
 
   return <div className={`${styles.AuthorComponentPage}`} style={{ ['--backgroundImage']: `url(${pageBackground})` }}>
