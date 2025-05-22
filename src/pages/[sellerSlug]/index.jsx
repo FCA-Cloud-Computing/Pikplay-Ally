@@ -6,7 +6,6 @@ import { faDiceFive } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
-import StarIcon from '@mui/icons-material/Star';
 import { createGlobalStyle } from "styled-components";
 import { HearingTwoTone, HeartBroken, HeartBrokenOutlined, HeartBrokenTwoTone, HeatPumpRounded } from '@mui/icons-material'
 
@@ -87,7 +86,7 @@ const DefaultSellerPage = (props) => {
     setSelectedNumber,
   } = useCompetitions()
 
-  const isPointsByExperience = sellerSlug == 'caribe-dev' || sellerSlug == 'fundacion-codigo-abierto'
+  const isPointsByExperience = sellerSlug == 'caribe-dev' || sellerSlug == 'fundacion-codigo-abierto' || sellerSlug == 'musique.fala'
 
   const handleTriviaChallenge = () => {
     if (!userLogged?.uid) {
@@ -198,16 +197,12 @@ const DefaultSellerPage = (props) => {
 
       {/* Ranking */}
       {rankingId && <>
-        <div className={`contentTitle ${sellerSlugStyles.Ranking}`}>
-          <h1>
-            <StarIcon className={sellerSlugStyles.starIcon} />
-            &nbsp;Ranking
-          </h1>
-        </div>
         <RankingComponent
+          isButtonJoinRanking
           isInviteButton={false}
-          isButtonJoinRanking {...{ rankingId }}
           isPointsByExperience={isPointsByExperience}
+          sellerSlugStyles={sellerSlugStyles}
+          {...{ rankingId }}
         />
       </>}
 
@@ -218,8 +213,8 @@ const DefaultSellerPage = (props) => {
       {publications?.data && <>
         <div className={`${sellerSlugStyles.productsTitle} contentTitle`}>
           <h1>
-            <FontAwesomeIcon className="icon" icon={faDiceFive} />
-            &nbsp;{productsTitle || 'Productos'}
+            {/* <FontAwesomeIcon className="icon" icon={faDiceFive} />&nbsp;*/}
+            {productsTitle || 'Productos'}
           </h1>
         </div>
         <div className={sellerSlugStyles.list}>

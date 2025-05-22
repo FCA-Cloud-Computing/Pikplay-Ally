@@ -1,4 +1,18 @@
 .RankingComponent {
+    .starIcon {
+        top: 4px;
+        color: #ffd800;
+        position: relative;
+    }
+
+    .currentPosition {
+        background: #322462;
+        border-radius: 4px;
+        font-weight: 600;
+        padding: 2px 4px;
+        width: max-content;
+    }
+
     .list {
         display: flex;
         flex-direction: column;

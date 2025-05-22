@@ -4,8 +4,15 @@
     border-radius: 10px;
   }
 
-  :global(.MuiDialogContent-root) {
-    background-image: url(/images/backgrounds/general-bg.png);
+  :global(.MuiPaper-root) {
+    background-image: url(https://stateless-fueradefoco.storage.googleapis.com/wp-content/uploads/2021/05/30090736/Friends-Portada-1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    :global(.MuiDialogContent-root) {
+      background: #292929ad;
+      // background-image: url(/images/backgrounds/general-bg.png);
+    }
   }
 
   .title {

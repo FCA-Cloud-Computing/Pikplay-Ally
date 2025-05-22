@@ -6,15 +6,16 @@
 }
 
 .card {
+  // background: linear-gradient(to right, #1e3a8a, #4338ca);
+  background: linear-gradient(to right, #673ab75e, #4a2860);
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  color: white;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  border-radius: 1rem;
-  cursor: pointer;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
   padding: 1rem;
-  background: linear-gradient(to right, #1e3a8a, #4338ca);
-  color: white;
 }
 
 .cardHeader {

@@ -1,4 +1,4 @@
-import { getRankingDetailSrv } from "@/services/rankings/rankings"
+import { getRankingDetailSrv, getRankingSrv } from "@/services/rankings/rankings"
 import { getUsersSrv } from "@/services/user/user"
 import { useEffect, useState } from "react"
 import useCommonStore from "./commonStore"
@@ -12,10 +12,13 @@ export const useRanking = ({
 }) => {
   const [rankingData, setRankingData] = useState([])
   const [currentPosition, setCurrentPosition] = useState(null)
+  const [title, setTitle] = useState('')
 
   const fetchRankingData = async () => {
     try {
       const rankingDataPointsRes = await getRankingDetailSrv(null, rankingId)
+      const rankingDataRes = await getRankingSrv(null, rankingId)
+      if (rankingDataRes.data?.title) setTitle(rankingDataRes.data.title)
       const { data: rankingDataPoints } = rankingDataPointsRes
       const uids = rankingDataPoints.map((member) => member.uid)
 
@@ -121,5 +124,6 @@ export const useRanking = ({
     getReferrals,
     moveItem,
     rankingData,
+    title,
   }
 }

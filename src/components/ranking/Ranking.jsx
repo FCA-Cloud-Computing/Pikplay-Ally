@@ -2,6 +2,7 @@ import styles from "./ranking.module.scss"
 
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import StarIcon from '@mui/icons-material/Star';
 
 // Custom
 import { formatNumber, getContacts, logout } from "@/lib/utils"
@@ -25,7 +26,14 @@ const RankingComponent = (props) => {
   const setIAMessage = useIAStore((item) => item.setIAMessage)
   const setStoreValue = useCommonStore((state) => state.setStoreValue)
   const userLogged = useCommonStore((state) => state.userLogged)
-  const { currentPosition, rankingData, moveItem, getReferrals, fetchRankingData } = useRanking({
+  const {
+    currentPosition,
+    fetchRankingData,
+    getReferrals,
+    moveItem,
+    rankingData,
+    title: rankingTitle,
+  } = useRanking({
     isPointsByExperience,
     rankingId,
     uid: userLogged?.uid,
@@ -81,7 +89,13 @@ const RankingComponent = (props) => {
 
   return (
     <div className={styles.RankingComponent}>
-      {currentPosition && <div>Posición actual: {currentPosition}</div>}
+      <div className={`contentTitle`}>
+        <h1>
+          <StarIcon className={styles.starIcon} />
+          &nbsp;{rankingTitle}
+        </h1>
+      </div>
+      {currentPosition && <div className={styles.currentPosition}>Posición actual: {currentPosition}</div>}
 
       {isButtonJoinRanking && !currentPosition && (
         <Button
