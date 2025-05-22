@@ -134,8 +134,7 @@ const Onboarding = (props) => {
   }, [])
 
   return <section className={`page ${styles.Onboarding}`}>
-    <Link href="/fundacion-codigo-abierto">
-      {/* Caribe Conf 2025 */}
+    <Link href="/musique.fala">
       <Image className={`${styles.bannerCaribeConf2025}`} src="images/banners/banner-barranquiia.jpg" alt="Banner Barranqui-IA 2025" height="100" width="420" />
     </Link>
     <div className={styles.titleContent}>
