@@ -68,7 +68,7 @@ const useWordChallenge = (setStoreValue) => {
     if (letter === " ") return null // Evitar espacios
 
     updatedWord[index] = letter
-    if (letter && index < 6 - 1 && !key) {
+    if (letter && index < wordLength - 1 && !key) {
       set({ letterIndexActive: index + 1 })
     }
 

@@ -24,7 +24,7 @@ const WordChallenge = (props) => {
     handleSendResponse,
     selectedOption,
     setSelectedOption,
-    setShowModal
+    setShowModal,
   } = useWordChallenge(setStoreValue)
 
   const {
@@ -54,7 +54,7 @@ const WordChallenge = (props) => {
 
   return (
     <Dialog
-      open={true}
+      open={showModal}
       // TransitionComponent={Transition}
       className={styles.WordChallenge}
       onClose={() => set({ showModal: false })}
@@ -67,11 +67,11 @@ const WordChallenge = (props) => {
               {question}
             </p>
             {/* Trivia sin opciones */}
-            {<InputsOTP
+            {options && options.length == 0 && <InputsOTP
               key="inputs"
               setShowModal={setShowModal}
               triviaId={triviaId}
-              wordLength={6}
+              wordLength={wordLength}
             />}
 
             {/* Trivia opciones */}

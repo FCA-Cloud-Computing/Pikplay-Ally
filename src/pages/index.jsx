@@ -2,7 +2,6 @@ import { getSellerHomeSrv, getUsersSrv } from "@/services/user/user"
 import Layout from "../components/layout/Layout"
 import Onboarding from "../components/onboarding/Onboarding"
 import { getChallengesByUser } from "@/services/challenges/challenges"
-import WordChallenge from "@/components/wordChallenge/WordChallenge"
 
 const IndexPage = (props) => {
     const { sellersInformation, challenges } = props
@@ -16,7 +15,6 @@ const IndexPage = (props) => {
         title={title}
         url={url}>
         <Onboarding sellersInformation={sellersInformation.data} challenges={challenges} />
-        <WordChallenge />
     </Layout>
 }
 
