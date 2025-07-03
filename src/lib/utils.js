@@ -257,6 +257,9 @@ export async function getContacts(callbackSuccess, callbackError) {
     if (contacts.lenght > 0) {
       callbackSuccess()
     }
+    if (erorrsFound) {
+     callbackError()
+    }
     // else toast.success('¡Referidos guardados!')
     // set({ isVisible: false })
   } catch (err) {
