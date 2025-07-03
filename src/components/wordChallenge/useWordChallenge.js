@@ -48,19 +48,14 @@ const useWordChallenge = (setStoreValue) => {
 
   const handleKeyUp = (event, index) => {
     const key = event?.key
+
     if (key === "Backspace" && index > 0) {
       const updatedWord = [...word]
       const currentLetter = updatedWord[index]
+      
+      if (currentLetter) updatedWord[index] = ""
 
-      // word.length === 0
-      //   ? (updatedWord[index - 1] = "")
-      //   : (updatedWord[index] = "")
-
-      // if (currentWord.length === 0) 
-      set({ letterIndexActive: index - 1 })
-      // set({ word: updatedWord })
-
-      return
+      set({ letterIndexActive: currentLetter ? index : index - 1 })
     }
   }
 
@@ -83,7 +78,7 @@ const useWordChallenge = (setStoreValue) => {
     // }
     // debugger
     // minusculas
-    set({ word: updatedWord.map(letter => letter.toLowerCase()) })
+    set({ word: updatedWord.map(letter => letter?.toLowerCase()) })
   }
 
   const handleSendResponse = (word) => {

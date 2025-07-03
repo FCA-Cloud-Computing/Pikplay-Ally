@@ -25,7 +25,7 @@ import BonusList from '@/components/bonusList/BonusList'
 import { Loyalty } from '@/components/loyalCustomer/Loyalty'
 import Button from '@/components/button/Button'
 import { useIAStore } from '@/components/ia/IAstore'
-import WordChallenge from '@/components/wordChallenge/WorkChallenge'
+import WordChallenge from '@/components/wordChallenge/WordChallenge'
 import MESSAGES from '@/consts/messages'
 
 import { getUserSrv } from '@/services/user/user'
