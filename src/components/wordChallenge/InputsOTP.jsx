@@ -12,10 +12,10 @@ import { postTriviaResponseSrv } from "@/services/trivias/trivias"
 import useWordChallenge, { useWordChallengeStore } from "./useWordChallenge"
 
 export const InputsOTP = ({ triviaId, setShowModal, wordLength }) => {
-  const { inputRefs, cleanWord } = useOtpInput(wordLength)
+  // const { inputRefs, cleanWord } = useOtpInput(wordLength)
   const { isCooldown, triggerCooldown } = useCooldown()
   const { messageTop, userLogged, setStoreValue } = useCommonStore()
-  const { handleSendResponse, handleChange, handleKeyUp } = useWordChallenge(setStoreValue)
+  const { handleSendResponse, handleChange, handleKeyUp,inputRefs, cleanWord  } = useWordChallenge(setStoreValue)
   const { errorMessage, letterIndexActive, loading, word } = useWordChallengeStore(state => state)
 
   const handleValidate = () => {

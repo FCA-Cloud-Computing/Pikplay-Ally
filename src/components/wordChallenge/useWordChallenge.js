@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { create } from "zustand"
 
 // Custom
@@ -17,6 +17,7 @@ const useWordChallenge = (setStoreValue) => {
   } = useWordChallengeStore(state => state)
 
   const { length: wordLength } = triviaInformation || {}
+  const inputRefs = useRef([])
   const [triviaId, setTriviaId] = useState(null)
   const [triviaQuestion, setTriviaQuestion] = useState("")
   const [triviaOptions, setTriviaOptions] = useState([])
@@ -65,19 +66,13 @@ const useWordChallenge = (setStoreValue) => {
     const letter = event.currentTarget?.value
     const key = event?.key
 
-    // if (letter === "") return null
+    if (letter === " ") return null
 
     updatedWord[index] = letter
-    if (letter && index < wordLength - 1 && !key) {
+    if (letter && index < 6 - 1 && !key) {
       set({ letterIndexActive: index + 1 })
     }
 
-    // if (!letter && index > 0 && !key) {
-    //     debugger
-    //     setLetterIndexActive(index - 1)
-    // }
-    // debugger
-    // minusculas
     set({ word: updatedWord.map(letter => letter?.toLowerCase()) })
   }
 
@@ -122,6 +117,8 @@ const useWordChallenge = (setStoreValue) => {
     getTrivia,
     handleChange,
     handleKeyUp,
+    cleanWord,
+    inputRefs,
     handleSendResponse,
     selectedOption,
     setSelectedOption,
