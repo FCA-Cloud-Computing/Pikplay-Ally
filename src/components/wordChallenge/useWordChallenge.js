@@ -23,7 +23,6 @@ const useWordChallenge = (setStoreValue) => {
   const [triviaOptions, setTriviaOptions] = useState([])
   const [selectedOption, setSelectedOption] = useState(null)
   const setIAMessage = useIAStore(state => state.setIAMessage)
-  // const { cleanWord } = useOtpInput(wordLength)
 
   const getTrivia = (sellerUid) => {
     getTriviaSrv(null, sellerUid)
@@ -66,7 +65,7 @@ const useWordChallenge = (setStoreValue) => {
     const letter = event.currentTarget?.value
     const key = event?.key
 
-    if (letter === " ") return null
+    if (letter === " ") return null // Evitar espacios
 
     updatedWord[index] = letter
     if (letter && index < 6 - 1 && !key) {
@@ -98,9 +97,7 @@ const useWordChallenge = (setStoreValue) => {
   }
 
   const cleanWord = () => {
-    set({ word: Array(wordLength).fill("") })
-    // setLetterIndexActive(0)
-    // inputRefs.current[0].focus()
+    set({ word: Array(wordLength).fill(""), letterIndexActive: 0, triviaInformation: null })
   }
 
   useEffect(() => {
