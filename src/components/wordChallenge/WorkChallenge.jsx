@@ -1,6 +1,6 @@
 import styles from "./wordChallenge.module.scss"
 
-import { useState, forwardRef, useEffect } from "react"
+import { useState, forwardRef, useEffect, useRef } from "react"
 import { motion, useAnimation, useMotionValue, useTransform } from 'framer-motion'
 import { Dialog, DialogContent, Slide } from "@mui/material"
 import { get } from "http"
@@ -48,7 +48,31 @@ const WordChallenge = (props) => {
     handleSendResponse(selectedOption)
   }
 
+  // Timer properties
+  const [secondsLeft, setSecondsLeft] = useState(60);
+  const radius = 70;
+  const circumference = 2 * Math.PI * radius;
+  const intervalRef = useRef(null);
+  const progress = secondsLeft / 60;
+  const offset = circumference * (1 - progress);
+
+  const startTimer = () => {
+    intervalRef.current = setInterval(() => {
+      setSecondsLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(intervalRef.current);
+          // onComplete?.();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(intervalRef.current);
+  }
+
   useEffect(() => {
+    startTimer()
     getTrivia(sellerUid)
   }, [])
 
@@ -63,6 +87,28 @@ const WordChallenge = (props) => {
         <div className={styles.content}>
           <AnimatePresence initial={true} custom={direction}>
             <p className={styles.title}>Trivia Challenge</p>
+            <div className={styles["timer-wrapper"]}>
+              <svg width="160" height="160">
+                <circle
+                  className={styles.bg}
+                  r={radius}
+                  cx="80"
+                  cy="80"
+                />
+                <circle
+                  className={styles.progress}
+                  r={radius}
+                  cx="80"
+                  cy="80"
+                  strokeDasharray={circumference}
+                  strokeDashoffset={offset}
+                />
+                <text x="50%" y="50%" textAnchor="middle" dy=".3em" className={styles.timerText}>
+                  {secondsLeft}s
+                </text>
+              </svg>
+            </div>
+
             <p className={styles.question}>
               {question}
             </p>
