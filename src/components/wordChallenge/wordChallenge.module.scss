@@ -15,6 +15,33 @@
     }
   }
 
+  .timer-wrapper {
+    position: absolute;
+    right: -10px;
+    top: -40px;
+    height: initial;
+    width: initial;
+    transform: scale(0.4);
+
+    .bg {
+      fill: none;
+      stroke: #eee;
+      stroke-width: 10;
+    }
+
+    .progress {
+      fill: none;
+      stroke: #00aaff;
+      stroke-width: 10;
+      transition: stroke-dashoffset 1s linear;
+    }
+
+    .timerText {
+      font-size: 3em;
+      fill: white;
+    }
+  }
+
   .title {
     color: #f79c01;
     font-size: 24px;
